@@ -2,6 +2,7 @@
 #define STABLE_H
 
 #include <QtGUI>
+#include <QtWidgets>
 #include <QDebug>
 #include <cmath>
 #include <QApplication>
@@ -10,6 +11,6 @@
 #include <QtOpenGL/QGLWidget>
 #include <QElapsedTimer>
 
-#include <Phonon>
+#include <QtMultimedia>
 
 #endif // STABLE_H

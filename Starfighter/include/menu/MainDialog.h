@@ -35,7 +35,7 @@ private:
     GameEngine *ge;
     NewGameDialog *ngd;
 
-    Phonon::MediaObject *menuMusic;
+    QMediaPlayer *menuMusic;
 };
 
 #endif // MAINDIALOG_H

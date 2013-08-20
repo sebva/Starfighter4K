@@ -16,12 +16,17 @@ MainDialog::MainDialog(QWidget *parent) :
     ge = 0;
     ngd = 0;
 
+    menuMusic = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
+    menuMusic->setMedia(QUrl("qrc:///sounds/menumusic"));
+    menuMusic->play();
+    /*
     Phonon::AudioOutput *musicOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
     menuMusic = new Phonon::MediaObject(this);
     menuMusic->setCurrentSource(Phonon::MediaSource(":/sounds/menumusic"));
     Phonon::createPath(menuMusic, musicOutput);
     connect(menuMusic, SIGNAL(aboutToFinish()), this, SLOT(musicFinished()));
     menuMusic->play();
+    */
 }
 
 MainDialog::~MainDialog()
@@ -55,7 +60,7 @@ void MainDialog::setGameEngine(GameEngine *ge)
 
 void MainDialog::musicFinished()
 {
-    menuMusic->seek(0);
+    menuMusic->setPosition(0);
     menuMusic->play();
 }
 

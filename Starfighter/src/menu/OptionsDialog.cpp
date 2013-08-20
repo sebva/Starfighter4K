@@ -85,12 +85,12 @@ void OptionsDialog::on_btnSave_clicked()
 
 void OptionsDialog::showKeys()
 {
-        ui->btnP1Up->setText((QString)QKeySequence(controls->value(aTop1)));
-        ui->btnP2Up->setText((QString)QKeySequence(controls->value(aTop2)));
-        ui->btnP1Down->setText((QString)QKeySequence(controls->value(aBottom1)));
-        ui->btnP2Down->setText((QString)QKeySequence(controls->value(aBottom2)));
-        ui->btnP1Fire->setText((QString)QKeySequence(controls->value(aShoot1)));
-        ui->btnP2Fire->setText((QString)QKeySequence(controls->value(aShoot2)));
+        ui->btnP1Up->setText(QKeySequence(controls->value(aTop1)).toString());
+        ui->btnP2Up->setText(QKeySequence(controls->value(aTop2)).toString());
+        ui->btnP1Down->setText(QKeySequence(controls->value(aBottom1)).toString());
+        ui->btnP2Down->setText(QKeySequence(controls->value(aBottom2)).toString());
+        ui->btnP1Fire->setText(QKeySequence(controls->value(aShoot1)).toString());
+        ui->btnP2Fire->setText(QKeySequence(controls->value(aShoot2)).toString());
 }
 
 void OptionsDialog::setKey(Qt::Key key)

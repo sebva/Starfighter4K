@@ -14,13 +14,13 @@ public:
 signals:
 
 private:
-    Phonon::MediaObject *satMediaObject;
-    Phonon::MediaObject *shootMediaObject;
-    Phonon::MediaObject *snovaMediaObject;
-    Phonon::MediaObject *musicMediaObject;
+    QMediaPlayer *satMediaPlayer;
+    QMediaPlayer *shootMediaPlayer;
+    QMediaPlayer *snovaMediaPlayer;
+    QMediaPlayer *musicMediaPlayer;
 
 private slots:
-    void musicFinished();
+    void musicChangedStatus(QMediaPlayer::MediaStatus status);
     
 public slots:
     void playSound(Sounds);
