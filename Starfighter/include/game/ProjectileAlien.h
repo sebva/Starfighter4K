@@ -20,7 +20,7 @@ public:
     ~ProjectileAlien() {}
 
 private:
-    static const qreal kIntervalModule = MODULE_INCREMENT_ALIEN;
+    static const qreal kIntervalModule;
 
     void advance(int _step);
 

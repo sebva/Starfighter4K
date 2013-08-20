@@ -33,7 +33,7 @@ private:
     void advance(int _step);
     void attacking();
 
-    static const qreal kIntervalArgument = ARG_INCREMENTATION_ALIENSPACESHIP;
+    static const qreal kIntervalArgument;
 
     GameEngine* gameEngine;
 

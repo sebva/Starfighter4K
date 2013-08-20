@@ -19,6 +19,8 @@
 
 #include "include/config/Define.h"
 
+const qreal ProjectileAlien::kIntervalModule = MODULE_INCREMENT_ALIEN;
+
 ProjectileAlien::ProjectileAlien(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _dArgument, qreal _dModule)
     ://Displayable(_dXOrigin,_dYOrigin),
       Projectile(_dXOrigin,_dYOrigin,_from),

@@ -31,7 +31,7 @@ public:
     void advance(int _step);
 
 private:
-    static const qreal kIntervalArgument = ARG_INCREMENTATION_BONUS;
+    static const qreal kIntervalArgument;
 
     GameEngine *gameEngine;
 

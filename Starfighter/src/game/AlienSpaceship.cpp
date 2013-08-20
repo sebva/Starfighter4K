@@ -21,6 +21,8 @@
 #include "include/game/AlienSpaceship.h"
 #include "include/game/ProjectileAlien.h"
 
+const qreal AlienSpaceship::kIntervalArgument = ARG_INCREMENTATION_ALIENSPACESHIP;
+
 AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResistance,GameEngine* _gameEngine)
     :Displayable(0,0,new QPixmap(PICTURE_ALIENSPACESHIP)),
       Destroyable(_dHealthPoint,_dResistance),
@@ -57,7 +59,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
         l_x2-=DELTA_X;
 
     //If DELTA_X is so small, the alienspaceship's speed will be very high, so we take so precaution
-    if(fabs(l_x2-l_x1)<DELTA_X/2.0)
+    if(fabs(static_cast<double>(l_x2-l_x1))<DELTA_X/2.0)
     {
         if(l_x2>l_x1)
             l_x2-=DELTA_X/2.0;
@@ -79,7 +81,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     */
 
     //To avoid to enter in the player's zone
-    if(fabs(l_x1-l_x2)<DELTA_X_MIN)
+    if(fabs(static_cast<double>(l_x1-l_x2))<DELTA_X_MIN)
     {
         if(l_x2>l_x1)
             l_x2=l_x1+DELTA_X_MIN;

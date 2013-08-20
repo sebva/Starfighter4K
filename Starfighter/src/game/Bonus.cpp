@@ -22,6 +22,8 @@
 #include "include/game/Bonus.h"
 #include "include/game/Spaceship.h"
 
+const qreal Bonus::kIntervalArgument = ARG_INCREMENTATION_BONUS;
+
 Bonus::Bonus(GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(PICTURE_BONUS)),
       gameEngine(_gameEngine),//GameEngine
@@ -54,7 +56,7 @@ Bonus::Bonus(GameEngine *_gameEngine)
         l_x2-=DELTA_X_B;
 
     //To avoid to enter in the player's zone
-    if(fabs(l_x2-l_x1)<DELTA_X_B/2.0)
+    if(fabs(static_cast<double>(l_x2-l_x1))<DELTA_X_B/2.0)
     {
         if(l_x2>l_x1)
             l_x2-=DELTA_X_B/2.0;
