@@ -19,7 +19,8 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/SoundEngine.h"
-
+#include "include/engine/UserControlsEngine.h"
+#include "include/engine/wiimoteengine.h"
 #include "include/game/Spaceship.h"
 #include "include/game/ProjectileCross.h"
 #include "include/game/ProjectileSimple.h"
@@ -44,14 +45,14 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       dHealthForceField(MAX_SPACESHIP_PV),//Health point of the force field
       dResistanceForceField(RESISTANCE_FORCE_FIELD),//Resistance of the forcefield
       dSpeed(_dSpeed),//Speed
-      score(0)//Number of point, only use in timerMode
+      score(0),//Number of point, only use in timerMode
+      dAngleAttack(0)
 {
     if(_player == Player1)
         dAngle = 0;
     else if(_player == Player2)
         dAngle = M_PI;
     timerProjectile->setSingleShot(true);
-
     connect(timerProjectile,SIGNAL(timeout()),this,SLOT(removeProjectileBonus()));
 }
 
@@ -87,7 +88,7 @@ QPainterPath Spaceship::shape() const
 
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
-    _painter->drawPixmap(0,0,*getPixmap());
+    _painter->drawPixmap(0 , 0, *getPixmap());
 }
 
 qreal Spaceship::getPercentageSpeed() const
@@ -153,6 +154,8 @@ void Spaceship::removeSpeedBonus()
 
 void Spaceship::receiveAttack(qreal _dPower)
 {
+    gameEngine->wiimoteEngine()->rumble((player == Player1) ? 0 : 1, RUMBLE_TIME);
+
     double power1 = _dPower * (100.0 - dHealthForceField) / 100.0;
     double power2 = _dPower - power1;
 	
@@ -164,6 +167,20 @@ void Spaceship::receiveAttack(qreal _dPower)
     if(dHealthPoint<=0)
         dHealthPoint=0;
     isDead();
+}
+
+void Spaceship::rotate(qreal pitch)
+{
+    resetTransform();
+    qreal x = getPixmap()->width()/2.0;
+    qreal y = getPixmap()->height()/2.0;
+    qreal angle = -pitch;
+
+    if(player == Player2)
+        angle *= -1;
+
+    setTransform(QTransform().translate(x,y).rotate(angle).translate(-x,-y));
+    dAngleAttack = pitch;
 }
 
 void Spaceship::attack()

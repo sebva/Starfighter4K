@@ -40,6 +40,8 @@ GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int dura
     createSpaceship();
 
     elapsedTimer.start();
+
+    connect(we,SIGNAL(orientation(int, qreal)), this, SLOT(rotationProcess(int, qreal)));
 }
 
 GameEngine::~GameEngine()
@@ -283,6 +285,14 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter
         else if(AlienSpaceship* a = dynamic_cast<AlienSpaceship*>(_destroyItem))
             removeAlienSpaceship(a);
     }
+}
+
+void GameEngine::rotationProcess(int wiimote, qreal angle)
+{
+    if(wiimote == 0)
+        ship1()->rotate(angle);
+    else
+        ship2()->rotate(angle);
 }
 
 void GameEngine::timerControle(int tps)

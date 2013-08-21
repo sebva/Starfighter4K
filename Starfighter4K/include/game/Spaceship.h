@@ -49,6 +49,7 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void rotate(qreal pitch);
 
 private slots:
     void removeSpeedBonus();
@@ -71,6 +72,7 @@ private:
     qreal dHealthForceField;
     qreal dResistanceForceField;
     qreal dSpeed;
+    qreal dAngleAttack;
     int score;
 };
 #endif

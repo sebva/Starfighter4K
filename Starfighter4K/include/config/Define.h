@@ -140,5 +140,7 @@
 //Bonus
 #define DELTA_X_B                           100 //Cf Specification file
 
+//Wiimote
+#define RUMBLE_TIME                         200
 
 #endif // DEFINE_H

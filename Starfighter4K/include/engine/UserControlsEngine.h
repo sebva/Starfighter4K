@@ -17,7 +17,6 @@ public:
     ~UserControlsEngine();
 
     void timerEvent(QTimerEvent *event);
-
     void clearActionList();
 
 public slots:

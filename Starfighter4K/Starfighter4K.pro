@@ -4,8 +4,8 @@
 
 TEMPLATE = app
 TARGET = Starfighter4K
-
 PRECOMPILED_HEADER = include\stable.h
+
 DEPENDPATH += . \
               include \
               src \

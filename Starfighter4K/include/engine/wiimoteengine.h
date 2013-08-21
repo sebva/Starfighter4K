@@ -30,12 +30,14 @@ public:
     void stop();
 
     qreal getBattery(int wiimote) const;
-    qreal getPitch(int wiimote) const;
+
+protected:
+    void timerEvent(QTimerEvent *event);
 
 signals:
     void button_pressed(int button, int wiimote);
     void button_released(int button, int wiimote);
-
+    void orientation(int wiimote, qreal pitch);
     void wiimotes_disconnected();
 
 private slots:
@@ -45,7 +47,6 @@ private:
     static const int kNbWiimotes = 2;
     static const int kTimeout = 5;
     static const std::array<int, 13> kWiimotesButtons;
-
     bool isRunning;
 
     wiimote_t** wiimotes;

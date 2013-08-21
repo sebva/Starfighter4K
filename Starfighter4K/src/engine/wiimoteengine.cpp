@@ -1,7 +1,6 @@
 #include "include/engine/WiimoteEngine.h"
+#include "include/config/Define.h"
 
-#include <qDebug>
-#include <QTimer>
 #include <lib/wiiuse/wiiuse.h>
 
 const std::array<int, 13> WiimoteEngine::kWiimotesButtons = {WIIMOTE_BUTTON_A,
@@ -21,6 +20,7 @@ const std::array<int, 13> WiimoteEngine::kWiimotesButtons = {WIIMOTE_BUTTON_A,
 WiimoteEngine::WiimoteEngine(QObject *parent):QThread(parent),isRunning(true)
 {
     wiimotes = wiiuse_init(kNbWiimotes);
+    startTimer(REFRESH);
 }
 
 WiimoteEngine::~WiimoteEngine()
@@ -91,6 +91,12 @@ void WiimoteEngine::unrumble()
     wiiuse_rumble(wiimotes[rumble_order.dequeue()], 0);
 }
 
+void WiimoteEngine::timerEvent(QTimerEvent *event)
+{
+    for(int i = 0; i < kNbWiimotes; ++i)
+        emit orientation(i,-atan2((wiimotes[i]->gforce.y) ,sqrt(pow(wiimotes[i]->gforce.x,2) + pow(wiimotes[i]->gforce.z,2)))*180.0/M_PI);
+}
+
 void WiimoteEngine::run()
 {
     while (isRunning) {
@@ -98,7 +104,8 @@ void WiimoteEngine::run()
                 for (int i = 0; i < kNbWiimotes; ++i)
                 {
                     wiimote_t* wm = wiimotes[i];
-                    switch (wm->event) {
+                    switch (wm->event)
+                    {
                         case WIIUSE_EVENT:
                             for(auto it = kWiimotesButtons.begin(); it != kWiimotesButtons.end(); ++it)
                                 if(IS_JUST_PRESSED(wm, *it))
@@ -144,9 +151,4 @@ void WiimoteEngine::stop()
 qreal WiimoteEngine::getBattery(int wiimote) const
 {
     return wiimotes[wiimote]->battery_level*100.0;
-}
-
-qreal WiimoteEngine::getPitch(int wiimote) const
-{
-    return -wiimotes[wiimote]->orient.pitch;
 }

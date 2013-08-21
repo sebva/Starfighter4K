@@ -41,7 +41,9 @@ public:
     SoundEngine* soundEngine() const { return soe;}
     DisplayEngine* displayEngine() const { return de;}
     UserControlsEngine* userControlsEngine() const {return uc;}
+    WiimoteEngine* wiimoteEngine() const {return we;}
     GameMode getGameMode() const {return gameMode;}
+
     bool getHasSomeonWon() const {return hasSomeoneWon;}
     void timerEvent(QTimerEvent *);
 
@@ -67,6 +69,9 @@ signals:
 
 public slots:
     void elemenDestroyed(Destroyable* destroyItem,int nbPoint,Shooter forShip);
+
+private slots:
+    void rotationProcess(int wiimote, qreal angle);
 
 private:
     void checkOutsideScene(QList<Displayable*> &list);
