@@ -17,8 +17,10 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 
-GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
-    :QObject(parent),
+#include "include/engine/WiimoteEngine.h"
+
+GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
+    :QObject(parent),we(wiimoteEngine),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
       isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),hasSomeoneWon(false),timeAlreadyCounted(0)
 {
@@ -27,7 +29,7 @@ GameEngine::GameEngine(GameMode gameMode, int duration, SpaceshipType player1Shi
 
     soe = new SoundEngine(settings.soundEffectsVolume(), settings.musicVolume(), this);
     de = new DisplayEngine(this,0);
-    uc = new UserControlsEngine(this);
+    uc = new UserControlsEngine(this, we);
     se = new SpawnEngine(difficulty, this);
 
     mutex = new QMutex();

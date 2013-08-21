@@ -1,26 +1,29 @@
 #include "include/engine/UserControlsEngine.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/DisplayEngine.h"
-
+#include "include/engine/WiimoteEngine.h"
 #include "include/game/Spaceship.h"
 #include "include/game/Supernova.h"
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 
-UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasEnd(false), hasBegin(true),pauseTime(NOVATIMER)
-{
-    myKey = Settings::getGlobalSettings().playersControls();
+#include <lib/wiiuse/wiiuse.h>
 
+#define PLAYER_1 0
+#define PLAYER_2 1
+
+UserControlsEngine::UserControlsEngine(GameEngine *ge, WiimoteEngine *we): gameEngine(ge), wiimoteEngine(we), hasEnd(false), hasBegin(true), isPaused(false), pauseTime(NOVATIMER)
+{
     display = gameEngine->displayEngine();
 
-    actions.insert(myKey[aTop1],aTop1);
-    actions.insert(myKey[aBottom1],aBottom1);
-    actions.insert(myKey[aShoot1],aShoot1);
-
-    actions.insert(myKey[aTop2],aTop2);
-    actions.insert(myKey[aBottom2],aBottom2);
-    actions.insert(myKey[aShoot2],aShoot2);
+    actions.insert(WIIMOTE_BUTTON_A, Shoot);
+    actions.insert(WIIMOTE_BUTTON_B, Shoot);
+    actions.insert(WIIMOTE_BUTTON_UP, Top);
+    actions.insert(WIIMOTE_BUTTON_DOWN, Bottom);
+    actions.insert(WIIMOTE_BUTTON_MINUS, NormalBonus);
+    actions.insert(WIIMOTE_BUTTON_PLUS, SpecialBonus);
+    actions.insert(WIIMOTE_BUTTON_HOME, Pause);
 
     novaeCall = new QTimer(this);
     novaeCall->setSingleShot(true);
@@ -31,91 +34,45 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge): gameEngine(ge), hasEnd(f
     connect(novaeCall,SIGNAL(timeout()),this,SLOT(callSupernovae()));
     connect(gameEngine,SIGNAL(signalPause(bool)),this,SLOT(pauseGame(bool)));
     connect(gameEngine,SIGNAL(endGame()),this,SLOT(endGame()));
-
+    connect(wiimoteEngine, SIGNAL(button_pressed(int,int)), this, SLOT(wiimotePressProcess(int,int)));
+    connect(wiimoteEngine, SIGNAL(button_released(int,int)), this, SLOT(wiimoteReleaseProcess(int,int)));
 }
 
 UserControlsEngine::~UserControlsEngine()
 {
     delete novaeCall;
-
-    //GameEngine delete DisplayEngine and UserControlsEngine
+    //MainDialog deletes WiimoteEngine
+    //GameEngine deletes DisplayEngine and UserControlsEngine
 }
 
-void UserControlsEngine::keyPressEvent(QKeyEvent * event)
+void UserControlsEngine::wiimotePressProcess(int button, int wiimote)
 {
-
-    Action action = actions[event->key()];
-
-    switch(action)
+    if(!isPaused && actions.count(button) >= 1)
     {
-        case(aTop1):
-        actionList.append(aTop1);
-        break;
+        Action action = actions[button];
+        actionList.append(QPair<Action, int>(action, wiimote));
 
-        case(aBottom1):
-        actionList.append(aBottom1);
-        break;
-
-        case(aShoot1):
-        break;
-
-        case(aTop2):
-        actionList.append(aTop2);
-        break;
-
-        case(aBottom2):
-        actionList.append(aBottom2);
-        break;
-
-        case(aShoot2):
-        break;
+        if(action == Shoot)
+        {
+            if(wiimote == PLAYER_1)
+                gameEngine->ship1()->attack();
+            else
+                gameEngine->ship2()->attack();
+            novaeCall->start(NOVATIMER);
+            countTimer.restart();
+        }
+        else if(action == Pause)
+            gameEngine->escapeGame();
     }
-
-
-    if((!event->isAutoRepeat() && (action == aShoot1)))
-    {
-        gameEngine->ship1()->attack();
-        novaeCall->start(NOVATIMER);
-        countTimer.restart();
-    }
-
-    if((!event->isAutoRepeat() && (action == aShoot2)))
-    {
-        gameEngine->ship2()->attack();
-        novaeCall->start(NOVATIMER);
-        countTimer.restart();
-    }
-
 }
 
-void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
+void UserControlsEngine::wiimoteReleaseProcess(int button, int wiimote)
 {
-
-    Action action = actions[event->key()];
-
-    switch(action)
+    if(actions.count(button) >= 1)
     {
-        case(aTop1):
-        actionList.removeAll(aTop1);
-        break;
+        QPair<Action, int> pair(actions[button], wiimote);
 
-        case(aBottom1):
-        actionList.removeAll(aBottom1);
-        break;
-
-        case(aShoot1):
-        break;
-
-        case(aTop2):
-        actionList.removeAll(aTop2);
-        break;
-
-        case(aBottom2):
-        actionList.removeAll(aBottom2);
-        break;
-
-        case(aShoot2):
-        break;
+        actionList.removeAll(pair);
     }
 }
 
@@ -123,32 +80,25 @@ void UserControlsEngine::timerEvent(QTimerEvent *event)
 {
     hasBegin = false;
 
-    QList<Action>::iterator values;
-
-    for(values = actionList.begin(); values != actionList.end(); values++)
+    for(auto values = actionList.begin(); values != actionList.end(); values++)
     {
-        switch(*values)
+        switch(values->first)
         {
-            case(aTop1):
-            gameEngine->ship1()->top();
+            case(Top):
+            if(values->second == PLAYER_1)
+                gameEngine->ship1()->top();
+            else
+                gameEngine->ship2()->top();
             break;
 
-            case(aBottom1):
-            gameEngine->ship1()->bottom();
+            case(Bottom):
+            if(values->second == PLAYER_1)
+                gameEngine->ship1()->bottom();
+            else
+                gameEngine->ship2()->bottom();
             break;
 
-            case(aShoot1):
-            break;
-
-            case(aTop2):
-            gameEngine->ship2()->top();
-            break;
-
-            case(aBottom2):
-            gameEngine->ship2()->bottom();
-            break;
-
-            case(aShoot2):
+        default:
             break;
         }
     }
@@ -158,6 +108,7 @@ void UserControlsEngine::pauseGame(bool etat)
 {
     if(!hasBegin)
     {
+        isPaused = etat;
         if(etat)
         {
             novaeCall->stop();
@@ -187,6 +138,7 @@ void UserControlsEngine::callSupernovae()
 
 void UserControlsEngine::endGame()
 {
+    isPaused = true;
     hasEnd = true;
     clearActionList();
     killTimer(idTimer);

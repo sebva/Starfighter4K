@@ -4,6 +4,7 @@
 
 TEMPLATE = app
 TARGET = Starfighter4K
+
 PRECOMPILED_HEADER = include\stable.h
 DEPENDPATH += . \
               include \
@@ -51,7 +52,8 @@ HEADERS += include/stable.h \
            include/menu/SetKeyDialog.h \
            include/utils/Settings.h \
     include/config/Define.h \
-    include/game/AsteroidSupernova.h
+    include/game/AsteroidSupernova.h \
+    include/engine/WiimoteEngine.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -84,8 +86,10 @@ SOURCES += src/main.cpp \
            src/menu/OptionsDialog.cpp \
            src/menu/SetKeyDialog.cpp \
            src/utils/Settings.cpp \
-    src/game/AsteroidSupernova.cpp
+    src/game/AsteroidSupernova.cpp \
+    src/engine/WiimoteEngine.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts
 QT += opengl widgets multimedia gui
+LIBS += "./lib/wiiuse/wiiuse.lib" -Llib/wiiuse/ -lwiiuse

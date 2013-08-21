@@ -60,36 +60,6 @@ QString Settings::playerTwoName()
     return qse->value(P2_NAME, kDefaultPlayerTwoName).toString();
 }
 
-QMap<Action, Qt::Key> Settings::playersControls()
-{
-    QMap<Action, Qt::Key> controls;
-
-    controls.insert(aTop1, Qt::Key_W);
-    controls.insert(aTop2, Qt::Key_Up);
-    controls.insert(aBottom1, Qt::Key_S);
-    controls.insert(aBottom2, Qt::Key_Down);
-    controls.insert(aShoot1, Qt::Key_D);
-    controls.insert(aShoot2, Qt::Key_Left);
-
-    qse->beginGroup(PLAYERS_CONTROLS);
-    QStringListIterator it(qse->childKeys());
-    while (it.hasNext())
-    {
-        bool ok;
-        QString key = it.next();
-        Action ind = (Action)key.toInt(&ok);
-        if(ok)
-        {
-            Qt::Key value = (Qt::Key)qse->value(key, controls[ind]).toInt(&ok);
-            if(ok)
-                controls[ind] = value;
-        }
-    }
-    qse->endGroup();
-
-    return controls;
-}
-
 void Settings::setMusicVolume(int volume)
 {
     qse->setValue(MUSIC_VOLUME, volume);
@@ -108,16 +78,4 @@ void Settings::setPlayerOneName(QString name)
 void Settings::setPlayerTwoName(QString name)
 {
     qse->setValue(P2_NAME, name);
-}
-
-void Settings::setPlayersControls(QMap<Action, Qt::Key> controls)
-{
-    qse->beginGroup(PLAYERS_CONTROLS);
-    QMapIterator<Action, Qt::Key> i(controls);
-    while (i.hasNext())
-    {
-        i.next();
-        qse->setValue(QString().setNum(i.key()), i.value());
-    }
-    qse->endGroup();
 }

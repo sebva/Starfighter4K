@@ -3,6 +3,7 @@
 
 class GameEngine;
 class NewGameDialog;
+class WiimoteEngine;
 
 namespace Ui {
 class MainDialog;
@@ -16,7 +17,7 @@ public:
     explicit MainDialog(QWidget *parent = 0);
     ~MainDialog();
     void setGameEngine(GameEngine *);
-
+    WiimoteEngine* getWiimoteEngine() const {return we;}
 public slots:
     void endGame();
     void stopMusic();
@@ -34,6 +35,7 @@ private:
     Ui::MainDialog *ui;
     GameEngine *ge;
     NewGameDialog *ngd;
+    WiimoteEngine* we;
 
     QMediaPlayer *menuMusic;
 };

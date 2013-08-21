@@ -84,7 +84,7 @@ void NewGameDialog::on_btnStart_clicked()
     }
     else
     {
-        GameEngine *ge = new GameEngine(gameMode, duration, player1, player2, difficulty, this);
+        GameEngine *ge = new GameEngine(md->getWiimoteEngine(), gameMode, duration, player1, player2, difficulty, this);
         md->setGameEngine(ge);
         connect(ge, SIGNAL(endGame()), md, SLOT(endGame()));
         md->stopMusic();

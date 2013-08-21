@@ -6,17 +6,16 @@
 class GameEngine;
 class DisplayEngine;
 class QTimer;
+class WiimoteEngine;
 
 class UserControlsEngine : public QObject
 {
     Q_OBJECT
 
 public:
-    UserControlsEngine(GameEngine *ge);
+    UserControlsEngine(GameEngine *ge, WiimoteEngine *we);
     ~UserControlsEngine();
 
-    void keyPressEvent(QKeyEvent * event);
-    void keyReleaseEvent(QKeyEvent * event);
     void timerEvent(QTimerEvent *event);
 
     void clearActionList();
@@ -25,13 +24,16 @@ public slots:
     void callSupernovae();
     void pauseGame(bool etat);
     void endGame();
+    void wiimotePressProcess(int button, int wiimote);
+    void wiimoteReleaseProcess(int button, int wiimote);
 
 private:
     QMap<int,Action>        actions;
-    QMap<Action,Qt::Key>    myKey;
+
     GameEngine *            gameEngine;
     DisplayEngine *         display;
-    QList<Action>           actionList;
+    WiimoteEngine *         wiimoteEngine;
+    QList<QPair<Action, int>> actionList;
     QTimer *                novaeCall;
     int                     idTimer;
 
@@ -39,6 +41,7 @@ private:
 
     bool hasEnd;
     bool hasBegin;
+    bool isPaused;
     int pauseTime;
 
 

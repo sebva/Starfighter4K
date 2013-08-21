@@ -6,11 +6,16 @@
 #include "include/engine/GameEngine.h"
 #include "include/engine/DisplayEngine.h"
 #include "include/config/Define.h"
+#include "includE/engine/WiimoteEngine.h"
 
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint),
-    ui(new Ui::MainDialog)
+    ui(new Ui::MainDialog), we(new WiimoteEngine(this))
 {
+    we->connectWiimotes();
+    we->startAccel();
+    we->start();
+
     ui->setupUi(this);
     setWindowIcon(QIcon(ICON_TASKBAR));
     ge = 0;
@@ -32,6 +37,8 @@ MainDialog::MainDialog(QWidget *parent) :
 MainDialog::~MainDialog()
 {
     delete ui;
+    we->stop();
+    delete we;
 }
 
 void MainDialog::on_btnPlay_clicked()

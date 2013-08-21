@@ -19,13 +19,10 @@ public:
 	QString playerOneName();
 	QString playerTwoName();
 
-    QMap<Action, Qt::Key> playersControls();
-
     void setMusicVolume(int volume);
     void setSoundEffectsVolume(int volume);
     void setPlayerOneName(QString name);
     void setPlayerTwoName(QString name);
-    void setPlayersControls(QMap<Action, Qt::Key> controls);
 	
 private:
     Settings();

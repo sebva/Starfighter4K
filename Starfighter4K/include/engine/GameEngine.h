@@ -17,13 +17,14 @@ class Destroyable;
 class Displayable;
 class Settings;
 class QMutex;
+class WiimoteEngine;
 
 class GameEngine : public QObject
 {
     Q_OBJECT
 
 public:	
-    GameEngine(GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject*);
+    GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject*);
     ~GameEngine();
 
     static double randDouble();
@@ -79,6 +80,7 @@ private:
     SpawnEngine *se;
     UserControlsEngine *uc;
     Settings& settings;
+    WiimoteEngine *we;
 
     GameMode gameMode;
     SpaceshipType typeShip1;
