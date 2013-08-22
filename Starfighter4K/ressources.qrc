@@ -115,13 +115,6 @@
         <file alias="rock30030">res/images/game/asteroid3/rock30030.png</file>
         <file alias="rock30031">res/images/game/asteroid3/rock30031.png</file>
     </qresource>
-    <qresource prefix="/sounds">
-        <file alias="sat">res/sounds/beep.mp3</file>
-        <file alias="laser">res/sounds/laser.mp3</file>
-        <file alias="supernova">res/sounds/supernova.mp3</file>
-        <file alias="bgmusic">res/sounds/game.mp3</file>
-        <file alias="menumusic">res/sounds/menu.mp3</file>
-    </qresource>
     <qresource prefix="/images/game/icon">
         <file alias="attack">res/images/game/bonusAttaque.png</file>
         <file alias="speed">res/images/game/bonusSpeed.png</file>

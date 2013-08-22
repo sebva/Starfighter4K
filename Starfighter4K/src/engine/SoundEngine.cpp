@@ -1,25 +1,29 @@
 #include "include/engine/SoundEngine.h"
+#include "include/config/Define.h"
 
 SoundEngine::SoundEngine(int soundEffectsVolume, int musicVolume, QObject *parent) :
     QObject(parent)
 {
+    QString sndDir(SOUNDS_DIR);
+
     shootMediaPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
     shootMediaPlayer->setVolume(soundEffectsVolume);
-    shootMediaPlayer->setMedia(QMediaContent(QUrl("qrc:///sounds/laser")));
+    shootMediaPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(sndDir + SHOOT_SOUND)));
 
     satMediaPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
     satMediaPlayer->setVolume(soundEffectsVolume);
-    satMediaPlayer->setMedia(QMediaContent(QUrl("qrc:///sounds/sat")));
+    satMediaPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(sndDir + SAT_SOUND)));
 
     snovaMediaPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
     snovaMediaPlayer->setVolume(soundEffectsVolume);
-    snovaMediaPlayer->setMedia(QMediaContent(QUrl("qrc:///sounds/supernova")));
+    snovaMediaPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(sndDir + SUPERNOVA_SOUND)));
 
     musicMediaPlayer = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
     musicMediaPlayer->setVolume(musicVolume);
-    musicMediaPlayer->setMedia(QMediaContent(QUrl("qrc:///sounds/bgmusic")));
-
-    connect(musicMediaPlayer, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), this, SLOT(musicChangedStatus(QMediaPlayer::MediaStatus)));
+    QMediaPlaylist* pl = new QMediaPlaylist(this);
+    pl->addMedia(QMediaContent(QUrl::fromLocalFile(sndDir + GAME_MUSIC)));
+    pl->setPlaybackMode(QMediaPlaylist::Loop);
+    musicMediaPlayer->setPlaylist(pl);
     musicMediaPlayer->play();
 }
 
@@ -39,14 +43,5 @@ void SoundEngine::playSound(Sounds toPlay)
     {
         snovaMediaPlayer->setPosition(0);
         snovaMediaPlayer->play();
-    }
-}
-
-void SoundEngine::musicChangedStatus(QMediaPlayer::MediaStatus status)
-{
-    if(status == QMediaPlayer::EndOfMedia)
-    {
-        musicMediaPlayer->setPosition(0);
-        musicMediaPlayer->play();
     }
 }

@@ -79,38 +79,38 @@
 <context>
     <name>GameEngine</name>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="197"/>
         <location filename="src/engine/GameEngine.cpp" line="202"/>
-        <location filename="src/engine/GameEngine.cpp" line="216"/>
-        <location filename="src/engine/GameEngine.cpp" line="217"/>
-        <location filename="src/engine/GameEngine.cpp" line="232"/>
-        <location filename="src/engine/GameEngine.cpp" line="245"/>
+        <location filename="src/engine/GameEngine.cpp" line="207"/>
+        <location filename="src/engine/GameEngine.cpp" line="220"/>
+        <location filename="src/engine/GameEngine.cpp" line="221"/>
+        <location filename="src/engine/GameEngine.cpp" line="236"/>
+        <location filename="src/engine/GameEngine.cpp" line="249"/>
         <source>End of the game</source>
         <translation type="unfinished">Fin de la partie</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="198"/>
-        <location filename="src/engine/GameEngine.cpp" line="233"/>
+        <location filename="src/engine/GameEngine.cpp" line="203"/>
+        <location filename="src/engine/GameEngine.cpp" line="237"/>
         <source>%1 has won !</source>
         <translation type="unfinished">%1 a gagné !</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="203"/>
+        <location filename="src/engine/GameEngine.cpp" line="208"/>
         <source>No one has won ... Egality !</source>
         <translation type="unfinished">Personne n&apos;a gagné... Égalité !</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="246"/>
+        <location filename="src/engine/GameEngine.cpp" line="250"/>
         <source>Do you want to stop the current game ?</source>
         <translation type="unfinished">Voulez-vous quitter le jeu en cours ?</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="250"/>
+        <location filename="src/engine/GameEngine.cpp" line="254"/>
         <source>Yes</source>
         <translation type="unfinished">Oui</translation>
     </message>
     <message>
-        <location filename="src/engine/GameEngine.cpp" line="251"/>
+        <location filename="src/engine/GameEngine.cpp" line="255"/>
         <source>No</source>
         <translation type="unfinished">Non</translation>
     </message>
@@ -119,7 +119,8 @@
     <name>MainDialog</name>
     <message>
         <location filename="res/ui/MainDialog.ui" line="32"/>
-        <source>Starfighter</source>
+        <source>Starfighter 4K</source>
+        <oldsource>Starfighter</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -233,22 +234,16 @@
         <translation type="unfinished">Durée déterminée</translation>
     </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="18"/>
-        <location filename="src/menu/NewGameDialog.cpp" line="21"/>
         <source>Ship 1</source>
-        <translation type="unfinished">Vaisseau 1</translation>
+        <translation type="obsolete">Vaisseau 1</translation>
     </message>
     <message>
-        <location filename="src/menu/NewGameDialog.cpp" line="19"/>
-        <location filename="src/menu/NewGameDialog.cpp" line="22"/>
         <source>Ship 2</source>
-        <translation type="unfinished">Vaisseau 2</translation>
+        <translation type="obsolete">Vaisseau 2</translation>
     </message>
-	<message>
-        <location filename="src/menu/NewGameDialog.cpp" line="20"/>
-        <location filename="src/menu/NewGameDialog.cpp" line="23"/>
+    <message>
         <source>Ship 3</source>
-        <translation type="unfinished">Vaisseau 3</translation>
+        <translation type="obsolete">Vaisseau 3</translation>
     </message>
     <message>
         <location filename="src/menu/NewGameDialog.cpp" line="83"/>
@@ -339,22 +334,20 @@
         <translation type="unfinished">Valider</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="65"/>
         <source>Invalid keys</source>
-        <translation type="unfinished">Touches invalides</translation>
+        <translation type="obsolete">Touches invalides</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="65"/>
         <source>Two or more keys are set to the same value</source>
-        <translation type="unfinished">Une même touche est utilisée plusieurs fois</translation>
+        <translation type="obsolete">Une même touche est utilisée plusieurs fois</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="80"/>
+        <location filename="src/menu/OptionsDialog.cpp" line="45"/>
         <source>Saved</source>
         <translation type="unfinished">Enregistré</translation>
     </message>
     <message>
-        <location filename="src/menu/OptionsDialog.cpp" line="80"/>
+        <location filename="src/menu/OptionsDialog.cpp" line="45"/>
         <source>The settings were successfully saved</source>
         <translation type="unfinished">Les options ont été correctement enregistrées</translation>
     </message>
@@ -370,6 +363,16 @@
         <location filename="src/utils/Settings.cpp" line="20"/>
         <source>Player 2</source>
         <translation type="unfinished">Joueur 2</translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="18"/>
+        <source>Sounds not found</source>
+        <translation type="unfinished">Sons non trouvés</translation>
+    </message>
+    <message>
+        <location filename="src/main.cpp" line="18"/>
+        <source>The sounds directory was not found. The game will work as it should, but no sound will be played.</source>
+        <translation type="unfinished">Le répertoire des sons n&apos;a pas été trouvé. Le jeu fonctionnera, mais aucun son ne sera joué.</translation>
     </message>
 </context>
 <context>

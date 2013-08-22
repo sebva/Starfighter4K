@@ -18,9 +18,6 @@ private:
     QMediaPlayer *shootMediaPlayer;
     QMediaPlayer *snovaMediaPlayer;
     QMediaPlayer *musicMediaPlayer;
-
-private slots:
-    void musicChangedStatus(QMediaPlayer::MediaStatus status);
     
 public slots:
     void playSound(Sounds);

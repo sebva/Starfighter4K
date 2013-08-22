@@ -29,8 +29,6 @@ private slots:
 
     void on_btnAbout_clicked();
 
-    void musicFinished();
-
 private:
     Ui::MainDialog *ui;
     GameEngine *ge;

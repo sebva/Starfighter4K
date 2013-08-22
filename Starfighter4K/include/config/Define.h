@@ -132,6 +132,14 @@
 #define SPACE_BETWEEN                       250
 #define SPACE_INPLAYER                      50
 
+//Sounds
+#define SOUNDS_DIR                          "./sounds/" // Trailing slash mandatory
+#define MENU_MUSIC                          "menu.mp3"
+#define GAME_MUSIC                          "game.mp3"
+#define SHOOT_SOUND                         "laser.mp3"
+#define SAT_SOUND                           "beep.mp3"
+#define SUPERNOVA_SOUND                     "supernova.mp3"
+
 //AlienSpaceShip
 #define MARGIN_Y                            10
 #define DELTA_X_MIN                         50

@@ -11,27 +11,22 @@
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint),
     ui(new Ui::MainDialog), we(new WiimoteEngine(this))
-{
+{/*
     we->connectWiimotes();
     we->startAccel();
-    we->start();
+    we->start();*/
 
     ui->setupUi(this);
     setWindowIcon(QIcon(ICON_TASKBAR));
     ge = 0;
     ngd = 0;
 
+    QMediaPlaylist* pl = new QMediaPlaylist(this);
+    pl->addMedia(QMediaContent(QUrl::fromLocalFile("./sounds/menu.mp3")));
+    pl->setPlaybackMode(QMediaPlaylist::Loop);
     menuMusic = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
-    menuMusic->setMedia(QUrl("qrc:///sounds/menumusic"));
+    menuMusic->setPlaylist(pl);
     menuMusic->play();
-    /*
-    Phonon::AudioOutput *musicOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-    menuMusic = new Phonon::MediaObject(this);
-    menuMusic->setCurrentSource(Phonon::MediaSource(":/sounds/menumusic"));
-    Phonon::createPath(menuMusic, musicOutput);
-    connect(menuMusic, SIGNAL(aboutToFinish()), this, SLOT(musicFinished()));
-    menuMusic->play();
-    */
 }
 
 MainDialog::~MainDialog()
@@ -65,12 +60,6 @@ void MainDialog::setGameEngine(GameEngine *ge)
         this->ge = ge;
 }
 
-void MainDialog::musicFinished()
-{
-    menuMusic->setPosition(0);
-    menuMusic->play();
-}
-
 void MainDialog::stopMusic()
 {
     menuMusic->stop();
@@ -83,5 +72,5 @@ void MainDialog::endGame()
     ngd=0;
     ge=0;
 
-    musicFinished();
+    menuMusic->play();
 }

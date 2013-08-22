@@ -94,3 +94,12 @@ TRANSLATIONS += starfighter4K_fr.ts
 QT += opengl widgets multimedia gui
 LIBS += "./lib/wiiuse/wiiuse.lib" -Llib/wiiuse/ -lwiiuse
 QMAKE_CXXFLAGS += -std=c++11
+
+# if you are using Shadow build, you need to get the output folder
+CONFIG(release, debug|release): DESTDIR = $$OUT_PWD/release
+CONFIG(debug, debug|release): DESTDIR = $$OUT_PWD/debug
+
+sounds.path = $$DESTDIR/sounds
+sounds.files += $$files(res/sounds/*)
+
+INSTALLS += sounds

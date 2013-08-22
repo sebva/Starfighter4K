@@ -1,4 +1,5 @@
 #include "include/menu/MainDialog.h"
+#include "include/config/Define.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +12,11 @@ int main(int argc, char *argv[])
     }
 
     MainDialog md;
+
+    QDir dir(SOUNDS_DIR);
+    if(!dir.exists())
+        QMessageBox::information(&md, QObject::tr("Sounds not found"), QObject::tr("The sounds directory was not found. The game will work as it should, but no sound will be played."));
+
     md.show();
 
     return app.exec();
