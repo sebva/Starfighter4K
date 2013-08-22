@@ -13,10 +13,9 @@
 #include "include/game/Destroyable.h"
 #include "include/game/Displayable.h"
 #include "include/enum/Enum.h"
+#include <QMutex>
 
 class Bonus;
-class BonusInvicibility;
-class BonusProjectile;
 class GameEngine;
 class QTimer;
 class SpecialBonus;
@@ -37,7 +36,6 @@ public:
     QString getPlayerName() const {return playerName;}
     qreal getHealthPoint() const {return dHealthPoint;}
     qreal getHealthForceField() const {return dHealthForceField;}
-    BonusProjectile* getBonusProjectile() const {return bonusProjectile;}
     qreal getPercentageSpeed() const;
     int getScore() const{return score;}
     bool getIsFrozen() const {return isFrozen;}
@@ -53,6 +51,7 @@ public:
 
     void freeze() {if(!isFrozen)isFrozen = true;}
     void triggerSpecialAttack();
+    void triggerBonus();
 
 public slots:
     void unfreeze();
@@ -69,8 +68,7 @@ private:
     Shooter player;
 	QString playerName;
 
-    BonusInvicibility *bonusInvicibility;
-    BonusProjectile *bonusProjectile;
+    Bonus* bonus;
     SpecialBonus* specialBonus;
     QTimer *timerProjectile;
 

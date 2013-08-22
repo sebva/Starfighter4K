@@ -230,7 +230,7 @@ void DisplayEngine::updateGameData()
     this->setProgressShield1(gameEngine->ship1()->getHealthForceField());
     this->setProgressShield2(gameEngine->ship2()->getHealthForceField());
 
-    BonusProjectile * getBonus = gameEngine->ship1()->getBonusProjectile();
+    /*BonusProjectile * getBonus = gameEngine->ship1()->getBonusProjectile();
     if(getBonus != NULL)
         this->setBonusProject1(getBonus->getType());
     else
@@ -241,6 +241,10 @@ void DisplayEngine::updateGameData()
         this->setBonusProject2(getBonus->getType());
     else
         this->setBonusProject2();
+
+    this->setBonusSpeed1(gameEngine->ship1()->getPercentageSpeed());
+    this->setBonusSpeed2(gameEngine->ship2()->getPercentageSpeed());*/
+
 
     if(gameEngine->getHasSomeonWon())
     {

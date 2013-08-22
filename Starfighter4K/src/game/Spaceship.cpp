@@ -39,8 +39,7 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       gameEngine(_gameEngine),//GameEngine
       player(_player),//Kind of player (Player1 or Player2)
       playerName(_playerName),//Name
-      bonusInvicibility(0),//NULL pointer until the player receive an invicibility bonus
-      bonusProjectile(0),//NULL pointer until the player receive a speed bonus
+      bonus(0),//NULL pointer until the player receive an invicibility bonus
       timerProjectile(new QTimer(this)),//Initialize the timer for the projectile bonus, waiting to get one
       type(PROJ_SPACESHIP_DEF),//Default kind of projectile
       dHealthForceField(MAX_SPACESHIP_PV),//Health point of the force field
@@ -81,8 +80,8 @@ void Spaceship::setPixmap(QPixmap *_pxmPixmap)
 
 Spaceship::~Spaceship()
 {
-    delete bonusInvicibility;
-    delete bonusProjectile;
+    if(bonus != 0)
+        delete bonus;
     delete timerProjectile;
 }
 
@@ -115,55 +114,64 @@ qreal Spaceship::getPercentageSpeed() const
 
 void Spaceship::addBonus(Bonus *_bonus)
 {
-    if(BonusHP* bhp = dynamic_cast<BonusHP*>(_bonus))
-    {
-        dHealthPoint+=bhp->getHealthPoint();
-        if(dHealthPoint>MAX_SPACESHIP_PV)
-            dHealthPoint=MAX_SPACESHIP_PV;
-        delete bhp;
-    }
-    else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(_bonus))
-    {
-        //If a timer for projectile is already started, we need to stop it and start anothero ne
-        if(timerProjectile->isActive())
-            removeProjectileBonus();
+    if(bonus == 0)
+        bonus = _bonus;
+}
 
-        type = bp->getType();
-        bonusProjectile = bp;
-
-        timerProjectile->start(bp->getExpiration());
-    }
-    else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(_bonus))
+void Spaceship::triggerBonus()
+{
+    if(bonus != 0 && !isInvicible && type == PROJ_SPACESHIP_DEF)
     {
-        dHealthForceField = MAX_SPACESHIP_PV;
-        delete bff;
-    }
-    else if(BonusInvicibility* bi = dynamic_cast<BonusInvicibility*>(_bonus))
-    {
-        if(bonusInvicibility==0)
+        if(BonusHP* bhp = dynamic_cast<BonusHP*>(bonus))
         {
-            bonusInvicibility = bi;
+            qDebug() << "HP";
+            dHealthPoint+=bhp->getHealthPoint();
+            if(dHealthPoint>MAX_SPACESHIP_PV)
+                dHealthPoint=MAX_SPACESHIP_PV;
+            delete bonus;
+            bonus = 0;
+        }
+        else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(bonus))
+        {
+            qDebug() << "P";
+
+            //If a timer for projectile is already started, we need to stop it and start anothero ne
+            if(timerProjectile->isActive())
+                removeProjectileBonus();
+
+            type = bp->getType();
+
+            timerProjectile->start(bp->getExpiration());
+        }
+        else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(bonus))
+        {
+            qDebug() << "FF";
+            dHealthForceField = MAX_SPACESHIP_PV;
+            delete bonus;
+            bonus = 0;
+        }
+        else if(BonusInvicibility* bi = dynamic_cast<BonusInvicibility*>(bonus))
+        {
+            qDebug() << "I";
             isInvicible = true;
             QTimer::singleShot(bi->getExpiration(),this,SLOT(removeBonusInvicibility()));
         }
-        else
-            delete bi;
     }
 }
 
 void Spaceship::removeProjectileBonus()
 {
-    delete bonusProjectile;
-    bonusProjectile = 0;
     timerProjectile->stop();
     type = PROJ_SPACESHIP_DEF;
+    delete bonus;
+    bonus = 0;
 }
 
 void Spaceship::removeBonusInvicibility()
 {
     isInvicible = false;
-    delete bonusInvicibility;
-    bonusInvicibility = 0;
+    delete bonus;
+    bonus = 0;
 }
 
 void Spaceship::receiveAttack(qreal _dPower)

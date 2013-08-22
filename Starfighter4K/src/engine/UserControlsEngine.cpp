@@ -52,15 +52,18 @@ void UserControlsEngine::wiimotePressProcess(int button, int wiimote)
         Action action = actions[button];
         actionList.append(QPair<Action, int>(action, wiimote));
 
+        Spaceship* ss = (wiimote == PLAYER_1) ? gameEngine->ship1() : gameEngine->ship2();
+
         if(action == Shoot)
         {
-            if(wiimote == PLAYER_1)
-                gameEngine->ship1()->attack();
-            else
-                gameEngine->ship2()->attack();
+            ss->attack();
             novaeCall->start(NOVATIMER);
             countTimer.restart();
         }
+        else if(action == NormalBonus)
+            ss->triggerBonus();
+        else if(action == aSpecialBonus)
+            ss->triggerSpecialAttack();
         else if(action == Pause)
             gameEngine->escapeGame();
     }
@@ -93,9 +96,6 @@ void UserControlsEngine::timerEvent(QTimerEvent *event)
                 ss->bottom();
             break;
 
-            case aSpecialBonus:
-                ss->triggerSpecialAttack();
-            break;
             default:
                 break;
         }
