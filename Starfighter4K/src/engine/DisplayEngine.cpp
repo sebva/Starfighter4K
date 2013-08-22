@@ -9,10 +9,11 @@
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
+#include "include/menu/HUDWidget.h"
 
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
-    :QWidget(parent),
-      gameEngine(ge), isFullScreen(true), isTimer(false)
+    :QMainWindow(parent),
+      gameEngine(ge), isFullScreen(true)
 {
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
@@ -20,13 +21,14 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     int screenSizeHeight = desktop->screenGeometry(this).height();
     int screenSizeWidth = desktop->screenGeometry(this).width();
 
-    int sceneWidth = screenSizeWidth;
-    int sceneHeigth = screenSizeHeight*0.90;
-
-    QVBoxLayout * mainScreen = new QVBoxLayout(this);
+    //QVBoxLayout * mainScreen = new QVBoxLayout(this);
     //QGridLayout * mainScreen = new QGridLayout(this);
 
-    downHUD = new QWidget(this);
+    hud = new HUDWidget(this, gameEngine->getGameMode());
+    this->addDockWidget(Settings::getGlobalSettings().HUDArea(), hud);
+
+    int sceneWidth = screenSizeWidth;
+    int sceneHeigth = screenSizeHeight - hud->height();
 
     // configuration of QGraphicsScene and QGraphicsview
     scene = new QGraphicsScene(0,0,sceneWidth,sceneHeigth,this);
@@ -58,18 +60,8 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     //showFullScreen();
     switchFullScreen();
     //setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint);
-    view->move(0,0);
 
-    mainScreen->setMargin(0);
-    mainScreen->setSpacing(0);
-
-    mainScreen->addWidget(view);
-    mainScreen->addStretch();
-    mainScreen->addWidget(downHUD);
-
-    pixSpeed = QPixmap(ICON_BSPEED);
-    pixProj = QPixmap(ICON_BATTACK);
-    pixHP = QPixmap();
+    setCentralWidget(view);
 
     explosionPicture = new QPixmap(screenSizeWidth,screenSizeHeight);
     explosionPicture->fill(Qt::transparent);
@@ -82,10 +74,6 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
 
     affiche = new QTime();
     affiche->setHMS(0,0,0,0);
-
-    setLayout(mainScreen);
-
-    this->creatHUD();
 }
 
 DisplayEngine::~DisplayEngine()
@@ -93,8 +81,6 @@ DisplayEngine::~DisplayEngine()
     scene->clear();
     //Must clear the list in GameEngine
 
-    delete bonusPlayerOne;
-    delete bonusPlayerTwo;
     delete affiche;
     delete explosionPicture;
     delete splash;
@@ -115,171 +101,6 @@ void DisplayEngine::explosionScreen()
 void DisplayEngine::removeExplosionScreen()
 {
     splash->finish(this);
-}
-
-void DisplayEngine::creatHUD()
-{
-
-    QHBoxLayout * downPart = new QHBoxLayout(downHUD);
-
-    /**
-      * Player no1 part
-      */
-    QHBoxLayout * playerOneNamu = new QHBoxLayout();
-    //QGridLayout * playerOneNamu = new QGridLayout();
-    //playerOneNamu->setColumnMinimumWidth(0,2);
-
-    QLabel * player1Name = new QLabel(downHUD);
-    //player1Name->setText("Name: player1");
-    player1Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerOneName()));
-    playerOneNamu->addWidget(player1Name);
-
-
-    QGridLayout * statuePlayerOne = new QGridLayout();
-
-    //QHBoxLayout * heathP1 = new QHBoxLayout();
-   // QGridLayout * heathP1 = new QGridLayout();
-
-
-    QLabel * lHP1 = new QLabel(tr("HP:\t"),downHUD);
-    HP1= new QProgressBar(downHUD);
-    HP1->setRange(0,100);
-    HP1->setValue(100);
-
-
-    QLabel * lShild1 = new QLabel(tr("Shield:\t"),downHUD);
-    shield1= new QProgressBar(downHUD);
-    shield1->setRange(0,100);
-    shield1->setValue(100);
-
-    // Add all layout status
-    statuePlayerOne->addWidget(lHP1,0,0);
-    statuePlayerOne->addWidget(HP1,0,1);
-    statuePlayerOne->addWidget(lShild1,1,0);
-    statuePlayerOne->addWidget(shield1,1,1);
-
-    bonusPlayerOne = new QGridLayout();
-
-    imSpeed1 = new QLabel(downHUD);
-    imSpeed1->setPixmap(pixSpeed);
-    imHP1 = new QLabel(downHUD);
-    imHP1->setPixmap(pixHP);
-    imProj1 = new QLabel(downHUD);
-    imProj1->setPixmap(pixProj);
-
-    lBSpeed1 = new QLabel(tr("1"),downHUD);
-    lBHP1 = new QLabel(downHUD);
-    lBProjectile1 = new QLabel(tr("Normal Shot"),downHUD);
-
-    bonusPlayerOne->addWidget(imSpeed1,0,0,Qt::AlignHCenter);
-    bonusPlayerOne->addWidget(lBSpeed1,1,0,Qt::AlignHCenter);
-
-    bonusPlayerOne->addWidget(imHP1,0,3,Qt::AlignHCenter);
-    bonusPlayerOne->addWidget(lBHP1,1,3,Qt::AlignHCenter);
-
-    bonusPlayerOne->addWidget(imProj1,0,5,Qt::AlignHCenter);
-    bonusPlayerOne->addWidget(lBProjectile1,1,5,Qt::AlignHCenter);
-
-    QVBoxLayout * timeAndScore=0;
-    if(gameEngine->getGameMode()==Timer)
-    {
-        /**
-          * Timer and point counter
-          */
-        timeAndScore = new QVBoxLayout();
-        QHBoxLayout * score = new QHBoxLayout();
-        timer = new QLCDNumber(downHUD);
-        timer->setDigitCount(5);
-
-        scoreP1 = new QLCDNumber(downHUD);
-        scoreP2 = new QLCDNumber(downHUD);
-
-        scoreP1->setDigitCount(5);
-        scoreP2->setDigitCount(5);
-        score->addWidget(scoreP1);
-        score->addWidget(new QLabel(tr(":"),downHUD));
-        score->addWidget(scoreP2);
-
-        timeAndScore->addWidget(timer);
-        timeAndScore->addLayout(score);
-    }
-
-    /**
-      * Player no2 part
-      */
-    QHBoxLayout * playerTwoNamu = new QHBoxLayout();
-    QLabel * player2Name = new QLabel(downHUD);
-    //player2Name->setText("Name: player2");
-    player2Name->setText(tr("Name : %1").arg(Settings::getGlobalSettings().playerTwoName()));
-    playerTwoNamu->addWidget(player2Name);
-
-    QGridLayout * statuePlayerTwo = new QGridLayout();
-
-    QHBoxLayout * heathP2 = new QHBoxLayout();
-    QLabel * lHP2 = new QLabel(tr("HP:\t"),downHUD);
-    HP2= new QProgressBar(downHUD);
-    HP2->setRange(0,100);
-    HP2->setValue(100);
-
-    heathP2->addWidget(lHP2);
-    heathP2->addWidget(HP2);
-
-    //QHBoxLayout * shildP2 = new QHBoxLayout();
-    QLabel * lShild2 = new QLabel(tr("Shield:\t"),downHUD);
-    shield2= new QProgressBar(downHUD);
-    shield2->setRange(0,100);
-    shield2->setValue(100);
-
-     // Add all layout status
-    statuePlayerTwo->addWidget(lHP2,0,0);
-    statuePlayerTwo->addWidget(HP2,0,1);
-    statuePlayerTwo->addWidget(lShild2,1,0);
-    statuePlayerTwo->addWidget(shield2,1,1);
-
-    bonusPlayerTwo = new QGridLayout();
-
-    imSpeed2 = new QLabel(downHUD);
-    imSpeed2->setPixmap(pixSpeed);
-
-    imHP2 = new QLabel(downHUD);
-    imHP2->setPixmap(pixHP);
-
-    imProj2 = new QLabel(downHUD);
-    imProj2->setPixmap(pixProj);
-
-    lBSpeed2 = new QLabel(tr("1"),downHUD);
-    lBHP2 = new QLabel(downHUD);
-    lBProjectile2 = new QLabel(tr("Normal Shot"),downHUD);
-
-    bonusPlayerTwo->addWidget(imSpeed2,0,0,Qt::AlignHCenter);
-    bonusPlayerTwo->addWidget(lBSpeed2,1,0,Qt::AlignHCenter);
-
-    bonusPlayerTwo->addWidget(imHP2,0,3,Qt::AlignHCenter);
-    bonusPlayerTwo->addWidget(lBHP2,1,3,Qt::AlignHCenter);
-
-    bonusPlayerTwo->addWidget(imProj2,0,5,Qt::AlignHCenter);
-    bonusPlayerTwo->addWidget(lBProjectile2,1,5,Qt::AlignHCenter);
-
-    //QPixmap * icon2 = new QPixmap("./image/game/bonus");
-    //bonusPlayerTwo->addWidget(icon2);
-
-    downPart->addLayout(playerOneNamu);
-    downPart->addSpacing(SPACE_INPLAYER);
-    downPart->addLayout(statuePlayerOne);
-    downPart->addSpacing(SPACE_INPLAYER);
-    downPart->addLayout(bonusPlayerOne);
-    downPart->addSpacing(SPACE_BETWEEN);
-    if(gameEngine->getGameMode()==Timer)
-        downPart->addLayout(timeAndScore);
-    downPart->addSpacing(SPACE_BETWEEN);
-    downPart->addLayout(playerTwoNamu);
-    downPart->addSpacing(SPACE_INPLAYER);
-    downPart->addLayout(statuePlayerTwo);
-    downPart->addSpacing(SPACE_INPLAYER);
-    downPart->addLayout(bonusPlayerTwo);
-
-    //scene->setSceneRect(0,0,screenSizeWidth,screenSizeHeight);
-    //downHUD->move(0,screenSizeHeight-125);
 }
 
 QRect DisplayEngine::sceneSize() const
@@ -314,37 +135,38 @@ void DisplayEngine::updateScreen()
 
 void DisplayEngine::setProgressHP1(int _value)
 {
-    HP1->setValue(_value);
+    hud->setPlayerHP(Player1, _value);
 }
 
 void DisplayEngine::setProgressHP2(int _value)
 {
-    HP2->setValue(_value);
+    hud->setPlayerHP(Player2, _value);
 }
 
 void DisplayEngine::setProgressShield1(int _value)
 {
-    shield1->setValue(_value);
+    hud->setPlayerShield(Player1, _value);
 }
 
 void DisplayEngine::setProgressShield2(int _value)
 {
-    shield2->setValue(_value);
+    hud->setPlayerShield(Player2, _value);
 }
 
 void DisplayEngine::setGameScore1(int _value)
 {
-    scoreP1->display(_value);
+    hud->setPlayerScore(Player1, _value);
 }
 
 void DisplayEngine::setGameScore2(int _value)
 {
-    scoreP2->display(_value);
+    hud->setPlayerScore(Player2, _value);
 }
 
 void DisplayEngine::setBonusProject1(TypeProjectiles _value)
 {
 
+    /* TODO
     switch(_value)
     {
         case ProjSimple:
@@ -368,11 +190,12 @@ void DisplayEngine::setBonusProject1(TypeProjectiles _value)
         case Nothing:
         break;
     }
+    */
 }
 
 void DisplayEngine::setBonusProject2(TypeProjectiles _value)
 {
-
+    /* TODO
     switch(_value)
     {
         case ProjSimple:
@@ -396,24 +219,8 @@ void DisplayEngine::setBonusProject2(TypeProjectiles _value)
         case Nothing:
         break;
     }
+    */
 }
-
-void DisplayEngine::setBonusSpeed1(int _value)
-{
-    if(_value != 1)
-        lBSpeed1->setText(QString("%1%").arg(_value));
-    else
-        lBSpeed1->setNum(1);
-}
-
-void DisplayEngine::setBonusSpeed2(int _value)
-{
-    if(_value != 1)
-        lBSpeed2->setText(QString("%1%").arg(_value));
-    else
-        lBSpeed2->setNum(1);
-}
-
 
 void DisplayEngine::updateGameData()
 {
@@ -435,10 +242,6 @@ void DisplayEngine::updateGameData()
     else
         this->setBonusProject2();
 
-    this->setBonusSpeed1(gameEngine->ship1()->getPercentageSpeed());
-    this->setBonusSpeed2(gameEngine->ship2()->getPercentageSpeed());
-
-
     if(gameEngine->getHasSomeonWon())
     {
         gameEngine->userControlsEngine()->clearActionList();
@@ -449,9 +252,9 @@ void DisplayEngine::updateGameDataTimer(int s)
 {
     affiche->setHMS(0,s/60,s%60);
 
-    timer->display(affiche->toString("mm:ss"));
-    scoreP1->display(gameEngine->ship1()->getScore());
-    scoreP2->display(gameEngine->ship2()->getScore());
+    hud->setTimer(*affiche);
+    setGameScore1(gameEngine->ship1()->getScore());
+    setGameScore2(gameEngine->ship2()->getScore());
 
 }
 

@@ -19,6 +19,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
     ui->sliderMusicVolume->setValue(s.musicVolume());
     ui->sliderSoundEffectsVolume->setValue(s.soundEffectsVolume());
+
+    int index = (s.HUDArea() == Qt::BottomDockWidgetArea) ? 0 : 1;
+    ui->hudArea->setCurrentIndex(index);
 }
 
 OptionsDialog::~OptionsDialog()
@@ -41,6 +44,9 @@ void OptionsDialog::on_btnSave_clicked()
 
     s.setMusicVolume(ui->sliderMusicVolume->value());
     s.setSoundEffectsVolume(ui->sliderSoundEffectsVolume->value());
+
+    int index = ui->hudArea->currentIndex();
+    s.setHUDArea(index == 0 ? Qt::BottomDockWidgetArea : Qt::TopDockWidgetArea);
 
     QMessageBox::information(this, tr("Saved"), tr("The settings were successfully saved"));
     this->close();

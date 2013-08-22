@@ -16,6 +16,7 @@
  *==============================================================*/
 
 #include "include/game/BonusInvicibility.h"
+#include "include/engine/GameEngine.h"
 
 BonusInvicibility::BonusInvicibility(int _expiration, GameEngine *_gameEngine)
     :Bonus(_gameEngine),

@@ -18,11 +18,13 @@ public:
 	
 	QString playerOneName();
 	QString playerTwoName();
+    Qt::DockWidgetArea HUDArea();
 
     void setMusicVolume(int volume);
     void setSoundEffectsVolume(int volume);
     void setPlayerOneName(QString name);
     void setPlayerTwoName(QString name);
+    void setHUDArea(Qt::DockWidgetArea area);
 	
 private:
     Settings();

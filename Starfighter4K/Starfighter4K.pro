@@ -56,11 +56,13 @@ HEADERS += include/stable.h \
     include/game/BonusInvicibility.h \
     include/game/SpecialBonus.h \
     include/game/SpecialBonusFreeze.h \
-    include/game/SpecialBonusLimitedTime.h
+    include/game/SpecialBonusLimitedTime.h \
+    include/menu/HUDWidget.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
-         res/ui/OptionsDialog.ui
+         res/ui/OptionsDialog.ui \
+	 res/ui/HUDWidget.ui
 SOURCES += src/main.cpp \
            src/engine/DisplayEngine.cpp \
            src/engine/GameEngine.cpp \
@@ -88,11 +90,12 @@ SOURCES += src/main.cpp \
            src/menu/OptionsDialog.cpp \
            src/menu/SetKeyDialog.cpp \
            src/utils/Settings.cpp \
-    src/game/AsteroidSupernova.cpp \
     src/engine/WiimoteEngine.cpp \
     src/game/BonusInvicibility.cpp \
     src/game/SpecialBonusFreeze.cpp \
-    src/game/SpecialBonusLimitedTime.cpp
+    src/game/SpecialBonusLimitedTime.cpp \
+   src/menu/HUDWidget.cpp \
+    src/game/AsteroidSupernova.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts

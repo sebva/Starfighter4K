@@ -18,6 +18,7 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/SoundEngine.h"
+#include "include/engine/SpawnEngine.h"
 
 #include "include/game/Bonus.h"
 #include "include/game/Spaceship.h"

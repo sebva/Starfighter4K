@@ -9,14 +9,16 @@ class QGridLayout;
 class QGraphicsScene;
 class QGraphicsView;
 class QWidget;
+class QMainWindow;
 class QLabel;
 class QProgressBar;
 class GameEngine;
 class Displayable;
 class QPixmap;
 class QSplashScreen;
+class HUDWidget;
 
-class DisplayEngine : public QWidget
+class DisplayEngine : public QMainWindow
 {
     Q_OBJECT
 public:
@@ -59,9 +61,6 @@ private:
     void setBonusProject1(TypeProjectiles _value = ProjSimple);
     void setBonusProject2(TypeProjectiles _value = ProjSimple);
 
-    void setBonusSpeed1(int _value = 0);
-    void setBonusSpeed2(int _value = 0);
-
     GameEngine *gameEngine;
     QPixmap *explosionPicture;
     QSplashScreen *splash;
@@ -69,43 +68,10 @@ private:
     QGraphicsScene * scene;
     QGraphicsView * view;
 
-    QWidget * downHUD;
+    QTime* affiche;
 
-    QGridLayout * bonusPlayerOne;
-    QGridLayout * bonusPlayerTwo;
+    HUDWidget* hud;
 
     bool isFullScreen;
-    bool isTimer;
-
-    QPixmap pixSpeed;
-    QPixmap pixProj;
-    QPixmap pixHP;
-
-    // widget used for the HUD
-    QTime      * affiche;
-    QLCDNumber * timer;
-    QLCDNumber * scoreP1;
-    QLCDNumber * scoreP2;
-
-    QLabel * lBSpeed1;
-    QLabel * lBHP1;
-    QLabel * lBProjectile1;
-
-    QLabel * lBSpeed2;
-    QLabel * lBHP2;
-    QLabel * lBProjectile2;
-
-    QLabel * imSpeed1;
-    QLabel * imHP1;
-    QLabel * imProj1;
-
-    QLabel * imSpeed2;
-    QLabel * imHP2;
-    QLabel * imProj2;
-
-    QProgressBar * HP1;
-    QProgressBar * HP2;
-    QProgressBar * shield1;
-    QProgressBar * shield2;
 };
 #endif

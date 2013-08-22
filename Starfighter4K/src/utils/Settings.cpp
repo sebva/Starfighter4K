@@ -6,18 +6,20 @@
     #define ORGANIZATION "HE-Arc"
 #endif
 
-#define APPLICATION "Starfighter"
+#define APPLICATION "Starfighter4K"
 
 #define P1_NAME "p1n"
 #define P2_NAME "p2n"
 #define PLAYERS_CONTROLS "controls"
 #define MUSIC_VOLUME "mvol"
 #define SOUNDEFFECTS_VOLUME "sevol"
+#define HUD_AREA "hudarea"
 
 const int kDefaultMusicVolume = 50;
 const int kDefaultSoundEffectsVolume = 50;
 QString kDefaultPlayerOneName = QObject::tr("Player 1");
 QString kDefaultPlayerTwoName = QObject::tr("Player 2");
+Qt::DockWidgetArea kDefaultHUDArea = Qt::BottomDockWidgetArea;
 
 Settings::Settings()
 {
@@ -60,6 +62,13 @@ QString Settings::playerTwoName()
     return qse->value(P2_NAME, kDefaultPlayerTwoName).toString();
 }
 
+Qt::DockWidgetArea Settings::HUDArea()
+{
+    bool ok;
+    int area = qse->value(HUD_AREA, kDefaultHUDArea).toInt(&ok);
+    return ok ? (Qt::DockWidgetArea)area : kDefaultHUDArea;
+}
+
 void Settings::setMusicVolume(int volume)
 {
     qse->setValue(MUSIC_VOLUME, volume);
@@ -78,4 +87,9 @@ void Settings::setPlayerOneName(QString name)
 void Settings::setPlayerTwoName(QString name)
 {
     qse->setValue(P2_NAME, name);
+}
+
+void Settings::setHUDArea(Qt::DockWidgetArea area)
+{
+    qse->setValue(HUD_AREA, area);
 }

@@ -48,6 +48,11 @@ enum TypeBonus
     TypeBonusInvicibility   = 2
 };
 
+enum TypeSpecialBonus
+{
+    // TODO
+};
+
 enum Sounds
 {
     SatelliteSound = 1, ShootSound = 2, SupernovaSound = 3
