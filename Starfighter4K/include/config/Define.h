@@ -28,9 +28,7 @@
 #define BONUS_PROJECTILE_DURATION           10000       // (ms)
 #define BONUS_TYPE_PROJECTILES_MIN          2           // ProjCross
 #define BONUS_TYPE_PROJECTILES_MAX          3           //ProjV
-#define BONUS_SPEED_MIN                     8           //Nb Px
-#define BONUS_SPEED_MAX                     15          //Nb Px
-#define BONUS_SPEED_DURATION                5000        // (ms)
+#define BONUS_INVICIBILITY_DURATION                5000        // (ms)
 
 //UserControlsEngine
 #define REFRESH                             17 // (ms)

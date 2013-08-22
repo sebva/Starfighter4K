@@ -35,7 +35,6 @@ HEADERS += include/stable.h \
            include/game/BonusForceField.h \
            include/game/BonusHP.h \
            include/game/BonusProjectile.h \
-           include/game/BonusSpeed.h \
            include/game/Destroyable.h \
            include/game/Displayable.h \
            include/game/Projectile.h \
@@ -53,7 +52,8 @@ HEADERS += include/stable.h \
            include/utils/Settings.h \
     include/config/Define.h \
     include/game/AsteroidSupernova.h \
-    include/engine/WiimoteEngine.h
+    include/engine/WiimoteEngine.h \
+    include/game/BonusInvicibility.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -70,7 +70,6 @@ SOURCES += src/main.cpp \
            src/game/BonusForceField.cpp \
            src/game/BonusHP.cpp \
            src/game/BonusProjectile.cpp \
-           src/game/BonusSpeed.cpp \
            src/game/Destroyable.cpp \
            src/game/Displayable.cpp \
            src/game/Projectile.cpp \
@@ -87,7 +86,8 @@ SOURCES += src/main.cpp \
            src/menu/SetKeyDialog.cpp \
            src/utils/Settings.cpp \
     src/game/AsteroidSupernova.cpp \
-    src/engine/WiimoteEngine.cpp
+    src/engine/WiimoteEngine.cpp \
+    src/game/BonusInvicibility.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts

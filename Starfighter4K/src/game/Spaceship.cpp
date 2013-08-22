@@ -28,7 +28,7 @@
 #include "include/game/BonusForceField.h"
 #include "include/game/BonusHP.h"
 #include "include/game/BonusProjectile.h"
-#include "include/game/BonusSpeed.h"
+#include "include/game/BonusInvicibility.h"
 
 #include "include/config/Define.h"
 
@@ -38,7 +38,7 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       gameEngine(_gameEngine),//GameEngine
       player(_player),//Kind of player (Player1 or Player2)
       playerName(_playerName),//Name
-      bonusSpeed(0),//NULL pointer until the player receive a speed bonus
+      bonusInvicibility(0),//NULL pointer until the player receive an invicibility bonus
       bonusProjectile(0),//NULL pointer until the player receive a speed bonus
       timerProjectile(new QTimer(this)),//Initialize the timer for the projectile bonus, waiting to get one
       type(PROJ_SPACESHIP_DEF),//Default kind of projectile
@@ -46,7 +46,8 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       dResistanceForceField(RESISTANCE_FORCE_FIELD),//Resistance of the forcefield
       dSpeed(_dSpeed),//Speed
       score(0),//Number of point, only use in timerMode
-      dAngleAttack(0)
+      dAngleAttack(0),
+      isInvicible(false)
 {
     if(_player == Player1)
         dAngle = 0;
@@ -69,7 +70,7 @@ void Spaceship::setPixmap(QPixmap *_pxmPixmap)
 
 Spaceship::~Spaceship()
 {
-    delete bonusSpeed;
+    delete bonusInvicibility;
     delete bonusProjectile;
     delete timerProjectile;
 }
@@ -93,10 +94,7 @@ void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option
 
 qreal Spaceship::getPercentageSpeed() const
 {
-    if(bonusSpeed==0)
-        return 100.0;
-    else
-        return 100.0+bonusSpeed->getSpeed()/(dSpeed-bonusSpeed->getSpeed())*100.0;
+    return 100.0;
 }
 
 void Spaceship::addBonus(Bonus *_bonus)
@@ -124,16 +122,16 @@ void Spaceship::addBonus(Bonus *_bonus)
         dHealthForceField = MAX_SPACESHIP_PV;
         delete bff;
     }
-    else if(BonusSpeed* bs = dynamic_cast<BonusSpeed*>(_bonus))
+    else if(BonusInvicibility* bi = dynamic_cast<BonusInvicibility*>(_bonus))
     {
-        if(bonusSpeed==0)
+        if(bonusInvicibility==0)
         {
-            bonusSpeed = bs;
-            dSpeed+=bs->getSpeed();
-            QTimer::singleShot(bs->getExpiration(),this,SLOT(removeSpeedBonus()));
+            bonusInvicibility = bi;
+            isInvicible = true;
+            QTimer::singleShot(bi->getExpiration(),this,SLOT(removeBonusInvicibility()));
         }
         else
-            delete bs;
+            delete bi;
     }
 }
 
@@ -145,28 +143,31 @@ void Spaceship::removeProjectileBonus()
     type = PROJ_SPACESHIP_DEF;
 }
 
-void Spaceship::removeSpeedBonus()
+void Spaceship::removeBonusInvicibility()
 {
-    dSpeed-=bonusSpeed->getSpeed();
-    delete bonusSpeed;
-    bonusSpeed = 0;
+    isInvicible = false;
+    delete bonusInvicibility;
+    bonusInvicibility = 0;
 }
 
 void Spaceship::receiveAttack(qreal _dPower)
 {
-    gameEngine->wiimoteEngine()->rumble((player == Player1) ? 0 : 1, RUMBLE_TIME);
+    if(!isInvicible)
+    {
+        gameEngine->wiimoteEngine()->rumble((player == Player1) ? 0 : 1, RUMBLE_TIME);
 
-    double power1 = _dPower * (100.0 - dHealthForceField) / 100.0;
-    double power2 = _dPower - power1;
-	
-	dHealthPoint -= power1 / dResistance;
-    dHealthForceField -= power2 / dResistanceForceField;
-    if(dHealthForceField < 0)
-        dHealthForceField = 0;
+        double power1 = _dPower * (100.0 - dHealthForceField) / 100.0;
+        double power2 = _dPower - power1;
 
-    if(dHealthPoint<=0)
-        dHealthPoint=0;
-    isDead();
+        dHealthPoint -= power1 / dResistance;
+        dHealthForceField -= power2 / dResistanceForceField;
+        if(dHealthForceField < 0)
+            dHealthForceField = 0;
+
+        if(dHealthPoint<=0)
+            dHealthPoint=0;
+        isDead();
+    }
 }
 
 void Spaceship::rotate(qreal pitch)

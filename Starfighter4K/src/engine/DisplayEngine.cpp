@@ -5,7 +5,7 @@
 #include "include/game/Displayable.h"
 #include "include/game/Spaceship.h"
 #include "include/game/BonusProjectile.h"
-#include "include/game/BonusSpeed.h"
+#include "include/game/BonusInvicibility.h"
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"

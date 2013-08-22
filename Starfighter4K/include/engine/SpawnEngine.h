@@ -6,6 +6,7 @@
 class GameEngine;
 class DisplayEngine;
 class QTimer;
+class Bonus;
 
 class SpawnEngine : public QObject
 {
@@ -14,6 +15,8 @@ class SpawnEngine : public QObject
 public:
     SpawnEngine(int difficulty, GameEngine*);
     ~SpawnEngine();
+
+    Bonus* generateBonus();
 
 public slots:
     void pause(bool);

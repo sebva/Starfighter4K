@@ -11,7 +11,7 @@
 #include "include/game/BonusForceField.h"
 #include "include/game/BonusHP.h"
 #include "include/game/BonusProjectile.h"
-#include "include/game/BonusSpeed.h"
+#include "include/game/BonusInvicibility.h"
 #include "include/game/Supernova.h"
 
 #include "include/utils/Settings.h"
@@ -283,7 +283,13 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter
                 removeAsteroid(a);
         }
         else if(AlienSpaceship* a = dynamic_cast<AlienSpaceship*>(_destroyItem))
+        {
             removeAlienSpaceship(a);
+            if(forShip==Player1)
+                ship1()->addBonus(se->generateBonus());
+            else if(forShip==Player2)
+                ship2()->addBonus(se->generateBonus());
+        }
     }
 }
 

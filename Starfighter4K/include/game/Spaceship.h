@@ -16,7 +16,7 @@
 #include "include/enum/Enum.h"
 
 class Bonus;
-class BonusSpeed;
+class BonusInvicibility;
 class BonusProjectile;
 class GameEngine;
 class QTimer;
@@ -52,7 +52,7 @@ public:
     void rotate(qreal pitch);
 
 private slots:
-    void removeSpeedBonus();
+    void removeBonusInvicibility();
     void removeProjectileBonus();
 
 private:
@@ -63,7 +63,7 @@ private:
     Shooter player;
 	QString playerName;
 
-    BonusSpeed *bonusSpeed;
+    BonusInvicibility *bonusInvicibility;
     BonusProjectile *bonusProjectile;
     QTimer *timerProjectile;
 
@@ -74,5 +74,6 @@ private:
     qreal dSpeed;
     qreal dAngleAttack;
     int score;
+    bool isInvicible;
 };
 #endif

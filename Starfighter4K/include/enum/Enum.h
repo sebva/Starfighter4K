@@ -45,7 +45,7 @@ enum TypeBonus
 {
     TypeBonusHP             = 0,
     TypeBonusProjectile     = 1,
-    TypeBonusSpeed          = 2
+    TypeBonusInvicibility   = 2
 };
 
 enum Sounds

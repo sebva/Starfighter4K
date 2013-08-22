@@ -7,7 +7,7 @@
 #include "include/game/BonusForceField.h"
 #include "include/game/BonusHP.h"
 #include "include/game/BonusProjectile.h"
-#include "include/game/BonusSpeed.h"
+#include "include/game/BonusInvicibility.h"
 #include "include/game/Supernova.h"
 #include "include/game/Spaceship.h"
 
@@ -70,26 +70,7 @@ void SpawnEngine::timerFired()
         }
         else if(probWhat < intervalSat)
         {
-            int satType = irand(1, 4);
-            Bonus *bonus=0;
-
-            switch(satType)
-            {
-            case 1:
-                bonus = new BonusForceField(ge);
-                break;
-            case 2:
-                bonus = new BonusHP(irand(BONUS_HEALTH_MIN, BONUS_HEALTH_MAX), ge);
-                break;
-            case 3:
-                bonus = new BonusProjectile((TypeProjectiles)irand(BONUS_TYPE_PROJECTILES_MIN, BONUS_TYPE_PROJECTILES_MAX), BONUS_PROJECTILE_DURATION, ge);
-                break;
-            case 4:
-                bonus = new BonusSpeed(irand(BONUS_SPEED_MIN, BONUS_SPEED_MAX), BONUS_SPEED_DURATION, ge);
-                break;
-            }
-
-            ge->addBonus(bonus);
+            ge->addBonus(generateBonus());
         }
         else if(probWhat < intervalSupernova)
         {
@@ -97,6 +78,30 @@ void SpawnEngine::timerFired()
             ge->addSupernova(supernova);
         }
     }
+}
+
+Bonus* SpawnEngine::generateBonus()
+{
+    int satType = irand(1, 4);
+    Bonus *bonus=0;
+
+    switch(satType)
+    {
+    case 1:
+        bonus = new BonusForceField(ge);
+        break;
+    case 2:
+        bonus = new BonusHP(irand(BONUS_HEALTH_MIN, BONUS_HEALTH_MAX), ge);
+        break;
+    case 3:
+        bonus = new BonusProjectile((TypeProjectiles)irand(BONUS_TYPE_PROJECTILES_MIN, BONUS_TYPE_PROJECTILES_MAX), BONUS_PROJECTILE_DURATION, ge);
+        break;
+    case 4:
+        bonus = new BonusInvicibility(BONUS_INVICIBILITY_DURATION, ge);
+        break;
+    }
+
+    return bonus;
 }
 
 void SpawnEngine::pause(bool isPause)

@@ -11,10 +11,10 @@
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint),
     ui(new Ui::MainDialog), we(new WiimoteEngine(this))
-{/*
+{
     we->connectWiimotes();
     we->startAccel();
-    we->start();*/
+    we->start();
 
     ui->setupUi(this);
     setWindowIcon(QIcon(ICON_TASKBAR));
