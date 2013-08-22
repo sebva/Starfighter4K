@@ -180,7 +180,7 @@ void Spaceship::rotate(qreal pitch)
         angle *= -1;
 
     setTransform(QTransform().translate(x,y).rotate(angle).translate(-x,-y));
-    dAngleAttack = pitch;
+    dAngleAttack = angle;
 }
 
 void Spaceship::attack()
@@ -189,27 +189,33 @@ void Spaceship::attack()
     int l_y = 0;
 
     if(player==Player1)
-        l_x = pos().x()+getPixmap()->width();
+    {
+        l_x = pos().x()+getPixmap()->width()/2*(1+cos(dAngleAttack*M_PI/180.0));
+        l_y = pos().y()+getPixmap()->height()/2*(1+sin(dAngleAttack*M_PI/180.0));
+    }
     else
-        l_x = pos().x();//Don't need to remove the width of the QPixmap,already done in the constructor
-
-    l_y = pos().y()+getPixmap()->height()/2;
+    {
+        l_x = pos().x()+getPixmap()->width()/2*(1-cos(dAngleAttack*M_PI/180.0));
+        l_y = pos().y()+getPixmap()->height()/2*(1-sin(dAngleAttack*M_PI/180.0));
+    }
 
     gameEngine->soundEngine()->playSound(ShootSound);
+
+    qreal angle = dAngleAttack*M_PI/180.0;
 
     switch(type)
     {
         case ProjSimple:
-            gameEngine->addProjectile(new ProjectileSimple(l_x,l_y,player));
+            gameEngine->addProjectile(new ProjectileSimple(l_x,l_y,player,angle));
             break;
 
         case ProjCross:
             for(int i = 0;i<3;i++)
-                gameEngine->addProjectile(new ProjectileCross(l_x,l_y,player,i-1));
+                gameEngine->addProjectile(new ProjectileCross(l_x,l_y,player,i-1,angle));
             break;
 
         case ProjV:
-            gameEngine->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,OMEGA_SPACESHIP_PROJ_V));
+            gameEngine->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,OMEGA_SPACESHIP_PROJ_V,angle));
             break;
         case ProjAlien:
             break;

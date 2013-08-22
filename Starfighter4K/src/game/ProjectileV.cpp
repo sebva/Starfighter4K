@@ -19,10 +19,11 @@
 
 #include "include/config/Define.h"
 
-ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, qreal _dAmpli, qreal _dOmega)
+ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _dAmpli, qreal _dOmega, qreal _dAngle)
     :Projectile(_dXOrigin,_dYOrigin,_from),
       dAmplitude(_dAmpli),//Amplitude
-      dOmega(_dOmega)//Omega
+      dOmega(_dOmega),//Omega
+      dAngle2(-_dAngle)
 {
     dAngle = 0;
     if(_from == Player2)
@@ -37,5 +38,22 @@ void ProjectileV::advance(int _step)
     if (!_step)
         return;
 
-    moveBy(dSpeed*cos(dAngle),-dAmplitude*cos(dOmega*(pos().x()-dXOrigin)));
+    resetTransform();
+    qreal x = dSpeed*cos(dAngle);
+    qreal y = -(dAmplitude*cos(dOmega*(pos().x()-dXOrigin)));
+    if(from == Player1 && dAngle2 < 0 || from == Player2 && dAngle2 > 0)
+        moveBy(x,-y);
+    else
+        moveBy(x, y);
+
+    x = pos().x();
+    y = 0;
+
+    if(from == Player1)
+        setTransform(QTransform().translate(x,y).rotateRadians(dAngle2).translate(-x,-y));
+    else
+    {
+        x -= dXOrigin;
+        setTransform(QTransform().translate(-x,-y).rotateRadians(-dAngle2).translate(x,y));
+    }
 }

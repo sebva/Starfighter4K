@@ -93,3 +93,4 @@ RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts
 QT += opengl widgets multimedia gui
 LIBS += "./lib/wiiuse/wiiuse.lib" -Llib/wiiuse/ -lwiiuse
+QMAKE_CXXFLAGS += -std=c++11

@@ -19,18 +19,18 @@
 
 #include "include/config/Define.h"
 
-ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from,int _nb)
+ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, int _nb, qreal _dAngle)
     :Projectile(_dXOrigin,_dYOrigin,_from)
 {
     dSpeed = SPEED_CROSS_DEF;
     dPower = POWER_CROSS;
 
-    dAngle = 0;
+    dAngle = -_dAngle;
 
     if(_nb==-1)
-        dAngle = -SLOPE_CROSS;
+        dAngle += -SLOPE_CROSS;
     else if(_nb==1)
-        dAngle = SLOPE_CROSS;
+        dAngle += SLOPE_CROSS;
 
     if(_from==Player2)
         dAngle+=M_PI;

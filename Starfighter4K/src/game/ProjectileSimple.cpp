@@ -19,13 +19,14 @@
 
 #include "include/config/Define.h"
 
-ProjectileSimple::ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _from)
+ProjectileSimple::ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _dAngle)
     ://Displayable(_dXOrigin,_dYOrigin),
       Projectile(_dXOrigin,_dYOrigin,_from)
 {
     dPower = POWER_SIMPLE;
     dSpeed = SPEED_SIMPLE_DEF;
-    dAngle = 0;
+    dAngle = -_dAngle;
+
     if(_from==Player2)
         dAngle+=M_PI;
 }

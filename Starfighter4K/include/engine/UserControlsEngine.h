@@ -32,7 +32,7 @@ private:
     GameEngine *            gameEngine;
     DisplayEngine *         display;
     WiimoteEngine *         wiimoteEngine;
-    QList<QPair<Action, int>> actionList;
+    QList<QPair<Action, int> > actionList;
     QTimer *                novaeCall;
     int                     idTimer;
 

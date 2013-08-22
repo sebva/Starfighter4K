@@ -15,7 +15,7 @@
 class ProjectileSimple : public Projectile
 {
 public:
-    ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _from);
+    ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _dAngle);
     ~ProjectileSimple() {}
 };
 #endif
