@@ -293,6 +293,21 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter
     }
 }
 
+void GameEngine::freezePlayer(int duration, Shooter player)
+{
+    Spaceship* ss;
+    if(player == Player1)
+        ss = ship1();
+    else
+        ss = ship2();
+
+    if(!ss->getIsFrozen())
+    {
+        ss->freeze();
+        QTimer::singleShot(duration,ss,SLOT(unfreeze()));
+    }
+}
+
 void GameEngine::rotationProcess(int wiimote, qreal angle)
 {
     if(wiimote == 0)

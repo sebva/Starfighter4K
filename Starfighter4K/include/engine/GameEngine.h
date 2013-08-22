@@ -63,6 +63,8 @@ public:
     void endGameTimer();
     void escapeGame();
 
+    void freezePlayer(int duration, Shooter player);
+
 signals:
     void endGame();
     void signalPause(bool); // true = isPause

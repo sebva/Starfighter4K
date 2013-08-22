@@ -29,7 +29,8 @@
 #include "include/game/BonusHP.h"
 #include "include/game/BonusProjectile.h"
 #include "include/game/BonusInvicibility.h"
-
+#include "include/game/SpecialBonus.h"
+#include "include/game/SpecialBonusFreeze.h"
 #include "include/config/Define.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
@@ -47,8 +48,18 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       dSpeed(_dSpeed),//Speed
       score(0),//Number of point, only use in timerMode
       dAngleAttack(0),
-      isInvicible(false)
+      isInvicible(false),
+      isFrozen(false),
+      specialBonus(0)
 {
+    //TO REMOVE
+    if(player == Player1)
+        specialBonus = new SpecialBonusFreeze(10000,2000,Player2,gameEngine);
+    else
+        specialBonus = new SpecialBonusFreeze(10000,2000,Player1,gameEngine);
+    ///
+
+
     if(_player == Player1)
         dAngle = 0;
     else if(_player == Player2)
@@ -85,6 +96,11 @@ QPainterPath Spaceship::shape() const
     QPainterPath l_path;
     l_path.addEllipse(boundingRect());
     return l_path;
+}
+
+void Spaceship::unfreeze()
+{
+    isFrozen = false;
 }
 
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
@@ -228,22 +244,33 @@ void Spaceship::attack()
 
 void Spaceship::top()
 {
-    if((pos().y()-dSpeed)<=gameEngine->displayEngine()->sceneSize().y())
-        setPos(pos().x(),gameEngine->displayEngine()->sceneSize().y());
-    else
-        setPos(pos().x(),pos().y()-dSpeed);
+    if(!isFrozen)
+    {
+        if((pos().y()-dSpeed)<=gameEngine->displayEngine()->sceneSize().y())
+            setPos(pos().x(),gameEngine->displayEngine()->sceneSize().y());
+        else
+            setPos(pos().x(),pos().y()-dSpeed);
+    }
 }
 
 void Spaceship::bottom()
 {
-    if((pos().y()+getPixmap()->height()+dSpeed)>=gameEngine->displayEngine()->sceneSize().height())
-        setPos(pos().x(),gameEngine->displayEngine()->sceneSize().height()-getPixmap()->height());
-    else
-        setPos(pos().x(),pos().y()+dSpeed);
+    if(!isFrozen)
+    {
+        if((pos().y()+getPixmap()->height()+dSpeed)>=gameEngine->displayEngine()->sceneSize().height())
+            setPos(pos().x(),gameEngine->displayEngine()->sceneSize().height()-getPixmap()->height());
+        else
+            setPos(pos().x(),pos().y()+dSpeed);
+    }
 }
 
 void Spaceship::advance(int _step)
 {
     if (!_step)
         return;
+}
+
+void Spaceship::triggerSpecialAttack()
+{
+    specialBonus->trigger();
 }

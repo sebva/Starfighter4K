@@ -22,7 +22,7 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge, WiimoteEngine *we): gameE
     actions.insert(WIIMOTE_BUTTON_UP, Top);
     actions.insert(WIIMOTE_BUTTON_DOWN, Bottom);
     actions.insert(WIIMOTE_BUTTON_MINUS, NormalBonus);
-    actions.insert(WIIMOTE_BUTTON_PLUS, SpecialBonus);
+    actions.insert(WIIMOTE_BUTTON_PLUS, aSpecialBonus);
     actions.insert(WIIMOTE_BUTTON_HOME, Pause);
 
     novaeCall = new QTimer(this);
@@ -82,24 +82,22 @@ void UserControlsEngine::timerEvent(QTimerEvent *event)
 
     for(auto values = actionList.begin(); values != actionList.end(); values++)
     {
+        Spaceship* ss = (values->second == PLAYER_1)?gameEngine->ship1():gameEngine->ship2();
         switch(values->first)
         {
-            case(Top):
-            if(values->second == PLAYER_1)
-                gameEngine->ship1()->top();
-            else
-                gameEngine->ship2()->top();
+            case Top:
+                ss->top();
             break;
 
-            case(Bottom):
-            if(values->second == PLAYER_1)
-                gameEngine->ship1()->bottom();
-            else
-                gameEngine->ship2()->bottom();
+            case Bottom:
+                ss->bottom();
             break;
 
-        default:
+            case aSpecialBonus:
+                ss->triggerSpecialAttack();
             break;
+            default:
+                break;
         }
     }
 }

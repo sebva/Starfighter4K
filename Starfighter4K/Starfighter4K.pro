@@ -53,7 +53,10 @@ HEADERS += include/stable.h \
     include/config/Define.h \
     include/game/AsteroidSupernova.h \
     include/engine/WiimoteEngine.h \
-    include/game/BonusInvicibility.h
+    include/game/BonusInvicibility.h \
+    include/game/SpecialBonus.h \
+    include/game/SpecialBonusFreeze.h \
+    include/game/SpecialBonusLimitedTime.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -87,7 +90,9 @@ SOURCES += src/main.cpp \
            src/utils/Settings.cpp \
     src/game/AsteroidSupernova.cpp \
     src/engine/WiimoteEngine.cpp \
-    src/game/BonusInvicibility.cpp
+    src/game/BonusInvicibility.cpp \
+    src/game/SpecialBonusFreeze.cpp \
+    src/game/SpecialBonusLimitedTime.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts

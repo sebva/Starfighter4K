@@ -12,7 +12,6 @@
 
 #include "include/game/Destroyable.h"
 #include "include/game/Displayable.h"
-
 #include "include/enum/Enum.h"
 
 class Bonus;
@@ -20,7 +19,7 @@ class BonusInvicibility;
 class BonusProjectile;
 class GameEngine;
 class QTimer;
-
+class SpecialBonus;
 class Spaceship : public Destroyable, public Displayable
 {
     Q_OBJECT
@@ -41,6 +40,7 @@ public:
     BonusProjectile* getBonusProjectile() const {return bonusProjectile;}
     qreal getPercentageSpeed() const;
     int getScore() const{return score;}
+    bool getIsFrozen() const {return isFrozen;}
 
     void addPoint(int _point) {score+=_point;}
 
@@ -50,6 +50,12 @@ public:
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void rotate(qreal pitch);
+
+    void freeze() {if(!isFrozen)isFrozen = true;}
+    void triggerSpecialAttack();
+
+public slots:
+    void unfreeze();
 
 private slots:
     void removeBonusInvicibility();
@@ -65,6 +71,7 @@ private:
 
     BonusInvicibility *bonusInvicibility;
     BonusProjectile *bonusProjectile;
+    SpecialBonus* specialBonus;
     QTimer *timerProjectile;
 
     TypeProjectiles type;
@@ -75,5 +82,6 @@ private:
     qreal dAngleAttack;
     int score;
     bool isInvicible;
+    bool isFrozen;
 };
 #endif

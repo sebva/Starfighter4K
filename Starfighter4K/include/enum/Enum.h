@@ -7,7 +7,7 @@ enum Action
     Bottom = 2,
     Shoot = 3,
     NormalBonus = 4,
-    SpecialBonus = 5,
+    aSpecialBonus = 5,
     Pause = 6
 };
 
