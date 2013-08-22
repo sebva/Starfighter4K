@@ -25,6 +25,8 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     //QGridLayout * mainScreen = new QGridLayout(this);
 
     hud = new HUDWidget(this, gameEngine->getGameMode());
+    hud->setPlayerName(Player1, Settings::getGlobalSettings().playerOneName());
+    hud->setPlayerName(Player2, Settings::getGlobalSettings().playerTwoName());
     this->addDockWidget(Settings::getGlobalSettings().HUDArea(), hud);
 
     int sceneWidth = screenSizeWidth;

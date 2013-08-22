@@ -33,6 +33,25 @@ HUDWidget::~HUDWidget()
     delete ui;
 }
 
+void HUDWidget::setPlayerName(Shooter _player, QString _name)
+{
+    QLabel* lbl = 0;
+    switch(_player)
+    {
+        case Player1:
+            lbl = ui->p1_name;
+            break;
+        case Player2:
+            lbl = ui->p2_name;
+            break;
+        default:
+            qDebug() << "The HUD is for players only !";
+            return;
+    }
+
+    lbl->setText(_name);
+}
+
 void HUDWidget::setPlayerHP(Shooter _player, int _hp)
 {
     QProgressBar* prg = 0;

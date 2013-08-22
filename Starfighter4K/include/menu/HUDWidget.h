@@ -15,6 +15,7 @@ class HUDWidget : public QDockWidget
 public:
     explicit HUDWidget(QWidget *parent = 0, GameMode _mode = DeathMatch);
     ~HUDWidget();
+    void setPlayerName(Shooter _player, QString _name);
     void setPlayerHP(Shooter _player, int _hp);
     void setPlayerShield(Shooter _player, int _shield);
     void setPlayerScore(Shooter _player, int _score);
