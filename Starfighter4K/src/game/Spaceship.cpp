@@ -30,7 +30,7 @@
 #include "include/game/BonusProjectile.h"
 #include "include/game/BonusInvicibility.h"
 #include "include/game/SpecialBonus.h"
-#include "include/game/SpecialBonusFreeze.h"
+#include "include/game/SpecialBonusAntiGravity.h"
 #include "include/config/Define.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
@@ -53,9 +53,9 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
 {
     //TO REMOVE
     if(player == Player1)
-        specialBonus = new SpecialBonusFreeze(10000,2000,Player2,gameEngine);
+        specialBonus = new SpecialBonusAntiGravity(10000,1,Player1,gameEngine);
     else
-        specialBonus = new SpecialBonusFreeze(10000,2000,Player1,gameEngine);
+        specialBonus = new SpecialBonusAntiGravity(10000,1,Player2,gameEngine);
     ///
 
 
@@ -124,7 +124,6 @@ void Spaceship::triggerBonus()
     {
         if(BonusHP* bhp = dynamic_cast<BonusHP*>(bonus))
         {
-            qDebug() << "HP";
             dHealthPoint+=bhp->getHealthPoint();
             if(dHealthPoint>MAX_SPACESHIP_PV)
                 dHealthPoint=MAX_SPACESHIP_PV;
@@ -133,8 +132,6 @@ void Spaceship::triggerBonus()
         }
         else if(BonusProjectile* bp = dynamic_cast<BonusProjectile*>(bonus))
         {
-            qDebug() << "P";
-
             //If a timer for projectile is already started, we need to stop it and start anothero ne
             if(timerProjectile->isActive())
                 removeProjectileBonus();
@@ -145,14 +142,12 @@ void Spaceship::triggerBonus()
         }
         else if(BonusForceField* bff = dynamic_cast<BonusForceField*>(bonus))
         {
-            qDebug() << "FF";
             dHealthForceField = MAX_SPACESHIP_PV;
             delete bonus;
             bonus = 0;
         }
         else if(BonusInvicibility* bi = dynamic_cast<BonusInvicibility*>(bonus))
         {
-            qDebug() << "I";
             isInvicible = true;
             QTimer::singleShot(bi->getExpiration(),this,SLOT(removeBonusInvicibility()));
         }

@@ -57,7 +57,9 @@ HEADERS += include/stable.h \
     include/game/SpecialBonus.h \
     include/game/SpecialBonusFreeze.h \
     include/game/SpecialBonusLimitedTime.h \
-    include/menu/HUDWidget.h
+    include/menu/HUDWidget.h \
+    include/game/SpecialBonusLimitedUsage.h \
+    include/game/SpecialBonusAntiGravity.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -95,13 +97,15 @@ SOURCES += src/main.cpp \
     src/game/SpecialBonusFreeze.cpp \
     src/game/SpecialBonusLimitedTime.cpp \
    src/menu/HUDWidget.cpp \
-    src/game/AsteroidSupernova.cpp
+    src/game/AsteroidSupernova.cpp \
+    src/game/SpecialBonusLimitedUsage.cpp \
+    src/game/SpecialBonusAntiGravity.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts
 QT += opengl widgets multimedia gui
 LIBS += "./lib/wiiuse/wiiuse.lib" -Llib/wiiuse/ -lwiiuse
-QMAKE_CXXFLAGS += -std=c++11
+#QMAKE_CXXFLAGS += -std=c++11
 
 # if you are using Shadow build, you need to get the output folder
 CONFIG(release, debug|release): DESTDIR = $$OUT_PWD/release

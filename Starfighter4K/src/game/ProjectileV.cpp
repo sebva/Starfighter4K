@@ -38,27 +38,32 @@ void ProjectileV::advance(int _step)
     if (!_step)
         return;
 
-    resetTransform();
-    qreal x = dSpeed*cos(dAngle);
-    qreal y = -(dAmplitude*cos(dOmega*(pos().x()-dXOrigin)));
-
-    if(from == Player1 && pos().x()-dXOrigin > dOmega*(1.75*M_PI*180.0/M_PI-dXOrigin)*180.0/M_PI
-            || from == Player2 && abs(pos().x()-dXOrigin) > abs(dOmega*(9.25*M_PI*180.0/M_PI-dXOrigin))*180.0/M_PI)
-        moveBy(x,0);
-    else
-        if(from == Player1 && dAngle2 < 0 || from == Player2 && dAngle2 > 0)
-            moveBy(x,-y);
-        else
-            moveBy(x, y);
-
-    x = pos().x();
-    y = 0;
-
-    if(from == Player1)
-        setTransform(QTransform().translate(x,y).rotateRadians(dAngle2).translate(-x,-y));
+    if(antiGravity)
+        Projectile::advance(_step);
     else
     {
-        x -= dXOrigin;
-        setTransform(QTransform().translate(-x,-y).rotateRadians(-dAngle2).translate(x,y));
+        resetTransform();
+        qreal x = dSpeed*cos(dAngle);
+        qreal y = -(dAmplitude*cos(dOmega*(pos().x()-dXOrigin)));
+
+        if(from == Player1 && pos().x()-dXOrigin > dOmega*(1.75*M_PI*180.0/M_PI-dXOrigin)*180.0/M_PI
+                || from == Player2 && abs(pos().x()-dXOrigin) > abs(dOmega*(9.25*M_PI*180.0/M_PI-dXOrigin))*180.0/M_PI)
+            moveBy(x,0);
+        else
+            if(from == Player1 && dAngle2 < 0 || from == Player2 && dAngle2 > 0)
+                moveBy(x,-y);
+            else
+                moveBy(x, y);
+
+        x = pos().x();
+        y = 0;
+
+        if(from == Player1)
+            setTransform(QTransform().translate(x,y).rotateRadians(dAngle2).translate(-x,-y));
+        else
+        {
+            x -= dXOrigin;
+            setTransform(QTransform().translate(-x,-y).rotateRadians(-dAngle2).translate(x,y));
+        }
     }
 }

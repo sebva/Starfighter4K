@@ -293,10 +293,30 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter
     }
 }
 
-void GameEngine::freezePlayer(int duration, Shooter player)
+void GameEngine::detectObjectAfterMiddleZone(const QList<Displayable*>& list, QList<Projectile*>& projList, Shooter playerActivated)
+{
+    for(auto it = list.begin(); it != list.end(); ++it)
+        if((*it)->pos().x() < de->sceneSize().width()/2.0 && playerActivated == Player1
+                || (*it)->pos().x() > de->sceneSize().width()/2.0 && playerActivated == Player2)
+            projList.append(static_cast<Projectile*>(*it));
+}
+
+void GameEngine::enableAntiGravity(Shooter playerActivated)
+{
+    QList<Projectile*> projectilesToAntigravitate;
+
+    detectObjectAfterMiddleZone(listProjectile, projectilesToAntigravitate, playerActivated);
+    detectObjectAfterMiddleZone(listAsteroide, projectilesToAntigravitate, playerActivated);
+    detectObjectAfterMiddleZone(listSmallAsteroide, projectilesToAntigravitate, playerActivated);
+
+    for(auto it = projectilesToAntigravitate.begin(); it != projectilesToAntigravitate.end(); ++it)
+        (*it)->enableAntiGravity(playerActivated);
+}
+
+void GameEngine::freezePlayer(int duration, Shooter playerDest)
 {
     Spaceship* ss;
-    if(player == Player1)
+    if(playerDest == Player1)
         ss = ship1();
     else
         ss = ship2();

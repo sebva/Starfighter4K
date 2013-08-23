@@ -9,6 +9,8 @@ class SpecialBonus : public QObject
     Q_OBJECT
 public:
     SpecialBonus(TypeSpecialBonus _bonus, int _timeToWait, GameEngine* _ge):timeToWait(_timeToWait),ge(_ge),bonus(_bonus){}
+    virtual ~SpecialBonus(){}
+
     virtual void trigger() = 0;
 
     TypeSpecialBonus getTypeBonus() const {return bonus;}

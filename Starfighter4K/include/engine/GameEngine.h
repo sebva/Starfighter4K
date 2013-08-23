@@ -63,7 +63,8 @@ public:
     void endGameTimer();
     void escapeGame();
 
-    void freezePlayer(int duration, Shooter player);
+    void enableAntiGravity(Shooter playerActivated);
+    void freezePlayer(int duration, Shooter playerDest);
 
 signals:
     void endGame();
@@ -81,6 +82,7 @@ private:
     bool checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2);
     bool checkCollisionSpaceshipAndList(const int i_list1,QList<Displayable*> &list);
     void runTestCollision(QList<Displayable*> &list);
+    void detectObjectAfterMiddleZone(const QList<Displayable*>& list, QList<Projectile*>& projList, Shooter PlayerActivated);
 
     SoundEngine *soe;
     DisplayEngine *de;

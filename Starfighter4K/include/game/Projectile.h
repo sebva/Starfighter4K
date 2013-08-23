@@ -27,6 +27,8 @@ public:
     TypeItem getTypeObject() const {return tProj;}
     Shooter getFrom() const {return from;}
 
+    virtual void enableAntiGravity(Shooter playerActivated);
+
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *_painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
@@ -37,6 +39,8 @@ protected:
     qreal dPower;
     qreal dXOrigin;
     qreal dYOrigin;
+
+    bool antiGravity;
 
     qreal dSpeed;
     QColor* color;

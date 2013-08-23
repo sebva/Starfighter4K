@@ -23,7 +23,8 @@ Projectile::Projectile(qreal _dXOrigin, qreal _dYOrigin,Shooter _from)
     :Displayable(_dXOrigin,_dYOrigin),
       dXOrigin(_dXOrigin),//X-Origin where the projectile was shot
       dYOrigin(_dYOrigin),//Y-Origin where the projectile was shot
-      from(_from)//Who has shot it
+      from(_from),//Who has shot it
+      antiGravity(false)
 {
     nbPoint = NB_POINT_PROJECTILE;
     if(from == Player1)
@@ -43,6 +44,19 @@ Projectile::Projectile(qreal _dXOrigin, qreal _dYOrigin,Shooter _from)
 Projectile::~Projectile()
 {
     delete color;
+}
+
+void Projectile::enableAntiGravity(Shooter playerActivated)
+{
+    if(from != playerActivated)
+    {
+        antiGravity = true;
+        dAngle += M_PI;
+        if (cos(dAngle) >= 0)
+            dAngle = 0;
+        else
+            dAngle = M_PI;
+    }
 }
 
 QRectF Projectile::boundingRect() const
