@@ -35,6 +35,8 @@
 #include "include/game/ProjectileTracking.h"
 #include "include/game/ProjectileMulti.h"
 #include "include/game/SpecialBonusMulti.h"
+#include "include/game/SpecialBonusGuided.h"
+#include "include/game/ProjectileGuided.h"
 #include "include/config/Define.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
@@ -53,7 +55,9 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       dAngleAttack(0),
       isInvicible(false),
       isFrozen(false),
-      specialBonus(0)
+      specialBonus(0),
+      isGuided(false),
+      projectileGuided(0)
 {
     //TO REMOVE
     /*if(player == Player1)
@@ -63,9 +67,10 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
 
     //specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
 
-    specialBonus = new SpecialBonusMulti(10000,2,this,gameEngine);
+    //specialBonus = new SpecialBonusMulti(10000,2,this,gameEngine);
     ///
-
+    specialBonus = new SpecialBonusGuided(10000,2,this,gameEngine);
+    //
 
     if(_player == Player1)
         dAngle = 0;
@@ -106,9 +111,24 @@ QPainterPath Spaceship::shape() const
     return l_path;
 }
 
+void Spaceship::shotGuidedBonus()
+{
+    if(!isGuided)
+    {
+        projectileGuided = new ProjectileGuided(getXPositionFire(), getYPositionCenter(), player, this);
+        gameEngine->addProjectile(projectileGuided);
+        isGuided = true;
+    }
+}
+
 void Spaceship::unfreeze()
 {
     isFrozen = false;
+}
+
+void Spaceship::disableGuideBonus()
+{
+    isGuided = false;
 }
 
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
@@ -269,24 +289,30 @@ void Spaceship::attack()
 
 void Spaceship::top()
 {
-    if(!isFrozen)
-    {
-        if((pos().y()-dSpeed)<=gameEngine->displayEngine()->sceneSize().y())
-            setPos(pos().x(),gameEngine->displayEngine()->sceneSize().y());
-        else
-            setPos(pos().x(),pos().y()-dSpeed);
-    }
+    if(isGuided)
+        projectileGuided->top();
+    else
+        if(!isFrozen)
+        {
+            if((pos().y()-dSpeed)<=gameEngine->displayEngine()->sceneSize().y())
+                setPos(pos().x(),gameEngine->displayEngine()->sceneSize().y());
+            else
+                setPos(pos().x(),pos().y()-dSpeed);
+        }
 }
 
 void Spaceship::bottom()
 {
-    if(!isFrozen)
-    {
-        if((pos().y()+getPixmap()->height()+dSpeed)>=gameEngine->displayEngine()->sceneSize().height())
-            setPos(pos().x(),gameEngine->displayEngine()->sceneSize().height()-getPixmap()->height());
-        else
-            setPos(pos().x(),pos().y()+dSpeed);
-    }
+    if(isGuided)
+        projectileGuided->bottom();
+    else
+        if(!isFrozen)
+        {
+            if((pos().y()+getPixmap()->height()+dSpeed)>=gameEngine->displayEngine()->sceneSize().height())
+                setPos(pos().x(),gameEngine->displayEngine()->sceneSize().height()-getPixmap()->height());
+            else
+                setPos(pos().x(),pos().y()+dSpeed);
+        }
 }
 
 void Spaceship::advance(int _step)

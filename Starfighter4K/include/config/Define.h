@@ -102,6 +102,10 @@
 #define POWER_MULTI                         1000
 #define SPEED_MULTI_DEF                     25
 
+//ProjectileGuided
+#define POWER_GUIDED                        1000
+#define SPEED_GUIDED_DEF                    15
+
 //Spaceship
 //PV -> cf SpawnEngine
 #define MAX_SPACESHIP_BONUS                 2

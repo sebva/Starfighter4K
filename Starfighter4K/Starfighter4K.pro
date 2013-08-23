@@ -63,7 +63,9 @@ HEADERS += include/stable.h \
     include/game/ProjectileTracking.h \
     include/game/SpecialBonusTracking.h \
     include/game/ProjectileMulti.h \
-    include/game/SpecialBonusMulti.h
+    include/game/SpecialBonusMulti.h \
+    include/game/ProjectileGuided.h \
+    include/game/SpecialBonusGuided.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -107,7 +109,9 @@ SOURCES += src/main.cpp \
     src/game/ProjectileTracking.cpp \
     src/game/SpecialBonusTracking.cpp \
     src/game/ProjectileMulti.cpp \
-    src/game/SpecialBonusMulti.cpp
+    src/game/SpecialBonusMulti.cpp \
+    src/game/ProjectileGuided.cpp \
+    src/game/SpecialBonusGuided.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts

@@ -19,6 +19,8 @@ class Bonus;
 class GameEngine;
 class QTimer;
 class SpecialBonus;
+class ProjectileGuided;
+
 class Spaceship : public Destroyable, public Displayable
 {
     Q_OBJECT
@@ -59,6 +61,8 @@ public:
     void triggerBonus();
     void shotTrackingBonus();
     void shotMultiBonus();
+    void shotGuidedBonus();
+    void disableGuideBonus();
 
 public slots:
     void unfreeze();
@@ -78,6 +82,7 @@ private:
     Bonus* bonus;
     SpecialBonus* specialBonus;
     QTimer *timerProjectile;
+    ProjectileGuided* projectileGuided;
 
     TypeProjectiles type;
     TypeProjectiles oldType;
@@ -89,5 +94,6 @@ private:
     int score;
     bool isInvicible;
     bool isFrozen;
+    bool isGuided;
 };
 #endif
