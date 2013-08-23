@@ -19,7 +19,7 @@
 #include "include/engine/GameEngine.h"
 
 BonusInvicibility::BonusInvicibility(int _expiration, GameEngine *_gameEngine)
-    :Bonus(_gameEngine),
+    :Bonus(TypeBonusInvicibility, _gameEngine),
       expiration(_expiration)//Time before expiration of the bonus (ms)
 {
 

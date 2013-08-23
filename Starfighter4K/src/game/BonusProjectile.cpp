@@ -18,7 +18,7 @@
 #include "include/game/BonusProjectile.h"
 
 BonusProjectile::BonusProjectile(TypeProjectiles _type, int _expiration, GameEngine *_gameEngine)
-    :Bonus(_gameEngine),
+    :Bonus(TypeBonusProjectile, _gameEngine),
       type(_type),//Type of the projective offered
       expiration(_expiration)//Time before the expiration (ms)
 {

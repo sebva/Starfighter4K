@@ -1,7 +1,7 @@
 #include "include/game/SpecialBonusLimitedTime.h"
 
-SpecialBonusLimitedTime::SpecialBonusLimitedTime(int _duration, int _timeToWait, GameEngine *ge)
-    :SpecialBonus(_timeToWait, ge),duration(_duration),isEnabled(false)
+SpecialBonusLimitedTime::SpecialBonusLimitedTime(TypeBonus bonus, int _duration, int _timeToWait, GameEngine *ge)
+    :SpecialBonus(bonus, _timeToWait, ge),duration(_duration),isEnabled(false)
 {
 
 }

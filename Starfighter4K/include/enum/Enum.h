@@ -45,7 +45,8 @@ enum TypeBonus
 {
     TypeBonusHP             = 0,
     TypeBonusProjectile     = 1,
-    TypeBonusInvicibility   = 2
+    TypeBonusInvicibility   = 2,
+    TypeBonusShield         = 3
 };
 
 enum TypeSpecialBonus

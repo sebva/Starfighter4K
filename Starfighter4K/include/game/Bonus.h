@@ -20,7 +20,7 @@ class Bonus : public QObject, public Displayable
 {
     Q_OBJECT
 public:
-    Bonus(GameEngine *_gameEngine);
+    Bonus(TypeBonus _bonus, GameEngine *_gameEngine);
     virtual ~Bonus();
 
     QRectF boundingRect() const;
@@ -28,12 +28,14 @@ public:
     void paint(QPainter *_painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
 
     TypeItem getTypeObject() const {return tBonus;}
+    TypeBonus getTypeBonus() const {return bonus;}
     void advance(int _step);
 
 private:
     static const qreal kIntervalArgument;
 
     GameEngine *gameEngine;
+    TypeBonus bonus;
 
     qreal dArgument;
     qreal dModule;

@@ -18,7 +18,7 @@
 #include "include/game/BonusHP.h"
 
 BonusHP::BonusHP(qreal _dHealthPoint, GameEngine *_gameEngine)
-    :Bonus(_gameEngine),
+    :Bonus(TypeBonusHP, _gameEngine),
       dHealthPoint(_dHealthPoint)//Number of HP offered
 {
 

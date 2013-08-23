@@ -25,12 +25,13 @@
 
 const qreal Bonus::kIntervalArgument = ARG_INCREMENTATION_BONUS;
 
-Bonus::Bonus(GameEngine *_gameEngine)
+Bonus::Bonus(TypeBonus _bonus, GameEngine *_gameEngine)
     :Displayable(0,0,new QPixmap(PICTURE_BONUS)),
       gameEngine(_gameEngine),//GameEngine
       directionX(1),//Default X-direction
       directionY(1),//Default Y-direction
-      directionArg(1)//Defaut Arg-direction
+      directionArg(1),//Defaut Arg-direction
+      bonus(_bonus)
 {
     dAngle = M_PI/2.0;
 

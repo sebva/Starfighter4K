@@ -7,7 +7,7 @@ class SpecialBonusLimitedTime : public SpecialBonus
 {
     Q_OBJECT
 public:
-    SpecialBonusLimitedTime(int _duration, int _timeToWait, GameEngine* ge);
+    SpecialBonusLimitedTime(TypeBonus bonus, int _duration, int _timeToWait, GameEngine* ge);
     virtual void trigger() = 0;
 
 protected slots:
