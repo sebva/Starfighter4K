@@ -59,7 +59,9 @@ HEADERS += include/stable.h \
     include/game/SpecialBonusLimitedTime.h \
     include/menu/HUDWidget.h \
     include/game/SpecialBonusLimitedUsage.h \
-    include/game/SpecialBonusAntiGravity.h
+    include/game/SpecialBonusAntiGravity.h \
+    include/game/ProjectileTracking.h \
+    include/game/SpecialBonusTracking.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -99,7 +101,9 @@ SOURCES += src/main.cpp \
    src/menu/HUDWidget.cpp \
     src/game/AsteroidSupernova.cpp \
     src/game/SpecialBonusLimitedUsage.cpp \
-    src/game/SpecialBonusAntiGravity.cpp
+    src/game/SpecialBonusAntiGravity.cpp \
+    src/game/ProjectileTracking.cpp \
+    src/game/SpecialBonusTracking.cpp
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc
 TRANSLATIONS += starfighter4K_fr.ts

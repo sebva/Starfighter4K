@@ -18,7 +18,7 @@ enum Shooter
 
 enum TypeProjectiles
 {
-    ProjSimple = 1,ProjCross = 2,ProjV = 3,ProjAlien = 4,Nothing = 5
+    ProjSimple = 1,ProjCross = 2,ProjV = 3,ProjAlien = 4, ProjTracking = 5, Nothing = 6
 };
 
 enum TypeItem

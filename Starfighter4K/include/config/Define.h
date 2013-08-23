@@ -94,6 +94,10 @@
 #define POWER_V                             750
 #define SPEED_V_DEF                         25 // dx
 
+//ProjectileTracking
+#define POWER_TRACKING                      10000
+#define SPEED_TRACKING_DEF                  20
+
 //Spaceship
 //PV -> cf SpawnEngine
 #define MAX_SPACESHIP_BONUS                 2

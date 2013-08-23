@@ -31,6 +31,8 @@
 #include "include/game/BonusInvicibility.h"
 #include "include/game/SpecialBonus.h"
 #include "include/game/SpecialBonusAntiGravity.h"
+#include "include/game/SpecialBonusTracking.h"
+#include "include/game/ProjectileTracking.h"
 #include "include/config/Define.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
@@ -52,10 +54,11 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       specialBonus(0)
 {
     //TO REMOVE
-    if(player == Player1)
+    /*if(player == Player1)
         specialBonus = new SpecialBonusAntiGravity(10000,1,Player1,gameEngine);
     else
-        specialBonus = new SpecialBonusAntiGravity(10000,1,Player2,gameEngine);
+        specialBonus = new SpecialBonusAntiGravity(10000,1,Player2,gameEngine);*/
+    specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
     ///
 
 
@@ -83,6 +86,7 @@ Spaceship::~Spaceship()
     if(bonus != 0)
         delete bonus;
     delete timerProjectile;
+    delete specialBonus;
 }
 
 QRectF Spaceship::boundingRect() const
@@ -116,6 +120,12 @@ void Spaceship::addBonus(Bonus *_bonus)
 {
     if(bonus == 0)
         bonus = _bonus;
+}
+
+void Spaceship::shotTrackingBonus()
+{
+    gameEngine->soundEngine()->playSound(ShootSound);
+    gameEngine->addProjectile(new ProjectileTracking(getXPositionFire(), getYPositionFire(), player,(player == Player1) ? gameEngine->ship2() : gameEngine->ship1()));
 }
 
 void Spaceship::triggerBonus()
@@ -205,19 +215,8 @@ void Spaceship::rotate(qreal pitch)
 
 void Spaceship::attack()
 {
-    int l_x = 0;
-    int l_y = 0;
-
-    if(player==Player1)
-    {
-        l_x = pos().x()+getPixmap()->width()/2*(1+cos(dAngleAttack*M_PI/180.0));
-        l_y = pos().y()+getPixmap()->height()/2*(1+sin(dAngleAttack*M_PI/180.0));
-    }
-    else
-    {
-        l_x = pos().x()+getPixmap()->width()/2*(1-cos(dAngleAttack*M_PI/180.0));
-        l_y = pos().y()+getPixmap()->height()/2*(1-sin(dAngleAttack*M_PI/180.0));
-    }
+    int l_x = getXPositionFire();
+    int l_y = getYPositionFire();
 
     gameEngine->soundEngine()->playSound(ShootSound);
 
