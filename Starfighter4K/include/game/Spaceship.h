@@ -58,6 +58,7 @@ public:
     void triggerSpecialAttack();
     void triggerBonus();
     void shotTrackingBonus();
+    void shotMultiBonus();
 
 public slots:
     void unfreeze();

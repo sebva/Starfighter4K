@@ -2,7 +2,7 @@
 #include "include/game/Spaceship.h"
 
 SpecialBonusTracking::SpecialBonusTracking(int _timeToWait, int _nbActivation, Spaceship* _spaceship, GameEngine* ge)
-    :SpecialBonusLimitedUsage(TypeSpecialBonusOmnidirectionalShot , _nbActivation, _timeToWait, ge), spaceship(_spaceship)
+    :SpecialBonusLimitedUsage(TypeSpecialBonusTrackingMissile , _nbActivation, _timeToWait, ge), spaceship(_spaceship)
 {
 
 }

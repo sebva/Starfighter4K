@@ -33,6 +33,8 @@
 #include "include/game/SpecialBonusAntiGravity.h"
 #include "include/game/SpecialBonusTracking.h"
 #include "include/game/ProjectileTracking.h"
+#include "include/game/ProjectileMulti.h"
+#include "include/game/SpecialBonusMulti.h"
 #include "include/config/Define.h"
 
 Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
@@ -58,7 +60,10 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
         specialBonus = new SpecialBonusAntiGravity(10000,1,Player1,gameEngine);
     else
         specialBonus = new SpecialBonusAntiGravity(10000,1,Player2,gameEngine);*/
-    specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
+
+    //specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
+
+    specialBonus = new SpecialBonusMulti(10000,2,this,gameEngine);
     ///
 
 
@@ -126,6 +131,24 @@ void Spaceship::shotTrackingBonus()
 {
     gameEngine->soundEngine()->playSound(ShootSound);
     gameEngine->addProjectile(new ProjectileTracking(getXPositionFire(), getYPositionFire(), player,(player == Player1) ? gameEngine->ship2() : gameEngine->ship1()));
+}
+
+void Spaceship::shotMultiBonus()
+{
+    gameEngine->soundEngine()->playSound(ShootSound);
+    qreal l_x = getXPositionFire();
+    qreal l_y = getYPositionFire();
+
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,1,0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-1,0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.25,1.0/2.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.6,1.0/3.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/4.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/5.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.25,1.0/2.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.6,1.0/3.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/4.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/5.0));
 }
 
 void Spaceship::triggerBonus()
