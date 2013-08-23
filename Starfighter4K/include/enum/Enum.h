@@ -43,15 +43,24 @@ enum Difficulty
 
 enum TypeBonus
 {
-    TypeBonusHP             = 0,
-    TypeBonusProjectile     = 1,
-    TypeBonusInvicibility   = 2,
-    TypeBonusShield         = 3
+    TypeBonusHP                 = 0,
+    TypeBonusProjectile         = 1,
+    TypeBonusInvicibility       = 2,
+    TypeBonusShield             = 3,
+    TypeBonusProjectileCross    = 4,
+    TypeBonusProjectileV        = 5,
+    TypeBonusProjectileSimple   = 6,
+    TypeBonusNothing            = 1000
 };
 
 enum TypeSpecialBonus
 {
-    // TODO
+    TypeSpecialBonusFreeze = 0,
+    TypeSpecialBonusAntiGravity = 1,
+    TypeSpecialBonusGuidedMissile = 2,
+    TypeSpecialBonusTrackingMissile = 3,
+    TypeSpecialBonusOmnidirectionalShot = 4,
+    TypeSpecialBonusNothing = 1000
 };
 
 enum Sounds

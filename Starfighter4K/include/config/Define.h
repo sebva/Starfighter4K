@@ -7,8 +7,6 @@
 
 //DisplayEngine
 #define BACKGROUND                          ":/images/game/background"
-#define ICON_BATTACK                        ":/images/game/icon/attack"
-#define ICON_BSPEED                         ":/images/game/icon/speed"
 #define ICON_TASKBAR                        ":/images/taskbar-icon"
 
 //SpawnEngine
@@ -137,6 +135,16 @@
 #define SHOOT_SOUND                         "laser.mp3"
 #define SAT_SOUND                           "beep.mp3"
 #define SUPERNOVA_SOUND                     "supernova.mp3"
+
+//HUD
+#define IMAGE_BONUS_FREEZE          ":/images/bonus/freeze"
+#define IMAGE_BONUS_INVICIBILITY    ":/images/bonus/invicibility"
+#define IMAGE_BONUS_HEALTH          ":/images/bonus/medic"
+#define IMAGE_BONUS_PROJ_CROSS      ":/images/bonus/projCross"
+#define IMAGE_BONUS_PROJ_SIMPLE     ":/images/bonus/projSimple"
+#define IMAGE_BONUS_PROJ_V          ":/images/bonus/projV"
+#define IMAGE_BONUS_SHIELD          ":/images/bonus/shield"
+#define IMAGE_BONUS                 ":/images/bonus/bonus"
 
 //AlienSpaceShip
 #define MARGIN_Y                            10

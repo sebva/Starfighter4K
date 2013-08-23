@@ -1,5 +1,6 @@
 #include "include/menu/HUDWidget.h"
 #include "ui_HUDWidget.h"
+#include "include/config/Define.h"
 
 HUDWidget::HUDWidget(QWidget *parent, GameMode _mode) :
     QDockWidget(parent),
@@ -111,12 +112,75 @@ void HUDWidget::setPlayerScore(Shooter _player, int _score)
 
 void HUDWidget::setNormalBonus(Shooter _player, TypeBonus _type)
 {
-    // TODO
+    QPixmap pix;
+    switch(_type)
+    {
+    case TypeBonusHP:
+        pix = QPixmap(IMAGE_BONUS_HEALTH);
+        break;
+    case TypeBonusInvicibility:
+        pix = QPixmap(IMAGE_BONUS_INVICIBILITY);
+        break;
+    case TypeBonusShield:
+        pix = QPixmap(IMAGE_BONUS_SHIELD);
+        break;
+    case TypeBonusProjectileCross:
+        pix = QPixmap(IMAGE_BONUS_PROJ_CROSS);
+        break;
+    case TypeBonusProjectileSimple:
+        pix = QPixmap(IMAGE_BONUS_PROJ_SIMPLE);
+        break;
+    case TypeBonusProjectileV:
+        pix = QPixmap(IMAGE_BONUS_PROJ_V);
+        break;
+    case TypeBonusProjectile:
+        qDebug() << "[HUD_ERROR] You have to be more precise in order to show a bonus on the HUD";
+    case TypeBonusNothing:
+    default:
+        pix = QPixmap(IMAGE_BONUS);
+        break;
+    }
+
+    if(_player == Player1)
+        ui->p1_normalBonus->setPixmap(pix);
+    else if(_player == Player2)
+        ui->p2_normalBonus->setPixmap(pix);
 }
 
 void HUDWidget::setSpecialBonus(Shooter _player, TypeSpecialBonus _type)
 {
-    // TODO
+    QPixmap pix;
+    switch(_type)
+    {
+    case TypeSpecialBonusFreeze:
+        pix = QPixmap(IMAGE_BONUS_FREEZE);
+        break;
+    case TypeSpecialBonusAntiGravity:
+        // TODO: Create the image
+        //pix = QPixmap(IMAGE_BONUS_ANTIGRAVITY);
+        //break;
+    case TypeSpecialBonusGuidedMissile:
+        // TODO: Create the image
+        //pix = QPixmap(IMAGE_BONUS_GUIDEDMISSILE);
+        //break;
+    case TypeSpecialBonusOmnidirectionalShot:
+        // TODO: Create the image
+        //pix = QPixmap(IMAGE_BONUS_OMNIDIRECTIONALSHOT);
+        //break;
+    case TypeSpecialBonusTrackingMissile:
+        // TODO: Create the image
+        //pix = QPixmap(IMAGE_BONUS_TRACKINGMISSILE);
+        //break;
+    case TypeSpecialBonusNothing:
+    default:
+        pix = QPixmap(IMAGE_BONUS);
+        break;
+    }
+
+    if(_player == Player1)
+        ui->p1_specialBonus->setPixmap(pix);
+    else if(_player == Player2)
+        ui->p2_specialBonus->setPixmap(pix);
 }
 
 void HUDWidget::setTimer(QTime _time)

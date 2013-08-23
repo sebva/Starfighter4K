@@ -37,7 +37,7 @@
          </font>
         </property>
         <property name="text">
-         <string notr="true">11:23</string>
+         <string notr="true">00:00</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -45,12 +45,21 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="p1_specialBonus">
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>45</height>
+         </size>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../ressources.qrc">:/images/game/icon/attack</pixmap>
+         <pixmap resource="../../ressources.qrc">:/images/bonus/bonus</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -64,28 +73,28 @@
       <item row="0" column="11">
        <widget class="QProgressBar" name="p2_hp">
         <property name="value">
-         <number>75</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
       <item row="1" column="2">
        <widget class="QProgressBar" name="p1_shield">
         <property name="value">
-         <number>24</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
       <item row="0" column="2">
        <widget class="QProgressBar" name="p1_hp">
         <property name="value">
-         <number>24</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
       <item row="1" column="11">
        <widget class="QProgressBar" name="p2_shield">
         <property name="value">
-         <number>24</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
@@ -111,12 +120,21 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="p1_normalBonus">
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>45</height>
+         </size>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../ressources.qrc">:/images/game/icon/speed</pixmap>
+         <pixmap resource="../../ressources.qrc">:/images/bonus/bonus</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -131,7 +149,7 @@
          </font>
         </property>
         <property name="text">
-         <string notr="true">8000</string>
+         <string notr="true">0</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -152,27 +170,45 @@
          </font>
         </property>
         <property name="text">
-         <string notr="true">250</string>
+         <string notr="true">0</string>
         </property>
        </widget>
       </item>
       <item row="0" column="12">
-       <widget class="QLabel" name="label_10">
+       <widget class="QLabel" name="p2_normalBonus">
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>45</height>
+         </size>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../ressources.qrc">:/images/game/icon/speed</pixmap>
+         <pixmap resource="../../ressources.qrc">:/images/bonus/bonus</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item row="1" column="12">
-       <widget class="QLabel" name="label_11">
+       <widget class="QLabel" name="p2_specialBonus">
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>45</height>
+         </size>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../ressources.qrc">:/images/game/icon/attack</pixmap>
+         <pixmap resource="../../ressources.qrc">:/images/bonus/bonus</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

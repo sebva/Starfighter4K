@@ -115,8 +115,14 @@
         <file alias="rock30030">res/images/game/asteroid3/rock30030.png</file>
         <file alias="rock30031">res/images/game/asteroid3/rock30031.png</file>
     </qresource>
-    <qresource prefix="/images/game/icon">
-        <file alias="attack">res/images/game/bonusAttaque.png</file>
-        <file alias="speed">res/images/game/bonusSpeed.png</file>
+    <qresource prefix="/images/bonus">
+        <file alias="freeze">res/images/bonus/freeze.png</file>
+        <file alias="invincibility">res/images/bonus/invicibility.png</file>
+        <file alias="medic">res/images/bonus/medic.png</file>
+        <file alias="projCross">res/images/bonus/projCross.png</file>
+        <file alias="projSimple">res/images/bonus/projSimple.png</file>
+        <file alias="projV">res/images/bonus/projV.png</file>
+        <file alias="shield">res/images/bonus/shield.png</file>
+        <file alias="bonus">res/images/bonus/placeHolder.png</file>
     </qresource>
 </RCC>

@@ -1,7 +1,7 @@
 #include "include/game/SpecialBonusFreeze.h"
 
 SpecialBonusFreeze::SpecialBonusFreeze(int _timeToWait, int _duration, Shooter _destination, GameEngine *ge)
-    :SpecialBonusLimitedTime(TypeBonusInvicibility, _duration,_timeToWait, ge),destination(_destination)
+    :SpecialBonusLimitedTime(TypeSpecialBonusFreeze, _duration,_timeToWait, ge),destination(_destination)
 {
 
 }
