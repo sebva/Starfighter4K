@@ -82,7 +82,7 @@ void SpawnEngine::timerFired()
 
 Bonus* SpawnEngine::generateBonus()
 {
-    int satType = irand(1, 4);
+    int satType = irand(1, 5);
     Bonus *bonus=0;
 
     switch(satType)
@@ -94,9 +94,10 @@ Bonus* SpawnEngine::generateBonus()
         bonus = new BonusHP(irand(BONUS_HEALTH_MIN, BONUS_HEALTH_MAX), ge);
         break;
     case 3:
+    case 4:
         bonus = new BonusProjectile((TypeProjectiles)irand(BONUS_TYPE_PROJECTILES_MIN, BONUS_TYPE_PROJECTILES_MAX), BONUS_PROJECTILE_DURATION, ge);
         break;
-    case 4:
+    case 5:
         bonus = new BonusInvicibility(BONUS_INVICIBILITY_DURATION, ge);
         break;
     }

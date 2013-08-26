@@ -77,8 +77,7 @@ private:
 
     GameEngine *gameEngine;
     HUDWidget* hud;
-
-    Shooter player;
+    QPixmap shield;    Shooter player;
 	QString playerName;
 
     Bonus* bonus;

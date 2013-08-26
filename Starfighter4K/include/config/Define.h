@@ -120,6 +120,7 @@
 #define PICTURE_SPACESHIP_1                 ":/images/game/ship1"
 #define PICTURE_SPACESHIP_2                 ":/images/game/ship2"
 #define PICTURE_SPACESHIP_3                 ":/images/game/ship3"
+#define PICTURE_SHIELD                      ":/images/game/shield"
 #define HEALTHPOINT_1                       100
 #define HEALTHPOINT_2                       100
 #define HEALTHPOINT_3                       100

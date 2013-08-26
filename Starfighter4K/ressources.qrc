@@ -16,6 +16,7 @@
         <file alias="ship1">res/images/game/ship1.png</file>
         <file alias="ship2">res/images/game/ship2.png</file>
         <file alias="ship3">res/images/game/ship3.png</file>
+        <file alias="shield">res/images/game/shield.png</file>
     </qresource>
     <qresource prefix="/images/game/asteroids">
         <file alias="rock10000">res/images/game/asteroid1/rock10000.png</file>
@@ -120,7 +121,7 @@
         <file alias="invicibility">res/images/bonus/invicibility.png</file>
         <file alias="medic">res/images/bonus/medic.png</file>
         <file alias="projSimple">res/images/bonus/projSimple.png</file>
-        <file alias="shield">res/images/bonus/shield.png</file>
+		<file alias="shield">res/images/bonus/shield.png</file>
         <file alias="bonus">res/images/bonus/placeHolder.png</file>
         <file alias="antiGravity">res/images/bonus/antiGravity.png</file>
         <file alias="projCross">res/images/bonus/projCross.png</file>

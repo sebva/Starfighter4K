@@ -59,13 +59,19 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       isFrozen(false),
       specialBonus(0),
       isGuided(false),
-      projectileGuided(0)
+      projectileGuided(0),
+      shield(PICTURE_SHIELD)
 {
     //TO REMOVE
-    if(player == Player1)
+    /*if(player == Player1)
         specialBonus = new SpecialBonusAntiGravity(10000,1,Player1,gameEngine);
     else
         specialBonus = new SpecialBonusMulti(10000,5,this,gameEngine);
+*/
+    if(player == Player1)
+        specialBonus = new SpecialBonusFreeze(10000, 2, Player2, gameEngine);
+    else
+        specialBonus = new SpecialBonusFreeze(10000, 2, Player1, gameEngine);
 
     //specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
 
@@ -139,6 +145,13 @@ void Spaceship::disableGuideBonus()
 void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
     _painter->drawPixmap(0 , 0, *getPixmap());
+    if(isInvicible)
+    {
+        int l_x = shield.width()/2-getPixmap()->width()/2.0;
+        int l_y = shield.height()/2-getPixmap()->height()/2.0;
+
+        _painter->drawPixmap(-l_x, -l_y, shield);
+    }
 }
 
 qreal Spaceship::getPercentageSpeed() const
