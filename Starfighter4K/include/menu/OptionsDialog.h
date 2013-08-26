@@ -21,8 +21,6 @@ private slots:
 
 private:
     Ui::OptionsDialog *ui;
-    void showKeys();
-    int inSetting;
 };
 
 #endif // OPTIONSDIALOG_H

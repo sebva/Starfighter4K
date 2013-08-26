@@ -26,7 +26,7 @@ class Spaceship : public Destroyable, public Displayable
 {
     Q_OBJECT
 public:
-    Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine);
+    Spaceship(qreal _dX, qreal _dY, Shooter _player, const QString& _playerName, qreal _dHealthPoint, qreal _dResistance, int _cooldown, TypeSpecialBonus _sp, GameEngine *_gameEngine);
     ~Spaceship();
 
     void receiveAttack(qreal _dPower);
@@ -90,7 +90,6 @@ private:
 
     qreal dHealthForceField;
     qreal dResistanceForceField;
-    qreal dSpeed;
     qreal dAngleAttack;
     int score;
     bool isInvicible;

@@ -19,10 +19,10 @@
 
 #include "include/engine/WiimoteEngine.h"
 
-GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject *parent = 0)
+GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QObject *parent = 0)
     :QObject(parent),we(wiimoteEngine),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
-      isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),hasSomeoneWon(false),timeAlreadyCounted(0)
+      isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),hasSomeoneWon(false),timeAlreadyCounted(0),typeSP1(sbp1), typeSP2(sbp2)
 {
     if(this->gameMode==Timer)
         isTimer=true;
@@ -82,53 +82,54 @@ void GameEngine::createSpaceship()
     qreal speed = 0;
     qreal healthPoint = 0;
     qreal resistance = 0;
+    int cooldown = 0;
     QString path;
     if(typeShip1==SpaceshipType1)
     {
-        speed = SPEED_1;
         healthPoint = HEALTHPOINT_1;
         resistance = RESISTANCE_1;
         path = QString(PICTURE_SPACESHIP_1);
+        cooldown = COOLDOWN_1;
     }
     else if(typeShip1==SpaceshipType2)
     {
-        speed = SPEED_2;
         healthPoint = HEALTHPOINT_2;
         resistance = RESISTANCE_2;
         path = QString(PICTURE_SPACESHIP_2);
+        cooldown = COOLDOWN_2;
     }
     else if(typeShip1==SpaceshipType3)
     {
-        speed = SPEED_3;
         healthPoint = HEALTHPOINT_3;
         resistance = RESISTANCE_3;
         path = QString(PICTURE_SPACESHIP_3);
+        cooldown = COOLDOWN_3;
     }
-    addShip(new Spaceship(0,height/2,Player1,settings.playerOneName(),speed,healthPoint,resistance,this));
+    addShip(new Spaceship(0,height/2,Player1,settings.playerOneName(),healthPoint,resistance,cooldown,typeSP1,this));
     listSpaceship[0]->setPixmap(new QPixmap(path));
 
     if(typeShip2==SpaceshipType1)
     {
-        speed = SPEED_1;
         healthPoint = HEALTHPOINT_1;
         resistance = RESISTANCE_1;
         path = QString(PICTURE_SPACESHIP_1);
+        cooldown = COOLDOWN_1;
     }
     else if(typeShip2==SpaceshipType2)
     {
-        speed = SPEED_2;
         healthPoint = HEALTHPOINT_2;
         resistance = RESISTANCE_2;
         path = QString(PICTURE_SPACESHIP_2);
+        cooldown = COOLDOWN_2;
     }
     else if(typeShip2==SpaceshipType3)
     {
-        speed = SPEED_3;
         healthPoint = HEALTHPOINT_3;
         resistance = RESISTANCE_3;
         path = QString(PICTURE_SPACESHIP_3);
+        cooldown = COOLDOWN_3;
     }
-    addShip(new Spaceship(width,height/2,Player2,settings.playerTwoName(),speed,healthPoint,resistance,this));
+    addShip(new Spaceship(width,height/2,Player2,settings.playerTwoName(),healthPoint,resistance,cooldown,typeSP2,this));
     listSpaceship[1]->setPixmap(new QPixmap(path));
 }
 

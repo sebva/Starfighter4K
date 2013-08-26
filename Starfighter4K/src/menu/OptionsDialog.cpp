@@ -11,8 +11,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    inSetting = -1;
-
     Settings& s = Settings::getGlobalSettings();
     ui->ledP1name->setText(s.playerOneName());
     ui->ledP2name->setText(s.playerTwoName());

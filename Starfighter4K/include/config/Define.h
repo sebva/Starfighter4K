@@ -127,9 +127,9 @@
 #define RESISTANCE_1                        100
 #define RESISTANCE_2                        75
 #define RESISTANCE_3                        150
-#define SPEED_1                             8 // dy
-#define SPEED_2                             9 // dy
-#define SPEED_3                             5
+#define COOLDOWN_1                          11000 // ms
+#define COOLDOWN_2                          8000 // ms
+#define COOLDOWN_3                          15000 // ms
 
 //Supernova
 #define NB_SPIRAL                           45
@@ -162,6 +162,8 @@
 #define IMAGE_BONUS_PROJ_SIMPLE     ":/images/bonus/projSimple"
 #define IMAGE_BONUS_PROJ_V          ":/images/bonus/projV"
 #define IMAGE_BONUS_SHIELD          ":/images/bonus/shield"
+#define IMAGE_BONUS_GUIDEDMISSILE   ":/images/bonus/guided"
+#define IMAGE_BONUS_TRACKINGMISSILE ":/images/bonus/tracking"
 #define IMAGE_BONUS                 ":/images/bonus/bonus"
 
 //AlienSpaceShip
@@ -171,6 +173,11 @@
 
 //Bonus
 #define DELTA_X_B                           100 //Cf Specification file
+#define ANTIGRAVITY_ACTIVATIONS             1
+#define FREEZE_DURATION                     2000
+#define GUIDED_ACTIVATIONS                  3
+#define ROOTSHOT_ACTIVATIONS                3
+#define TRACKING_ACTIVATIONS                1
 
 //Wiimote
 #define RUMBLE_TIME                         200

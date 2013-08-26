@@ -22,6 +22,17 @@ NewGameDialog::NewGameDialog(QWidget *parent) :
     ui->cbbP2ship->addItem("Speeder", QVariant(SpaceshipType2));
     ui->cbbP2ship->addItem("Blaster", QVariant(SpaceshipType3));
 
+    ui->cbbSBP1->addItem("Freeze", QVariant(TypeSpecialBonusFreeze));
+    ui->cbbSBP1->addItem("Anti gravity", QVariant(TypeSpecialBonusAntiGravity));
+    ui->cbbSBP1->addItem("Guided missile", QVariant(TypeSpecialBonusGuidedMissile));
+    ui->cbbSBP1->addItem("Tracking missile", QVariant(TypeSpecialBonusTrackingMissile));
+    ui->cbbSBP1->addItem("Omnidirectional shot", QVariant(TypeSpecialBonusOmnidirectionalShot));
+    ui->cbbSBP2->addItem("Freeze", QVariant(TypeSpecialBonusFreeze));
+    ui->cbbSBP2->addItem("Anti gravity", QVariant(TypeSpecialBonusAntiGravity));
+    ui->cbbSBP2->addItem("Guided missile", QVariant(TypeSpecialBonusGuidedMissile));
+    ui->cbbSBP2->addItem("Tracking missile", QVariant(TypeSpecialBonusTrackingMissile));
+    ui->cbbSBP2->addItem("Omnidirectional shot", QVariant(TypeSpecialBonusOmnidirectionalShot));
+
     if(RESISTANCE_1 > RESISTANCE_2)
     {
         if(RESISTANCE_1 > RESISTANCE_3)
@@ -37,19 +48,19 @@ NewGameDialog::NewGameDialog(QWidget *parent) :
             resMax = RESISTANCE_3;
     }
 
-    if(SPEED_1 > SPEED_2)
+    if(COOLDOWN_1 > COOLDOWN_2)
     {
-        if(SPEED_1 > SPEED_3)
-            speedMax = SPEED_1;
+        if(COOLDOWN_1 > COOLDOWN_3)
+            cooldownMax = COOLDOWN_1;
         else
-            speedMax = SPEED_3;
+            cooldownMax = COOLDOWN_3;
     }
     else
     {
-        if(SPEED_2 > SPEED_3)
-            speedMax = SPEED_2;
+        if(COOLDOWN_2 > COOLDOWN_3)
+            cooldownMax = COOLDOWN_2;
         else
-            speedMax = SPEED_3;
+            cooldownMax = COOLDOWN_3;
     }
 
     updateSpaceshipsStats();
@@ -72,6 +83,8 @@ void NewGameDialog::on_btnStart_clicked()
     int duration = ui->sbxDuration->value();
     SpaceshipType player1 = (SpaceshipType)(int)(ui->cbbP1ship->itemData(ui->cbbP1ship->currentIndex()).toInt());
     SpaceshipType player2 = (SpaceshipType)(int)(ui->cbbP2ship->itemData(ui->cbbP2ship->currentIndex()).toInt());
+    TypeSpecialBonus sbp1 = (TypeSpecialBonus)(int)(ui->cbbSBP1->itemData(ui->cbbSBP1->currentIndex()).toInt());
+    TypeSpecialBonus sbp2 = (TypeSpecialBonus)(int)(ui->cbbSBP2->itemData(ui->cbbSBP2->currentIndex()).toInt());
     int difficulty = 0;
     difficulty |= ((ui->cbxAlien->checkState() / Qt::Checked) * AlienMothership);
     difficulty |= ((ui->cbxAsteroid->checkState() / Qt::Checked) * Asteroids);
@@ -84,7 +97,7 @@ void NewGameDialog::on_btnStart_clicked()
     }
     else
     {
-        GameEngine *ge = new GameEngine(md->getWiimoteEngine(), gameMode, duration, player1, player2, difficulty, this);
+        GameEngine *ge = new GameEngine(md->getWiimoteEngine(), gameMode, duration, player1, player2, sbp1, sbp2, difficulty, this);
         md->setGameEngine(ge);
         connect(ge, SIGNAL(endGame()), md, SLOT(endGame()));
         md->stopMusic();
@@ -123,6 +136,31 @@ void NewGameDialog::setPixmapForLabelWithSpaceshipType(SpaceshipType sType, QLab
     }
 }
 
+void NewGameDialog::setPixmapForLabelWithSpecialBonusType(TypeSpecialBonus sType, QLabel *lbl)
+{
+    if(lbl == NULL)
+        return;
+
+    switch(sType)
+    {
+    case TypeSpecialBonusFreeze:
+        lbl->setPixmap(QPixmap(IMAGE_BONUS_FREEZE));
+        break;
+    case TypeSpecialBonusAntiGravity:
+        lbl->setPixmap(QPixmap(IMAGE_BONUS_ANTIGRAVITY));
+        break;
+    case TypeSpecialBonusGuidedMissile:
+        lbl->setPixmap(QPixmap(IMAGE_BONUS_GUIDEDMISSILE));
+        break;
+    case TypeSpecialBonusTrackingMissile:
+        lbl->setPixmap(QPixmap(IMAGE_BONUS_TRACKINGMISSILE));
+        break;
+    case TypeSpecialBonusOmnidirectionalShot:
+        lbl->setPixmap(QPixmap(IMAGE_BONUS_ROOTSHOT));
+        break;
+    }
+}
+
 void NewGameDialog::updateSpaceshipsStats()
 {
     SpaceshipType player1 = (SpaceshipType)(int)(ui->cbbP1ship->itemData(ui->cbbP1ship->currentIndex()).toInt());
@@ -131,43 +169,52 @@ void NewGameDialog::updateSpaceshipsStats()
     setPixmapForLabelWithSpaceshipType(player1, ui->imgP1);
     setPixmapForLabelWithSpaceshipType(player2, ui->imgP2);
 
-    int res1 = 0, speed1 = 0, res2 = 0, speed2 = 0;
+    int res1 = 0, cooldown1 = 0, res2 = 0, cooldown2 = 0;
 
     switch(player1)
     {
     case SpaceshipType1:
         res1 = RESISTANCE_1;
-        speed1 = SPEED_1;
+        cooldown1 = COOLDOWN_1;
         break;
     case SpaceshipType2:
         res1 = RESISTANCE_2;
-        speed1 = SPEED_2;
+        cooldown1 = COOLDOWN_2;
         break;
     case SpaceshipType3:
         res1 = RESISTANCE_3;
-        speed1 = SPEED_3;
+        cooldown1 = COOLDOWN_3;
         break;
     }
     switch(player2)
     {
     case SpaceshipType1:
         res2 = RESISTANCE_1;
-        speed2 = SPEED_1;
+        cooldown2 = COOLDOWN_1;
         break;
     case SpaceshipType2:
         res2 = RESISTANCE_2;
-        speed2 = SPEED_2;
+        cooldown2 = COOLDOWN_2;
         break;
     case SpaceshipType3:
         res2 = RESISTANCE_3;
-        speed2 = SPEED_3;
+        cooldown2 = COOLDOWN_3;
         break;
     }
 
     ui->resP1->setValue((res1 / (double)resMax) * 100.0);
     ui->resP2->setValue((res2 / (double)resMax) * 100.0);
-    ui->speedP1->setValue((speed1 / (double)speedMax) * 100.0);
-    ui->speedP2->setValue((speed2 / (double)speedMax) * 100.0);
+    ui->speedP1->setValue((cooldown1 / (double)cooldownMax) * 100.0);
+    ui->speedP2->setValue((cooldown2 / (double)cooldownMax) * 100.0);
+}
+
+void NewGameDialog::updateSpecialBonus()
+{
+    TypeSpecialBonus player1 = (TypeSpecialBonus)(int)(ui->cbbSBP1->itemData(ui->cbbSBP1->currentIndex()).toInt());
+    TypeSpecialBonus player2 = (TypeSpecialBonus)(int)(ui->cbbSBP2->itemData(ui->cbbSBP2->currentIndex()).toInt());
+
+    setPixmapForLabelWithSpecialBonusType(player1, ui->imgSBP1);
+    setPixmapForLabelWithSpecialBonusType(player2, ui->imgSBP2);
 }
 
 void NewGameDialog::on_cbbP1ship_currentIndexChanged(int index)
@@ -178,4 +225,14 @@ void NewGameDialog::on_cbbP1ship_currentIndexChanged(int index)
 void NewGameDialog::on_cbbP2ship_currentIndexChanged(int index)
 {
     updateSpaceshipsStats();
+}
+
+void NewGameDialog::on_cbbSBP1_currentIndexChanged(int index)
+{
+    updateSpecialBonus();
+}
+
+void NewGameDialog::on_cbbSBP2_currentIndexChanged(int index)
+{
+    updateSpecialBonus();
 }

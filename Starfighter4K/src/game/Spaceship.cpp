@@ -41,7 +41,10 @@
 #include "include/game/ProjectileGuided.h"
 #include "include/config/Define.h"
 
-Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerName,qreal _dSpeed,qreal _dHealthPoint,qreal _dResistance,GameEngine *_gameEngine)
+// Temporary constant TO_REMOVE
+#define dSpeed 8
+
+Spaceship::Spaceship(qreal _dX, qreal _dY, Shooter _player, const QString& _playerName, qreal _dHealthPoint, qreal _dResistance, int _cooldown, TypeSpecialBonus _sp, GameEngine *_gameEngine)
     :Destroyable(_dHealthPoint,_dResistance),
       Displayable(_dX,_dY),
       gameEngine(_gameEngine),//GameEngine
@@ -52,7 +55,6 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       type(PROJ_SPACESHIP_DEF),//Default kind of projectile
       dHealthForceField(MAX_SPACESHIP_PV),//Health point of the force field
       dResistanceForceField(RESISTANCE_FORCE_FIELD),//Resistance of the forcefield
-      dSpeed(_dSpeed),//Speed
       score(0),//Number of point, only use in timerMode
       dAngleAttack(0),
       isInvicible(false),
@@ -62,23 +64,25 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       projectileGuided(0),
       shield(PICTURE_SHIELD)
 {
-    //TO REMOVE
-    /*if(player == Player1)
-        specialBonus = new SpecialBonusAntiGravity(10000,1,Player1,gameEngine);
-    else
-        specialBonus = new SpecialBonusMulti(10000,5,this,gameEngine);
-*/
-    if(player == Player1)
-        specialBonus = new SpecialBonusFreeze(10000, 2, Player2, gameEngine);
-    else
-        specialBonus = new SpecialBonusFreeze(10000, 2, Player1, gameEngine);
 
-    //specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
-
-    //specialBonus = new SpecialBonusMulti(10000,2,this,gameEngine);
-    ///
-    //specialBonus = new SpecialBonusGuided(10000,2,this,gameEngine);
-    //
+    switch(_sp)
+    {
+    case TypeSpecialBonusAntiGravity:
+        specialBonus = new SpecialBonusAntiGravity(_cooldown, ANTIGRAVITY_ACTIVATIONS, player, gameEngine);
+        break;
+    case TypeSpecialBonusFreeze:
+        specialBonus = new SpecialBonusFreeze(_cooldown, FREEZE_DURATION, (player == Player1 ? Player2 : Player1), gameEngine);
+        break;
+    case TypeSpecialBonusGuidedMissile:
+        specialBonus = new SpecialBonusGuided(_cooldown, GUIDED_ACTIVATIONS, this, gameEngine);
+        break;
+    case TypeSpecialBonusOmnidirectionalShot:
+        specialBonus = new SpecialBonusMulti(_cooldown, ROOTSHOT_ACTIVATIONS, this, gameEngine);
+        break;
+    case TypeSpecialBonusTrackingMissile:
+        specialBonus = new SpecialBonusTracking(_cooldown, TRACKING_ACTIVATIONS, this, gameEngine);
+        break;
+    }
 
     if(_player == Player1)
         dAngle = 0;

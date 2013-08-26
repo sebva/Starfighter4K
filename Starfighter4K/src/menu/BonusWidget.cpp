@@ -133,16 +133,14 @@ void BonusWidget::setBonus(SpecialBonus *bonus)
         setPixmap(QPixmap(IMAGE_BONUS_ANTIGRAVITY));
         break;
     case TypeSpecialBonusGuidedMissile:
-        // TODO: Create the image
-        //setPixmap(QPixmap(IMAGE_BONUS_GUIDEDMISSILE));
-        //break;
+        setPixmap(QPixmap(IMAGE_BONUS_GUIDEDMISSILE));
+        break;
     case TypeSpecialBonusOmnidirectionalShot:
         setPixmap(QPixmap(IMAGE_BONUS_ROOTSHOT));
         break;
     case TypeSpecialBonusTrackingMissile:
-        // TODO: Create the image
-        //setPixmap(QPixmap(IMAGE_BONUS_TRACKINGMISSILE));
-        //break;
+        setPixmap(QPixmap(IMAGE_BONUS_TRACKINGMISSILE));
+        break;
     case TypeSpecialBonusNothing:
     default:
         setPixmap(QPixmap(IMAGE_BONUS));

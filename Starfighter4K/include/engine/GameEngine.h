@@ -24,7 +24,7 @@ class GameEngine : public QObject
     Q_OBJECT
 
 public:	
-    GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, int difficulty, QObject*);
+    GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QObject*);
     ~GameEngine();
 
     static double randDouble();
@@ -94,6 +94,8 @@ private:
     GameMode gameMode;
     SpaceshipType typeShip1;
     SpaceshipType typeShip2;
+    TypeSpecialBonus typeSP1;
+    TypeSpecialBonus typeSP2;
 
     QMutex* mutex;
 

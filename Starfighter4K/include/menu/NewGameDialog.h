@@ -27,14 +27,20 @@ private slots:
     void on_cbbP1ship_currentIndexChanged(int index);
     void on_cbbP2ship_currentIndexChanged(int index);
 
+    void on_cbbSBP1_currentIndexChanged(int index);
+
+    void on_cbbSBP2_currentIndexChanged(int index);
+
 private:
     Ui::NewGameDialog *ui;
     MainDialog *md;
     void setPixmapForLabelWithSpaceshipType(SpaceshipType sType, QLabel *lbl);
+    void setPixmapForLabelWithSpecialBonusType(TypeSpecialBonus sType, QLabel *lbl);
     void updateSpaceshipsStats();
+    void updateSpecialBonus();
 
     int resMax;
-    int speedMax;
+    int cooldownMax;
 };
 
 #endif // NEWGAMEDIALOG_H
