@@ -38,7 +38,7 @@ void ProjectileAlien::advance(int _step)
     dModule+=ProjectileAlien::kIntervalModule;
 
     if(antiGravity)
-        moveBy(SPEED_SIMPLE_DEF*0.5*cos(dAngle), 0);
+        moveBy(SPEED_SIMPLE_DEF*SPEED_FACTOR_ANTI_GRAVITY*0.5*cos(dAngle), 0);
     else
         setPos(dXOrigin+dModule*cos(dAngle), dYOrigin-dModule*sin(dAngle));
 }

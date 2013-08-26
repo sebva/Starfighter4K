@@ -50,6 +50,7 @@ void Projectile::enableAntiGravity(Shooter playerActivated)
 {
     if(from != playerActivated)
     {
+        dSpeed *= SPEED_FACTOR_ANTI_GRAVITY;
         antiGravity = true;
         dAngle += M_PI;
         if (cos(dAngle) >= 0)

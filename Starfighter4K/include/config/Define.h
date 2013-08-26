@@ -106,6 +106,9 @@
 #define POWER_GUIDED                        1000
 #define SPEED_GUIDED_DEF                    15
 
+//AntiGravity
+#define SPEED_FACTOR_ANTI_GRAVITY                  1.5
+
 //Spaceship
 //PV -> cf SpawnEngine
 #define MAX_SPACESHIP_BONUS                 2
