@@ -166,6 +166,9 @@
 #define IMAGE_BONUS_TRACKINGMISSILE ":/images/bonus/tracking"
 #define IMAGE_BONUS                 ":/images/bonus/bonus"
 
+#define HUD_BONUS_ACTIVATED_COLOR   QColor(0, 0, 255, 127)
+#define HUD_BONUS_COOLDOWN_COLOR    QColor(0, 0, 0, 127)
+
 //AlienSpaceShip
 #define MARGIN_Y                            10
 #define DELTA_X_MIN                         50

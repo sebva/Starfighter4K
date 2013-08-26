@@ -13,7 +13,7 @@ BonusWidget::BonusWidget(QWidget *parent)
 {
     setPixmap(QPixmap(IMAGE_BONUS));
 
-    clock.setInterval(100);
+    clock.setInterval(17);
     clock.setSingleShot(false);
     connect(&clock, SIGNAL(timeout()), this, SLOT(updateWidget()));
     clock.start();
@@ -158,11 +158,13 @@ void BonusWidget::paintEvent(QPaintEvent *event)
     {
         QPainter p(this);
         if(state == Activated)
-            p.setBrush(QBrush(QColor(0, 0, 255, 127)));
+            p.setBrush(QBrush(HUD_BONUS_ACTIVATED_COLOR));
         else
-            p.setBrush(QBrush(QColor(0, 0, 0, 127)));
+            p.setBrush(QBrush(HUD_BONUS_COOLDOWN_COLOR));
 
-        const int offset = 59;
+        p.setPen(Qt::NoPen);
+
+        const int offset = 100;
         QRect r(rect().left() + offset, rect().top() + offset, rect().width() - offset*2, rect().height() - offset*2);
         double percent;
         if(state == Cooldown)
@@ -175,8 +177,11 @@ void BonusWidget::paintEvent(QPaintEvent *event)
                 percent = elapsed.elapsed() / (double)bonusDuration * 100.0;
         }
 
-        //qDebug() << percent;
-        p.drawPie(r, 90 * 16, 90.0 + -1.0 * percent * 3.6 * 16.0);
+        if(percent < 0.0)
+            percent = 0;
+        else if(percent >= 100.0)
+            percent = 100.0;
+        p.drawPie(r, 90.0 * 16.0, 90.0 + (-1.0 * percent * 3.6 * 16.0));
     }
 }
 
