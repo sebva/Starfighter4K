@@ -279,9 +279,15 @@ void DisplayEngine::keyPressEvent(QKeyEvent *event)
         break;
 
         default:
+            gameEngine->userControlsEngine()->keyPressEvent(event);
         break;
     }
 
+}
+
+void DisplayEngine::keyReleaseEvent(QKeyEvent *event)
+{
+    gameEngine->userControlsEngine()->keyReleaseEvent(event);
 }
 
 void DisplayEngine::closeEvent(QCloseEvent *event)

@@ -17,6 +17,9 @@ public:
     ~UserControlsEngine();
 
     void timerEvent(QTimerEvent *event);
+    void keyPressEvent(QKeyEvent * event);
+    void keyReleaseEvent(QKeyEvent * event);
+
     void clearActionList();
 
 public slots:

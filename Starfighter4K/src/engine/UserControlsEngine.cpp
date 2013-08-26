@@ -9,6 +9,7 @@
 #include "include/config/Define.h"
 
 #include <lib/wiiuse/wiiuse.h>
+#include "include/stable.h"
 
 #define PLAYER_1 0
 #define PLAYER_2 1
@@ -78,6 +79,105 @@ void UserControlsEngine::wiimoteReleaseProcess(int button, int wiimote)
         QPair<Action, int> pair(actions[button], wiimote);
 
         actionList.removeAll(pair);
+    }
+}
+
+void UserControlsEngine::keyPressEvent(QKeyEvent * event)
+{
+    Action action;
+    Shooter player;
+
+    switch(event->key())
+    {
+        case Qt::Key_W:
+            actionList.append(QPair<Action,int>(Top,PLAYER_1));
+            break;
+
+        case Qt::Key_S:
+            actionList.append(QPair<Action,int>(Bottom,PLAYER_1));
+            break;
+
+        case Qt::Key_D:
+            player = Player1;
+            action = Shoot;
+            actionList.append(QPair<Action,int>(Shoot,PLAYER_1));
+            break;
+
+        case Qt::Key_Q:
+            gameEngine->ship1()->triggerBonus();
+        break;
+
+        case Qt::Key_A:
+            gameEngine->ship1()->triggerSpecialAttack();
+        break;
+
+        case Qt::Key_I:
+            actionList.append(QPair<Action,int>(Top,PLAYER_2));
+            break;
+
+        case Qt::Key_K:
+            actionList.append(QPair<Action,int>(Bottom,PLAYER_2));
+            break;
+
+        case Qt::Key_J:
+            player = Player2;
+            action = Shoot;
+            actionList.append(QPair<Action,int>(Shoot,PLAYER_2));
+            break;
+
+        case Qt::Key_O:
+            gameEngine->ship2()->triggerBonus();
+        break;
+
+        case Qt::Key_L:
+            gameEngine->ship2()->triggerSpecialAttack();
+        break;
+    }
+
+    if((!event->isAutoRepeat() && (action == Shoot && player == Player1)))
+    {
+        gameEngine->ship1()->attack();
+        novaeCall->start(NOVATIMER);
+        countTimer.restart();
+    }
+
+    if((!event->isAutoRepeat() && (action == Shoot && player == Player2)))
+    {
+        gameEngine->ship2()->attack();
+        novaeCall->start(NOVATIMER);
+        countTimer.restart();
+    }
+
+}
+
+void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
+{
+
+    switch(event->key())
+    {
+        case Qt::Key_W:
+            actionList.removeAll(QPair<Action,int>(Top,PLAYER_1));
+            break;
+
+        case Qt::Key_S:
+            actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_1));
+            break;
+
+        case Qt::Key_D:
+            actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_1));
+            break;
+
+        case Qt::Key_I:
+            actionList.removeAll(QPair<Action,int>(Top,PLAYER_2));
+            break;
+
+        case Qt::Key_K:
+            actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_2));
+            break;
+
+        case Qt::Key_J:
+            actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_2));
+            break;
     }
 }
 

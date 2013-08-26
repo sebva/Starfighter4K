@@ -39,6 +39,7 @@ public:
 
 protected:
     void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent * event);//TO REMOVE
     void closeEvent(QCloseEvent *event);
 
 public slots:
