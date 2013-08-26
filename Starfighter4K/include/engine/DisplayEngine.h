@@ -36,6 +36,7 @@ public:
     void updateGameDataTimer(int s);
 
     void explosionScreen();
+    HUDWidget* getHud() { return hud; }
 
 protected:
     void keyPressEvent(QKeyEvent *event);
@@ -58,8 +59,6 @@ private:
     void setProgressShield2(int _value);
     void setGameScore1(int _value);
     void setGameScore2(int _value);
-
-    HUDWidget* getHud() { return hud; }
 
     GameEngine *gameEngine;
     QPixmap *explosionPicture;

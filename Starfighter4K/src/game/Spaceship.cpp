@@ -17,6 +17,7 @@
  *==============================================================*/
 
 #include "include/engine/DisplayEngine.h"
+#include "include/menu/HUDWidget.h"
 #include "include/engine/GameEngine.h"
 #include "include/engine/SoundEngine.h"
 #include "include/engine/UserControlsEngine.h"
@@ -175,11 +176,14 @@ void Spaceship::triggerBonus()
 {
     if(bonus != 0 && !isInvicible && type == PROJ_SPACESHIP_DEF)
     {
+        gameEngine->displayEngine()->getHud()->setNormalBonus(player, bonus);
+
         if(BonusHP* bhp = dynamic_cast<BonusHP*>(bonus))
         {
             dHealthPoint+=bhp->getHealthPoint();
             if(dHealthPoint>MAX_SPACESHIP_PV)
                 dHealthPoint=MAX_SPACESHIP_PV;
+
             delete bonus;
             bonus = 0;
         }
@@ -213,6 +217,7 @@ void Spaceship::removeProjectileBonus()
     type = PROJ_SPACESHIP_DEF;
     delete bonus;
     bonus = 0;
+    gameEngine->displayEngine()->getHud()->deactivateBonus(player, NormalBonus);
 }
 
 void Spaceship::removeBonusInvicibility()

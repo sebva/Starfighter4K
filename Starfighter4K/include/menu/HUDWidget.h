@@ -25,6 +25,7 @@ public:
     void setNormalBonus(Shooter _player, Bonus* _type);
     void setSpecialBonus(Shooter _player, SpecialBonus* _type);
     void setTimer(QTime _time);
+    void deactivateBonus(Shooter _player, Action _typeBonus);
     
 private:
     Ui::HUDWidget *ui;

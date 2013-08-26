@@ -130,6 +130,24 @@ void HUDWidget::setSpecialBonus(Shooter _player, SpecialBonus* _bonus)
         ui->p2_specialBonus->setBonus(_bonus, 2000);
 }
 
+void HUDWidget::deactivateBonus(Shooter _player, Action _typeBonus)
+{
+    if(_typeBonus == NormalBonus)
+    {
+        if(_player == Player1)
+            ui->p1_normalBonus->deactivate();
+        else if(_player == Player2)
+            ui->p2_normalBonus->deactivate();
+    }
+    else if(_typeBonus == aSpecialBonus)
+    {
+        if(_player == Player1)
+            ui->p1_specialBonus->deactivate();
+        else if(_player == Player2)
+            ui->p2_specialBonus->deactivate();
+    }
+}
+
 void HUDWidget::setTimer(QTime _time)
 {
     ui->timer->setText(_time.toString("mm:ss"));
