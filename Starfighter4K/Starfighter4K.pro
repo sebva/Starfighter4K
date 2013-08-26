@@ -48,7 +48,6 @@ HEADERS += include/stable.h \
            include/menu/MainDialog.h \
            include/menu/NewGameDialog.h \
            include/menu/OptionsDialog.h \
-           include/menu/SetKeyDialog.h \
            include/utils/Settings.h \
     include/config/Define.h \
     include/game/AsteroidSupernova.h \
@@ -97,7 +96,6 @@ SOURCES += src/main.cpp \
            src/menu/MainDialog.cpp \
            src/menu/NewGameDialog.cpp \
            src/menu/OptionsDialog.cpp \
-           src/menu/SetKeyDialog.cpp \
            src/utils/Settings.cpp \
     src/engine/WiimoteEngine.cpp \
     src/game/BonusInvicibility.cpp \
