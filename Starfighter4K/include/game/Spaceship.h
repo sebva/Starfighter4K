@@ -45,7 +45,7 @@ public:
     void addPoint(int _point) {score+=_point;}
 
     qreal getXPositionFire() const {return (player == Player1) ? pos().x()+getPixmap()->width()/2.0*(1.0+cos(dAngleAttack*M_PI/180.0)) : pos().x()+getPixmap()->width()/2*(1-cos(dAngleAttack*M_PI/180.0));}
-    qreal getYPositionFire() const{return (player == Player2) ? pos().y()+getPixmap()->height()/2.0*(1.0+sin(dAngleAttack*M_PI/180.0)) : pos().y()+getPixmap()->height()/2*(1-sin(dAngleAttack*M_PI/180.0));}
+    qreal getYPositionFire() const {return (player == Player2) ? pos().y()+getPixmap()->height()/2*(1-sin(dAngleAttack*M_PI/180.0)) : pos().y()+getPixmap()->height()/2.0*(1.0+sin(dAngleAttack*M_PI/180.0));}
 
     qreal getXPositionCenter() const {return pos().x()+getPixmap()->width()/2.0;}
     qreal getYPositionCenter() const {return pos().y()+getPixmap()->height()/2.0;}

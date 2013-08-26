@@ -60,16 +60,16 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
       projectileGuided(0)
 {
     //TO REMOVE
-    /*if(player == Player1)
+    if(player == Player1)
         specialBonus = new SpecialBonusAntiGravity(10000,1,Player1,gameEngine);
     else
-        specialBonus = new SpecialBonusAntiGravity(10000,1,Player2,gameEngine);*/
+        specialBonus = new SpecialBonusAntiGravity(10000,1,Player2,gameEngine);
 
     //specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
 
     //specialBonus = new SpecialBonusMulti(10000,2,this,gameEngine);
     ///
-    specialBonus = new SpecialBonusGuided(10000,2,this,gameEngine);
+    //specialBonus = new SpecialBonusGuided(10000,2,this,gameEngine);
     //
 
     if(_player == Player1)
