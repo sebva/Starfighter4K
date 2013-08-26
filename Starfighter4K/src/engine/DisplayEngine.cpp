@@ -165,65 +165,6 @@ void DisplayEngine::setGameScore2(int _value)
     hud->setPlayerScore(Player2, _value);
 }
 
-void DisplayEngine::setBonusProject1(TypeProjectiles _value)
-{
-
-    /* TODO
-    switch(_value)
-    {
-        case ProjSimple:
-            imProj1->setText("");
-            lBProjectile1->setText(tr("Standard Shot"));
-        break;
-
-        case ProjCross:
-            imProj1->setPixmap(pixProj);
-            lBProjectile1->setText(tr("Cross Shot"));
-        break;
-
-        case ProjV:
-            imProj1->setPixmap(pixProj);
-            lBProjectile1->setText(tr("V Shot"));
-        break;
-
-        case ProjAlien:
-        break;
-
-        case Nothing:
-        break;
-    }
-    */
-}
-
-void DisplayEngine::setBonusProject2(TypeProjectiles _value)
-{
-    /* TODO
-    switch(_value)
-    {
-        case ProjSimple:
-            imProj2->setText("");
-            lBProjectile2->setText(tr("Standard Shot"));
-        break;
-
-        case ProjCross:
-            imProj2->setPixmap(pixProj);
-            lBProjectile2->setText(tr("Cross Shot"));
-        break;
-
-        case ProjV:
-        imProj2->setPixmap(pixProj);
-        lBProjectile2->setText(tr("V Shot"));
-        break;
-
-        case ProjAlien:
-        break;
-
-        case Nothing:
-        break;
-    }
-    */
-}
-
 void DisplayEngine::updateGameData()
 {
     this->setProgressHP1(gameEngine->ship1()->getHealthPoint());

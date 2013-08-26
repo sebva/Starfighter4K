@@ -59,8 +59,7 @@ private:
     void setGameScore1(int _value);
     void setGameScore2(int _value);
 
-    void setBonusProject1(TypeProjectiles _value = ProjSimple);
-    void setBonusProject2(TypeProjectiles _value = ProjSimple);
+    HUDWidget* getHud() { return hud; }
 
     GameEngine *gameEngine;
     QPixmap *explosionPicture;
