@@ -11,6 +11,8 @@ public:
     virtual ~SpecialBonusLimitedUsage(){}
 
     virtual void trigger() = 0;
+    int getNbActivation() { return nbActivation; }
+    int getInitialActivation() { return initialActivation; }
 
 public slots:
     void refill();

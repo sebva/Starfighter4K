@@ -117,12 +117,14 @@
     </qresource>
     <qresource prefix="/images/bonus">
         <file alias="freeze">res/images/bonus/freeze.png</file>
-        <file alias="invincibility">res/images/bonus/invicibility.png</file>
+        <file alias="invicibility">res/images/bonus/invicibility.png</file>
         <file alias="medic">res/images/bonus/medic.png</file>
-        <file alias="projCross">res/images/bonus/projCross.png</file>
         <file alias="projSimple">res/images/bonus/projSimple.png</file>
-        <file alias="projV">res/images/bonus/projV.png</file>
         <file alias="shield">res/images/bonus/shield.png</file>
         <file alias="bonus">res/images/bonus/placeHolder.png</file>
+        <file alias="antiGravity">res/images/bonus/antiGravity.png</file>
+        <file alias="projCross">res/images/bonus/projCross.png</file>
+        <file alias="projRoot">res/images/bonus/projRoot.png</file>
+        <file alias="projV">res/images/bonus/projV.png</file>
     </qresource>
 </RCC>

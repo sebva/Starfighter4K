@@ -125,9 +125,27 @@ void HUDWidget::setNormalBonus(Shooter _player, Bonus* _bonus)
 void HUDWidget::setSpecialBonus(Shooter _player, SpecialBonus* _bonus)
 {
     if(_player == Player1)
-        ui->p1_specialBonus->setBonus(_bonus, 2000); // TODO: cooldown
+        ui->p1_specialBonus->setBonus(_bonus); // TODO: cooldown
     else
-        ui->p2_specialBonus->setBonus(_bonus, 2000);
+        ui->p2_specialBonus->setBonus(_bonus);
+}
+
+void HUDWidget::activateBonus(Shooter _player, Action _typeBonus)
+{
+    if(_typeBonus == NormalBonus)
+    {
+        if(_player == Player1)
+            ui->p1_normalBonus->activate();
+        else if(_player == Player2)
+            ui->p2_normalBonus->activate();
+    }
+    else if(_typeBonus == aSpecialBonus)
+    {
+        if(_player == Player1)
+            ui->p1_specialBonus->activate();
+        else if(_player == Player2)
+            ui->p2_specialBonus->activate();
+    }
 }
 
 void HUDWidget::deactivateBonus(Shooter _player, Action _typeBonus)

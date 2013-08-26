@@ -37,6 +37,7 @@
 #include "include/game/ProjectileMulti.h"
 #include "include/game/SpecialBonusMulti.h"
 #include "include/game/SpecialBonusGuided.h"
+#include "include/game/SpecialBonusFreeze.h"
 #include "include/game/ProjectileGuided.h"
 #include "include/config/Define.h"
 
@@ -64,7 +65,7 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
     if(player == Player1)
         specialBonus = new SpecialBonusAntiGravity(10000,1,Player1,gameEngine);
     else
-        specialBonus = new SpecialBonusAntiGravity(10000,1,Player2,gameEngine);
+        specialBonus = new SpecialBonusMulti(10000,5,this,gameEngine);
 
     //specialBonus = new SpecialBonusTracking(10000,2,this,gameEngine);
 
@@ -79,6 +80,9 @@ Spaceship::Spaceship(qreal _dX,qreal _dY,Shooter _player,const QString& _playerN
         dAngle = M_PI;
     timerProjectile->setSingleShot(true);
     connect(timerProjectile,SIGNAL(timeout()),this,SLOT(removeProjectileBonus()));
+
+    hud = gameEngine->displayEngine()->getHud();
+    hud->setSpecialBonus(player, specialBonus);
 }
 
 void Spaceship::setPixmap(QPixmap *_pxmPixmap)
@@ -145,7 +149,10 @@ qreal Spaceship::getPercentageSpeed() const
 void Spaceship::addBonus(Bonus *_bonus)
 {
     if(bonus == 0)
+    {
         bonus = _bonus;
+        hud->setNormalBonus(player, bonus);
+    }
 }
 
 void Spaceship::shotTrackingBonus()
@@ -176,7 +183,7 @@ void Spaceship::triggerBonus()
 {
     if(bonus != 0 && !isInvicible && type == PROJ_SPACESHIP_DEF)
     {
-        gameEngine->displayEngine()->getHud()->setNormalBonus(player, bonus);
+        hud->activateBonus(player, NormalBonus);
 
         if(BonusHP* bhp = dynamic_cast<BonusHP*>(bonus))
         {
@@ -329,4 +336,5 @@ void Spaceship::advance(int _step)
 void Spaceship::triggerSpecialAttack()
 {
     specialBonus->trigger();
+    hud->activateBonus(player, aSpecialBonus);
 }

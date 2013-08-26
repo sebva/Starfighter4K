@@ -24,7 +24,7 @@ public:
     BonusWidget(QWidget *parent = 0);
     ~BonusWidget();
     void setBonus(Bonus* bonus);
-    void setBonus(SpecialBonus* bonus, int cooldown);
+    void setBonus(SpecialBonus* bonus);
     void setBonus(BonusProjectile* bonus);
 
 protected:
@@ -34,7 +34,9 @@ private:
     QElapsedTimer elapsed;
     QTimer clock;
     int cooldown; // (ms)
-    int bonusDuration;
+    int bonusDuration; // (ms), -1 = Limited usages
+    int initialActivations;
+    int remainingActivations;
     BonusState state;
 
 public slots:

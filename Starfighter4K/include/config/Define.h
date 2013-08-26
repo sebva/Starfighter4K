@@ -152,6 +152,8 @@
 #define SUPERNOVA_SOUND                     "supernova.mp3"
 
 //HUD
+#define IMAGE_BONUS_ANTIGRAVITY     ":/images/bonus/antiGravity"
+#define IMAGE_BONUS_ROOTSHOT        ":/images/bonus/projRoot"
 #define IMAGE_BONUS_FREEZE          ":/images/bonus/freeze"
 #define IMAGE_BONUS_INVICIBILITY    ":/images/bonus/invicibility"
 #define IMAGE_BONUS_HEALTH          ":/images/bonus/medic"

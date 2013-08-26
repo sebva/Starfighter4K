@@ -14,6 +14,7 @@ public:
     virtual void trigger() = 0;
 
     TypeSpecialBonus getTypeBonus() const {return bonus;}
+    int getCooldownTime() { return timeToWait; }
 
 protected:
     GameEngine* ge;

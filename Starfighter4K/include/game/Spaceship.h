@@ -20,6 +20,7 @@ class GameEngine;
 class QTimer;
 class SpecialBonus;
 class ProjectileGuided;
+class HUDWidget;
 
 class Spaceship : public Destroyable, public Displayable
 {
@@ -75,6 +76,7 @@ private:
     void advance(int _step);
 
     GameEngine *gameEngine;
+    HUDWidget* hud;
 
     Shooter player;
 	QString playerName;

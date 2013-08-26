@@ -10,6 +10,7 @@ public:
     SpecialBonusLimitedTime(TypeSpecialBonus bonus, int _duration, int _timeToWait, GameEngine* ge);
     virtual ~SpecialBonusLimitedTime(){}
 
+    int getDuration() { return duration; }
     virtual void trigger() = 0;
 
 protected slots:

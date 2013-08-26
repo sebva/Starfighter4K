@@ -47,9 +47,6 @@ enum TypeBonus
     TypeBonusProjectile         = 1,
     TypeBonusInvicibility       = 2,
     TypeBonusShield             = 3,
-    TypeBonusProjectileCross    = 4,
-    TypeBonusProjectileV        = 5,
-    TypeBonusProjectileSimple   = 6,
     TypeBonusNothing            = 1000
 };
 
