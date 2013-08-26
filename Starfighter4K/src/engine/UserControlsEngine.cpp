@@ -54,12 +54,14 @@ void UserControlsEngine::wiimotePressProcess(int button, int wiimote)
 
         Spaceship* ss = (wiimote == PLAYER_1) ? gameEngine->ship1() : gameEngine->ship2();
 
-        if(action == Shoot)
+        if(action == Shoot || action == NormalBonus || action == aSpecialBonus)
         {
-            ss->attack();
             novaeCall->start(NOVATIMER);
             countTimer.restart();
         }
+
+        if(action == Shoot)
+            ss->attack();
         else if(action == NormalBonus)
             ss->triggerBonus();
         else if(action == aSpecialBonus)
