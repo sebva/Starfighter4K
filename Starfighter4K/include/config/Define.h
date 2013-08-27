@@ -7,6 +7,8 @@
 
 //DisplayEngine
 #define BACKGROUND                          ":/images/game/background"
+#define BACKGROUND_DX                       0.25
+#define BACKGROUND_DY                       0.25
 #define ICON_TASKBAR                        ":/images/taskbar-icon"
 
 //SpawnEngine
@@ -67,9 +69,6 @@
 #define PICTURE_BONUS                       ":/images/game/bonus"
 #define ARG_INCREMENTATION_BONUS            0.0060 // rad
 
-//Projectile
-#define RADIUS_PROJECTILE                   10 // px
-
 //Point
 #define NB_POINT_PROJECTILE                 20 //When a spaceship touchs another one
 #define NB_POINT_SMALL_ASTEROID             25 // small
@@ -116,6 +115,9 @@
 #define OMEGA_SPACESHIP_PROJ_V              0.020 // rad/s
 #define PROJ_SPACESHIP_DEF                  ProjSimple
 #define RESISTANCE_FORCE_FIELD              100
+#define PICTURE_PROJ_SPACESHIP_1            ":/images/game/proj1"
+#define PICTURE_PROJ_SPACESHIP_2            ":/images/game/proj2"
+#define PICTURE_PROJ_SPACESHIP_3            ":/images/game/proj3"
 
 #define PICTURE_SPACESHIP_1                 ":/images/game/ship1"
 #define PICTURE_SPACESHIP_2                 ":/images/game/ship2"

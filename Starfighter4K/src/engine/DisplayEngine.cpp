@@ -10,10 +10,10 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 #include "include/menu/HUDWidget.h"
-
+#include "include/stable.h"
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     :QMainWindow(parent),
-      gameEngine(ge), isFullScreen(true)
+      gameEngine(ge), isFullScreen(true),angleBg(M_PI/4.0),bg(BACKGROUND)
 {
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
@@ -41,6 +41,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     view->setViewport(new QGLWidget(QGLFormat(QGL::DoubleBuffer),this));
+    view->setRenderHints(QPainter::SmoothPixmapTransform|QPainter::Antialiasing);
 
     //Better performance if we don't use random access in the scene.
     //It's the case because we use QList for Item process
@@ -50,10 +51,10 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     view->setFocusPolicy(Qt::NoFocus);
 
     // Set background
-    QPixmap bg( BACKGROUND );
-    bg = bg.scaled(sceneWidth, sceneHeigth, Qt::KeepAspectRatioByExpanding);
 
-    scene->setBackgroundBrush(bg);
+    bgScene = scene->addPixmap(bg);
+    //bg = bg.scaled(sceneWidth, sceneHeigth, Qt::KeepAspectRatioByExpanding);
+
     //scene->setBackgroundBrush(Qt::black);
     this->setFixedSize(screenSizeWidth,screenSizeHeight);
 
@@ -76,6 +77,25 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
 
     affiche = new QTime();
     affiche->setHMS(0,0,0,0);
+    bgScene->setPos(-(offset+1),-(offset+1));
+}
+
+void DisplayEngine::moveBG()
+{
+    int factorX = (cos(angleBg) >= 0) ? -1 : 1;
+    int factorY = (sin(angleBg) >= 0) ? -1 : 1;//Inverse
+
+    if(bgScene->pos().y()+bg.height() <= sceneSize().height()+offset
+            || bgScene->pos().x()+bg.width() <= sceneSize().width()+offset
+            || bgScene->pos().y()+offset >= 0
+            || bgScene->pos().x()+offset >= 0)
+    {
+        angleBg -= M_PI/2.0;
+        factorX = (cos(angleBg) >= 0) ? -1 : 1;
+        factorY = (sin(angleBg) >= 0) ? -1 : 1;//Inverse
+    }
+
+    bgScene->moveBy(factorX*BACKGROUND_DX,factorY*BACKGROUND_DY);
 }
 
 DisplayEngine::~DisplayEngine()
@@ -86,7 +106,6 @@ DisplayEngine::~DisplayEngine()
     delete affiche;
     delete explosionPicture;
     delete splash;
-
     //All Layout,QLabel,QLCDNumber,QProgressbar delete with parent of QWidget
 
     //GameEnfine call ~DisplayEngine

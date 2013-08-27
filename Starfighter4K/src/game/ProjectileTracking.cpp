@@ -8,6 +8,8 @@ ProjectileTracking::ProjectileTracking(qreal _dXOrigin, qreal _dYOrigin,Shooter 
     dOriginAngle = dAngle;
     dSpeed = SPEED_TRACKING_DEF;
     dPower = POWER_TRACKING;
+
+    loadPixmap();
 }
 
 void ProjectileTracking::advance(int _step)
@@ -16,6 +18,7 @@ void ProjectileTracking::advance(int _step)
     qreal y = spaceship->getYPositionFire();
 
     dAngle = dOriginAngle - cos(dAngle)*atan((y-pos().y())/abs(x-pos().x()));
+    loadPixmap();
 
     Projectile::advance(_step);
 }

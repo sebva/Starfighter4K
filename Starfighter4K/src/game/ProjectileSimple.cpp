@@ -29,4 +29,6 @@ ProjectileSimple::ProjectileSimple(qreal _dXOrigin, qreal _dYOrigin, Shooter _fr
 
     if(_from==Player2)
         dAngle+=M_PI;
+
+    loadPixmap();
 }

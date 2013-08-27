@@ -3,7 +3,6 @@
 #include "ui_OptionsDialog.h"
 #include <QMessageBox>
 #include "include/enum/Enum.h"
-#include "include/menu/SetKeyDialog.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
     QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint),

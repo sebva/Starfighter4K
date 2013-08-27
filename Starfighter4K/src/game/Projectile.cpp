@@ -16,7 +16,6 @@
  *==============================================================*/
 
 #include "include/game/Projectile.h"
-
 #include "include/config/Define.h"
 
 Projectile::Projectile(qreal _dXOrigin, qreal _dYOrigin,Shooter _from)
@@ -24,7 +23,8 @@ Projectile::Projectile(qreal _dXOrigin, qreal _dYOrigin,Shooter _from)
       dXOrigin(_dXOrigin),//X-Origin where the projectile was shot
       dYOrigin(_dYOrigin),//Y-Origin where the projectile was shot
       from(_from),//Who has shot it
-      antiGravity(false)
+      antiGravity(false),
+      image(0)
 {
     nbPoint = NB_POINT_PROJECTILE;
     if(from == Player1)
@@ -41,15 +41,33 @@ Projectile::Projectile(qreal _dXOrigin, qreal _dYOrigin,Shooter _from)
         color = new QColor(qrand() % 256, qrand() % 256, qrand() % 256);
 }
 
+void Projectile::loadPixmap()
+{
+    if(image != 0)
+        delete image;
+
+    if(from == Player1)
+        image = new QPixmap(PICTURE_PROJ_SPACESHIP_1);
+    else if(from == Player2)
+        image = new QPixmap(PICTURE_PROJ_SPACESHIP_2);
+    else
+        image = new QPixmap(PICTURE_PROJ_SPACESHIP_3);
+
+    setRotation(-dAngle*180.0/M_PI);
+}
+
 Projectile::~Projectile()
 {
     delete color;
+    if(image != 0)
+        delete image;
 }
 
 void Projectile::enableAntiGravity(Shooter playerActivated)
 {
     if(from != playerActivated)
     {
+        setRotation(180.0);
         dSpeed *= SPEED_FACTOR_ANTI_GRAVITY;
         antiGravity = true;
         dAngle += M_PI;
@@ -62,20 +80,21 @@ void Projectile::enableAntiGravity(Shooter playerActivated)
 
 QRectF Projectile::boundingRect() const
 {
-    return QRectF(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
+    return QRectF(image->width()-15,image->height()/2.0-5,10,10);
 }
 
 QPainterPath Projectile::shape() const
 {
     QPainterPath l_path;
-    l_path.addEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
+    l_path.addEllipse(image->width()-15,image->height()/2.0-5,10,10);
     return l_path;
 }
 
 void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem * _option, QWidget * _widget)
 {
     _painter->setBrush(*color);
-    _painter->drawEllipse(-RADIUS_PROJECTILE/2,-RADIUS_PROJECTILE/2,RADIUS_PROJECTILE,RADIUS_PROJECTILE);
+    if(image != 0)
+        _painter->drawPixmap(0, 0,*image);
 }
 
 void Projectile::advance(int _step)

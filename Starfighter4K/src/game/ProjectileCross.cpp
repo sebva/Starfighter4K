@@ -34,5 +34,7 @@ ProjectileCross::ProjectileCross(qreal _dXOrigin, qreal _dYOrigin, Shooter _from
 
     if(_from==Player2)
         dAngle+=M_PI;
+
+    loadPixmap();
 }
 

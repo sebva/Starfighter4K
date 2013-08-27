@@ -45,6 +45,7 @@ protected:
 
 public slots:
     void updateScreen();
+    void moveBG();
 
 private slots:
     void removeExplosionScreen();
@@ -60,12 +61,15 @@ private:
     void setGameScore1(int _value);
     void setGameScore2(int _value);
 
+    const static int offset = 10;
     GameEngine *gameEngine;
     QPixmap *explosionPicture;
     QSplashScreen *splash;
-
+    QGraphicsPixmapItem* bgScene;
+    QPixmap bg;
     QGraphicsScene * scene;
     QGraphicsView * view;
+    qreal angleBg;
 
     QTime* affiche;
 

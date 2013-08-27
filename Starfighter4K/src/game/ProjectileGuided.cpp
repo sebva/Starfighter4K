@@ -7,6 +7,12 @@ ProjectileGuided::ProjectileGuided(qreal _dXOrigin, qreal _dYOrigin, Shooter _fr
 {
     dPower = POWER_GUIDED;
     dSpeed = SPEED_GUIDED_DEF;
+
+    dAngle = 0;
+    if(from == Player2)
+        dAngle += M_PI;
+
+    loadPixmap();
 }
 
 ProjectileGuided::~ProjectileGuided()

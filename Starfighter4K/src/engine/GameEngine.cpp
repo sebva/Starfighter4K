@@ -135,6 +135,7 @@ void GameEngine::createSpaceship()
 
 void GameEngine::timerEvent(QTimerEvent *event)
 {
+    de->moveBG();
     de->updateScreen();
     if(isTimer)
     {

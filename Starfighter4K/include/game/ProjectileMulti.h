@@ -6,7 +6,7 @@
 class ProjectileMulti : public Projectile
 {
 public:
-    ProjectileMulti(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _coeff, qreal _power);
+    ProjectileMulti(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal _coeff, qreal _power, qreal _dAngle);
     ~ProjectileMulti() {}
 
 private:

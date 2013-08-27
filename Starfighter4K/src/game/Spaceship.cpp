@@ -183,17 +183,18 @@ void Spaceship::shotMultiBonus()
     gameEngine->soundEngine()->playSound(ShootSound);
     qreal l_x = getXPositionFire();
     qreal l_y = getYPositionFire();
+    qreal angle = dAngleAttack*M_PI/180.0;
 
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,1,0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-1,0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.25,1.0/2.0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.6,1.0/3.0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/4.0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/5.0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.25,1.0/2.0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.6,1.0/3.0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/4.0));
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/5.0));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,1,0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-1,0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.25,1.0/2.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.6,1.0/3.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/4.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/5.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.25,1.0/2.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.6,1.0/3.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/4.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/5.0,angle));
 }
 
 void Spaceship::triggerBonus()

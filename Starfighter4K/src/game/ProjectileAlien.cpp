@@ -28,6 +28,7 @@ ProjectileAlien::ProjectileAlien(qreal _dXOrigin, qreal _dYOrigin,Shooter _from,
 {
     dAngle = _dArgument;
     dPower = POWER_ALIEN;
+    loadPixmap();
 }
 
 void ProjectileAlien::advance(int _step)

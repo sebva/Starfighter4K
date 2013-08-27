@@ -25,12 +25,15 @@ ProjectileV::ProjectileV(qreal _dXOrigin, qreal _dYOrigin, Shooter _from, qreal 
       dOmega(_dOmega),//Omega
       dAngle2(-_dAngle)
 {
-    dAngle = 0;
+    dAngle = -_dAngle;
     if(_from == Player2)
         dAngle += M_PI;
 
     dPower = POWER_V;
     dSpeed = SPEED_V_DEF;
+
+    loadPixmap();
+
 }
 
 void ProjectileV::advance(int _step)
@@ -48,7 +51,13 @@ void ProjectileV::advance(int _step)
 
         if(from == Player1 && pos().x()-dXOrigin > dOmega*(1.75*M_PI*180.0/M_PI-dXOrigin)*180.0/M_PI
                 || from == Player2 && abs(pos().x()-dXOrigin) > abs(dOmega*(9.25*M_PI*180.0/M_PI-dXOrigin))*180.0/M_PI)
+        {
             moveBy(x,0);
+            if(from == Player1)
+                setRotation(-2*dAngle*180.0/M_PI);
+            else
+                setRotation(180.0);
+        }
         else
             if(from == Player1 && dAngle2 < 0 || from == Player2 && dAngle2 > 0)
                 moveBy(x,-y);
@@ -57,6 +66,7 @@ void ProjectileV::advance(int _step)
 
         x = pos().x();
         y = 0;
+
 
         if(from == Player1)
             setTransform(QTransform().translate(x,y).rotateRadians(dAngle2).translate(-x,-y));

@@ -24,6 +24,8 @@ public:
 
     qreal getPower() const {return dPower;}
 
+    void loadPixmap();
+
     TypeItem getTypeObject() const {return tProj;}
     Shooter getFrom() const {return from;}
 
@@ -44,6 +46,7 @@ protected:
 
     qreal dSpeed;
     QColor* color;
+    QPixmap* image;
 
     Shooter from;
 };
