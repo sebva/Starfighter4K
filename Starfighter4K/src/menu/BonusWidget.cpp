@@ -203,8 +203,8 @@ void BonusWidget::paintEvent(QPaintEvent *event)
         else if(percent >= 100.0)
             percent = 100.0;
 
-        if(bonusDuration != -1 || initialActivations > 1)
-        p.drawPie(r, 90 * 16, (-1.0 * percent * 3.6 * 16.0));
+        if(bonusDuration != -1 || initialActivations > 1 || state == BonusStateCooldown)
+            p.drawPie(r, 90 * 16, (-1.0 * percent * 3.6 * 16.0));
     }
 }
 
