@@ -36,7 +36,7 @@
 
 //AlienSpaceShip
 #define PICTURE_ALIENSPACESHIP              ":/images/game/mothership"
-#define ARG_INCREMENTATION_ALIENSPACESHIP   0.0005 // rad
+#define ARG_INCREMENTATION_ALIENSPACESHIP   0.0010 // rad
 
 //Asteroid
 #define SPEED_ASTEROID                      3 //Factor
