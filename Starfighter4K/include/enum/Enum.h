@@ -60,6 +60,13 @@ enum TypeSpecialBonus
     TypeSpecialBonusNothing = 1000
 };
 
+enum BonusState {
+    BonusStateActivated,
+    BonusStateReady,
+    BonusStateCooldown,
+    BonusStateNoBonus
+};
+
 enum Sounds
 {
     SatelliteSound = 1, ShootSound = 2, SupernovaSound = 3

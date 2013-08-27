@@ -1,20 +1,16 @@
 #ifndef BONUSWIDGET_H
 #define BONUSWIDGET_H
 
+#include "include/enum/Enum.h"
+
 class QWidget;
 class QLabel;
+class QTime;
 class QElapsedTimer;
 class QTimer;
 class Bonus;
 class SpecialBonus;
 class BonusProjectile;
-
-enum BonusState {
-    Activated,
-    Ready,
-    Cooldown,
-    NoBonus
-};
 
 class BonusWidget : public QLabel
 {
@@ -26,12 +22,14 @@ public:
     void setBonus(Bonus* bonus);
     void setBonus(SpecialBonus* bonus);
     void setBonus(BonusProjectile* bonus);
+    BonusState getState() { return state; }
 
 protected:
     void paintEvent(QPaintEvent *event);
 
 private:
-    QElapsedTimer elapsed;
+    QTime elapsed;
+    QElapsedTimer pauseTime;
     QTimer clock;
     int cooldown; // (ms)
     int bonusDuration; // (ms), -1 = Limited usages
@@ -43,6 +41,7 @@ public slots:
     void activate();
     void deactivate();
     void updateWidget();
+    void pause(bool);
 };
 
 #endif // BONUSWIDGET_H

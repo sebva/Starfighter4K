@@ -9,7 +9,7 @@
 #include "include/stable.h"
 
 BonusWidget::BonusWidget(QWidget *parent)
-    : QLabel(parent), cooldown(-1), state(NoBonus), bonusDuration(-1), initialActivations(1), remainingActivations(1)
+    : QLabel(parent), cooldown(-1), state(BonusStateNoBonus), bonusDuration(-1), initialActivations(1), remainingActivations(1)
 {
     setPixmap(QPixmap(IMAGE_BONUS));
 
@@ -24,15 +24,30 @@ BonusWidget::~BonusWidget()
     clock.stop();
 }
 
+void BonusWidget::pause(bool isPause)
+{
+    if(isPause)
+    {
+        clock.stop();
+        pauseTime.start();
+    }
+    else
+    {
+        elapsed = elapsed.addMSecs(pauseTime.elapsed());
+        clock.start();
+    }
+
+}
+
 void BonusWidget::activate()
 {
-    if(state != Ready)
+    if(state != BonusStateReady)
         return;
 
     if(bonusDuration != -1)
     {
         elapsed.start();
-        state = Activated;
+        state = BonusStateActivated;
     }
     else if(--remainingActivations <= 0)
         deactivate();
@@ -43,14 +58,16 @@ void BonusWidget::deactivate()
     if(cooldown == -1)
     {
         setPixmap(QPixmap(IMAGE_BONUS));
-        state = NoBonus;
+        state = BonusStateNoBonus;
         bonusDuration = -1;
         remainingActivations = 1;
+        initialActivations = 1;
     }
     else
     {
         elapsed.start();
-        state = Cooldown;
+        state = BonusStateCooldown;
+        remainingActivations = initialActivations;
     }
 }
 
@@ -79,7 +96,7 @@ void BonusWidget::setBonus(Bonus *bonus)
         return;
     }
 
-    state = Ready;
+    state = BonusStateReady;
 }
 
 void BonusWidget::setBonus(BonusProjectile *bonus)
@@ -105,7 +122,7 @@ void BonusWidget::setBonus(BonusProjectile *bonus)
 
     bonusDuration = bonus->getExpiration();
     //qDebug() << "Duration : " << bonusDuration;
-    state = Ready;
+    state = BonusStateReady;
 }
 
 void BonusWidget::setBonus(SpecialBonus *bonus)
@@ -113,11 +130,14 @@ void BonusWidget::setBonus(SpecialBonus *bonus)
     this->cooldown = bonus->getCooldownTime();
     //qDebug() << "Special bonus cooldown : " << cooldown;
 
+    deactivate();
+
     SpecialBonusLimitedTime* sblt = dynamic_cast<SpecialBonusLimitedTime*>(bonus);
     if(sblt)
         this->bonusDuration = sblt->getDuration();
     else
     {
+        bonusDuration = -1;
         SpecialBonusLimitedUsage* sblu = dynamic_cast<SpecialBonusLimitedUsage*>(bonus);
         if(sblu)
             remainingActivations = initialActivations = sblu->getInitialActivation();
@@ -146,51 +166,54 @@ void BonusWidget::setBonus(SpecialBonus *bonus)
         setPixmap(QPixmap(IMAGE_BONUS));
         break;
     }
-
-    deactivate();
 }
 
 void BonusWidget::paintEvent(QPaintEvent *event)
 {
     QLabel::paintEvent(event);
 
-    if(state == Cooldown || state == Activated)
+    if(state != BonusStateNoBonus)
     {
         QPainter p(this);
-        if(state == Activated)
-            p.setBrush(QBrush(HUD_BONUS_ACTIVATED_COLOR));
-        else
+        if(state == BonusStateCooldown)
             p.setBrush(QBrush(HUD_BONUS_COOLDOWN_COLOR));
+        else
+            p.setBrush(QBrush(HUD_BONUS_ACTIVATED_COLOR));
 
         p.setPen(Qt::NoPen);
 
         const int offset = 100;
         QRect r(rect().left() + offset, rect().top() + offset, rect().width() - offset*2, rect().height() - offset*2);
-        double percent;
-        if(state == Cooldown)
+        double percent = 0;
+        qDebug() << "State : " << state << "\nbonusDuration : " << bonusDuration;
+
+        if(state == BonusStateCooldown)
             percent = (cooldown - elapsed.elapsed()) / (double)cooldown * 100.0;
-        else if(state == Activated)
+        else if(state == BonusStateReady && bonusDuration == -1)
         {
-            if(bonusDuration == -1)
-                percent = remainingActivations / (double)initialActivations * 100.0;
-            else
-                percent = elapsed.elapsed() / (double)bonusDuration * 100.0;
+            qDebug() << "Rem : " << remainingActivations << "\nInit : " << initialActivations;
+            percent = (double)remainingActivations / (double)initialActivations * 100.0;
+            qDebug() << "Percent : " << percent;
         }
+        else if(state == BonusStateActivated)
+            percent = elapsed.elapsed() / (double)bonusDuration * 100.0;
 
         if(percent < 0.0)
             percent = 0;
         else if(percent >= 100.0)
             percent = 100.0;
-        p.drawPie(r, 90.0 * 16.0, 90.0 + (-1.0 * percent * 3.6 * 16.0));
+
+        if(bonusDuration != -1 || initialActivations > 1)
+        p.drawPie(r, 90 * 16, (-1.0 * percent * 3.6 * 16.0));
     }
 }
 
 void BonusWidget::updateWidget()
 {
-    if(state == Activated && bonusDuration != -1 && elapsed.hasExpired(bonusDuration))
+    if(state == BonusStateActivated && bonusDuration != -1 && elapsed.elapsed() >= bonusDuration)
         deactivate();
-    else if(state == Cooldown && elapsed.hasExpired(cooldown))
-        state = Ready;
+    else if(state == BonusStateCooldown && elapsed.elapsed() >= cooldown)
+        state = BonusStateReady;
 
     repaint();
 }

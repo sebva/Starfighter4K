@@ -24,7 +24,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     //QVBoxLayout * mainScreen = new QVBoxLayout(this);
     //QGridLayout * mainScreen = new QGridLayout(this);
 
-    hud = new HUDWidget(this, gameEngine->getGameMode());
+    hud = new HUDWidget(gameEngine, this);
     hud->setPlayerName(Player1, Settings::getGlobalSettings().playerOneName());
     hud->setPlayerName(Player2, Settings::getGlobalSettings().playerTwoName());
     this->addDockWidget(Settings::getGlobalSettings().HUDArea(), hud);

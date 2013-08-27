@@ -10,13 +10,14 @@ class HUDWidget;
 
 class Bonus;
 class SpecialBonus;
+class GameEngine;
 
 class HUDWidget : public QDockWidget
 {
     Q_OBJECT
     
 public:
-    explicit HUDWidget(QWidget *parent = 0, GameMode _mode = DeathMatch);
+    explicit HUDWidget(GameEngine* ge, QWidget *parent = 0);
     ~HUDWidget();
     void setPlayerName(Shooter _player, QString _name);
     void setPlayerHP(Shooter _player, int _hp);
@@ -27,6 +28,7 @@ public:
     void setTimer(QTime _time);
     void activateBonus(Shooter _player, Action _typeBonus);
     void deactivateBonus(Shooter _player, Action _typeBonus);
+    BonusState getBonusState(Shooter _player, Action _typeBonus);
     
 private:
     Ui::HUDWidget *ui;

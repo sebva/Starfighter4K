@@ -353,6 +353,9 @@ void Spaceship::advance(int _step)
 
 void Spaceship::triggerSpecialAttack()
 {
-    specialBonus->trigger();
-    hud->activateBonus(player, aSpecialBonus);
+    if(hud->getBonusState(player, aSpecialBonus) == BonusStateReady)
+    {
+        specialBonus->trigger();
+        hud->activateBonus(player, aSpecialBonus);
+    }
 }

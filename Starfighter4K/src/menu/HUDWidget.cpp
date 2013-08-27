@@ -5,8 +5,9 @@
 #include "include/game/SpecialBonus.h"
 #include "include/game/BonusProjectile.h"
 #include "include/menu/BonusWidget.h"
+#include "include/engine/GameEngine.h"
 
-HUDWidget::HUDWidget(QWidget *parent, GameMode _mode) :
+HUDWidget::HUDWidget(GameEngine* ge, QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::HUDWidget)
 {
@@ -14,7 +15,14 @@ HUDWidget::HUDWidget(QWidget *parent, GameMode _mode) :
     // Remove the title bar
     setTitleBarWidget(new QWidget(this));
 
-    if(_mode == Timer)
+    connect(ge, SIGNAL(signalPause(bool)), ui->p1_normalBonus, SLOT(pause(bool)));
+    connect(ge, SIGNAL(signalPause(bool)), ui->p2_normalBonus, SLOT(pause(bool)));
+    connect(ge, SIGNAL(signalPause(bool)), ui->p1_specialBonus, SLOT(pause(bool)));
+    connect(ge, SIGNAL(signalPause(bool)), ui->p2_specialBonus, SLOT(pause(bool)));
+
+    GameMode mode = ge->getGameMode();
+
+    if(mode == Timer)
     {
         ui->p1_hp->setVisible(false);
         ui->p2_hp->setVisible(false);
@@ -25,7 +33,7 @@ HUDWidget::HUDWidget(QWidget *parent, GameMode _mode) :
         ui->p1_lblShield->setVisible(false);
         ui->p2_lblShield->setVisible(false);
     }
-    else if(_mode == DeathMatch)
+    else if(mode == DeathMatch)
     {
         ui->p1_pts->setVisible(false);
         ui->p2_pts->setVisible(false);
@@ -163,6 +171,24 @@ void HUDWidget::deactivateBonus(Shooter _player, Action _typeBonus)
             ui->p1_specialBonus->deactivate();
         else if(_player == Player2)
             ui->p2_specialBonus->deactivate();
+    }
+}
+
+BonusState HUDWidget::getBonusState(Shooter _player, Action _typeBonus)
+{
+    if(_typeBonus == NormalBonus)
+    {
+        if(_player == Player1)
+            return ui->p1_normalBonus->getState();
+        else if(_player == Player2)
+            return ui->p2_normalBonus->getState();
+    }
+    else if(_typeBonus == aSpecialBonus)
+    {
+        if(_player == Player1)
+            return ui->p1_specialBonus->getState();
+        else if(_player == Player2)
+            return ui->p2_specialBonus->getState();
     }
 }
 
