@@ -12,7 +12,8 @@ ProjectileGuided::ProjectileGuided(qreal _dXOrigin, qreal _dYOrigin, Shooter _fr
     if(from == Player2)
         dAngle += M_PI;
 
-    loadPixmap();
+    image = new QPixmap(PICTURE_PROJ_GUIDED);
+    setRotation(-dAngle*180.0/M_PI);
 }
 
 ProjectileGuided::~ProjectileGuided()

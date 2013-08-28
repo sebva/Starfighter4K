@@ -118,6 +118,7 @@
 #define PICTURE_PROJ_SPACESHIP_1            ":/images/game/proj1"
 #define PICTURE_PROJ_SPACESHIP_2            ":/images/game/proj2"
 #define PICTURE_PROJ_SPACESHIP_3            ":/images/game/proj3"
+#define PICTURE_PROJ_GUIDED                 ":/images/game/proj4"
 
 #define PICTURE_SPACESHIP_1                 ":/images/game/ship1"
 #define PICTURE_SPACESHIP_2                 ":/images/game/ship2"
