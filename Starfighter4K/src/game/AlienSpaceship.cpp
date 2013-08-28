@@ -32,8 +32,12 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
       hasAttacked(false),//If the alienspaceship has already fired, in this case, it won't fire again
       directionX(1),//Default X-direction
       directionY(1),//Default Y-direction
-      directionArg(1)//Defaut Arg-direction
+      directionArg(1),//Defaut Arg-direction
+      shadow(PICTURE_ALIENSPACESHIP_SHADOW),
+      blink(1.0),
+      raisingEdge(false)
 {
+    shadow = QImage(PICTURE_ALIENSPACESHIP_SHADOW).convertToFormat(QImage::Format_ARGB32);
     dAngle = M_PI/2.0;
 
     //Points for the timer Mode
@@ -132,6 +136,14 @@ void AlienSpaceship::advance(int _step)
     if (!_step)
         return;
 
+    if(raisingEdge)
+        blink += 0.015;
+    else
+        blink -= 0.015;
+
+    if(blink >= 1.0 || blink <= 0.5)
+        raisingEdge = !raisingEdge;
+
     if(!isAttacking)
     {
         if(!hasAttacked && pos().y()>=(dYStop-MARGIN_Y) && pos().y()<=(dYStop+MARGIN_Y))
@@ -170,5 +182,8 @@ QPainterPath AlienSpaceship::shape() const
 
 void AlienSpaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
 {
+    _painter->setOpacity(dHealthPoint/100.0 * blink);
+    _painter->drawImage(0,0,shadow);
+    _painter->setOpacity(1.0);
     _painter->drawPixmap(0,0,*getPixmap());
 }

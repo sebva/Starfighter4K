@@ -36,6 +36,7 @@
 
 //AlienSpaceShip
 #define PICTURE_ALIENSPACESHIP              ":/images/game/mothership"
+#define PICTURE_ALIENSPACESHIP_SHADOW       ":/images/game/shadow"
 #define ARG_INCREMENTATION_ALIENSPACESHIP   0.0010 // rad
 
 //Asteroid

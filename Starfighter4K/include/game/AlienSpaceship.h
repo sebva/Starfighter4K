@@ -36,6 +36,7 @@ private:
     static const qreal kIntervalArgument;
 
     GameEngine* gameEngine;
+    QImage shadow;
 
 	int nbSpirales;
 
@@ -47,6 +48,8 @@ private:
     qreal dX0;
     qreal dY0;
     qreal dYStop;
+    qreal blink;
+    bool raisingEdge;
 
     int directionX;
     int directionY;

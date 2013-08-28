@@ -288,6 +288,9 @@ void Spaceship::rotate(qreal pitch)
 
 void Spaceship::attack()
 {
+    if(isFrozen)
+        return;
+
     int l_x = getXPositionFire();
     int l_y = getYPositionFire();
 
