@@ -30,24 +30,33 @@ WiimoteEngine::~WiimoteEngine()
     disconnect();
 }
 
-void WiimoteEngine::connectWiimotes()
+int WiimoteEngine::findWiimotes()
 {
-    int found = wiiuse_find(wiimotes, kNbWiimotes, kTimeout);
-    while(found != kNbWiimotes)
-    {
-        qWarning() << "No wiimotes found ...";
-        QThread::sleep(500);
-    }
+    return wiiuse_find(wiimotes, kNbWiimotes, kTimeout);
+}
 
-    qWarning() << found << " wiimote(s) are now found";
+bool WiimoteEngine::connectWiimotes()
+{
+    int found = 0;
+    do
+    {
+        found = findWiimotes();
+        qWarning() << found << " wiimotes found ...";
+        QThread::sleep(500);
+    } while(found != kNbWiimotes);
 
     if (wiiuse_connect(wiimotes, kNbWiimotes))
+    {
         qWarning() << found << " wiimote(s) are now connected";
+        wiiuse_set_leds(wiimotes[0], WIIMOTE_LED_1);
+        wiiuse_set_leds(wiimotes[1], WIIMOTE_LED_2);
+        return true;
+    }
     else
+    {
         qWarning() << "No wiimotes are connected";
-
-    wiiuse_set_leds(wiimotes[0], WIIMOTE_LED_1);
-    wiiuse_set_leds(wiimotes[1], WIIMOTE_LED_2);
+        return false;
+    }
 }
 
 void WiimoteEngine::reconnectWiimotes()

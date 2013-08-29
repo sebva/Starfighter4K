@@ -29,7 +29,7 @@ DemoEngine::DemoEngine(QWidget* parent):GameEngine(parent),bg(BACKGROUND),angleB
 
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    show();
+    //show();
     startTimer(REFRESH);
 }
 

@@ -66,12 +66,19 @@ HEADERS += include/stable.h \
     include/game/ProjectileGuided.h \
     include/game/SpecialBonusGuided.h \
     include/menu/BonusWidget.h \
-    include/engine/DemoEngine.h
+    include/menu/KinectWindow.h \
+    include/engine/DemoEngine.h \
+    include/menu/ConnectDialog.h \
+    include/menu/StateWidget.h \
+    include/menu/ScrollText.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
          res/ui/OptionsDialog.ui \
-	 res/ui/HUDWidget.ui
+	 res/ui/HUDWidget.ui \
+    res/ui/KinectWindow.ui \
+    res/ui/ConnectDialog.ui \
+    res/ui/StateWidget.ui
 SOURCES += src/main.cpp \
            src/engine/DisplayEngine.cpp \
            src/engine/GameEngine.cpp \
@@ -113,7 +120,11 @@ SOURCES += src/main.cpp \
     src/game/SpecialBonusMulti.cpp \
     src/game/ProjectileGuided.cpp \
     src/game/SpecialBonusGuided.cpp \
-    src/engine/DemoEngine.cpp
+    src/menu/KinectWindow.cpp \
+    src/menu/ConnectDialog.cpp \
+    src/menu/StateWidget.cpp \
+    src/engine/DemoEngine.cpp \
+    src/menu/ScrollText.cpp
 
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc

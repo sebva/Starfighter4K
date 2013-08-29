@@ -16,7 +16,8 @@ public:
     WiimoteEngine(QObject * parent = 0);
     ~WiimoteEngine();
 
-    void connectWiimotes();
+    int findWiimotes();
+    bool connectWiimotes();
     void reconnectWiimotes();
     void disconnect();
 

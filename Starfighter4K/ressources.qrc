@@ -135,4 +135,9 @@
         <file alias="guided">res/images/bonus/guided.png</file>
         <file alias="tracking">res/images/bonus/tracking.png</file>
     </qresource>
+    <qresource prefix="/images/menu">
+        <file alias="v">res/images/v.png</file>
+        <file alias="x">res/images/x.png</file>
+        <file alias="loading">res/images/loading.gif</file>
+    </qresource>
 </RCC>

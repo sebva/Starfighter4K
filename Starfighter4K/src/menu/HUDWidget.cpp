@@ -133,7 +133,7 @@ void HUDWidget::setNormalBonus(Shooter _player, Bonus* _bonus)
 void HUDWidget::setSpecialBonus(Shooter _player, SpecialBonus* _bonus)
 {
     if(_player == Player1)
-        ui->p1_specialBonus->setBonus(_bonus); // TODO: cooldown
+        ui->p1_specialBonus;//->setBonus(_bonus); // TODO: cooldown
     else
         ui->p2_specialBonus->setBonus(_bonus);
 }
@@ -190,6 +190,7 @@ BonusState HUDWidget::getBonusState(Shooter _player, Action _typeBonus)
         else if(_player == Player2)
             return ui->p2_specialBonus->getState();
     }
+    return BonusStateNoBonus;
 }
 
 void HUDWidget::setTimer(QTime _time)
