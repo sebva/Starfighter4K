@@ -24,6 +24,7 @@ public:
     void addBonus(Bonus *_inBonus);
     void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
     void addAsteroid(Asteroid *_inAsteroide);
+    void removeItemScene(Displayable* item);
 
 public slots:
     void elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter forShip);

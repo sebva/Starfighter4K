@@ -48,6 +48,10 @@ GameEngine::GameEngine(QWidget *parent)
     :QGraphicsView(parent),settings(Settings::getGlobalSettings())
 {
     se = new SpawnEngine(Asteroids|AlienMothership|Satellites|Supernovae,this,true);
+    mutex = new QMutex();
+    de = 0;
+    uc = 0;
+    soe = 0;
 }
 
 qreal GameEngine::xminWarzone() const
@@ -192,9 +196,7 @@ void GameEngine::timerEvent(QTimerEvent *event)
     clearList(listProjectile);
 
     runTestCollision(listAsteroide);
-    if(listSmallAsteroide.size() !=0)
     runTestCollision(listSmallAsteroide);
-    runTestCollision(listBonus);
 }
 
 int GameEngine::elapsedTime()
@@ -363,21 +365,18 @@ void GameEngine::timerControle(int tps)
 {
     if(isRunning)
     {
-        //qDebug() << isRunning << "Stop Timer 1:" <<idTimer;
         killTimer(idTimer);
         idTimer = -1;
 
         timeAlreadyCounted += elapsedTimer.elapsed();
         elapsedTimer.invalidate();
 
-        //qDebug() << isRunning<< "Stop Timer 2:" <<idTimer;
         emit signalPause(true);
     }
 
     else
     {
         idTimer = startTimer(tps);
-        //qDebug() << isRunning<< "startTimer:" <<idTimer;
 
         elapsedTimer.start();
 
@@ -482,6 +481,9 @@ void GameEngine::clearList(QList<Displayable*> &list)
 
 void GameEngine::checkOutsideScene(QList<Displayable*> &list)
 {
+    if(list.empty())
+        return;
+
     for(int i = 0;i<list.size();i++)
         if(list[i] != 0)
         {
@@ -495,8 +497,8 @@ void GameEngine::checkOutsideScene(QList<Displayable*> &list)
                 l_h = list[i]->sizePixmap().height();
             }
 
-            if(list[i]->pos().x()-l_w > de->sceneSize().width() || list[i]->pos().x()+l_w < 0
-            || list[i]->pos().y() > de->sceneSize().height() || list[i]->pos().y()+l_h < 0)
+            if(list[i]->pos().x()-l_w > sceneSize().width() || list[i]->pos().x()+l_w < 0
+            || list[i]->pos().y() > sceneSize().height() || list[i]->pos().y()+l_h < 0)
                 {
                     delete list[i];
                     list[i] = 0;
@@ -506,19 +508,21 @@ void GameEngine::checkOutsideScene(QList<Displayable*> &list)
     clearList(list);
 }
 
+void GameEngine::removeItemScene(Displayable* item)
+{
+    de->removeItemScene(item);
+}
+
 bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
 {
 
-    if(list2.size()==0 || list1.size()==0)
-        return false;
-    if(list2[0] == 0 || list1[i_list1]==0)
+    if(list2.empty() || list1.empty() || list2[0] == 0 || list1[i_list1] == 0)
         return false;
 
     QMutexLocker l(mutex);
     if(list2[0]->getTypeObject() == tAlien && (list1[i_list1]->getTypeObject() == tProj))
-        if(Projectile* p = dynamic_cast<Projectile*>(list1[i_list1]))
-            if(p->getFrom()==Alien)
-                return false;
+        if(dynamic_cast<Projectile*>(list1[i_list1])->getFrom()==Alien)
+            return false;
 
     for(int j = 0;j<list2.size();j++)
     {
@@ -541,9 +545,10 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
 
                     return false;
                 }
-                else if(Bonus* b = dynamic_cast<Bonus*>(list2[j]))
+                else if(list2[j]->getTypeObject() == tBonus)
                 {
                     Projectile* p = dynamic_cast<Projectile*>(list1[i_list1]);
+                    Bonus* b = dynamic_cast<Bonus*>(list2[j]);
 
                     if(gameMode==Timer)
                     {
@@ -555,7 +560,7 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                     //We don't delete the pointer here, it'll be deleted in the class spaceship
                     //We only remove the item from the list
                     list2[j] = 0;
-                    de->removeItemScene(b);
+                    removeItemScene(b);
 
                     if(p->getFrom() == Player1)
                         ship1()->addBonus(b);
@@ -568,9 +573,11 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                     return true;
                 }
             }
+            else if(list2[j]->getTypeObject() == tAlien)
+                return true;
             else if(list1[i_list1]->getTypeObject() == tSmallAsteroid && list2[j]->getTypeObject() == tSmallAsteroid)
             {
-                if(dynamic_cast<Asteroid*>(list1[i_list1])->getIdParent() == dynamic_cast<Asteroid*>(list2[j])->getIdParent() && dynamic_cast<Asteroid*>(list2[j])->getIdParent()!=0)
+                if(dynamic_cast<Asteroid*>(list1[i_list1])->getIdParent() == dynamic_cast<Asteroid*>(list2[j])->getIdParent() && dynamic_cast<Asteroid*>(list2[j])->getIdParent() != 0)
                     return false;
                 else
                 {
@@ -583,38 +590,20 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                     return true;
                 }
             }
-            else if(list1[i_list1]->getTypeObject() == tAlien)
-            {
-                if(Destroyable* d = dynamic_cast<Destroyable*>(list1[i_list1]))
-                {
-                    d->receiveAttack(list2[j]->getPower(),list1[i_list1]->getNbPoint(),dynamic_cast<Projectile*>(list2[j])->getFrom());
-                    //delete list2[j];
-                    //list2[j] = 0;
-
-                    return false;
-                }
-            }
             else if(list1[i_list1]->getTypeObject() == tAsteroid && list2[j]->getTypeObject() == tAsteroid)
             {
                 dynamic_cast<Asteroid*>(list1[i_list1])->collision(list2[j]->getAngle());
                 dynamic_cast<Asteroid*>(list2[j])->collision(list1[i_list1]->getAngle());
-
-                //delete list2[j];
-                //list2[j]=0;
             }
             else if(list1[i_list1]->getTypeObject() == tAsteroid)
-            {
                 dynamic_cast<Asteroid*>(list1[i_list1])->collision(list2[j]->getAngle());
-            }
 
             delete list1[i_list1];
             list1[i_list1] = 0;
 
-            //if(list1!=list2)
-            //{
-                delete list2[j];
-                list2[j] = 0;
-            //}
+            delete list2[j];
+            list2[j] = 0;
+
             return true;
         }
     }
@@ -624,59 +613,51 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
 
 bool GameEngine::checkCollisionSpaceshipAndList(const int i,QList<Displayable*> &list)
 {
-    if(list.size()==0 || listSpaceship.size()==0)
+    if(list.empty() || listSpaceship.empty())
         return false;
 
     for(int j = 0;j<list.size();j++)
     {
-        QMutexLocker* l = new QMutexLocker(mutex);
+        QMutexLocker l(mutex);
         if(list[j]==0)
-        {
-            delete l;
             return false;
-        }
 
         if(listSpaceship[i]->collidesWithItem(list[j],Qt::IntersectsItemShape))
         {
             if(gameMode==DeathMatch)
                 listSpaceship[i]->receiveAttack(list[j]->getPower());
             else if(gameMode==Timer && list[j]->getTypeObject() ==tProj)
-            {
                 if(dynamic_cast<Projectile*>(list[j])->getFrom()==Player1)
                     ship1()->addPoint(list[j]->getNbPoint());
                 else if(dynamic_cast<Projectile*>(list[j])->getFrom()==Player2)
                     ship2()->addPoint(list[j]->getNbPoint());
-            }
+
             if(list[j]->getTypeObject()==tAsteroid)
                 dynamic_cast<Asteroid*>(list[j])->collision((listSpaceship[i]->getAngle()));
 
             delete list[j];
             list[j] = 0;
             clearList(list);
-            delete l;
-
 
             return true;
         }
-        else
-            delete l;
     }
-
     return false;
 }
 
 void GameEngine::runTestCollision(QList<Displayable*> &list)
 {
-    for(int i = 0;i<list.size();i++)
-    {
-        if(checkCollisionItemAndList(i,list,listAsteroide)
-        || checkCollisionItemAndList(i,list,listSmallAsteroide)
-        || checkCollisionItemAndList(i,list,listBonus)
-        || checkCollisionItemAndList(i,list,listAlienSpaceship))
-            continue;
-    }
-    clearList(listAsteroide);
-    clearList(listSmallAsteroide);
-    clearList(listBonus);
-    clearList(listAlienSpaceship);
+    if(list.empty())
+        return;
+        for(int i = 0;i<list.size();i++)
+            if(checkCollisionItemAndList(i,list,listAsteroide)
+            || checkCollisionItemAndList(i,list,listSmallAsteroide)
+            || checkCollisionItemAndList(i,list,listBonus)
+            || checkCollisionItemAndList(i,list,listAlienSpaceship))
+                continue;
+
+        clearList(listAsteroide);
+        clearList(listSmallAsteroide);
+        clearList(listBonus);
+        clearList(listAlienSpaceship);
 }

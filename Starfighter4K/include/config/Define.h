@@ -21,15 +21,15 @@
 #define SPAWN_INTERVAL                      250 // (ms)
 #define RESISTANCE_ASTEROID                 50
 #define RESISTANCE_ALIEN                    425
-#define ALIEN_SWIRL_MIN                     10
-#define ALIEN_SWIRL_MAX                     20
-#define BONUS_HEALTH_MIN                    15
-#define BONUS_HEALTH_MAX                    45
+#define ALIEN_SWIRL_MIN                     20
+#define ALIEN_SWIRL_MAX                     30
+#define BONUS_HEALTH_MIN                    30
+#define BONUS_HEALTH_MAX                    70
 #define MAX_SPACESHIP_PV                    100
-#define BONUS_PROJECTILE_DURATION           10000       // (ms)
+#define BONUS_PROJECTILE_DURATION           8000       // (ms)
 #define BONUS_TYPE_PROJECTILES_MIN          2           // ProjCross
 #define BONUS_TYPE_PROJECTILES_MAX          3           //ProjV
-#define BONUS_INVICIBILITY_DURATION                5000        // (ms)
+#define BONUS_INVICIBILITY_DURATION         5000        // (ms)
 
 //UserControlsEngine
 #define REFRESH                             17 // (ms)
@@ -47,8 +47,8 @@
 #define MIN_ASTEROID                        3 //Number min of small asteroids
 #define DELTA_ANGLE_BETWEEN_180_AXES        M_PI/3
 
-#define POWER_ASTEROID                      5000
-#define POWER_SMALL_ASTEROID                2500
+#define POWER_ASTEROID                      1
+#define POWER_SMALL_ASTEROID                2000
 #define RESISTANCE_SMALL_ASTEROID           1 // Min : 1 Max : 100
 #define HEALTHPOINT_SMALL_ASTEROID          50
 
@@ -79,11 +79,11 @@
 #define NB_POINT_BONUS                      100
 
 //ProjectileAlien
-#define POWER_ALIEN                         5500
+#define POWER_ALIEN                         3500
 #define MODULE_INCREMENT_ALIEN              4.0
 
 //ProjectileCross
-#define POWER_CROSS                         750
+#define POWER_CROSS                         600
 #define SPEED_CROSS_DEF                     25 // dx
 #define SLOPE_CROSS                         M_PI/16
 
@@ -92,27 +92,26 @@
 #define SPEED_SIMPLE_DEF                    25 // dx
 
 //ProjectileV
-#define POWER_V                             750
+#define POWER_V                             1250
 #define SPEED_V_DEF                         25 // dx
 
 //ProjectileTracking
-#define POWER_TRACKING                      10000
+#define POWER_TRACKING                      5000
 #define SPEED_TRACKING_DEF                  20
 
 //ProjectileMulti
-#define POWER_MULTI                         1000
+#define POWER_MULTI                         1100
 #define SPEED_MULTI_DEF                     25
 
 //ProjectileGuided
-#define POWER_GUIDED                        1000
+#define POWER_GUIDED                        10000
 #define SPEED_GUIDED_DEF                    15
 
 //AntiGravity
-#define SPEED_FACTOR_ANTI_GRAVITY                  1.5
+#define SPEED_FACTOR_ANTI_GRAVITY           1.5
 
 //Spaceship
 //PV -> cf SpawnEngine
-#define MAX_SPACESHIP_BONUS                 2
 #define AMPLI_SPACESHIP_PROJ_V              60.0 //px
 #define OMEGA_SPACESHIP_PROJ_V              0.020 // rad/s
 #define PROJ_SPACESHIP_DEF                  ProjSimple
@@ -183,8 +182,8 @@
 #define DELTA_X_B                           100 //Cf Specification file
 #define ANTIGRAVITY_ACTIVATIONS             1
 #define FREEZE_DURATION                     2000
-#define GUIDED_ACTIVATIONS                  3
-#define ROOTSHOT_ACTIVATIONS                3
+#define GUIDED_ACTIVATIONS                  2
+#define ROOTSHOT_ACTIVATIONS                6
 #define TRACKING_ACTIVATIONS                1
 
 //Wiimote

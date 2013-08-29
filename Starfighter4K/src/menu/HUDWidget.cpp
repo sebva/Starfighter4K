@@ -58,7 +58,7 @@ void HUDWidget::setPlayerName(Shooter _player, QString _name)
             lbl = ui->p2_name;
             break;
         default:
-            qDebug() << "The HUD is for players only !";
+            qWarning() << "The HUD is for players only !";
             return;
     }
 
@@ -77,7 +77,7 @@ void HUDWidget::setPlayerHP(Shooter _player, int _hp)
             prg = ui->p2_hp;
             break;
         default:
-            qDebug() << "The HUD is for players only !";
+            qWarning() << "The HUD is for players only !";
             return;
     }
 
@@ -96,7 +96,7 @@ void HUDWidget::setPlayerShield(Shooter _player, int _shield)
             prg = ui->p2_shield;
             break;
         default:
-            qDebug() << "The HUD is for players only !";
+            qWarning() << "The HUD is for players only !";
             return;
     }
 
@@ -115,7 +115,7 @@ void HUDWidget::setPlayerScore(Shooter _player, int _score)
             pts = ui->p2_pts;
             break;
         default:
-            qDebug() << "The HUD is for players only !";
+            qWarning() << "The HUD is for players only !";
             return;
     }
 

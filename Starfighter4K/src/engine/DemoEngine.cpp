@@ -58,6 +58,26 @@ void DemoEngine::timerEvent(QTimerEvent *)
     bgScene->moveBy(factorX*BACKGROUND_DX,factorY*BACKGROUND_DY);
 
     scene->advance();
+
+    checkOutsideScene(listProjectile);
+    checkOutsideScene(listAsteroide);
+    checkOutsideScene(listSmallAsteroide);
+    checkOutsideScene(listBonus);
+    checkOutsideScene(listAlienSpaceship);
+
+    //Explode all the supernova
+    for(int i = 0;i<listSupernova.size();i++)
+    {
+        delete listSupernova[i];
+        listSupernova[i]=0;
+    }
+    listSupernova.clear();
+
+    runTestCollision(listProjectile);
+    clearList(listProjectile);
+
+    runTestCollision(listAsteroide);
+    runTestCollision(listSmallAsteroide);
 }
 
 qreal DemoEngine::xminWarzone() const
@@ -119,4 +139,9 @@ void DemoEngine::elemenDestroyed(Destroyable *_destroyItem, int nbPoint, Shooter
     }
     else if(AlienSpaceship* a = dynamic_cast<AlienSpaceship*>(_destroyItem))
         removeAlienSpaceship(a);
+}
+
+void DemoEngine::removeItemScene(Displayable* item)
+{
+    scene->removeItem(item);
 }

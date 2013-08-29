@@ -29,7 +29,7 @@ SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge, bool _isDemo):isDemo(_
     totalProba += spawnSupernovae ? kProbSupernova : 0;
 
     intervalAsteroid = spawnAsteroids ? kProbAsteroid : 0;
-    intervalAlien = spawnAlienMothership ? intervalAsteroid + (isDemo ? kProbAlien : PROB_ALIEN_DEMO ): intervalAsteroid;
+    intervalAlien = spawnAlienMothership ? intervalAsteroid + (isDemo ? PROB_ALIEN_DEMO : kProbAlien ): intervalAsteroid;
     intervalSat = spawnSatellites ? intervalAlien + kProbSat : intervalAlien;
     intervalSupernova = spawnSupernovae ? intervalSat + kProbSupernova : intervalSat;
 

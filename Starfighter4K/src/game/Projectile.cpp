@@ -67,10 +67,14 @@ void Projectile::enableAntiGravity(Shooter playerActivated)
 {
     if(from != playerActivated)
     {
-        setRotation(180.0);
+        if(playerActivated == Player1 && cos(dAngle) < 0 || playerActivated == Player2 && cos(dAngle) >= 0)
+        {
+            setRotation(180.0);
+            dAngle += M_PI;
+        }
         dSpeed *= SPEED_FACTOR_ANTI_GRAVITY;
         antiGravity = true;
-        dAngle += M_PI;
+
         if (cos(dAngle) >= 0)
             dAngle = 0;
         else

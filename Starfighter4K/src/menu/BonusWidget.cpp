@@ -74,7 +74,6 @@ void BonusWidget::deactivate()
 void BonusWidget::setBonus(Bonus *bonus)
 {
     TypeBonus type = bonus->getTypeBonus();
-    //qDebug() << "Type : " << type;
 
     switch(type)
     {
@@ -102,7 +101,6 @@ void BonusWidget::setBonus(Bonus *bonus)
 void BonusWidget::setBonus(BonusProjectile *bonus)
 {
     TypeProjectiles type = bonus->getType();
-    //qDebug() << "Type projectile : " << type;
 
     switch(type)
     {
@@ -121,14 +119,12 @@ void BonusWidget::setBonus(BonusProjectile *bonus)
     }
 
     bonusDuration = bonus->getExpiration();
-    //qDebug() << "Duration : " << bonusDuration;
     state = BonusStateReady;
 }
 
 void BonusWidget::setBonus(SpecialBonus *bonus)
 {
     this->cooldown = bonus->getCooldownTime();
-    //qDebug() << "Special bonus cooldown : " << cooldown;
 
     deactivate();
 
@@ -185,16 +181,11 @@ void BonusWidget::paintEvent(QPaintEvent *event)
         const int offset = 100;
         QRect r(rect().left() + offset, rect().top() + offset, rect().width() - offset*2, rect().height() - offset*2);
         double percent = 0;
-        qDebug() << "State : " << state << "\nbonusDuration : " << bonusDuration;
 
         if(state == BonusStateCooldown)
             percent = (cooldown - elapsed.elapsed()) / (double)cooldown * 100.0;
         else if(state == BonusStateReady && bonusDuration == -1)
-        {
-            qDebug() << "Rem : " << remainingActivations << "\nInit : " << initialActivations;
             percent = (double)remainingActivations / (double)initialActivations * 100.0;
-            qDebug() << "Percent : " << percent;
-        }
         else if(state == BonusStateActivated)
             percent = elapsed.elapsed() / (double)bonusDuration * 100.0;
 

@@ -22,6 +22,5 @@ int main(int argc, char *argv[])
 
     md.show();
 
-    //DemoEngine de;
     return app.exec();
 }

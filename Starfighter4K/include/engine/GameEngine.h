@@ -64,7 +64,7 @@ public:
     virtual void addBonus(Bonus *_inBonus);
     virtual void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
     void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
-
+    virtual void removeItemScene(Displayable* item);
     void endGameDeathMatch(Spaceship* _ship=0);
     void endGameTimer();
     void escapeGame();
