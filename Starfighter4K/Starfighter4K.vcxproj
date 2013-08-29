@@ -1,0 +1,1290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8C9C6CE4-978E-3EB8-BBE2-F97198103D8D}</ProjectGuid>
+    <RootNamespace>Starfighter4K</RootNamespace>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <PlatformToolSet>v110</PlatformToolSet>
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>Starfighter4K</PrimaryOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <PlatformToolSet>v110</PlatformToolSet>
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>Starfighter4K</PrimaryOutput>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Starfighter4K</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Starfighter4K</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\opencv\install\include;C:\opencv\install\include\opencv;$(KINECTSDK10_DIR)\inc;.;..\..\..\..\..\Qt\5.1.0\msvc2012\include;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore;release;.;..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012;.\GeneratedFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm200 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ForcedIncludeFiles>include\stable.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>include\stable.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)\Starfighter4K.pch</PrecompiledHeaderOutputFile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_OPENGL_LIB;QT_MULTIMEDIA_LIB;QT_WIDGETS_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>qtmain.lib;./lib/wiiuse/wiiuse.lib;lib\wiiuse\\wiiuse.lib;$(QTDIR)\lib\Qt5OpenGL.lib;$(QTDIR)\lib\Qt5Multimedia.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Network.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;libEGL.lib;libGLESv2.lib;gdi32.lib;user32.lib;kinect10.lib;opencv_core246.lib;opencv_highgui246.lib;opencv_imgproc246.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\opencv\install\lib;$(KINECTSDK10_DIR)\lib\x86;$(QTDIR)\lib;lib\wiiuse\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkIncremental>false</LinkIncremental>
+      <OutputFile>$(OutDir)\Starfighter4K.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_OPENGL_LIB;QT_MULTIMEDIA_LIB;QT_WIDGETS_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\opencv\install\include;C:\opencv\install\include\opencv;$(KINECTSDK10_DIR)\inc;.;..\..\..\..\..\Qt\5.1.0\msvc2012\include;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore;debug;.;..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012;.\GeneratedFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm200 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ForcedIncludeFiles>include\stable.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>include\stable.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)\Starfighter4K.pch</PrecompiledHeaderOutputFile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_OPENGL_LIB;QT_MULTIMEDIA_LIB;QT_WIDGETS_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>qtmaind.lib;./lib/wiiuse/wiiuse.lib;lib\wiiuse\\wiiuse.lib;$(QTDIR)\lib\Qt5OpenGLd.lib;$(QTDIR)\lib\Qt5Multimediad.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Networkd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libEGLd.lib;libGLESv2d.lib;gdi32.lib;user32.lib;kinect10.lib;opencv_core246d.lib;opencv_highgui246d.lib;opencv_imgproc246d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;lib\wiiuse\;$(QTDIR)\lib;kinect10.lib;opencv_core246d.lib;opencv_highgui246d.lib;opencv_imgproc246d.lib;%(AdditionalDependencies)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <OutputFile>$(OutDir)\Starfighter4K.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_OPENGL_LIB;QT_MULTIMEDIA_LIB;QT_WIDGETS_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Debug\moc_AboutDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_Bonus.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_BonusWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_DemoEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_Destroyable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_DisplayEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_GameEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_HUDWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_MainDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_NewGameDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_OptionsDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_qkinect.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SoundEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_Spaceship.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpawnEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonus.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonusAntiGravity.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonusFreeze.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonusGuided.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonusLimitedTime.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonusLimitedUsage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonusMulti.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SpecialBonusTracking.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_UserControlsEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_WiimoteEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ressources.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Release\moc_AboutDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_Bonus.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_BonusWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_DemoEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_Destroyable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_DisplayEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_GameEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_HUDWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_MainDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_NewGameDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_OptionsDialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_qkinect.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SoundEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_Spaceship.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpawnEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonus.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonusAntiGravity.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonusFreeze.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonusGuided.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonusLimitedTime.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonusLimitedUsage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonusMulti.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SpecialBonusTracking.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_UserControlsEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_WiimoteEngine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\kinect\qkinect.cpp" />
+    <ClCompile Include="src\kinect\RectangleDetection.cpp" />
+    <ClCompile Include="src\menu\AboutDialog.cpp" />
+    <ClCompile Include="src\game\AlienSpaceship.cpp" />
+    <ClCompile Include="src\game\Asteroid.cpp" />
+    <ClCompile Include="src\game\AsteroidSupernova.cpp" />
+    <ClCompile Include="src\game\Bonus.cpp" />
+    <ClCompile Include="src\game\BonusForceField.cpp" />
+    <ClCompile Include="src\game\BonusHP.cpp" />
+    <ClCompile Include="src\game\BonusInvicibility.cpp" />
+    <ClCompile Include="src\game\BonusProjectile.cpp" />
+    <ClCompile Include="src\menu\BonusWidget.cpp" />
+    <ClCompile Include="src\engine\DemoEngine.cpp" />
+    <ClCompile Include="src\game\Destroyable.cpp" />
+    <ClCompile Include="src\engine\DisplayEngine.cpp" />
+    <ClCompile Include="src\game\Displayable.cpp" />
+    <ClCompile Include="src\engine\GameEngine.cpp" />
+    <ClCompile Include="src\menu\HUDWidget.cpp" />
+    <ClCompile Include="src\menu\MainDialog.cpp" />
+    <ClCompile Include="src\menu\NewGameDialog.cpp" />
+    <ClCompile Include="src\menu\OptionsDialog.cpp" />
+    <ClCompile Include="src\game\Projectile.cpp" />
+    <ClCompile Include="src\game\ProjectileAlien.cpp" />
+    <ClCompile Include="src\game\ProjectileCross.cpp" />
+    <ClCompile Include="src\game\ProjectileGuided.cpp" />
+    <ClCompile Include="src\game\ProjectileMulti.cpp" />
+    <ClCompile Include="src\game\ProjectileSimple.cpp" />
+    <ClCompile Include="src\game\ProjectileTracking.cpp" />
+    <ClCompile Include="src\game\ProjectileV.cpp" />
+    <ClCompile Include="src\utils\Settings.cpp" />
+    <ClCompile Include="src\engine\SoundEngine.cpp" />
+    <ClCompile Include="src\game\Spaceship.cpp" />
+    <ClCompile Include="src\engine\SpawnEngine.cpp" />
+    <ClCompile Include="src\game\SpecialBonusAntiGravity.cpp" />
+    <ClCompile Include="src\game\SpecialBonusFreeze.cpp" />
+    <ClCompile Include="src\game\SpecialBonusGuided.cpp" />
+    <ClCompile Include="src\game\SpecialBonusLimitedTime.cpp" />
+    <ClCompile Include="src\game\SpecialBonusLimitedUsage.cpp" />
+    <ClCompile Include="src\game\SpecialBonusMulti.cpp" />
+    <ClCompile Include="src\game\SpecialBonusTracking.cpp" />
+    <ClCompile Include="src\game\Supernova.cpp" />
+    <ClCompile Include="src\engine\UserControlsEngine.cpp" />
+    <ClCompile Include="src\engine\WiimoteEngine.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="include\menu\AboutDialog.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/AboutDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing AboutDialog.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/AboutDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing AboutDialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_AboutDialog.h" />
+    <ClInclude Include="GeneratedFiles\ui_HUDWidget.h" />
+    <ClInclude Include="GeneratedFiles\ui_MainDialog.h" />
+    <ClInclude Include="GeneratedFiles\ui_NewGameDialog.h" />
+    <ClInclude Include="GeneratedFiles\ui_OptionsDialog.h" />
+    <ClInclude Include="include\game\AlienSpaceship.h" />
+    <ClInclude Include="include\game\Asteroid.h" />
+    <ClInclude Include="include\game\AsteroidSupernova.h" />
+    <CustomBuild Include="include\game\Bonus.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/Bonus.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing Bonus.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/Bonus.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing Bonus.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="include\game\BonusForceField.h" />
+    <ClInclude Include="include\game\BonusHP.h" />
+    <ClInclude Include="include\game\BonusInvicibility.h" />
+    <ClInclude Include="include\game\BonusProjectile.h" />
+    <CustomBuild Include="include\menu\BonusWidget.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/BonusWidget.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing BonusWidget.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/BonusWidget.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing BonusWidget.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="include\config\Define.h" />
+    <CustomBuild Include="include\engine\DemoEngine.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/DemoEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing DemoEngine.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/DemoEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing DemoEngine.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\Destroyable.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/Destroyable.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing Destroyable.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/Destroyable.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing Destroyable.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\engine\DisplayEngine.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/DisplayEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing DisplayEngine.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/DisplayEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing DisplayEngine.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="include\game\Displayable.h" />
+    <ClInclude Include="include\enum\Enum.h" />
+    <CustomBuild Include="include\engine\GameEngine.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/GameEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing GameEngine.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/GameEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GameEngine.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\menu\HUDWidget.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/HUDWidget.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing HUDWidget.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/HUDWidget.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing HUDWidget.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\menu\MainDialog.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/MainDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing MainDialog.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/MainDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing MainDialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\menu\NewGameDialog.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/NewGameDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing NewGameDialog.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/NewGameDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing NewGameDialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\menu\OptionsDialog.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/OptionsDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing OptionsDialog.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/menu/OptionsDialog.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing OptionsDialog.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="include\game\Projectile.h" />
+    <ClInclude Include="include\game\ProjectileAlien.h" />
+    <ClInclude Include="include\game\ProjectileCross.h" />
+    <ClInclude Include="include\game\ProjectileGuided.h" />
+    <ClInclude Include="include\game\ProjectileMulti.h" />
+    <ClInclude Include="include\game\ProjectileSimple.h" />
+    <ClInclude Include="include\game\ProjectileTracking.h" />
+    <ClInclude Include="include\game\ProjectileV.h" />
+    <CustomBuild Include="include\kinect\qkinect.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing qkinect.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/kinect/qkinect.h"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing qkinect.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/kinect/qkinect.h"</Command>
+    </CustomBuild>
+    <ClInclude Include="include\kinect\RectangleDetection.h" />
+    <ClInclude Include="include\utils\Settings.h" />
+    <CustomBuild Include="include\engine\SoundEngine.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/SoundEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SoundEngine.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/SoundEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SoundEngine.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\Spaceship.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/Spaceship.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing Spaceship.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/Spaceship.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing Spaceship.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\engine\SpawnEngine.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/SpawnEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpawnEngine.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/SpawnEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpawnEngine.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonus.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp" "-finclude/stable.h" "-f../include/game/SpecialBonus.h"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonus.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp" "-finclude/stable.h" "-f../include/game/SpecialBonus.h"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonus.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonusAntiGravity.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusAntiGravity.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonusAntiGravity.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusAntiGravity.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonusAntiGravity.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonusFreeze.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusFreeze.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonusFreeze.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusFreeze.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonusFreeze.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonusGuided.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusGuided.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonusGuided.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusGuided.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonusGuided.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonusLimitedTime.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusLimitedTime.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonusLimitedTime.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusLimitedTime.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonusLimitedTime.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonusLimitedUsage.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusLimitedUsage.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonusLimitedUsage.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusLimitedUsage.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonusLimitedUsage.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonusMulti.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusMulti.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonusMulti.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusMulti.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonusMulti.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\game\SpecialBonusTracking.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusTracking.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SpecialBonusTracking.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/game/SpecialBonusTracking.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SpecialBonusTracking.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="include\game\Supernova.h" />
+    <CustomBuild Include="include\engine\UserControlsEngine.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/UserControlsEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing UserControlsEngine.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/UserControlsEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing UserControlsEngine.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\engine\WiimoteEngine.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/WiimoteEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing WiimoteEngine.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE  "-IC:\opencv\install\include" "-IC:\opencv\install\include\opencv" "-I$(KINECTSDK10_DIR)\inc" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-finclude/stable.h" "-f../include/engine/WiimoteEngine.h"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing WiimoteEngine.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="include\stable.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">echo /*-------------------------------------------------------------------- &gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * the .pch file.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * create the PCH file directly from the header file.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * command line compilations by nmake.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * WARNING: All changes made in this file will be lost.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo --------------------------------------------------------------------*/&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo #include "stable.h"&gt;&gt;include\stable.h.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating precompiled header source file 'include\stable.h.cpp' ...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">include\stable.h.cpp;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">echo /*-------------------------------------------------------------------- &gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * the .pch file.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * create the PCH file directly from the header file.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * command line compilations by nmake.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo *&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo * WARNING: All changes made in this file will be lost.&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo --------------------------------------------------------------------*/&gt;&gt;include\stable.h.cpp
+if errorlevel 1 goto VCEnd
+echo #include "stable.h"&gt;&gt;include\stable.h.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating precompiled header source file 'include\stable.h.cpp' ...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">include\stable.h.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\stable.h.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NOINHERIT)</ForcedIncludeFiles>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stable.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NOINHERIT)</ForcedIncludeFiles>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stable.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="starfighter4K_fr.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\ui\AboutDialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="res\ui\HUDWidget.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="res\ui\MainDialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="res\ui\NewGameDialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="res\ui\OptionsDialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\images\game\Mothership.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\strings\about.html">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\strings\about_fr.html">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\antiGravity.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\background.jpg">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\freeze.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\guided.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\hearc.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\invicibility.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\mainmenu-logo.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\medic.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\placeHolder.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\proj1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\proj2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\proj3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\proj4.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\projCross.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\projRoot.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\projSimple.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\projV.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <CustomBuild Include="ressources.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(FullPath);.\res\images\mainmenu-logo.png;.\res\images\hearc.png;.\res\images\taskbar-icon.png;.\res\strings\starfighter_fr.qm;.\res\strings\about.html;.\res\strings\about_fr.html;.\res\images\game\satellite.png;.\res\images\game\background.jpg;.\res\images\game\Mothership.png;.\res\images\game\ship1.png;.\res\images\game\ship2.png;.\res\images\game\ship3.png;.\res\images\game\shield.png;.\res\images\game\proj1.png;.\res\images\game\proj2.png;.\res\images\game\proj3.png;.\res\images\game\proj4.png;.\res\images\game\shadow.png;.\res\images\game\asteroid1\rock10000.png;.\res\images\game\asteroid1\rock10001.png;.\res\images\game\asteroid1\rock10002.png;.\res\images\game\asteroid1\rock10003.png;.\res\images\game\asteroid1\rock10004.png;.\res\images\game\asteroid1\rock10005.png;.\res\images\game\asteroid1\rock10006.png;.\res\images\game\asteroid1\rock10007.png;.\res\images\game\asteroid1\rock10008.png;.\res\images\game\asteroid1\rock10009.png;.\res\images\game\asteroid1\rock10010.png;.\res\images\game\asteroid1\rock10011.png;.\res\images\game\asteroid1\rock10012.png;.\res\images\game\asteroid1\rock10013.png;.\res\images\game\asteroid1\rock10014.png;.\res\images\game\asteroid1\rock10015.png;.\res\images\game\asteroid1\rock10016.png;.\res\images\game\asteroid1\rock10017.png;.\res\images\game\asteroid1\rock10018.png;.\res\images\game\asteroid1\rock10019.png;.\res\images\game\asteroid1\rock10020.png;.\res\images\game\asteroid1\rock10021.png;.\res\images\game\asteroid1\rock10022.png;.\res\images\game\asteroid1\rock10023.png;.\res\images\game\asteroid1\rock10024.png;.\res\images\game\asteroid1\rock10025.png;.\res\images\game\asteroid1\rock10026.png;.\res\images\game\asteroid1\rock10027.png;.\res\images\game\asteroid1\rock10028.png;.\res\images\game\asteroid1\rock10029.png;.\res\images\game\asteroid1\rock10030.png;.\res\images\game\asteroid1\rock10031.png;.\res\images\game\asteroid2\rock20000.png;.\res\images\game\asteroid2\rock20001.png;.\res\images\game\asteroid2\rock20002.png;.\res\images\game\asteroid2\rock20003.png;.\res\images\game\asteroid2\rock20004.png;.\res\images\game\asteroid2\rock20005.png;.\res\images\game\asteroid2\rock20006.png;.\res\images\game\asteroid2\rock20007.png;.\res\images\game\asteroid2\rock20008.png;.\res\images\game\asteroid2\rock20009.png;.\res\images\game\asteroid2\rock20010.png;.\res\images\game\asteroid2\rock20011.png;.\res\images\game\asteroid2\rock20012.png;.\res\images\game\asteroid2\rock20013.png;.\res\images\game\asteroid2\rock20014.png;.\res\images\game\asteroid2\rock20015.png;.\res\images\game\asteroid2\rock20016.png;.\res\images\game\asteroid2\rock20017.png;.\res\images\game\asteroid2\rock20018.png;.\res\images\game\asteroid2\rock20019.png;.\res\images\game\asteroid2\rock20020.png;.\res\images\game\asteroid2\rock20021.png;.\res\images\game\asteroid2\rock20022.png;.\res\images\game\asteroid2\rock20023.png;.\res\images\game\asteroid2\rock20024.png;.\res\images\game\asteroid2\rock20025.png;.\res\images\game\asteroid2\rock20026.png;.\res\images\game\asteroid2\rock20027.png;.\res\images\game\asteroid2\rock20028.png;.\res\images\game\asteroid2\rock20029.png;.\res\images\game\asteroid2\rock20030.png;.\res\images\game\asteroid2\rock20031.png;.\res\images\game\asteroid3\rock30000.png;.\res\images\game\asteroid3\rock30001.png;.\res\images\game\asteroid3\rock30002.png;.\res\images\game\asteroid3\rock30003.png;.\res\images\game\asteroid3\rock30004.png;.\res\images\game\asteroid3\rock30005.png;.\res\images\game\asteroid3\rock30006.png;.\res\images\game\asteroid3\rock30007.png;.\res\images\game\asteroid3\rock30008.png;.\res\images\game\asteroid3\rock30009.png;.\res\images\game\asteroid3\rock30010.png;.\res\images\game\asteroid3\rock30011.png;.\res\images\game\asteroid3\rock30012.png;.\res\images\game\asteroid3\rock30013.png;.\res\images\game\asteroid3\rock30014.png;.\res\images\game\asteroid3\rock30015.png;.\res\images\game\asteroid3\rock30016.png;.\res\images\game\asteroid3\rock30017.png;.\res\images\game\asteroid3\rock30018.png;.\res\images\game\asteroid3\rock30019.png;.\res\images\game\asteroid3\rock30020.png;.\res\images\game\asteroid3\rock30021.png;.\res\images\game\asteroid3\rock30022.png;.\res\images\game\asteroid3\rock30023.png;.\res\images\game\asteroid3\rock30024.png;.\res\images\game\asteroid3\rock30025.png;.\res\images\game\asteroid3\rock30026.png;.\res\images\game\asteroid3\rock30027.png;.\res\images\game\asteroid3\rock30028.png;.\res\images\game\asteroid3\rock30029.png;.\res\images\game\asteroid3\rock30030.png;.\res\images\game\asteroid3\rock30031.png;.\res\images\bonus\freeze.png;.\res\images\bonus\invicibility.png;.\res\images\bonus\medic.png;.\res\images\bonus\projSimple.png;.\res\images\bonus\shield.png;.\res\images\bonus\placeHolder.png;.\res\images\bonus\antiGravity.png;.\res\images\bonus\projCross.png;.\res\images\bonus\projRoot.png;.\res\images\bonus\projV.png;.\res\images\bonus\guided.png;.\res\images\bonus\tracking.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);.\res\images\mainmenu-logo.png;.\res\images\hearc.png;.\res\images\taskbar-icon.png;.\res\strings\starfighter_fr.qm;.\res\strings\about.html;.\res\strings\about_fr.html;.\res\images\game\satellite.png;.\res\images\game\background.jpg;.\res\images\game\Mothership.png;.\res\images\game\ship1.png;.\res\images\game\ship2.png;.\res\images\game\ship3.png;.\res\images\game\shield.png;.\res\images\game\proj1.png;.\res\images\game\proj2.png;.\res\images\game\proj3.png;.\res\images\game\proj4.png;.\res\images\game\shadow.png;.\res\images\game\asteroid1\rock10000.png;.\res\images\game\asteroid1\rock10001.png;.\res\images\game\asteroid1\rock10002.png;.\res\images\game\asteroid1\rock10003.png;.\res\images\game\asteroid1\rock10004.png;.\res\images\game\asteroid1\rock10005.png;.\res\images\game\asteroid1\rock10006.png;.\res\images\game\asteroid1\rock10007.png;.\res\images\game\asteroid1\rock10008.png;.\res\images\game\asteroid1\rock10009.png;.\res\images\game\asteroid1\rock10010.png;.\res\images\game\asteroid1\rock10011.png;.\res\images\game\asteroid1\rock10012.png;.\res\images\game\asteroid1\rock10013.png;.\res\images\game\asteroid1\rock10014.png;.\res\images\game\asteroid1\rock10015.png;.\res\images\game\asteroid1\rock10016.png;.\res\images\game\asteroid1\rock10017.png;.\res\images\game\asteroid1\rock10018.png;.\res\images\game\asteroid1\rock10019.png;.\res\images\game\asteroid1\rock10020.png;.\res\images\game\asteroid1\rock10021.png;.\res\images\game\asteroid1\rock10022.png;.\res\images\game\asteroid1\rock10023.png;.\res\images\game\asteroid1\rock10024.png;.\res\images\game\asteroid1\rock10025.png;.\res\images\game\asteroid1\rock10026.png;.\res\images\game\asteroid1\rock10027.png;.\res\images\game\asteroid1\rock10028.png;.\res\images\game\asteroid1\rock10029.png;.\res\images\game\asteroid1\rock10030.png;.\res\images\game\asteroid1\rock10031.png;.\res\images\game\asteroid2\rock20000.png;.\res\images\game\asteroid2\rock20001.png;.\res\images\game\asteroid2\rock20002.png;.\res\images\game\asteroid2\rock20003.png;.\res\images\game\asteroid2\rock20004.png;.\res\images\game\asteroid2\rock20005.png;.\res\images\game\asteroid2\rock20006.png;.\res\images\game\asteroid2\rock20007.png;.\res\images\game\asteroid2\rock20008.png;.\res\images\game\asteroid2\rock20009.png;.\res\images\game\asteroid2\rock20010.png;.\res\images\game\asteroid2\rock20011.png;.\res\images\game\asteroid2\rock20012.png;.\res\images\game\asteroid2\rock20013.png;.\res\images\game\asteroid2\rock20014.png;.\res\images\game\asteroid2\rock20015.png;.\res\images\game\asteroid2\rock20016.png;.\res\images\game\asteroid2\rock20017.png;.\res\images\game\asteroid2\rock20018.png;.\res\images\game\asteroid2\rock20019.png;.\res\images\game\asteroid2\rock20020.png;.\res\images\game\asteroid2\rock20021.png;.\res\images\game\asteroid2\rock20022.png;.\res\images\game\asteroid2\rock20023.png;.\res\images\game\asteroid2\rock20024.png;.\res\images\game\asteroid2\rock20025.png;.\res\images\game\asteroid2\rock20026.png;.\res\images\game\asteroid2\rock20027.png;.\res\images\game\asteroid2\rock20028.png;.\res\images\game\asteroid2\rock20029.png;.\res\images\game\asteroid2\rock20030.png;.\res\images\game\asteroid2\rock20031.png;.\res\images\game\asteroid3\rock30000.png;.\res\images\game\asteroid3\rock30001.png;.\res\images\game\asteroid3\rock30002.png;.\res\images\game\asteroid3\rock30003.png;.\res\images\game\asteroid3\rock30004.png;.\res\images\game\asteroid3\rock30005.png;.\res\images\game\asteroid3\rock30006.png;.\res\images\game\asteroid3\rock30007.png;.\res\images\game\asteroid3\rock30008.png;.\res\images\game\asteroid3\rock30009.png;.\res\images\game\asteroid3\rock30010.png;.\res\images\game\asteroid3\rock30011.png;.\res\images\game\asteroid3\rock30012.png;.\res\images\game\asteroid3\rock30013.png;.\res\images\game\asteroid3\rock30014.png;.\res\images\game\asteroid3\rock30015.png;.\res\images\game\asteroid3\rock30016.png;.\res\images\game\asteroid3\rock30017.png;.\res\images\game\asteroid3\rock30018.png;.\res\images\game\asteroid3\rock30019.png;.\res\images\game\asteroid3\rock30020.png;.\res\images\game\asteroid3\rock30021.png;.\res\images\game\asteroid3\rock30022.png;.\res\images\game\asteroid3\rock30023.png;.\res\images\game\asteroid3\rock30024.png;.\res\images\game\asteroid3\rock30025.png;.\res\images\game\asteroid3\rock30026.png;.\res\images\game\asteroid3\rock30027.png;.\res\images\game\asteroid3\rock30028.png;.\res\images\game\asteroid3\rock30029.png;.\res\images\game\asteroid3\rock30030.png;.\res\images\game\asteroid3\rock30031.png;.\res\images\bonus\freeze.png;.\res\images\bonus\invicibility.png;.\res\images\bonus\medic.png;.\res\images\bonus\projSimple.png;.\res\images\bonus\shield.png;.\res\images\bonus\placeHolder.png;.\res\images\bonus\antiGravity.png;.\res\images\bonus\projCross.png;.\res\images\bonus\projRoot.png;.\res\images\bonus\projV.png;.\res\images\bonus\guided.png;.\res\images\bonus\tracking.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="res\images\game\asteroid1\rock10000.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10001.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10002.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10003.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10004.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10005.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10006.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10007.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10008.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10009.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10010.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10011.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10012.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10013.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10014.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10015.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10016.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10017.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10018.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10019.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10020.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10021.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10022.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10023.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10024.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10025.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10026.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10027.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10028.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10029.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10030.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid1\rock10031.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20000.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20001.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20002.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20003.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20004.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20005.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20006.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20007.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20008.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20009.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20010.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20011.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20012.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20013.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20014.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20015.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20016.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20017.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20018.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20019.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20020.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20021.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20022.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20023.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20024.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20025.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20026.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20027.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20028.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20029.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20030.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid2\rock20031.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30000.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30001.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30002.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30003.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30004.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30005.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30006.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30007.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30008.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30009.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30010.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30011.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30012.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30013.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30014.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30015.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30016.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30017.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30018.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30019.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30020.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30021.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30022.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30023.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30024.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30025.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30026.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30027.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30028.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30029.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30030.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\asteroid3\rock30031.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\satellite.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\shadow.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\shield.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\shield.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\ship1.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\ship2.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\game\ship3.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\strings\starfighter_fr.qm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\taskbar-icon.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="res\images\bonus\tracking.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Qt5Version_x0020_Win32="5.1.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
