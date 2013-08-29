@@ -1,6 +1,9 @@
 #include "include/menu/MainDialog.h"
 #include "include/config/Define.h"
 
+
+#include "include/engine/DemoEngine.h"
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
@@ -19,5 +22,6 @@ int main(int argc, char *argv[])
 
     md.show();
 
+    //DemoEngine de;
     return app.exec();
 }

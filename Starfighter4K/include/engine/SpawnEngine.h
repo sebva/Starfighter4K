@@ -13,7 +13,7 @@ class SpawnEngine : public QObject
     Q_OBJECT
 
 public:
-    SpawnEngine(int difficulty, GameEngine*);
+    SpawnEngine(int difficulty, GameEngine*, bool _isDemo = false);
     ~SpawnEngine();
 
     Bonus* generateBonus();
@@ -43,6 +43,7 @@ private:
     int intervalAlien;
     int intervalSat;
     int intervalSupernova;
+    bool isDemo;
 
     static int irand(int min, int max);
 

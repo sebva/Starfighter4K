@@ -14,6 +14,7 @@
 //SpawnEngine
 #define PROB_ASTEROID                       75
 #define PROB_ALIEN                          25
+#define PROB_ALIEN_DEMO                     10
 #define PROB_SAT                            15
 #define PROB_SUPERNOVA                      1
 

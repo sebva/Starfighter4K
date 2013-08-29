@@ -65,7 +65,8 @@ HEADERS += include/stable.h \
     include/game/SpecialBonusMulti.h \
     include/game/ProjectileGuided.h \
     include/game/SpecialBonusGuided.h \
-    include/menu/BonusWidget.h
+    include/menu/BonusWidget.h \
+    include/engine/DemoEngine.h
 FORMS += res/ui/AboutDialog.ui \
          res/ui/MainDialog.ui \
          res/ui/NewGameDialog.ui \
@@ -111,7 +112,8 @@ SOURCES += src/main.cpp \
     src/game/ProjectileMulti.cpp \
     src/game/SpecialBonusMulti.cpp \
     src/game/ProjectileGuided.cpp \
-    src/game/SpecialBonusGuided.cpp
+    src/game/SpecialBonusGuided.cpp \
+    src/engine/DemoEngine.cpp
 
 RESOURCES += ressources.qrc
 RC_FILE = icon.rc

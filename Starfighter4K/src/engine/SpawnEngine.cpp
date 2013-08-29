@@ -13,7 +13,7 @@
 
 #define arccot M_PI / 2.0 - atan
 
-SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge)
+SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge, bool _isDemo):isDemo(_isDemo)
 {
     this->ge = _ge;
     this->de = _ge->displayEngine();
@@ -24,12 +24,12 @@ SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge)
     spawnSupernovae = (bool)(difficulty & Supernovae);
 
     totalProba = spawnAsteroids ? kProbAsteroid : 0;
-    totalProba += spawnAlienMothership ? kProbAlien : 0;
+    totalProba += spawnAlienMothership ? (isDemo ? PROB_ALIEN_DEMO : kProbAlien) : 0;
     totalProba += spawnSatellites ? kProbSat : 0;
     totalProba += spawnSupernovae ? kProbSupernova : 0;
 
     intervalAsteroid = spawnAsteroids ? kProbAsteroid : 0;
-    intervalAlien = spawnAlienMothership ? intervalAsteroid + kProbAlien : intervalAsteroid;
+    intervalAlien = spawnAlienMothership ? intervalAsteroid + (isDemo ? kProbAlien : PROB_ALIEN_DEMO ): intervalAsteroid;
     intervalSat = spawnSatellites ? intervalAlien + kProbSat : intervalAlien;
     intervalSupernova = spawnSupernovae ? intervalSat + kProbSupernova : intervalSat;
 
@@ -51,7 +51,7 @@ SpawnEngine::~SpawnEngine()
 
 void SpawnEngine::timerFired()
 {
-    double probSpawn = proba(ge->elapsedTime() / 1000.0);
+    double probSpawn = (isDemo) ? 0.5 : proba(ge->elapsedTime() / 1000.0);
 
     if(ge->randDouble() < probSpawn)
     {
@@ -74,7 +74,7 @@ void SpawnEngine::timerFired()
         }
         else if(probWhat < intervalSupernova)
         {
-            Supernova *supernova = new Supernova(de->sceneSize().width() / 2, de->sceneSize().height() / 2, ge);
+            Supernova *supernova = new Supernova(ge->sceneSize().width() / 2, ge->sceneSize().height() / 2, ge);
             ge->addSupernova(supernova);
         }
     }

@@ -4,7 +4,6 @@
 #include "include/enum/Enum.h"
 
 class DisplayEngine;
-class SpawnEngine;
 class UserControlsEngine;
 class SoundEngine;
 class Projectile;
@@ -18,14 +17,17 @@ class Displayable;
 class Settings;
 class QMutex;
 class WiimoteEngine;
+class SpawnEngine;
+class QWidget;
 
-class GameEngine : public QObject
+class GameEngine : public QGraphicsView
 {
     Q_OBJECT
 
 public:	
-    GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QObject*);
-    ~GameEngine();
+    GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QWidget*);
+    GameEngine(QWidget *parent = 0);
+    virtual ~GameEngine();
 
     static double randDouble();
     static int randInt(int range);
@@ -34,6 +36,10 @@ public:
 	int elapsedTime();    
     int timeGamevalue() const {return timeGame;}
     void timerControle(int tps = 15);
+
+    virtual qreal xminWarzone() const;
+    virtual qreal xmaxWarZone() const;
+    virtual QRect sceneSize() const;
 
     Spaceship * ship1() const {return listSpaceship[0];}
     Spaceship * ship2() const {return listSpaceship[1];}
@@ -45,18 +51,18 @@ public:
     GameMode getGameMode() const {return gameMode;}
 
     bool getHasSomeonWon() const {return hasSomeoneWon;}
-    void timerEvent(QTimerEvent *);
+    virtual void timerEvent(QTimerEvent *);
 
-    void addProjectile(Projectile *_inProjectile);
+    virtual void addProjectile(Projectile *_inProjectile);
     void addSupernova(Supernova *_inSupernova);
     void addShip(Spaceship *_inSpaceship);
     void removeShip(Spaceship *_inSpaceship);
-    void addAsteroid(Asteroid *_inAsteroide);
+    virtual void addAsteroid(Asteroid *_inAsteroide);
     void removeAsteroid(Asteroid *_inAsteroide);
-    void addSmallAsteroid(Asteroid *_inAsteroide);
+    virtual void addSmallAsteroid(Asteroid *_inAsteroide);
     void removeSmallAsteroid(Asteroid *_inAsteroide);
-    void addBonus(Bonus *_inBonus);
-    void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+    virtual void addBonus(Bonus *_inBonus);
+    virtual void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
     void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
 
     void endGameDeathMatch(Spaceship* _ship=0);
@@ -71,12 +77,12 @@ signals:
     void signalPause(bool); // true = isPause
 
 public slots:
-    void elemenDestroyed(Destroyable* destroyItem,int nbPoint,Shooter forShip);
+    virtual void elemenDestroyed(Destroyable* destroyItem,int nbPoint,Shooter forShip);
 
 private slots:
     void rotationProcess(int wiimote, qreal angle);
 
-private:
+protected:
     void checkOutsideScene(QList<Displayable*> &list);
     void clearList(QList<Displayable*> &list);
     bool checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2);
@@ -84,9 +90,20 @@ private:
     void runTestCollision(QList<Displayable*> &list);
     void detectObjectAfterMiddleZone(const QList<Displayable*>& list, QList<Projectile*>& projList, Shooter PlayerActivated);
 
+    QMutex* mutex;
+    QList<Displayable*>  listProjectile;
+    QList<Displayable*>  listAsteroide;
+    QList<Displayable*>  listSmallAsteroide;
+    QList<Displayable*>  listBonus;
+    QList<Spaceship*>    listSpaceship;
+    QList<Displayable*>  listAlienSpaceship;
+    QList<Supernova*>    listSupernova;
+
+    SpawnEngine *se;
+
+private:
     SoundEngine *soe;
     DisplayEngine *de;
-    SpawnEngine *se;
     UserControlsEngine *uc;
     Settings& settings;
     WiimoteEngine *we;
@@ -97,8 +114,6 @@ private:
     TypeSpecialBonus typeSP1;
     TypeSpecialBonus typeSP2;
 
-    QMutex* mutex;
-
     bool isRunning;
     int idTimer;
     bool isTimer;
@@ -108,15 +123,5 @@ private:
     // For elapsedTime()
     QElapsedTimer elapsedTimer;
     qint64 timeAlreadyCounted;
-
-    QList<Displayable*>  listProjectile;
-    QList<Displayable*>  listAsteroide;
-    QList<Displayable*>  listSmallAsteroide;
-    QList<Displayable*>  listBonus;
-    QList<Spaceship*>    listSpaceship;
-    QList<Displayable*>  listAlienSpaceship;
-    QList<Supernova*>    listSupernova;
-
-
 };
 #endif

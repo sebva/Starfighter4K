@@ -19,8 +19,8 @@
 
 #include "include/engine/WiimoteEngine.h"
 
-GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QObject *parent = 0)
-    :QObject(parent),we(wiimoteEngine),
+GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QWidget *parent = 0)
+    :QGraphicsView(parent),we(wiimoteEngine),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
       isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),hasSomeoneWon(false),timeAlreadyCounted(0),typeSP1(sbp1), typeSP2(sbp2)
 {
@@ -44,13 +44,34 @@ GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int dura
     connect(we,SIGNAL(orientation(int, qreal)), this, SLOT(rotationProcess(int, qreal)));
 }
 
+GameEngine::GameEngine(QWidget *parent)
+    :QGraphicsView(parent),settings(Settings::getGlobalSettings())
+{
+    se = new SpawnEngine(Asteroids|AlienMothership|Satellites|Supernovae,this,true);
+}
+
+qreal GameEngine::xminWarzone() const
+{
+    return de->xminWarzone();
+}
+
+qreal GameEngine::xmaxWarZone() const
+{
+    return de->xmaxWarZone();
+}
+
+QRect GameEngine::sceneSize() const
+{
+    return de->sceneSize();
+}
+
 GameEngine::~GameEngine()
 {
-    delete de;//Delete all the pointers in the different QList, so we must only clear them
-    delete uc;
-    delete se;
-    delete soe;
-    delete mutex;
+    if(de != 0) delete de;//Delete all the pointers in the different QList, so we must only clear them
+    if(uc != 0) delete uc;
+    if(se != 0) delete se;
+    if(soe != 0) delete soe;
+    if(mutex != 0) delete mutex;
 
     listProjectile.clear();
     listAsteroide.clear();
@@ -454,7 +475,7 @@ void GameEngine::removeSmallAsteroid(Asteroid *_inAsteroide)
 
 void GameEngine::clearList(QList<Displayable*> &list)
 {
-    for(int i = 0;i<list.size();i++)
+    for(int i = 0;i<list.size();++i)
       if(list[i]==0)
           list.removeAt(i--);
 }
@@ -462,26 +483,25 @@ void GameEngine::clearList(QList<Displayable*> &list)
 void GameEngine::checkOutsideScene(QList<Displayable*> &list)
 {
     for(int i = 0;i<list.size();i++)
-    {
-        int l_w = 0;
-        int l_h = 0;
-
-        if(list[i]==0)
-            continue;
-        QMutexLocker l(mutex);
-        if(list[i]->isPixmap())
+        if(list[i] != 0)
         {
-            l_w = list[i]->sizePixmap().width();
-            l_h = list[i]->sizePixmap().height();
-        }
+            int l_w = 0;
+            int l_h = 0;
 
-        if(list[i]->pos().x()-l_w > de->sceneSize().width() || list[i]->pos().x()+l_w < 0
-        || list[i]->pos().y() > de->sceneSize().height() || list[i]->pos().y()+l_h < 0)
+            QMutexLocker l(mutex);
+            if(list[i]->isPixmap())
             {
-                delete list[i];
-                list[i] = 0;
+                l_w = list[i]->sizePixmap().width();
+                l_h = list[i]->sizePixmap().height();
             }
-    }
+
+            if(list[i]->pos().x()-l_w > de->sceneSize().width() || list[i]->pos().x()+l_w < 0
+            || list[i]->pos().y() > de->sceneSize().height() || list[i]->pos().y()+l_h < 0)
+                {
+                    delete list[i];
+                    list[i] = 0;
+                }
+        }
 
     clearList(list);
 }

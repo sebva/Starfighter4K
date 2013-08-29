@@ -55,7 +55,7 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
         dPower = POWER_ASTEROID;
         setPixmap(new QPixmap(QString(PICTURE_ASTEROID).arg(currentFrame)));
 
-        QRect sceneSize = gameEngine->displayEngine()->sceneSize();
+        QRect sceneSize = gameEngine->sceneSize();
 
         /*Generate the position of the Asteroid and its trajectory
           For more informations cf the specification file*/
@@ -65,8 +65,8 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
         int l_ymin = sceneSize.topLeft().y();
         int l_ymax = sceneSize.bottomRight().y();
 
-        int l_m = gameEngine->displayEngine()->xminWarzone();
-        int l_n = gameEngine->displayEngine()->xmaxWarZone();
+        int l_m = gameEngine->xminWarzone();
+        int l_n = gameEngine->xmaxWarZone();
 
         int l_xc = (l_xmax-l_xmin)/2.0+l_xmin;
         int l_yc = (l_ymax-l_ymin)/2.0+l_ymin;

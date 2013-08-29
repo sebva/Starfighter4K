@@ -45,8 +45,8 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
 
     /*Generate the position of the AlienSpaceship
       For more informations cf the specification file*/
-    int l_Xmin = gameEngine->displayEngine()->xminWarzone();
-    int l_Xmax = gameEngine->displayEngine()->xmaxWarZone();
+    int l_Xmin = gameEngine->xminWarzone();
+    int l_Xmax = gameEngine->xmaxWarZone();
 
     int l_x1 = gameEngine->randInt(l_Xmax-getPixmap()->width()-l_Xmin)+l_Xmin;
 
@@ -73,9 +73,9 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
 
     int l_x3 = l_x1;
 
-    int l_y1 = gameEngine->displayEngine()->sceneSize().y();
-    int l_y2 = gameEngine->displayEngine()->sceneSize().height()/2.0;
-    int l_y3 = gameEngine->displayEngine()->sceneSize().height();
+    int l_y1 = gameEngine->sceneSize().y();
+    int l_y2 = gameEngine->sceneSize().height()/2.0;
+    int l_y3 = gameEngine->sceneSize().height();
 
     /*Calculate the trajectory. There are 4 possibilities :
     1) Top->Bottom x2<xg
@@ -105,8 +105,8 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     {
         directionArg*=-1;
         dAngle=-M_PI/2.0;
-        l_y1=gameEngine->displayEngine()->sceneSize().height();
-        l_y3=gameEngine->displayEngine()->sceneSize().y();
+        l_y1=gameEngine->sceneSize().height();
+        l_y3=gameEngine->sceneSize().y();
         //Rotate the picture if it's coming by the bottom size
         Displayable::setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
     }
@@ -116,7 +116,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
 
     //Change Y location if the case where the alienspaceship comes by the top,
     //we should remove the height to have a better apparition
-    if(l_y1==gameEngine->displayEngine()->sceneSize().y())
+    if(l_y1==gameEngine->sceneSize().y())
         l_y1-=getPixmap()->height();
 
     dX0 = (l_x3*l_x3*(l_y1-l_y2)+(l_x1*l_x1+(l_y1-l_y2)*(l_y1-l_y3))*(l_y2-l_y3)+l_x2*l_x2*(l_y3-l_y1))
