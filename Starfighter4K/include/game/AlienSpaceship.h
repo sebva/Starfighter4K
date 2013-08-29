@@ -47,7 +47,7 @@ private:
     qreal dModule;
     qreal dX0;
     qreal dY0;
-    qreal dYStop;
+    int yStop;
     qreal blink;
     bool raisingEdge;
 

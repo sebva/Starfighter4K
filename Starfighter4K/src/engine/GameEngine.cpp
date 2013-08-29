@@ -104,7 +104,6 @@ void GameEngine::createSpaceship()
     int width = de->sceneSize().width();
     int height = de->sceneSize().height();
 
-    qreal speed = 0;
     qreal healthPoint = 0;
     qreal resistance = 0;
     int cooldown = 0;
@@ -158,7 +157,7 @@ void GameEngine::createSpaceship()
     listSpaceship[1]->setPixmap(new QPixmap(path));
 }
 
-void GameEngine::timerEvent(QTimerEvent *event)
+void GameEngine::timerEvent(QTimerEvent *)
 {
     de->moveBG();
     de->updateScreen();

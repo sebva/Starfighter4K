@@ -112,7 +112,11 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
     }
 
     //Where the alienspaceship will stop to fire
-    dYStop = l_y2;
+    yStop = gameEngine->randInt(l_y3-l_y1)+l_y1;
+    if(l_y3-yStop < MARGIN_Y_FIRE)
+        yStop -= MARGIN_Y_FIRE;
+    else if(yStop-l_y1 < MARGIN_Y_FIRE)
+        yStop += MARGIN_Y_FIRE;
 
     //Change Y location if the case where the alienspaceship comes by the top,
     //we should remove the height to have a better apparition
@@ -146,11 +150,13 @@ void AlienSpaceship::advance(int _step)
 
     if(!isAttacking)
     {
-        if(!hasAttacked && pos().y()>=(dYStop-MARGIN_Y) && pos().y()<=(dYStop+MARGIN_Y))
+        if(!hasAttacked && pos().y()>=(yStop-MARGIN_Y) && pos().y()<=(yStop+MARGIN_Y))
             attacking();
 
         dArgument+=directionArg*kIntervalArgument;
 
+        if(hasAttacked)
+            dArgument*=1.01;
         setPos(dX0+directionX*dModule*cos(dArgument)
                ,dY0-directionY*dModule*sin(dArgument));
     }

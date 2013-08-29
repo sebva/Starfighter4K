@@ -175,6 +175,7 @@
 
 //AlienSpaceShip
 #define MARGIN_Y                            10
+#define MARGIN_Y_FIRE                       100
 #define DELTA_X_MIN                         50
 #define DELTA_X                             200 //Cf Specification file
 
