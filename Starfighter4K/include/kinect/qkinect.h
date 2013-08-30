@@ -5,6 +5,8 @@
 #include <QImage>
 #include <QList>
 #include <QPoint>
+#include <QSize>
+#include <QPair>
 #include <QThread>
 #include <QMutex>
 #include <basetyps.h>
@@ -34,6 +36,8 @@ public:
 	~QKinect();
 	bool isKinectAvailable();
 	inline bool isConnected() const { return m_connected; }
+	inline bool isReady() const { return m_ready; }
+	inline bool isCalibrated() const { return m_calibrated; }
 	bool startKinect();
 	void stopKinect();
 	void setElevationAngle(int angle);
@@ -56,6 +60,7 @@ protected:
 signals:
 	void updateInfo(QString);
 	void newDatas();
+	void calibrated();
 
 private slots:
 	void update();
@@ -77,11 +82,12 @@ private:
 	bool m_run;
 	int m_angle;
 	int m_nbSkeletons;
-	bool m_isCalibrated;
+	bool m_calibrated;
+	bool m_ready;
 	bool m_hasToCalibrate;
 	QMutex mutex;
 
-	std::array<cv::Point,4> points;
+	std::array<cv::Point,4> m_points;
 
 	//Color camera
     HANDLE m_pColorStreamHandle;

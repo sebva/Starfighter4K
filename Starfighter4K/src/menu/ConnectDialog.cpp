@@ -1,9 +1,12 @@
 #include "include/menu/ConnectDialog.h"
+#include "include/kinect/qkinect.h"
 #include "ui_ConnectDialog.h"
+#include <thread>
 
-ConnectDialog::ConnectDialog(WiimoteEngine* wiimoteEngine, QWidget *parent) :
+ConnectDialog::ConnectDialog(WiimoteEngine* wiimoteEngine, QKinect* kinect, QWidget *parent) :
     QDialog(parent),
     wiimoteEngine(wiimoteEngine),
+	kinect(kinect),
     ui(new Ui::ConnectDialog)
 {
     ui->setupUi(this);
@@ -40,19 +43,23 @@ void ConnectDialog::connectWiimotes()
 
 void ConnectDialog::connectKinect()
 {
-    // TODO
-    ui->kinect->setStatus(SystemStateReady);
+	if(kinect->startKinect())
+		ui->kinect->setStatus(SystemStateReady);
 
     checkAndClose();
 }
 
 void ConnectDialog::performCalibration()
 {
-    // TODO
     if(ui->kinect->getStatus() != SystemStateReady)
         return;
 
-    ui->calibration->setStatus(SystemStateReady);
+	if(kinect->isCalibrated())
+		ui->calibration->setStatus(SystemStateReady);
+	else
+		kinect->calibrate();
+
+	connect(kinect, SIGNAL(calibrated()), this, SLOT(performCalibration()));
 
     checkAndClose();
 }

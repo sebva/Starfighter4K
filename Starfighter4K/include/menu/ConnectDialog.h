@@ -3,6 +3,8 @@
 
 #include "include/engine/WiimoteEngine.h"
 
+class QKinect;
+
 namespace Ui {
 class ConnectDialog;
 }
@@ -12,12 +14,13 @@ class ConnectDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit ConnectDialog(WiimoteEngine* wiimoteEngine, QWidget *parent = 0);
+    explicit ConnectDialog(WiimoteEngine* wiimoteEngine, QKinect* kinect, QWidget *parent = 0);
     ~ConnectDialog();
     
 private:
     Ui::ConnectDialog *ui;
     WiimoteEngine* wiimoteEngine;
+    QKinect* kinect;
 
 private slots:
     void connectWiimotes();

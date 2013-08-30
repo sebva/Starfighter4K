@@ -1,9 +1,5 @@
 #include "include/kinect/qkinect.h"
-#include <QSize>
-#include <QPair>
-#include "opencv2/core/core.hpp"
 #include <QDebug>
-#include <array>
 
 #define WORK "The device is connected and work."
 #define REFRESH_FREQUENCY 1000 / 30 // 30 fps
@@ -23,10 +19,11 @@ QKinect::QKinect(QSize* screenSize) :
 	m_connected(false),
 	m_run(false),
 	m_nbSkeletons(0),
-	m_isCalibrated(false),
+	m_calibrated(false),
+	m_ready(false),
 	m_hasToCalibrate(false)
 {
-	init();
+	m_ready = init();
 }
 
 QKinect::~QKinect()
@@ -39,16 +36,15 @@ QKinect::~QKinect()
 bool QKinect::isKinectAvailable()
 {
 	int numSensors;
-    return !(NuiGetSensorCount(&numSensors) < 0 || numSensors < 1); //test if there is a kinect connected to the pc and available
+	return NuiGetSensorCount(&numSensors) == S_OK && numSensors > 0; //test if there is a kinect connected to the pc and available
 }
 
 bool QKinect::startKinect()
 {
 	infos("Kinect starting...");
+	if(m_kinect == nullptr || !m_ready) m_ready = init();
 
-	if(m_kinect == nullptr) init();
-
-	if(isConnected())
+	if(isConnected() && m_ready)
 	{
 		start();
 		return true;
@@ -116,7 +112,6 @@ QList<QList<QPoint>> QKinect::getRealSkeletons()
 				//qDebug() << "x1" << x1 << "\tx2" << x2 << "\ty1" << y1 << "\ty2" << y2 << "\txratio" << xRatio << "\tyRatio" << yRatio;
 				//qDebug() << "\nm_realScreenSize.width()" << m_realScreenSize.width() << "\tm_realScreenSize.height()" << m_realScreenSize.height() << "\tpoint.x()" << point.x() << "\tpoint.y()" << point.y() << "\txratio" << xRatio << "\tyRatio" << yRatio;
 			}
-
 			realSkeletons << realSkeleton;
 		}
 	}
@@ -127,7 +122,7 @@ QList<QList<QPoint>> QKinect::getRealSkeletons()
 QString QKinect::getStatutsDescription()
 {
 	if(m_kinect == nullptr) return "Kinect not initialized";
-	if(isKinectAvailable()) return "No Kinect available";
+	if(!isKinectAvailable()) return "No Kinect available";
 	switch (m_kinect->NuiStatus())
 	{
 	case S_OK :
@@ -175,7 +170,7 @@ QList<QPoint> QKinect::getCorners()
 	double xRatio = (double)m_screenSize->width() / video_width;
 	double yRatio = (double)m_screenSize->height() / video_height;
 
-	for(Point point : points)
+	for(Point point : m_points)
 	{
 		corners << QPoint(point.x * xRatio, point.y * yRatio);
 	}
@@ -196,7 +191,9 @@ void QKinect::run()
 void QKinect::update()
 {
 	if(m_kinect == nullptr) return;
-	if(processColor() || processSkeleton())
+	bool update = processColor();
+	update |= processSkeleton();
+	if(update)
 		emit newDatas();
 }
 
@@ -259,13 +256,16 @@ void QKinect::addImage()
 	if(m_rectangleDetection.getSizeImages() == kNbImages)
 	{
 		m_hasToCalibrate = false;
-		m_isCalibrated = true;
+		m_calibrated = true;
 
-		points = m_rectangleDetection.getPoints();
-		m_realScreenPosition = QPoint(points[1].x, points[1].y);
-		m_realScreenSize = QSize(points[3].x - points[1].x, points[3].y - points[1].y);
+		m_points = m_rectangleDetection.getPoints();
+		m_realScreenPosition = QPoint(m_points[1].x, m_points[1].y);
+		m_realScreenSize = QSize(m_points[3].x - m_points[1].x, m_points[3].y - m_points[1].y);
+
+		emit calibrated();
+		//m_pColorStreamHandle->
 		//qDebug() << QPoint(points[0].x, points[0].y) << QPoint(points[1].x, points[1].y) << QPoint(points[2].x, points[2].y) << QPoint(points[3].x, points[3].y);
-		//qDebug() << m_realScreenPosition << m_realScreenSize;
+		qDebug() << m_realScreenPosition << m_realScreenSize;
 
 	}
 }
@@ -337,7 +337,7 @@ bool QKinect::processColor()
         // Get the datas
 		m_frameColorData = static_cast<BYTE *>(lockedRect.pBits);
 		m_frameColorSize = lockedRect.size;
-		if(m_hasToCalibrate && !m_isCalibrated)
+		if(m_hasToCalibrate && !m_calibrated)
 			addImage();
     }
 
@@ -352,8 +352,6 @@ bool QKinect::processColor()
 
 void QKinect::infos(QString message)
 {
-	//qDebug() << message;
-
 	int val = 0;
 	NuiGetSensorCount(&val);
 	

@@ -80,7 +80,7 @@ bool findSquares(const Mat& image, vector<vector<Point> >& squares, int thresh, 
     mixChannels(&blurred, 1, &gray0, 1, ch, 1);
 
     // try several threshold levels
-    const int threshold_level = 5;
+    const int threshold_level = 15;
     for (int l = 0; l < threshold_level; l++)
     {
         // Use Canny instead of zero threshold level!
