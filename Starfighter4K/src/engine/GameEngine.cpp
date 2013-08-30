@@ -19,9 +19,10 @@
 #include "include/config/Define.h"
 
 #include "include/engine/WiimoteEngine.h"
+#include "include/kinect/qkinect.h"
 
-GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QWidget *parent = 0)
-    :QGraphicsView(parent),we(wiimoteEngine),
+GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, QKinect* kinect, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QWidget *parent = 0)
+	:QGraphicsView(parent),we(wiimoteEngine), kinect(kinect),
       settings(Settings::getGlobalSettings()),gameMode(gameMode),typeShip1(player1Ship),typeShip2(player2Ship),
       isRunning(false),idTimer(-1),isTimer(false),timeGame(duration),hasSomeoneWon(false),timeAlreadyCounted(0),typeSP1(sbp1), typeSP2(sbp2)
 {
@@ -42,6 +43,7 @@ GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int dura
 
     elapsedTimer.start();
 
+	connect(kinect, SIGNAL(newDatas()), this, SLOT(positionProcess()));
     connect(we,SIGNAL(orientation(int, qreal)), this, SLOT(rotationProcess(int, qreal)));
 }
 
@@ -359,6 +361,13 @@ void GameEngine::rotationProcess(int wiimote, qreal angle)
         ship1()->rotate(angle);
     else
         ship2()->rotate(angle);
+}
+
+void GameEngine::positionProcess()
+{
+	QPair<int, int> positions = kinect->getHandsPosition();
+	ship1()->setY(positions.second);
+    ship2()->setY(positions.first);
 }
 
 void GameEngine::timerControle(int tps)

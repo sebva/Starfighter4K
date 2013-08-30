@@ -10,13 +10,14 @@ class KinectWindow;
 class QTime;
 class WiimoteEngine;
 class GameEngine;
+class QKinect;
 
 class KinectWindow : public QMainWindow
 {
     Q_OBJECT
     
 public:
-    explicit KinectWindow(WiimoteEngine* we, QWidget *parent = 0);
+	explicit KinectWindow(WiimoteEngine* we, QKinect* kinect, QWidget *parent = 0);
     ~KinectWindow();
 
 public slots:
@@ -80,6 +81,7 @@ private:
     void validateShips();
     void validateBonus();
     WiimoteEngine* we;
+	QKinect* kinect;
     GameEngine* ge;
 };
 

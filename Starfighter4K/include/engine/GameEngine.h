@@ -20,13 +20,14 @@ class WiimoteEngine;
 class SpawnEngine;
 class QWidget;
 class Blackship;
+class QKinect;
 
 class GameEngine : public QGraphicsView
 {
     Q_OBJECT
 
 public:	
-    GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QWidget*);
+    GameEngine(WiimoteEngine* wiimoteEngine, QKinect* kinect, GameMode gameMode, int duration, SpaceshipType player1Ship, SpaceshipType player2Ship, TypeSpecialBonus sbp1, TypeSpecialBonus sbp2, int difficulty, QWidget*);
     GameEngine(QWidget *parent = 0);
     virtual ~GameEngine();
 
@@ -84,6 +85,7 @@ public slots:
 
 private slots:
     void rotationProcess(int wiimote, qreal angle);
+	void positionProcess();
 
 protected:
     void checkOutsideScene(QList<Displayable*> &list);
@@ -111,6 +113,7 @@ private:
     UserControlsEngine *uc;
     Settings& settings;
     WiimoteEngine *we;
+	QKinect* kinect;
 
     GameMode gameMode;
     SpaceshipType typeShip1;

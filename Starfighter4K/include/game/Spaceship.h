@@ -51,6 +51,8 @@ public:
     qreal getXPositionCenter() const {return pos().x()+getPixmap()->width()/2.0;}
     qreal getYPositionCenter() const {return pos().y()+getPixmap()->height()/2.0;}
 
+	void setY(int _y);
+
     void setPixmap(QPixmap* _pxmPixmap);
     void addBonus(Bonus* _bonus);
     QRectF boundingRect() const;

@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     KinectWindow* kw;
     if(cd.exec() == QDialog::Accepted)
     {
-        kw = new KinectWindow(&we);
+        kw = new KinectWindow(&we, &kinect);
         kw->showFullScreen();
     }
     //*/

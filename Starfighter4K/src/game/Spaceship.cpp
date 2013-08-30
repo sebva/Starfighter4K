@@ -114,6 +114,12 @@ Spaceship::~Spaceship()
     delete specialBonus;
 }
 
+void Spaceship::setY(int _y)
+{
+	if(!isFrozen)
+		setPos(pos().x(), _y);
+}
+
 QRectF Spaceship::boundingRect() const
 {
     return QRectF(getPixmap()->rect());

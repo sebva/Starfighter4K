@@ -3,13 +3,14 @@
 #include "include/engine/GameEngine.h"
 #include "include/engine/WiimoteEngine.h"
 #include "include/engine/GameEngine.h"
+#include "include/kinect/qkinect.h"
 
-KinectWindow::KinectWindow(WiimoteEngine *we, QWidget *parent) :
+KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::KinectWindow),
     p1Ship(NoSpaceShip), p2Ship(NoSpaceShip),
     p1Bonus(TypeSpecialBonusNothing), p2Bonus(TypeSpecialBonusNothing),
-    we(we), ge(0)
+    we(we), kinect(kinect), ge(0)
 {
     ui->setupUi(this);
 
@@ -190,7 +191,7 @@ void KinectWindow::validateBonus()
     {
         int duration = timer.hour() * 3600 + timer.minute() * 60 + timer.second();
         int difficulty = AlienMothership | Asteroids | Satellites | Supernovae | BlackSquadron;
-        ge = new GameEngine(we, gameMode, duration, p1Ship, p2Ship, p1Bonus, p2Bonus, difficulty, this);
+        ge = new GameEngine(we, kinect, gameMode, duration, p1Ship, p2Ship, p1Bonus, p2Bonus, difficulty, this);
         connect(ge, SIGNAL(endGame()), this, SLOT(endGame()));
     }
 }
