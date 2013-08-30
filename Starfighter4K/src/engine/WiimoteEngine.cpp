@@ -42,7 +42,6 @@ bool WiimoteEngine::connectWiimotes()
     {
         found = findWiimotes();
         qWarning() << found << " wiimotes found ...";
-        QThread::sleep(500);
     } while(found != kNbWiimotes);
 
     if (wiiuse_connect(wiimotes, kNbWiimotes))
