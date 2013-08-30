@@ -50,6 +50,8 @@ void Projectile::loadPixmap()
         image = new QPixmap(PICTURE_PROJ_SPACESHIP_1);
     else if(from == Player2)
         image = new QPixmap(PICTURE_PROJ_SPACESHIP_2);
+    else if(from == Black)
+        image = new QPixmap(PICTURE_PROJ_BLACKSHIP);
     else
         image = new QPixmap(PICTURE_PROJ_SPACESHIP_3);
 
@@ -94,7 +96,7 @@ QPainterPath Projectile::shape() const
     return l_path;
 }
 
-void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem * _option, QWidget * _widget)
+void Projectile::paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     _painter->setBrush(*color);
     if(image != 0)

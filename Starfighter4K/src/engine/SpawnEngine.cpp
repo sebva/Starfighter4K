@@ -10,6 +10,7 @@
 #include "include/game/BonusInvicibility.h"
 #include "include/game/Supernova.h"
 #include "include/game/Spaceship.h"
+#include "include/game/BlackShip.h"
 
 #define arccot M_PI / 2.0 - atan
 
@@ -22,16 +23,19 @@ SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge, bool _isDemo):isDemo(_
     spawnAlienMothership = (bool)(difficulty & AlienMothership);
     spawnSatellites = (bool)(difficulty & Satellites);
     spawnSupernovae = (bool)(difficulty & Supernovae);
+    spawnBlackSquadron = (bool)(difficulty & BlackSquadron);
 
     totalProba = spawnAsteroids ? kProbAsteroid : 0;
     totalProba += spawnAlienMothership ? (isDemo ? PROB_ALIEN_DEMO : kProbAlien) : 0;
     totalProba += spawnSatellites ? kProbSat : 0;
     totalProba += spawnSupernovae ? kProbSupernova : 0;
+    totalProba += spawnBlackSquadron ? kProbBlackSquadron : 0;
 
     intervalAsteroid = spawnAsteroids ? kProbAsteroid : 0;
     intervalAlien = spawnAlienMothership ? intervalAsteroid + (isDemo ? PROB_ALIEN_DEMO : kProbAlien ): intervalAsteroid;
     intervalSat = spawnSatellites ? intervalAlien + kProbSat : intervalAlien;
     intervalSupernova = spawnSupernovae ? intervalSat + kProbSupernova : intervalSat;
+    intervalBlackSquadron = spawnBlackSquadron ? intervalSupernova + kProbBlackSquadron : intervalSupernova;
 
     timer = new QTimer(this);
     timer->setInterval(SPAWN_INTERVAL);
@@ -76,6 +80,10 @@ void SpawnEngine::timerFired()
         {
             Supernova *supernova = new Supernova(ge->sceneSize().width() / 2, ge->sceneSize().height() / 2, ge);
             ge->addSupernova(supernova);
+        }
+        else if(probWhat < intervalBlackSquadron)
+        {
+            Blackship::createBlackSquadron(ge);
         }
     }
 }

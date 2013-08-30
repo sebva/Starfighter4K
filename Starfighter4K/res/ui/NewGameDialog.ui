@@ -264,20 +264,20 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QCheckBox" name="cbxAsteroid">
+     <item row="2" column="0">
+      <widget class="QCheckBox" name="cbxSatellite">
        <property name="text">
-        <string>Asteroids</string>
+        <string>Satellites</string>
        </property>
        <property name="checked">
         <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QCheckBox" name="cbxAlien">
+     <item row="0" column="0">
+      <widget class="QCheckBox" name="cbxAsteroid">
        <property name="text">
-        <string>Alien mothership</string>
+        <string>Asteroids</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -294,10 +294,20 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QCheckBox" name="cbxSatellite">
+     <item row="0" column="1">
+      <widget class="QCheckBox" name="cbxAlien">
        <property name="text">
-        <string>Satellites</string>
+        <string>Alien mothership</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QCheckBox" name="cbxBlackSquadron">
+       <property name="text">
+        <string>BlackSquadron</string>
        </property>
        <property name="checked">
         <bool>true</bool>

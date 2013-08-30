@@ -150,7 +150,7 @@ void AlienSpaceship::advance(int _step)
 
     if(!isAttacking)
     {
-        if(!hasAttacked && pos().y()>=(yStop-MARGIN_Y) && pos().y()<=(yStop+MARGIN_Y))
+        if(!hasAttacked && pos().y()-getPixmap()->height()/2.0>=(yStop-MARGIN_Y) && pos().y()-getPixmap()->height()/2.0<=(yStop+MARGIN_Y))
             attacking();
 
         dArgument+=directionArg*kIntervalArgument;
@@ -186,7 +186,7 @@ QPainterPath AlienSpaceship::shape() const
     return l_path;
 }
 
-void AlienSpaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
+void AlienSpaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *, QWidget *)
 {
     _painter->setOpacity(dHealthPoint/100.0 * blink);
     _painter->drawImage(0,0,shadow);

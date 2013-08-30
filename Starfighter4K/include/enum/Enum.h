@@ -13,7 +13,7 @@ enum Action
 
 enum Shooter
 {
-    Player1 = 1,Player2 = 2,Alien = 3,Other = 4
+    Player1 = 1,Player2 = 2,Alien = 3,Black = 4, Other = 5
 };
 
 enum TypeProjectiles
@@ -23,7 +23,12 @@ enum TypeProjectiles
 
 enum TypeItem
 {
-    tProj = 1,tAsteroid = 2,tSmallAsteroid = 3,tBonus = 4,tAlien = 5,tSupernova = 6,tSpaceship = 7
+    tProj = 1,tAsteroid = 2,tSmallAsteroid = 3,tBonus = 4,tAlien = 5,tSupernova = 6,tSpaceship = 7, tBlackShip = 8
+};
+
+enum SizeFire
+{
+    sLeft1 = 1, sLeft2 = 2, sRight1 = 3, sRight2 = 4, sBoth = 5
 };
 
 enum GameMode
@@ -38,7 +43,7 @@ enum SpaceshipType
 
 enum Difficulty
 {
-    Asteroids = 0x00000001, AlienMothership = 0x00000010, Satellites = 0x00000100, Supernovae = 0x00001000
+    Asteroids = 0x00000001, AlienMothership = 0x00000010, Satellites = 0x00000100, Supernovae = 0x00001000, BlackSquadron = 0x00010000
 };
 
 enum TypeBonus

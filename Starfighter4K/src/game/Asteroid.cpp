@@ -20,7 +20,7 @@
 
 #include "include/game/Asteroid.h"
 
-Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,int _idParent, qreal _dAngleParent, qreal _dAngle)
+Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,int _idParent, qreal _dAngle)
     : Destroyable(_dHealthPoint,_dResistance),
       Projectile(_dX,_dY,_from),
       gameEngine(_gameEngine),//GameEngine
@@ -129,7 +129,7 @@ void Asteroid::collision(qreal _dAngle)
 
         for(int i = 0;i<l_nb;i++)
             gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width()/2.0,pos().y()+getPixmap()->height()/2.0,
-                                                      Other,RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,l_id,dAngle,l_dAngle+l_dAngle2*i+l_dDeltaA/2.0));
+                                                      Other,RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,l_id,l_dAngle+l_dAngle2*i+l_dDeltaA/2.0));
         l_id++;
     }
 }
@@ -146,7 +146,7 @@ QPainterPath Asteroid::shape() const
     return l_path;
 }
 
-void Asteroid::paint(QPainter* _painter,const QStyleOptionGraphicsItem* _option, QWidget* _widget)
+void Asteroid::paint(QPainter* _painter,const QStyleOptionGraphicsItem*, QWidget*)
 {
     //Number of frame before changing the picture
     if(index++%NUMBER_FRAME_BEFORE_CHANGING_PIC==0)

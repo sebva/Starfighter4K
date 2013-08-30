@@ -13,6 +13,7 @@
 #include "include/game/BonusProjectile.h"
 #include "include/game/BonusInvicibility.h"
 #include "include/game/Supernova.h"
+#include "include/game/BlackShip.h"
 
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
@@ -47,26 +48,11 @@ GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, GameMode gameMode, int dura
 GameEngine::GameEngine(QWidget *parent)
     :QGraphicsView(parent),settings(Settings::getGlobalSettings())
 {
-    se = new SpawnEngine(Asteroids|AlienMothership|Satellites|Supernovae,this,true);
+    se = new SpawnEngine(Asteroids|AlienMothership|Satellites|BlackSquadron,this,true);
     mutex = new QMutex();
     de = 0;
     uc = 0;
     soe = 0;
-}
-
-qreal GameEngine::xminWarzone() const
-{
-    return de->xminWarzone();
-}
-
-qreal GameEngine::xmaxWarZone() const
-{
-    return de->xmaxWarZone();
-}
-
-QRect GameEngine::sceneSize() const
-{
-    return de->sceneSize();
 }
 
 GameEngine::~GameEngine()
@@ -84,6 +70,21 @@ GameEngine::~GameEngine()
     listSpaceship.clear();
     listAlienSpaceship.clear();
     listSupernova.clear();
+}
+
+qreal GameEngine::xminWarzone() const
+{
+    return de->xminWarzone();
+}
+
+qreal GameEngine::xmaxWarZone() const
+{
+    return de->xmaxWarZone();
+}
+
+QRect GameEngine::sceneSize() const
+{
+    return de->sceneSize();
 }
 
 double GameEngine::randDouble()
@@ -434,6 +435,23 @@ void GameEngine::addAlienSpaceship(AlienSpaceship *_inAlienSpaceship)
     de->addItemScene(_inAlienSpaceship);
     listAlienSpaceship.append(_inAlienSpaceship);
     connect(_inAlienSpaceship,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
+}
+
+void GameEngine::addBlackship(Blackship *_blackship)
+{
+    de->addItemScene(_blackship);
+    listBlackship.append(_blackship);
+    connect(_blackship,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
+}
+
+void GameEngine::removeBlackship(Blackship *_blackship)
+{
+    int l_index = listBlackship.indexOf(_blackship);
+    if(l_index!=-1)
+    {
+        delete listBlackship[l_index];
+        listBlackship[l_index]=0;
+    }
 }
 
 void GameEngine::addSupernova(Supernova *_inSupernova)

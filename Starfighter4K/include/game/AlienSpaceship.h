@@ -26,7 +26,7 @@ public:
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *_painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
+    void paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWidget *);
 
     TypeItem getTypeObject() const {return tAlien;}
 private:
@@ -38,7 +38,7 @@ private:
     GameEngine* gameEngine;
     QImage shadow;
 
-	int nbSpirales;
+    int nbSpirales;
 
     bool isAttacking;
     bool hasAttacked;

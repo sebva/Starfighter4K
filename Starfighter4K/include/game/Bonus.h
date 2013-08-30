@@ -25,7 +25,7 @@ public:
 
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *_painter, const QStyleOptionGraphicsItem *_option, QWidget *_widget);
+    void paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWidget *);
 
     TypeItem getTypeObject() const {return tBonus;}
     TypeBonus getTypeBonus() const {return bonus;}

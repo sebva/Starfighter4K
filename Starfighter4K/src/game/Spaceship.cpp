@@ -146,7 +146,7 @@ void Spaceship::disableGuideBonus()
     isGuided = false;
 }
 
-void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
+void Spaceship::paint(QPainter *_painter,const QStyleOptionGraphicsItem *, QWidget *)
 {
     _painter->drawPixmap(0 , 0, *getPixmap());
     if(isInvicible)

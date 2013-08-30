@@ -6,7 +6,7 @@
 #include <array>
 #include <QQueue>
 
-class wiimote_t;
+struct wiimote_t;
 
 class WiimoteEngine : public QThread
 {

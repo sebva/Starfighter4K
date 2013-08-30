@@ -17,6 +17,7 @@
 #define PROB_ALIEN_DEMO                     10
 #define PROB_SAT                            15
 #define PROB_SUPERNOVA                      1
+#define PROB_BLACKSQUADRON                  5
 
 #define SPAWN_INTERVAL                      250 // (ms)
 #define RESISTANCE_ASTEROID                 50
@@ -77,6 +78,7 @@
 #define NB_POINT_ASTEROID                   50 // big
 #define NB_POINT_ALIENSPACESHIP             250
 #define NB_POINT_BONUS                      100
+#define NB_POINT_BLACKSHIP                  150
 
 //ProjectileAlien
 #define POWER_ALIEN                         3500
@@ -142,6 +144,17 @@
 #define DELTA_X_SUPERNOVA                   100
 #define DELTA_Y_SUPERNOVA                   100
 
+//BlackShip
+#define PICTURE_BLACKSHIP                   ":/images/game/blackship"
+#define POWER_BLACKSHIP_PROJECTILE          500
+#define SPEED_BLACKSHIP_PROJECTILE          30
+#define INTERVAL_ATTACK_DISTANCE_BLACKSHIP  8
+#define ANGLE_FIRST_BLACKSHIP_FIRE          20*M_PI/180.0
+#define ANGLE_SECOND_BLACKSHIP_FIRE         10*M_PI/180.0
+#define ANGLE_THIRD_BLACKSHIP_FIRE          0*M_PI/180.0
+#define SPEED_BLACKSHIP                     4
+#define RESISTANCE_BLACKSHIP                300
+#define PICTURE_PROJ_BLACKSHIP              ":/images/game/projblack"
 //Do not touch
 
 //DisplayEngine

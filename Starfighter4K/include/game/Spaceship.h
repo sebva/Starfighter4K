@@ -55,7 +55,7 @@ public:
     void addBonus(Bonus* _bonus);
     QRectF boundingRect() const;
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
     void rotate(qreal pitch);
 
     void freeze() {if(!isFrozen)isFrozen = true;}

@@ -181,7 +181,7 @@ void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
     }
 }
 
-void UserControlsEngine::timerEvent(QTimerEvent *event)
+void UserControlsEngine::timerEvent(QTimerEvent *)
 {
     hasBegin = false;
 

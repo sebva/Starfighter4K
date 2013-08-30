@@ -22,6 +22,8 @@
         <file alias="proj3">res/images/game/proj3.png</file>
         <file alias="proj4">res/images/game/proj4.png</file>
         <file alias="shadow">res/images/game/shadow.png</file>
+        <file alias="blackship">res/images/game/blackship.png</file>
+        <file alias="projblack">res/images/game/projblack.png</file>
     </qresource>
     <qresource prefix="/images/game/asteroids">
         <file alias="rock10000">res/images/game/asteroid1/rock10000.png</file>

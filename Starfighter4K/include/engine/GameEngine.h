@@ -19,6 +19,7 @@ class QMutex;
 class WiimoteEngine;
 class SpawnEngine;
 class QWidget;
+class Blackship;
 
 class GameEngine : public QGraphicsView
 {
@@ -53,17 +54,19 @@ public:
     bool getHasSomeonWon() const {return hasSomeoneWon;}
     virtual void timerEvent(QTimerEvent *);
 
+    virtual void addBlackship(Blackship* _blackship);
     virtual void addProjectile(Projectile *_inProjectile);
-    void addSupernova(Supernova *_inSupernova);
-    void addShip(Spaceship *_inSpaceship);
-    void removeShip(Spaceship *_inSpaceship);
+    virtual void addSupernova(Supernova *_inSupernova);
+    virtual void addShip(Spaceship *_inSpaceship);
+    virtual void removeShip(Spaceship *_inSpaceship);
     virtual void addAsteroid(Asteroid *_inAsteroide);
-    void removeAsteroid(Asteroid *_inAsteroide);
+    virtual void removeAsteroid(Asteroid *_inAsteroide);
     virtual void addSmallAsteroid(Asteroid *_inAsteroide);
-    void removeSmallAsteroid(Asteroid *_inAsteroide);
+    virtual void removeSmallAsteroid(Asteroid *_inAsteroide);
     virtual void addBonus(Bonus *_inBonus);
     virtual void addAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
-    void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+    virtual void removeAlienSpaceship(AlienSpaceship *_inAlienSpaceship);
+    virtual void removeBlackship(Blackship* _blackship);
     virtual void removeItemScene(Displayable* item);
     void endGameDeathMatch(Spaceship* _ship=0);
     void endGameTimer();
@@ -98,6 +101,7 @@ protected:
     QList<Spaceship*>    listSpaceship;
     QList<Displayable*>  listAlienSpaceship;
     QList<Supernova*>    listSupernova;
+    QList<Displayable*>  listBlackship;
 
     SpawnEngine *se;
 

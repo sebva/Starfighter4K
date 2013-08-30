@@ -4,6 +4,7 @@
 #include "include/game/AlienSpaceship.h"
 #include "include/game/Bonus.h"
 #include "include/game/Asteroid.h"
+#include "include/game/BlackShip.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -33,7 +34,7 @@ DemoEngine::DemoEngine(QWidget* parent):GameEngine(parent),bg(BACKGROUND),angleB
     startTimer(REFRESH);
 }
 
-void DemoEngine::resizeEvent(QResizeEvent *event)
+void DemoEngine::resizeEvent(QResizeEvent *)
 {
     setSceneRect(QRect(QPoint(0, 0), size()));
     scene->setSceneRect(QRect(QPoint(0, 0), size()));
@@ -65,14 +66,6 @@ void DemoEngine::timerEvent(QTimerEvent *)
     checkOutsideScene(listBonus);
     checkOutsideScene(listAlienSpaceship);
 
-    //Explode all the supernova
-    for(int i = 0;i<listSupernova.size();i++)
-    {
-        delete listSupernova[i];
-        listSupernova[i]=0;
-    }
-    listSupernova.clear();
-
     runTestCollision(listProjectile);
     clearList(listProjectile);
 
@@ -102,6 +95,13 @@ void DemoEngine::addAsteroid(Asteroid *_inAsteroid)
     connect(_inAsteroid,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
 }
 
+void DemoEngine::addBlackship(Blackship* _blackship)
+{
+    scene->addItem(_blackship);
+    listBlackship.append(_blackship);
+    connect(_blackship,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
+}
+
 void DemoEngine::addProjectile(Projectile *_inProjectile)
 {
     scene->addItem(_inProjectile);
@@ -128,7 +128,7 @@ void DemoEngine::addAlienSpaceship(AlienSpaceship *_inAlienSpaceship)
     connect(_inAlienSpaceship,SIGNAL(destroyed(Destroyable*,int,Shooter)),this,SLOT(elemenDestroyed(Destroyable*,int,Shooter)));
 }
 
-void DemoEngine::elemenDestroyed(Destroyable *_destroyItem, int nbPoint, Shooter forShip)
+void DemoEngine::elemenDestroyed(Destroyable *_destroyItem, int, Shooter)
 {
     if(Asteroid* a = dynamic_cast<Asteroid*>(_destroyItem))
     {

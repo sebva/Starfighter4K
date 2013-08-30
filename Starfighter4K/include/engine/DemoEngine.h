@@ -19,6 +19,7 @@ public:
     qreal xmaxWarZone() const;
     QRect sceneSize() const;
 
+    void addBlackship(Blackship* _blackship);
     void addProjectile(Projectile *_inProjectile);
     void addSmallAsteroid(Asteroid *_inAsteroide);
     void addBonus(Bonus *_inBonus);
@@ -30,7 +31,7 @@ public slots:
     void elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter forShip);
 
 private:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *);
     void timerEvent(QTimerEvent *);
 
     const static int offset = 10;

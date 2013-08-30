@@ -100,7 +100,7 @@ void WiimoteEngine::unrumble()
     wiiuse_rumble(wiimotes[rumble_order.dequeue()], 0);
 }
 
-void WiimoteEngine::timerEvent(QTimerEvent *event)
+void WiimoteEngine::timerEvent(QTimerEvent *)
 {
     for(int i = 0; i < kNbWiimotes; ++i)
         emit orientation(i,-atan2((wiimotes[i]->gforce.y) ,sqrt(pow(wiimotes[i]->gforce.x,2) + pow(wiimotes[i]->gforce.z,2)))*180.0/M_PI);

@@ -90,6 +90,7 @@ void NewGameDialog::on_btnStart_clicked()
     difficulty |= ((ui->cbxAsteroid->checkState() / Qt::Checked) * Asteroids);
     difficulty |= ((ui->cbxSatellite->checkState() / Qt::Checked) * Satellites);
     difficulty |= ((ui->cbxSupernova->checkState() / Qt::Checked) * Supernovae);
+    difficulty |= ((ui->cbxBlackSquadron->checkState() / Qt::Checked) * BlackSquadron);
 
     if(difficulty == Supernovae)
     {
@@ -217,22 +218,22 @@ void NewGameDialog::updateSpecialBonus()
     setPixmapForLabelWithSpecialBonusType(player2, ui->imgSBP2);
 }
 
-void NewGameDialog::on_cbbP1ship_currentIndexChanged(int index)
+void NewGameDialog::on_cbbP1ship_currentIndexChanged(int )
 {
     updateSpaceshipsStats();
 }
 
-void NewGameDialog::on_cbbP2ship_currentIndexChanged(int index)
+void NewGameDialog::on_cbbP2ship_currentIndexChanged(int )
 {
     updateSpaceshipsStats();
 }
 
-void NewGameDialog::on_cbbSBP1_currentIndexChanged(int index)
+void NewGameDialog::on_cbbSBP1_currentIndexChanged(int )
 {
     updateSpecialBonus();
 }
 
-void NewGameDialog::on_cbbSBP2_currentIndexChanged(int index)
+void NewGameDialog::on_cbbSBP2_currentIndexChanged(int )
 {
     updateSpecialBonus();
 }

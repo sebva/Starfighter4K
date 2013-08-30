@@ -141,7 +141,7 @@ QPainterPath Bonus::shape() const
     return l_path;
 }
 
-void Bonus::paint(QPainter *_painter,const QStyleOptionGraphicsItem *_option, QWidget *_widget)
+void Bonus::paint(QPainter *_painter,const QStyleOptionGraphicsItem *, QWidget *)
 {
     _painter->drawPixmap(0,0,*getPixmap());
 }
