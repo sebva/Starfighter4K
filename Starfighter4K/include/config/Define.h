@@ -102,7 +102,7 @@
 #define SPEED_TRACKING_DEF                  20
 
 //ProjectileMulti
-#define POWER_MULTI                         1100
+#define POWER_MULTI                         800
 #define SPEED_MULTI_DEF                     25
 
 //ProjectileGuided
