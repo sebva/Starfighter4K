@@ -1,9 +1,15 @@
 #include "include/menu/KinectWindow.h"
 #include "ui_KinectWindow.h"
+#include "include/engine/GameEngine.h"
+#include "include/engine/WiimoteEngine.h"
+#include "include/engine/GameEngine.h"
 
-KinectWindow::KinectWindow(QWidget *parent) :
+KinectWindow::KinectWindow(WiimoteEngine *we, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::KinectWindow)
+    ui(new Ui::KinectWindow),
+    p1Ship(NoSpaceShip), p2Ship(NoSpaceShip),
+    p1Bonus(TypeSpecialBonusNothing), p2Bonus(TypeSpecialBonusNothing),
+    we(we), ge(0)
 {
     ui->setupUi(this);
 
@@ -26,11 +32,13 @@ void KinectWindow::on_btnGame_clicked()
 void KinectWindow::on_btnDeathmatch_clicked()
 {
     ui->stack->setCurrentWidget(ui->spaceshipsSelection);
+    gameMode = DeathMatch;
 }
 
 void KinectWindow::on_btnTimer_clicked()
 {
     ui->stack->setCurrentWidget(ui->timerSelect);
+    gameMode = Timer;
 }
 
 void KinectWindow::on_btnValidateTime_clicked()
@@ -72,4 +80,127 @@ void KinectWindow::keyPressEvent(QKeyEvent *event)
         else if(cur == ui->bonusSelection)
             ui->stack->setCurrentWidget(ui->spaceshipsSelection);
     }
+}
+
+void KinectWindow::validateShips()
+{
+    if(p1Ship != NoSpaceShip && p2Ship != NoSpaceShip)
+        ui->stack->setCurrentWidget(ui->bonusSelection);
+}
+
+void KinectWindow::on_btnShip1P1_clicked()
+{
+    p1Ship = SpaceshipType1;
+    validateShips();
+}
+
+void KinectWindow::on_btnShip2P1_clicked()
+{
+    p1Ship = SpaceshipType2;
+    validateShips();
+}
+
+void KinectWindow::on_btnShip3P1_clicked()
+{
+    p1Ship = SpaceshipType3;
+    validateShips();
+}
+
+void KinectWindow::on_btnShip1P2_clicked()
+{
+    p2Ship = SpaceshipType1;
+    validateShips();
+}
+
+void KinectWindow::on_btnShip2P2_clicked()
+{
+    p2Ship = SpaceshipType2;
+    validateShips();
+}
+
+void KinectWindow::on_btnShip3P2_clicked()
+{
+    p2Ship = SpaceshipType3;
+    validateShips();
+}
+
+void KinectWindow::on_btnFreezeP1_clicked()
+{
+    p1Bonus = TypeSpecialBonusFreeze;
+    validateBonus();
+}
+
+void KinectWindow::on_btnAntigravityP1_clicked()
+{
+    p1Bonus = TypeSpecialBonusAntiGravity;
+    validateBonus();
+}
+
+void KinectWindow::on_btnGuidedP1_clicked()
+{
+    p1Bonus = TypeSpecialBonusGuidedMissile;
+    validateBonus();
+}
+
+void KinectWindow::on_btnTrackingP1_clicked()
+{
+    p1Bonus = TypeSpecialBonusTrackingMissile;
+    validateBonus();
+}
+
+void KinectWindow::on_btnRootP1_clicked()
+{
+    p1Bonus = TypeSpecialBonusOmnidirectionalShot;
+    validateBonus();
+}
+
+void KinectWindow::on_btnFreezeP2_clicked()
+{
+    p2Bonus = TypeSpecialBonusFreeze;
+    validateBonus();
+}
+
+void KinectWindow::on_btnAntigravityP2_clicked()
+{
+    p2Bonus = TypeSpecialBonusAntiGravity;
+    validateBonus();
+}
+
+void KinectWindow::on_btnGuidedP2_clicked()
+{
+    p2Bonus = TypeSpecialBonusGuidedMissile;
+    validateBonus();
+}
+
+void KinectWindow::on_btnTrackingP2_clicked()
+{
+    p2Bonus = TypeSpecialBonusTrackingMissile;
+    validateBonus();
+}
+
+void KinectWindow::on_btnRootP2_clicked()
+{
+    p2Bonus = TypeSpecialBonusOmnidirectionalShot;
+    validateBonus();
+}
+
+void KinectWindow::validateBonus()
+{
+    if(p1Bonus != TypeSpecialBonusNothing && p2Bonus != TypeSpecialBonusNothing)
+    {
+        int duration = timer.hour() * 3600 + timer.minute() * 60 + timer.second();
+        int difficulty = AlienMothership | Asteroids | Satellites | Supernovae | BlackSquadron;
+        ge = new GameEngine(we, gameMode, duration, p1Ship, p2Ship, p1Bonus, p2Bonus, difficulty, this);
+        connect(ge, SIGNAL(endGame()), this, SLOT(endGame()));
+    }
+}
+
+void KinectWindow::endGame()
+{
+    ge->deleteLater();
+    ge = 0;
+
+    ui->stack->setCurrentWidget(ui->home);
+    p1Bonus = p2Bonus = TypeSpecialBonusNothing;
+    p1Ship = p2Ship = NoSpaceShip;
 }
