@@ -16,6 +16,11 @@ int main(int argc, char *argv[])
     if (translator.load(QLocale::system(), "starfighter", "_", ":/strings/", ".qm"))
         app.installTranslator(&translator);
 
+    //* Old keyboard/mouse menus
+    MainDialog md;
+    md.show();
+    //*/
+
     QDir dir(SOUNDS_DIR);
     if(!dir.exists())
         QMessageBox::information(&md, QObject::tr("Sounds not found"), QObject::tr("The sounds directory was not found. The game will work as it should, but no sound will be played."));
@@ -28,11 +33,6 @@ int main(int argc, char *argv[])
        KinectWindow kw;
        kw.showFullScreen();
     }
-    //*/
-
-    //* Old keyboard/mouse menus
-    MainDialog md;
-    md.show();
     //*/
 
     return app.exec();
