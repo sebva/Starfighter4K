@@ -61,8 +61,5 @@ void ConnectDialog::checkAndClose()
 {
     int statuses = ui->kinect->getStatus() + ui->wiimote->getStatus() + ui->calibration->getStatus();
     if(statuses == SystemStateReady * 3)
-    {
-        setResult(QDialog::Accepted);
-        close();
-    }
+        accept();
 }

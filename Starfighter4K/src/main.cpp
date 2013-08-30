@@ -16,24 +16,29 @@ int main(int argc, char *argv[])
     if (translator.load(QLocale::system(), "starfighter", "_", ":/strings/", ".qm"))
         app.installTranslator(&translator);
 
-    //* Old keyboard/mouse menus
+    /* Old keyboard/mouse menus
     MainDialog md;
     md.show();
     //*/
 
+    /*
     QDir dir(SOUNDS_DIR);
     if(!dir.exists())
         QMessageBox::information(&md, QObject::tr("Sounds not found"), QObject::tr("The sounds directory was not found. The game will work as it should, but no sound will be played."));
+        */
 
-    /* New Kinect menus
+    //* New Kinect menus
     WiimoteEngine we;
     ConnectDialog cd(&we);
+    KinectWindow* kw;
     if(cd.exec() == QDialog::Accepted)
     {
-       KinectWindow kw;
-       kw.showFullScreen();
+        kw = new KinectWindow();
+        kw->showFullScreen();
     }
     //*/
 
-    return app.exec();
+    int res = app.exec();
+    delete kw;
+    return res;
 }

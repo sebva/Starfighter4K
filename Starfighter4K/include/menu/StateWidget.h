@@ -8,9 +8,9 @@ class StateWidget;
 }
 
 enum SystemState {
-    SystemStateReady,
-    SystemStateLoading,
-    SystemStateFailed
+    SystemStateReady = 1,
+    SystemStateLoading = 2,
+    SystemStateFailed = 3
 };
 
 class StateWidget : public QWidget
