@@ -37,16 +37,8 @@ int WiimoteEngine::findWiimotes()
 
 bool WiimoteEngine::connectWiimotes()
 {
-    int found = 0;
-    do
-    {
-        found = findWiimotes();
-        qWarning() << found << " wiimotes found ...";
-    } while(found != kNbWiimotes);
-
     if (wiiuse_connect(wiimotes, kNbWiimotes))
     {
-        qWarning() << found << " wiimote(s) are now connected";
         wiiuse_set_leds(wiimotes[0], WIIMOTE_LED_1);
         wiiuse_set_leds(wiimotes[1], WIIMOTE_LED_2);
         return true;

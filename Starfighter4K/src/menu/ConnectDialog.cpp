@@ -33,13 +33,12 @@ void ConnectDialog::connectWiimotes()
     if(wiimotes >= 2)
     {
         wiimoteEngine->connectWiimotes();
+		wiimoteEngine->startAccel();
+		wiimoteEngine->start();
         ui->wiimote->setStatus(SystemStateReady);
     }
     else
         ui->wiimote->setStatus(SystemStateFailed);
-	
-    wiimoteEngine->startAccel();
-    wiimoteEngine->start();
 
     checkAndClose();
 }
