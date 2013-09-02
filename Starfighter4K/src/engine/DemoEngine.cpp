@@ -50,6 +50,7 @@ void DemoEngine::escapeGame()
 		killTimer(idTimer);
 		idTimer = -1;
 	}
+	emit signalPause(true);
 }
 
 void DemoEngine::timerEvent(QTimerEvent *)

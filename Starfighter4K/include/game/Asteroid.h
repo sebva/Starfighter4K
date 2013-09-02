@@ -21,7 +21,7 @@ class GameEngine;
 class Asteroid : public Destroyable, public Projectile
 {
 public:
-    Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,int _idParent=0,qreal _dAngle=0);
+    Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint, GameEngine *_gameEngine,int _idParent=0,qreal _dAngle=0,qreal _dSpeedParent = 0);
     ~Asteroid() {}
 
     bool isSmall() const {return bSmall;}

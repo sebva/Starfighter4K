@@ -20,7 +20,7 @@
 
 #include "include/game/Asteroid.h"
 
-Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,int _idParent, qreal _dAngle)
+Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal _dHealthPoint,GameEngine *_gameEngine,int _idParent, qreal _dAngle ,qreal _dSpeedParent)
     : Destroyable(_dHealthPoint,_dResistance),
       Projectile(_dX,_dY,_from),
       gameEngine(_gameEngine),//GameEngine
@@ -36,7 +36,8 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
     {
         nbPoint = NB_POINT_SMALL_ASTEROID;
         dSpeed = SPEED_SMALL_ASTEROID;
-
+		if(idParent != 0)
+			dSpeed = _dSpeedParent;
         numberFrameMin = NB_PICTURE_SMALL_ASTEROID_MIN;
         numberFrameMax = NB_PICTURE_SMALL_ASTEROID_MAX;
         currentFrame = numberFrameMin;
@@ -51,7 +52,7 @@ Asteroid::Asteroid(qreal _dX, qreal _dY,Shooter _from, qreal _dResistance, qreal
         currentFrame = numberFrameMin;
 
         dSpeed = SPEED_ASTEROID;
-
+		dSpeed *= (GameEngine::randDouble()+0.5);
         dPower = POWER_ASTEROID;
         setPixmap(new QPixmap(QString(PICTURE_ASTEROID).arg(currentFrame)));
 
@@ -129,7 +130,7 @@ void Asteroid::collision(qreal _dAngle)
 
         for(int i = 0;i<l_nb;i++)
             gameEngine->addSmallAsteroid(new Asteroid(pos().x()+getPixmap()->width()/2.0,pos().y()+getPixmap()->height()/2.0,
-                                                      Other,RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,l_id,l_dAngle+l_dAngle2*i+l_dDeltaA/2.0));
+                                                      Other,RESISTANCE_SMALL_ASTEROID,HEALTHPOINT_SMALL_ASTEROID,gameEngine,l_id,l_dAngle+l_dAngle2*i+l_dDeltaA/2.0, dSpeed));
         l_id++;
     }
 }
