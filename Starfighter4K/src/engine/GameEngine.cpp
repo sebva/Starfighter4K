@@ -72,6 +72,7 @@ GameEngine::~GameEngine()
     listSpaceship.clear();
     listAlienSpaceship.clear();
     listSupernova.clear();
+	listBlackship.clear();
 }
 
 qreal GameEngine::xminWarzone() const

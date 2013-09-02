@@ -34,6 +34,12 @@ DemoEngine::DemoEngine(QWidget* parent):GameEngine(parent),bg(BACKGROUND),angleB
     idTimer = startTimer(REFRESH);
 }
 
+DemoEngine::~DemoEngine()
+{
+	delete bgScene;
+	qDeleteAll(scene->items());
+}
+
 void DemoEngine::resizeEvent(QResizeEvent *)
 {
     setSceneRect(QRect(QPoint(0, 0), size()));
@@ -117,7 +123,7 @@ void DemoEngine::addBlackship(Blackship* _blackship)
 void DemoEngine::addProjectile(Projectile *_inProjectile)
 {
     scene->addItem(_inProjectile);
-    listProjectile.append(_inProjectile);
+	listProjectile.append(_inProjectile);
 }
 
 void DemoEngine::addSmallAsteroid(Asteroid *_inAsteroid)

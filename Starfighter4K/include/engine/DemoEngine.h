@@ -13,7 +13,7 @@ class DemoEngine : public GameEngine
 
 public:
     DemoEngine(QWidget * = 0);
-    ~DemoEngine(){}
+    ~DemoEngine();
 
     qreal xminWarzone() const;
     qreal xmaxWarZone() const;

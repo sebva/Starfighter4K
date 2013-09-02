@@ -101,6 +101,7 @@ void DisplayEngine::moveBG()
 DisplayEngine::~DisplayEngine()
 {
     scene->clear();
+	qDeleteAll(scene->items());
     //Must clear the list in GameEngine
 
     delete affiche;
