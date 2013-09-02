@@ -27,7 +27,7 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *_painter, const QStyleOptionGraphicsItem *, QWidget *);
-
+	void turnShadow();
     TypeItem getTypeObject() const {return tAlien;}
 private:
     void advance(int _step);

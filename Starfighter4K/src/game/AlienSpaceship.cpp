@@ -109,6 +109,7 @@ AlienSpaceship::AlienSpaceship(int _nbSpirales,qreal _dHealthPoint,qreal _dResis
         l_y3=gameEngine->sceneSize().y();
         //Rotate the picture if it's coming by the bottom size
         Displayable::setPixmap(new QPixmap(getPixmap()->transformed(QTransform().rotate(180))));
+		turnShadow();
     }
 
     //Where the alienspaceship will stop to fire
@@ -172,6 +173,11 @@ void AlienSpaceship::attacking()
 
     hasAttacked=true;
     isAttacking=false;
+}
+
+void AlienSpaceship::turnShadow()
+{
+	shadow = shadow.transformed(QTransform().rotate(180));
 }
 
 QRectF AlienSpaceship::boundingRect() const
