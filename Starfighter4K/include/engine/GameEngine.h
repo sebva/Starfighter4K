@@ -71,7 +71,7 @@ public:
     virtual void removeItemScene(Displayable* item);
     void endGameDeathMatch(Spaceship* _ship=0);
     void endGameTimer();
-    void escapeGame();
+    virtual void escapeGame();
 
     void enableAntiGravity(Shooter playerActivated);
     void freezePlayer(int duration, Shooter playerDest);

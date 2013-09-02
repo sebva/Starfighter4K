@@ -22,11 +22,13 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
 
 KinectWindow::~KinectWindow()
 {
+	delete ui->graphicsView;
     delete ui;
 }
 
 void KinectWindow::on_btnGame_clicked()
 {
+	ui->graphicsView->escapeGame();
     ui->stack->setCurrentWidget(ui->mode);
 }
 
@@ -73,7 +75,10 @@ void KinectWindow::keyPressEvent(QKeyEvent *event)
         QWidget* cur = ui->stack->currentWidget();
 
         if(cur == ui->mode)
+		{
+			ui->graphicsView->escapeGame();
             ui->stack->setCurrentWidget(ui->home);
+		}
         else if(cur == ui->timerSelect)
             ui->stack->setCurrentWidget(ui->mode);
         else if(cur == ui->spaceshipsSelection)
@@ -198,6 +203,8 @@ void KinectWindow::validateBonus()
 
 void KinectWindow::endGame()
 {
+	ui->graphicsView->escapeGame();
+	
     ge->deleteLater();
     ge = 0;
 

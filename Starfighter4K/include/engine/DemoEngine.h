@@ -27,6 +27,8 @@ public:
     void addAsteroid(Asteroid *_inAsteroide);
     void removeItemScene(Displayable* item);
 
+	void escapeGame();
+
 public slots:
     void elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter forShip);
 
@@ -34,6 +36,7 @@ private:
     void resizeEvent(QResizeEvent *);
     void timerEvent(QTimerEvent *);
 
+	int idTimer;
     const static int offset = 10;
 
     QGraphicsScene* scene;

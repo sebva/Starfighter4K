@@ -31,7 +31,7 @@ DemoEngine::DemoEngine(QWidget* parent):GameEngine(parent),bg(BACKGROUND),angleB
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     //show();
-    startTimer(REFRESH);
+    idTimer = startTimer(REFRESH);
 }
 
 void DemoEngine::resizeEvent(QResizeEvent *)
@@ -39,6 +39,17 @@ void DemoEngine::resizeEvent(QResizeEvent *)
     setSceneRect(QRect(QPoint(0, 0), size()));
     scene->setSceneRect(QRect(QPoint(0, 0), size()));
     fitInView(QRect(QPoint(0, 0), size()));
+}
+
+void DemoEngine::escapeGame()
+{
+	if(idTimer == -1)
+		idTimer = startTimer(REFRESH);
+	else
+	{
+		killTimer(idTimer);
+		idTimer = -1;
+	}
 }
 
 void DemoEngine::timerEvent(QTimerEvent *)
