@@ -26,7 +26,7 @@ void RectangleDetection::addImage(const Mat& image)
 
 bool sortPoint(const Point& p1, const Point& p2)
 {
-	return p1.x < p2.x || p2.y < p2.y;
+	return abs(p1.x - p2.x) > 50 || abs(p2.y - p2.y) > 50;
 }
 
 array<Point, 4> RectangleDetection::getPoints()

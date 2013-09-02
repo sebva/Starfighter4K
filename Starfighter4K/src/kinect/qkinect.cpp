@@ -149,14 +149,14 @@ QPair<int, int> QKinect::getHandsPosition()
 {
 	QPair<int, int>  hands;
 	
-	for(QList<QPoint> skeleton : m_skeletons)
+	for(QList<QPoint> skeleton : getRealSkeletons())
 	{
 		if(skeleton.count() >= 20)
 		{
 			if(skeleton[NUI_SKELETON_POSITION_HEAD].x() < m_screenSize->width() / 2)
-				hands.first = skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].y();
+				hands.first = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() > skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].y() : skeleton[NUI_SKELETON_POSITION_HAND_LEFT].y();
 			else
-				hands.second = skeleton[NUI_SKELETON_POSITION_HAND_LEFT].y();
+				hands.second = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() < skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].y() : skeleton[NUI_SKELETON_POSITION_HAND_LEFT].y();
 		}
 	}
 
@@ -191,10 +191,11 @@ void QKinect::run()
 void QKinect::update()
 {
 	if(m_kinect == nullptr) return;
-	bool update = processColor();
+	bool update = (m_calibrated) ? false : processColor();
 	update |= processSkeleton();
 	if(update)
 		emit newDatas();
+	qDebug() << *m_screenSize;
 }
 
 bool QKinect::init()
@@ -239,7 +240,7 @@ bool QKinect::init()
 	else
 		infos("fail to open initialize kinect");
 
-	setElevationAngle(3);
+	setElevationAngle(7);
 
 	//m_kinect->colorstream
 
@@ -259,12 +260,17 @@ void QKinect::addImage()
 		m_calibrated = true;
 
 		m_points = m_rectangleDetection.getPoints();
-		m_realScreenPosition = QPoint(m_points[1].x, m_points[1].y);
-		m_realScreenSize = QSize(m_points[3].x - m_points[1].x, m_points[3].y - m_points[1].y);
+		m_realScreenPosition = QPoint(m_points[0].x, m_points[0].y);
+		m_realScreenSize = QSize(m_points[2].x - m_points[0].x, m_points[2].y - m_points[0].y);
 
 		emit calibrated();
-		//m_pColorStreamHandle->
-		//qDebug() << QPoint(points[0].x, points[0].y) << QPoint(points[1].x, points[1].y) << QPoint(points[2].x, points[2].y) << QPoint(points[3].x, points[3].y);
+		
+
+		if (m_hNextColorFrameEvent != INVALID_HANDLE_VALUE)
+		{
+			CloseHandle(m_hNextColorFrameEvent);
+		}
+		qDebug() << QPoint(m_points[0].x, m_points[0].y) << QPoint(m_points[1].x, m_points[1].y) << QPoint(m_points[2].x, m_points[2].y) << QPoint(m_points[3].x, m_points[3].y);
 		qDebug() << m_realScreenPosition << m_realScreenSize;
 
 	}

@@ -7,6 +7,7 @@ ConnectDialog::ConnectDialog(WiimoteEngine* wiimoteEngine, QKinect* kinect, QWid
     QDialog(parent),
     wiimoteEngine(wiimoteEngine),
 	kinect(kinect),
+	greenScreen(nullptr),
     ui(new Ui::ConnectDialog)
 {
     ui->setupUi(this);
@@ -57,9 +58,23 @@ void ConnectDialog::performCalibration()
         return;
 
 	if(kinect->isCalibrated())
+	{
+		greenScreen->close();
+		delete greenScreen;
+		greenScreen = nullptr;
 		ui->calibration->setStatus(SystemStateReady);
-	else
+	}
+	else if(greenScreen == nullptr)
+	{
+		QPixmap pixmap(5000, 5000);
+		pixmap.fill(QColor("#09741b"));
+		greenScreen = new QSplashScreen(pixmap);
+		greenScreen->showFullScreen();
+		greenScreen->setFont(QFont("Helvetica neue", 35));
+		greenScreen->showMessage(tr("Calibration in progess..."), Qt::AlignCenter);
+		greenScreen->raise();
 		kinect->calibrate();
+	}
 
 	connect(kinect, SIGNAL(calibrated()), this, SLOT(performCalibration()));
 

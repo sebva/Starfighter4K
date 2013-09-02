@@ -19,7 +19,7 @@
 #define PROB_SUPERNOVA                      1
 #define PROB_BLACKSQUADRON                  5
 
-#define SPAWN_INTERVAL                      250 // (ms)
+#define SPAWN_INTERVAL                      500 // (ms)
 #define RESISTANCE_ASTEROID                 50
 #define RESISTANCE_ALIEN                    425
 #define ALIEN_SWIRL_MIN                     20

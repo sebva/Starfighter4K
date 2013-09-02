@@ -116,7 +116,7 @@ Spaceship::~Spaceship()
 
 void Spaceship::setY(int _y)
 {
-	if(!isFrozen && pos().y()+getPixmap()->height() < gameEngine->sceneSize().height() && pos().y() > 0)
+	if(!isFrozen && _y+getPixmap()->height() < gameEngine->sceneSize().height() && _y > 0)
 		setPos(pos().x(), _y);
 }
 

@@ -4,6 +4,7 @@
 #include "include/engine/WiimoteEngine.h"
 
 class QKinect;
+class QSplashScreen;
 
 namespace Ui {
 class ConnectDialog;
@@ -21,6 +22,7 @@ private:
     Ui::ConnectDialog *ui;
     WiimoteEngine* wiimoteEngine;
     QKinect* kinect;
+	QSplashScreen* greenScreen;
 
 private slots:
     void connectWiimotes();
