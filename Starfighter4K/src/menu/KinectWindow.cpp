@@ -18,12 +18,21 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
 
     timer.setHMS(0, 2, 0);
     updateTimerDisplay();
+
+	QMediaPlaylist* pl = new QMediaPlaylist(this);
+    pl->addMedia(QMediaContent(QUrl::fromLocalFile("./sounds/menu.mp3")));
+    pl->setPlaybackMode(QMediaPlaylist::Loop);
+    menuMusic = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
+    menuMusic->setPlaylist(pl);
+    menuMusic->play();
 }
 
 KinectWindow::~KinectWindow()
 {
 	delete ui->graphicsView;
     delete ui;
+	we->stop();
+	delete we;
 }
 
 void KinectWindow::on_btnGame_clicked()
@@ -194,6 +203,7 @@ void KinectWindow::validateBonus()
 {
     if(p1Bonus != TypeSpecialBonusNothing && p2Bonus != TypeSpecialBonusNothing)
     {
+		menuMusic->stop();
         int duration = timer.hour() * 3600 + timer.minute() * 60 + timer.second();
         int difficulty = AlienMothership | Asteroids | Satellites | Supernovae | BlackSquadron;
         ge = new GameEngine(we, kinect, gameMode, duration, p1Ship, p2Ship, p1Bonus, p2Bonus, difficulty, this);
@@ -211,4 +221,5 @@ void KinectWindow::endGame()
     ui->stack->setCurrentWidget(ui->home);
     p1Bonus = p2Bonus = TypeSpecialBonusNothing;
     p1Ship = p2Ship = NoSpaceShip;
+	menuMusic->play();
 }

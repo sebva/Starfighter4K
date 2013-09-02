@@ -83,6 +83,7 @@ private:
     WiimoteEngine* we;
 	QKinect* kinect;
     GameEngine* ge;
+	QMediaPlayer *menuMusic;
 };
 
 #endif // KINECTWINDOW_H

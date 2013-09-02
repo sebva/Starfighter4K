@@ -21,11 +21,11 @@ int main(int argc, char *argv[])
     md.show();
     //*/
 
-    /*
+    
     QDir dir(SOUNDS_DIR);
     if(!dir.exists())
-        QMessageBox::information(&md, QObject::tr("Sounds not found"), QObject::tr("The sounds directory was not found. The game will work as it should, but no sound will be played."));
-        */
+        QMessageBox::information(0, QObject::tr("Sounds not found"), QObject::tr("The sounds directory was not found. The game will work as it should, but no sound will be played."));
+        
     WiimoteEngine we;
     //* New Kinect menus
 	QSize size = app.desktop()->screenGeometry().size();
