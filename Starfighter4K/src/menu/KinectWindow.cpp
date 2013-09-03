@@ -4,20 +4,33 @@
 #include "include/engine/WiimoteEngine.h"
 #include "include/engine/GameEngine.h"
 #include "include/kinect/qkinect.h"
+#include "include/utils/Settings.h"
+#include "include/config/Define.h"
+#include "include/menu/Overlay.h"
 
 KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::KinectWindow),
     p1Ship(NoSpaceShip), p2Ship(NoSpaceShip),
     p1Bonus(TypeSpecialBonusNothing), p2Bonus(TypeSpecialBonusNothing),
-    we(we), kinect(kinect), ge(0)
+    we(we), kinect(kinect), ge(0),
+	background(":/images/menu/background")
 {
     ui->setupUi(this);
 
-    ui->scrollText->setText("The quick brown fox jumps over the lazy dog.");
+	ui->about->setSource(tr("qrc:/strings/about"));
+
+	QSet<QString> namesSet;
+	namesSet << NAMES;
+	QStringList names(namesSet.toList());
+
+	ui->scrollText->setText(tr("Starfighter 4K - Developed by ").append(names.join(", ")).append(tr(" - Copyright 2013 HE-Arc")));
+	ui->scrollText->setSeparator("  +++  ");
 
     timer.setHMS(0, 2, 0);
     updateTimerDisplay();
+
+	connect(kinect, SIGNAL(newDatas()), this, SLOT(handsMoved()));
 
 	QMediaPlaylist* pl = new QMediaPlaylist(this);
     pl->addMedia(QMediaContent(QUrl::fromLocalFile("./sounds/menu.mp3")));
@@ -25,6 +38,8 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
     menuMusic = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
     menuMusic->setPlaylist(pl);
     menuMusic->play();
+
+	//overlay = new Overlay(centralWidget());
 }
 
 KinectWindow::~KinectWindow()
@@ -35,10 +50,59 @@ KinectWindow::~KinectWindow()
 	delete we;
 }
 
+void KinectWindow::paintEvent(QPaintEvent *event)
+{
+	QPainter p(this);
+	p.drawPixmap(0, 0, background);
+}
+
+void KinectWindow::resizeEvent(QResizeEvent *event)
+{
+	//background = QPixmap::fromImage(BlurPushButton::blurred(QImage(":/images/menu/background"), rect(), 20, false));
+    //overlay->resize(event->size());
+
+	//update();
+    event->accept();
+}
+
+void KinectWindow::handsMoved()
+{
+	QPair<QPoint, QPoint> hands = kinect->getHandsPosition();
+	hand1 = hands.first;
+	hand2 = hands.second;
+
+	//overlay->setHands(hands);
+}
+
 void KinectWindow::on_btnGame_clicked()
 {
 	ui->graphicsView->escapeGame();
     ui->stack->setCurrentWidget(ui->mode);
+}
+
+void KinectWindow::on_btnOptions_clicked()
+{
+	Settings& s = Settings::getGlobalSettings();
+	ui->p1name->setText(s.playerOneName());
+	ui->p2name->setText(s.playerTwoName());
+
+	int index = (s.HUDArea() == Qt::TopDockWidgetArea) ? 0 : 1;
+    ui->hudPlacement->setCurrentIndex(index);
+
+	ui->stack->setCurrentWidget(ui->options);
+}
+
+void KinectWindow::on_btnValidateOptions_clicked()
+{
+	Settings& s = Settings::getGlobalSettings();
+	
+    s.setPlayerOneName(ui->p1name->text());
+    s.setPlayerTwoName(ui->p2name->text());
+
+    int index = ui->hudPlacement->currentIndex();
+    s.setHUDArea(index == 0 ? Qt::TopDockWidgetArea : Qt::BottomDockWidgetArea);
+
+	ui->stack->setCurrentWidget(ui->home);
 }
 
 void KinectWindow::on_btnDeathmatch_clicked()
@@ -88,6 +152,10 @@ void KinectWindow::keyPressEvent(QKeyEvent *event)
 			ui->graphicsView->escapeGame();
             ui->stack->setCurrentWidget(ui->home);
 		}
+		else if(cur == ui->home)
+			close();
+		else if(cur == ui->options)
+			ui->stack->setCurrentWidget(ui->home);
         else if(cur == ui->timerSelect)
             ui->stack->setCurrentWidget(ui->mode);
         else if(cur == ui->spaceshipsSelection)

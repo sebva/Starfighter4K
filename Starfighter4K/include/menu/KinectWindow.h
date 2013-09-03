@@ -11,6 +11,7 @@ class QTime;
 class WiimoteEngine;
 class GameEngine;
 class QKinect;
+class Overlay;
 
 class KinectWindow : public QMainWindow
 {
@@ -24,51 +25,35 @@ public slots:
     void endGame();
     
 private slots:
+	void handsMoved();
     void on_btnGame_clicked();
-
+	void on_btnOptions_clicked();
+	void on_btnValidateOptions_clicked();
     void on_btnDeathmatch_clicked();
-
     void on_btnTimer_clicked();
-
     void on_btnValidateTime_clicked();
-
     void on_btnPlus_clicked();
-
     void on_btnMinus_clicked();
-
     void on_btnShip1P1_clicked();
-
     void on_btnShip2P1_clicked();
-
     void on_btnShip3P1_clicked();
-
     void on_btnShip1P2_clicked();
-
     void on_btnShip2P2_clicked();
-
     void on_btnShip3P2_clicked();
-
     void on_btnFreezeP1_clicked();
-
     void on_btnAntigravityP1_clicked();
-
     void on_btnGuidedP1_clicked();
-
     void on_btnTrackingP1_clicked();
-
     void on_btnRootP1_clicked();
-
     void on_btnFreezeP2_clicked();
-
     void on_btnAntigravityP2_clicked();
-
     void on_btnGuidedP2_clicked();
-
     void on_btnTrackingP2_clicked();
-
     void on_btnRootP2_clicked();
 
 private:
+	void paintEvent(QPaintEvent *event);
+	void resizeEvent(QResizeEvent *event);
     Ui::KinectWindow *ui;
     QTime timer;
     void keyPressEvent(QKeyEvent *);
@@ -84,6 +69,10 @@ private:
 	QKinect* kinect;
     GameEngine* ge;
 	QMediaPlayer *menuMusic;
+	Overlay* overlay;
+	QPoint hand1;
+	QPoint hand2;
+	QPixmap background;
 };
 
 #endif // KINECTWINDOW_H

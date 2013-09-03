@@ -68,7 +68,7 @@ void ScrollText::paintEvent(QPaintEvent*)
     {
         buffer.fill(qRgba(0, 0, 0, 0));
         QPainter pb(&buffer);
-        pb.setPen(p.pen());
+		pb.setPen(Qt::white);
         pb.setFont(p.font());
 
         int x = qMin(-scrollPos, 0) + leftMargin;

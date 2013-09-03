@@ -19,7 +19,7 @@ const int kDefaultMusicVolume = 50;
 const int kDefaultSoundEffectsVolume = 50;
 QString kDefaultPlayerOneName = QObject::tr("Player 1");
 QString kDefaultPlayerTwoName = QObject::tr("Player 2");
-Qt::DockWidgetArea kDefaultHUDArea = Qt::BottomDockWidgetArea;
+Qt::DockWidgetArea kDefaultHUDArea = Qt::TopDockWidgetArea;
 
 Settings::Settings()
 {

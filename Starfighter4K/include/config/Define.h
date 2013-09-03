@@ -5,6 +5,8 @@
 
 //Modifiable
 
+#define NAMES								"Sébastien Vaucher" << "Alexandre Perez" << "Diego Antognini"
+
 //DisplayEngine
 #define BACKGROUND                          ":/images/game/background"
 #define BACKGROUND_DX                       0.25

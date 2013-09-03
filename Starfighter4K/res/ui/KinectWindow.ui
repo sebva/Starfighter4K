@@ -7,11 +7,79 @@
     <x>0</x>
     <y>0</y>
     <width>943</width>
-    <height>607</height>
+    <height>684</height>
    </rect>
   </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>120</red>
+        <green>120</green>
+        <blue>120</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>120</red>
+        <green>120</green>
+        <blue>120</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Starfighter 4K</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../ressources.qrc">
+    <normaloff>:/images/taskbar-icon</normaloff>:/images/taskbar-icon</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -23,7 +91,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -58,7 +126,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QPushButton" name="btnGame">
+           <widget class="BlurPushButton" name="btnGame">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -72,12 +140,22 @@
              </size>
             </property>
             <property name="text">
-             <string>New game</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/game</normaloff>:/images/menu/game</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>129</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btnOptions">
+           <widget class="BlurPushButton" name="btnOptions">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -91,12 +169,25 @@
              </size>
             </property>
             <property name="text">
-             <string>Options</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/options</normaloff>:/images/menu/options</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>129</width>
+              <height>129</height>
+             </size>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+S</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btnQuit">
+           <widget class="BlurPushButton" name="btnQuit">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -110,7 +201,17 @@
              </size>
             </property>
             <property name="text">
-             <string>Exit</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/exit</normaloff>:/images/menu/exit</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>129</width>
+              <height>136</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -144,6 +245,8 @@
             <property name="font">
              <font>
               <pointsize>18</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
             </property>
            </widget>
@@ -152,12 +255,105 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="options">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="font">
+             <font>
+              <pointsize>20</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Options</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QFormLayout" name="formLayout">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_12">
+              <property name="text">
+               <string>Player 1 name</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="p1name"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_11">
+              <property name="text">
+               <string>Player 2 name</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="p2name"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>HUD placement</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="hudPlacement">
+              <item>
+               <property name="text">
+                <string>Top</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Bottom</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="BlurPushButton" name="btnValidateOptions">
+            <property name="text">
+             <string>Validate</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTextBrowser" name="about"/>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="mode">
        <layout class="QGridLayout" name="gridLayout">
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
-           <widget class="QPushButton" name="btnDeathmatch">
+           <widget class="BlurPushButton" name="btnDeathmatch">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -176,7 +372,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="btnTimer">
+           <widget class="BlurPushButton" name="btnTimer">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -217,7 +413,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPushButton" name="btnValidateTime">
+           <widget class="BlurPushButton" name="btnValidateTime">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -273,7 +469,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btnPlus">
+           <widget class="BlurPushButton" name="btnPlus">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -286,7 +482,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btnMinus">
+           <widget class="BlurPushButton" name="btnMinus">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -320,7 +516,7 @@
         <item>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
-           <widget class="QPushButton" name="btnShip1P1">
+           <widget class="BlurPushButton" name="btnShip1P1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -343,7 +539,7 @@
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QPushButton" name="btnShip3P2">
+           <widget class="BlurPushButton" name="btnShip3P2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -356,7 +552,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="btnShip2P2">
+           <widget class="BlurPushButton" name="btnShip2P2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -369,7 +565,7 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QPushButton" name="btnShip3P1">
+           <widget class="BlurPushButton" name="btnShip3P1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -392,7 +588,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="btnShip2P1">
+           <widget class="BlurPushButton" name="btnShip2P1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -405,7 +601,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="btnShip1P2">
+           <widget class="BlurPushButton" name="btnShip1P2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -436,7 +632,7 @@
         <item>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
-           <widget class="QPushButton" name="btnFreezeP1">
+           <widget class="BlurPushButton" name="btnFreezeP1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -467,7 +663,7 @@
           <item row="0" column="1">
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Freeze</string>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -475,7 +671,7 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QPushButton" name="btnTrackingP1">
+           <widget class="BlurPushButton" name="btnTrackingP1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -504,7 +700,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="btnAntigravityP1">
+           <widget class="BlurPushButton" name="btnAntigravityP1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -533,7 +729,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="btnFreezeP2">
+           <widget class="BlurPushButton" name="btnFreezeP2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -562,7 +758,7 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QPushButton" name="btnGuidedP1">
+           <widget class="BlurPushButton" name="btnGuidedP1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -591,7 +787,7 @@
            </widget>
           </item>
           <item row="4" column="0">
-           <widget class="QPushButton" name="btnRootP1">
+           <widget class="BlurPushButton" name="btnRootP1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -620,7 +816,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="btnAntigravityP2">
+           <widget class="BlurPushButton" name="btnAntigravityP2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -649,7 +845,7 @@
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QPushButton" name="btnGuidedP2">
+           <widget class="BlurPushButton" name="btnGuidedP2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -678,7 +874,7 @@
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="QPushButton" name="btnTrackingP2">
+           <widget class="BlurPushButton" name="btnTrackingP2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -707,7 +903,7 @@
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QPushButton" name="btnRootP2">
+           <widget class="BlurPushButton" name="btnRootP2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -738,7 +934,7 @@
           <item row="1" column="1">
            <widget class="QLabel" name="label_7">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Anti gravity</string>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -748,7 +944,7 @@
           <item row="2" column="1">
            <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Guided missile</string>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -758,7 +954,7 @@
           <item row="3" column="1">
            <widget class="QLabel" name="label_9">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Tracking missile</string>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -768,7 +964,7 @@
           <item row="4" column="1">
            <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>TextLabel</string>
+             <string>Root shot</string>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -796,7 +992,40 @@
    <header>include/menu/ScrollText.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>BlurPushButton</class>
+   <extends>QPushButton</extends>
+   <header>include/menu/BlurPushButton.h</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>btnValidateOptions</tabstop>
+  <tabstop>btnDeathmatch</tabstop>
+  <tabstop>btnTimer</tabstop>
+  <tabstop>btnValidateTime</tabstop>
+  <tabstop>btnPlus</tabstop>
+  <tabstop>btnMinus</tabstop>
+  <tabstop>btnShip1P1</tabstop>
+  <tabstop>btnShip3P2</tabstop>
+  <tabstop>btnShip2P2</tabstop>
+  <tabstop>btnShip3P1</tabstop>
+  <tabstop>btnShip2P1</tabstop>
+  <tabstop>btnShip1P2</tabstop>
+  <tabstop>btnFreezeP1</tabstop>
+  <tabstop>btnTrackingP1</tabstop>
+  <tabstop>btnAntigravityP1</tabstop>
+  <tabstop>btnFreezeP2</tabstop>
+  <tabstop>btnGuidedP1</tabstop>
+  <tabstop>btnRootP1</tabstop>
+  <tabstop>btnAntigravityP2</tabstop>
+  <tabstop>btnGuidedP2</tabstop>
+  <tabstop>btnTrackingP2</tabstop>
+  <tabstop>btnRootP2</tabstop>
+  <tabstop>btnGame</tabstop>
+  <tabstop>btnOptions</tabstop>
+  <tabstop>btnQuit</tabstop>
+  <tabstop>graphicsView</tabstop>
+ </tabstops>
  <resources>
   <include location="../../ressources.qrc"/>
  </resources>
