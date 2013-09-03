@@ -396,13 +396,10 @@ void GameEngine::timerControle(int tps)
     isRunning = !isRunning;
 }
 
-void GameEngine::addProjectile(Projectile * _inProjectile, bool isSpaceship)
+void GameEngine::addProjectile(Projectile * _inProjectile)
 {
     de->addItemScene(_inProjectile);
-	if(isSpaceship)
-		listProjectile.push_front(_inProjectile);
-    else
-		listProjectile.append(_inProjectile);
+	listProjectile.append(_inProjectile);
 }
 
 void GameEngine::addShip(Spaceship *_inSpaceship)
@@ -546,7 +543,6 @@ void GameEngine::removeItemScene(Displayable* item)
 
 bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*> &list1,QList<Displayable*> &list2)
 {
-
     if(list2.empty() || list1.empty() || list2[0] == 0 || list1[i_list1] == 0)
         return false;
 

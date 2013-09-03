@@ -37,7 +37,7 @@ bool Destroyable::gonnaDead(qreal _dPower)
     qreal l_dHealthPoint = dHealthPoint;
     l_dHealthPoint -= _dPower/dResistance;
 
-    if(l_dHealthPoint<=0)
+    if(l_dHealthPoint<1.0)
         return true;
     else
         return false;

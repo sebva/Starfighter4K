@@ -36,7 +36,7 @@ void ConnectDialog::connectWiimotes()
         wiimoteEngine->connectWiimotes();
 		wiimoteEngine->startAccel();
 		wiimoteEngine->start();
-        ui->wiimote->setStatus(SystemStateReady);
+       ui->wiimote->setStatus(SystemStateReady);
     }
     else
         ui->wiimote->setStatus(SystemStateFailed);

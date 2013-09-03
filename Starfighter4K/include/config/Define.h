@@ -17,9 +17,9 @@
 #define PROB_ALIEN_DEMO                     10
 #define PROB_SAT                            15
 #define PROB_SUPERNOVA                      1
-#define PROB_BLACKSQUADRON                  25
+#define PROB_BLACKSQUADRON                  5
 
-#define SPAWN_INTERVAL                      500 // (ms)
+#define SPAWN_INTERVAL                      400 // (ms)
 #define RESISTANCE_ASTEROID                 50
 #define RESISTANCE_ALIEN                    425
 #define ALIEN_SWIRL_MIN                     20
@@ -49,7 +49,7 @@
 #define DELTA_ANGLE_BETWEEN_180_AXES        M_PI/3
 
 #define POWER_ASTEROID                      1
-#define POWER_SMALL_ASTEROID                2000
+#define POWER_SMALL_ASTEROID                1500
 #define RESISTANCE_SMALL_ASTEROID           1 // Min : 1 Max : 100
 #define HEALTHPOINT_SMALL_ASTEROID          50
 
@@ -130,9 +130,9 @@
 #define HEALTHPOINT_1                       100
 #define HEALTHPOINT_2                       100
 #define HEALTHPOINT_3                       100
-#define RESISTANCE_1                        100
-#define RESISTANCE_2                        75
-#define RESISTANCE_3                        150
+#define RESISTANCE_1                        200
+#define RESISTANCE_2                        150
+#define RESISTANCE_3                        300
 #define COOLDOWN_1                          11000 // ms
 #define COOLDOWN_2                          8000 // ms
 #define COOLDOWN_3                          15000 // ms

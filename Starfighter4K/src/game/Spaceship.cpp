@@ -191,16 +191,16 @@ void Spaceship::shotMultiBonus()
     qreal l_y = getYPositionFire();
     qreal angle = dAngleAttack*M_PI/180.0;
 
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,1,0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-1,0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.25,1.0/2.0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.6,1.0/3.0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/4.0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/5.0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.25,1.0/2.0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.6,1.0/3.0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/4.0,angle),true);
-    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/5.0,angle),true);
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,1,0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-1,0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.25,1.0/2.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.6,1.0/3.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/4.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,0.8,1.0/5.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.25,1.0/2.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.6,1.0/3.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/4.0,angle));
+    gameEngine->addProjectile(new ProjectileMulti(l_x,l_y,player,-0.8,1.0/5.0,angle));
 }
 
 void Spaceship::triggerBonus()
@@ -307,16 +307,16 @@ void Spaceship::attack()
     switch(type)
     {
         case ProjSimple:
-            gameEngine->addProjectile(new ProjectileSimple(l_x,l_y,player,angle),true);
+            gameEngine->addProjectile(new ProjectileSimple(l_x,l_y,player,angle));
             break;
 
         case ProjCross:
             for(int i = 0;i<3;i++)
-                gameEngine->addProjectile(new ProjectileCross(l_x,l_y,player,i-1,angle),true);
+                gameEngine->addProjectile(new ProjectileCross(l_x,l_y,player,i-1,angle));
             break;
 
         case ProjV:
-            gameEngine->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,OMEGA_SPACESHIP_PROJ_V,angle),true);
+            gameEngine->addProjectile(new ProjectileV(l_x,l_y,player,AMPLI_SPACESHIP_PROJ_V,OMEGA_SPACESHIP_PROJ_V,angle));
             break;
         case ProjAlien:
             break;
