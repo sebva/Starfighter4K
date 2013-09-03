@@ -45,6 +45,6 @@ bool Destroyable::gonnaDead(qreal _dPower)
 
 void Destroyable::isDead()
 {
-    if(dHealthPoint<=0)
+    if(dHealthPoint<1.0)
         emit destroyed(this,pointToGive,forShip);
 }
