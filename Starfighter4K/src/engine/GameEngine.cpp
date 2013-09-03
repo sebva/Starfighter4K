@@ -366,9 +366,9 @@ void GameEngine::rotationProcess(int wiimote, qreal angle)
 
 void GameEngine::positionProcess()
 {
-	QPair<int, int> positions = kinect->getHandsPosition();
-	ship1()->setY(positions.second);
-    ship2()->setY(positions.first);
+	QPair<QPoint, QPoint> positions = kinect->getHandsPosition();
+	ship1()->setY(positions.second.y());
+    ship2()->setY(positions.first.y());
 }
 
 void GameEngine::timerControle(int tps)

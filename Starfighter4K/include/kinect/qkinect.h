@@ -51,7 +51,7 @@ public:
 	QList<QList<QPoint>> getRealSkeletons();
 	inline int getElevationAngle() const { return m_angle; }
 	QString getStatutsDescription();
-	QPair<int, int>  getHandsPosition();
+	QPair<QPoint, QPoint>  getHandsPosition();
 	QList<QPoint> getCorners();
 
 protected:

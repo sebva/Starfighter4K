@@ -145,18 +145,18 @@ QString QKinect::getStatutsDescription()
 	return "error";
 }
 
-QPair<int, int> QKinect::getHandsPosition()
+QPair<QPoint, QPoint> QKinect::getHandsPosition()
 {
-	QPair<int, int>  hands;
+	QPair<QPoint, QPoint> hands;
 	
 	for(QList<QPoint> skeleton : getRealSkeletons())
 	{
 		if(skeleton.count() >= 20)
 		{
 			if(skeleton[NUI_SKELETON_POSITION_HEAD].x() < m_screenSize->width() / 2)
-				hands.first = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() > skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].y() : skeleton[NUI_SKELETON_POSITION_HAND_LEFT].y();
+				hands.first = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() > skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT] : skeleton[NUI_SKELETON_POSITION_HAND_LEFT];
 			else
-				hands.second = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() < skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].y() : skeleton[NUI_SKELETON_POSITION_HAND_LEFT].y();
+				hands.second = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() < skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT] : skeleton[NUI_SKELETON_POSITION_HAND_LEFT];
 		}
 	}
 
