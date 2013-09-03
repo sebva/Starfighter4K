@@ -145,5 +145,19 @@
         <file alias="options">res/images/menu/config.png</file>
         <file alias="exit">res/images/menu/exit.png</file>
         <file alias="game">res/images/menu/play.png</file>
+        <file alias="antigravity">res/images/menu/anti-gravity.png</file>
+        <file alias="back">res/images/menu/back.png</file>
+        <file alias="bermuder">res/images/menu/bermuder.png</file>
+        <file alias="blaster">res/images/menu/blaster.png</file>
+        <file alias="deathmatch">res/images/menu/deathmath_mode.png</file>
+        <file alias="freeze">res/images/menu/freeze.png</file>
+        <file alias="guided">res/images/menu/guide.png</file>
+        <file alias="root">res/images/menu/projectile root.png</file>
+        <file alias="tracking">res/images/menu/scope.png</file>
+        <file alias="speeder">res/images/menu/speeder.png</file>
+        <file alias="survival">res/images/menu/survivale_mode.png</file>
+        <file alias="timer">res/images/menu/timer_mode.png</file>
+        <file alias="minus">res/images/menu/minus.png</file>
+        <file alias="plus">res/images/menu/plus.png</file>
     </qresource>
 </RCC>

@@ -32,6 +32,12 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
 
 	connect(kinect, SIGNAL(newDatas()), this, SLOT(handsMoved()));
 
+	connect(ui->btnBackBonus, SIGNAL(clicked()), this, SLOT(back()));
+	connect(ui->btnBackMode, SIGNAL(clicked()), this, SLOT(back()));
+	connect(ui->btnBackOptions, SIGNAL(clicked()), this, SLOT(back()));
+	connect(ui->btnBackSpaceships, SIGNAL(clicked()), this, SLOT(back()));
+	connect(ui->btnBackTimer, SIGNAL(clicked()), this, SLOT(back()));
+
 	QMediaPlaylist* pl = new QMediaPlaylist(this);
     pl->addMedia(QMediaContent(QUrl::fromLocalFile("./sounds/menu.mp3")));
     pl->setPlaybackMode(QMediaPlaylist::Loop);
@@ -141,28 +147,31 @@ void KinectWindow::updateTimerDisplay()
     ui->btnValidateTime->setEnabled(timer != QTime(0, 0));
 }
 
+void KinectWindow::back()
+{
+	QWidget* cur = ui->stack->currentWidget();
+
+    if(cur == ui->mode)
+	{
+		ui->graphicsView->escapeGame();
+        ui->stack->setCurrentWidget(ui->home);
+	}
+	else if(cur == ui->home)
+		close();
+	else if(cur == ui->options)
+		ui->stack->setCurrentWidget(ui->home);
+    else if(cur == ui->timerSelect)
+        ui->stack->setCurrentWidget(ui->mode);
+    else if(cur == ui->spaceshipsSelection)
+        ui->stack->setCurrentWidget(ui->mode);
+    else if(cur == ui->bonusSelection)
+        ui->stack->setCurrentWidget(ui->spaceshipsSelection);
+}
+
 void KinectWindow::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Escape)
-    {
-        QWidget* cur = ui->stack->currentWidget();
-
-        if(cur == ui->mode)
-		{
-			ui->graphicsView->escapeGame();
-            ui->stack->setCurrentWidget(ui->home);
-		}
-		else if(cur == ui->home)
-			close();
-		else if(cur == ui->options)
-			ui->stack->setCurrentWidget(ui->home);
-        else if(cur == ui->timerSelect)
-            ui->stack->setCurrentWidget(ui->mode);
-        else if(cur == ui->spaceshipsSelection)
-            ui->stack->setCurrentWidget(ui->mode);
-        else if(cur == ui->bonusSelection)
-            ui->stack->setCurrentWidget(ui->spaceshipsSelection);
-    }
+		back();
 }
 
 void KinectWindow::validateShips()

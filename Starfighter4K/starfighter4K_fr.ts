@@ -110,128 +110,57 @@
 <context>
     <name>KinectWindow</name>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="14"/>
-        <source>MainWindow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="75"/>
-        <source>New game</source>
-        <translation type="unfinished">Nouvelle partie</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="94"/>
-        <location filename="res/ui/KinectWindow.ui" line="169"/>
+        <location filename="res/ui/KinectWindow.ui" line="276"/>
         <source>Options</source>
         <translation type="unfinished">Options</translation>
     </message>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="113"/>
-        <source>Exit</source>
-        <translation type="unfinished">Quitter</translation>
+        <location filename="res/ui/KinectWindow.ui" line="78"/>
+        <source>Starfighter 4K</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="181"/>
+        <location filename="res/ui/KinectWindow.ui" line="185"/>
+        <source>Ctrl+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="res/ui/KinectWindow.ui" line="288"/>
         <source>Player 1 name</source>
         <translation type="unfinished">Nom joueur 1</translation>
     </message>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="191"/>
+        <location filename="res/ui/KinectWindow.ui" line="298"/>
         <source>Player 2 name</source>
         <translation type="unfinished">Nom joueur 2</translation>
     </message>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="201"/>
+        <location filename="res/ui/KinectWindow.ui" line="308"/>
         <source>HUD placement</source>
         <translation type="unfinished">Emplacement du HUD</translation>
     </message>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="209"/>
+        <location filename="res/ui/KinectWindow.ui" line="316"/>
         <source>Top</source>
         <translation type="unfinished">En haut</translation>
     </message>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="214"/>
+        <location filename="res/ui/KinectWindow.ui" line="321"/>
         <source>Bottom</source>
         <translation type="unfinished">En bas</translation>
     </message>
     <message>
-        <location filename="res/ui/KinectWindow.ui" line="237"/>
-        <location filename="res/ui/KinectWindow.ui" line="327"/>
-        <source>Validate</source>
-        <translation type="unfinished">Valider</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="267"/>
-        <source>Deathmatch</source>
-        <translation type="unfinished">Match à mort</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="286"/>
-        <source>Timer</source>
-        <translation type="unfinished">Durée déterminée</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="293"/>
-        <location filename="res/ui/KinectWindow.ui" line="300"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="424"/>
-        <location filename="res/ui/KinectWindow.ui" line="509"/>
-        <source>Bermuder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="447"/>
-        <location filename="res/ui/KinectWindow.ui" line="473"/>
-        <source>Blaster</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="460"/>
-        <location filename="res/ui/KinectWindow.ui" line="496"/>
-        <source>Speeder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="563"/>
-        <source>Freeze</source>
-        <translation type="unfinished">Gel</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="834"/>
-        <source>Anti gravity</source>
-        <translation type="unfinished">Anti gravité</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="844"/>
-        <source>Guided missile</source>
-        <translation type="unfinished">Missile guidé</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="854"/>
-        <source>Tracking missile</source>
-        <translation type="unfinished">Missile à tête chercheuse</translation>
-    </message>
-    <message>
-        <location filename="res/ui/KinectWindow.ui" line="864"/>
-        <source>Root shot</source>
-        <translation type="unfinished">Tir racine</translation>
-    </message>
-    <message>
-        <location filename="src/menu/KinectWindow.cpp" line="19"/>
+        <location filename="src/menu/KinectWindow.cpp" line="21"/>
         <source>qrc:/strings/about</source>
         <translation type="unfinished">qrc:/strings/about_fr</translation>
     </message>
     <message>
-        <location filename="src/menu/KinectWindow.cpp" line="25"/>
+        <location filename="src/menu/KinectWindow.cpp" line="27"/>
         <source>Starfighter 4K - Developed by </source>
         <translation type="unfinished">Starfighter 4K - Développé par </translation>
     </message>
     <message>
-        <location filename="src/menu/KinectWindow.cpp" line="25"/>
+        <location filename="src/menu/KinectWindow.cpp" line="27"/>
         <source> - Copyright 2013 HE-Arc</source>
         <translation type="unfinished"></translation>
     </message>
@@ -313,7 +242,7 @@
         <location filename="res/ui/NewGameDialog.ui" line="131"/>
         <location filename="res/ui/NewGameDialog.ui" line="227"/>
         <source>Special bonus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bonus spécial</translation>
     </message>
     <message>
         <location filename="res/ui/NewGameDialog.ui" line="261"/>

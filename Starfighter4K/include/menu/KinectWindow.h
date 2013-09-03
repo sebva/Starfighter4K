@@ -26,6 +26,7 @@ public slots:
     
 private slots:
 	void handsMoved();
+	void back();
     void on_btnGame_clicked();
 	void on_btnOptions_clicked();
 	void on_btnValidateOptions_clicked();

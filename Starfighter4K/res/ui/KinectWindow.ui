@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>943</width>
-    <height>684</height>
+    <width>882</width>
+    <height>865</height>
    </rect>
   </property>
   <property name="palette">
@@ -220,7 +220,11 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="DemoEngine" name="graphicsView"/>
+           <widget class="DemoEngine" name="graphicsView">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="ScrollText" name="scrollText" native="true">
@@ -336,30 +340,6 @@
           </item>
           <item>
            <widget class="BlurPushButton" name="btnValidateOptions">
-            <property name="text">
-             <string>Validate</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QTextBrowser" name="about"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="mode">
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="0">
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="BlurPushButton" name="btnDeathmatch">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="maximumSize">
              <size>
               <width>300</width>
@@ -367,10 +347,74 @@
              </size>
             </property>
             <property name="text">
-             <string>Deathmatch</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/v</normaloff>:/images/menu/v</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="BlurPushButton" name="btnBackOptions">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>135</height>
+             </size>
+            </property>
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/back</normaloff>:/images/menu/back</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>87</width>
+              <height>129</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QTextBrowser" name="about">
+          <property name="maximumSize">
+           <size>
+            <width>480</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="mode">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="1" column="0">
            <widget class="BlurPushButton" name="btnTimer">
             <property name="sizePolicy">
@@ -386,21 +430,88 @@
              </size>
             </property>
             <property name="text">
-             <string>Timer</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/timer</normaloff>:/images/menu/timer</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="BlurPushButton" name="btnDeathmatch">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/deathmatch</normaloff>:/images/menu/deathmatch</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>TextLabel</string>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-           </widget>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_2">
+          <item row="2" column="0">
+           <widget class="BlurPushButton" name="btnBackMode">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>135</height>
+             </size>
+            </property>
             <property name="text">
-             <string>TextLabel</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/back</normaloff>:/images/menu/back</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>87</width>
+              <height>129</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -413,36 +524,118 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="BlurPushButton" name="btnValidateTime">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Validate</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="BlurPushButton" name="btnPlus">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string notr="true"/>
+              </property>
+              <property name="icon">
+               <iconset resource="../../ressources.qrc">
+                <normaloff>:/images/menu/plus</normaloff>:/images/menu/plus</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>128</width>
+                <height>128</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="BlurPushButton" name="btnMinus">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string notr="true"/>
+              </property>
+              <property name="icon">
+               <iconset resource="../../ressources.qrc">
+                <normaloff>:/images/menu/minus</normaloff>:/images/menu/minus</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>128</width>
+                <height>128</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="BlurPushButton" name="btnValidateTime">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string notr="true"/>
+              </property>
+              <property name="icon">
+               <iconset resource="../../ressources.qrc">
+                <normaloff>:/images/menu/v</normaloff>:/images/menu/v</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>128</width>
+                <height>128</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="BlurPushButton" name="btnBackTimer">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>135</height>
+               </size>
+              </property>
+              <property name="text">
+               <string notr="true"/>
+              </property>
+              <property name="icon">
+               <iconset resource="../../ressources.qrc">
+                <normaloff>:/images/menu/back</normaloff>:/images/menu/back</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>87</width>
+                <height>129</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <widget class="QLabel" name="lblTime">
@@ -461,51 +654,12 @@
              </font>
             </property>
             <property name="text">
-             <string notr="true">02:00</string>
+             <string notr="true">00:02:00</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
-          </item>
-          <item>
-           <widget class="BlurPushButton" name="btnPlus">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string notr="true">+</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="BlurPushButton" name="btnMinus">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string notr="true">-</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </item>
@@ -523,18 +677,24 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
-             <string>Bermuder</string>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
             </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="label_5">
             <property name="text">
-             <string/>
+             <string notr="true"/>
             </property>
-            <property name="pixmap">
-             <pixmap resource="../../ressources.qrc">:/images/game/ship3</pixmap>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/bermuder</normaloff>:/images/menu/bermuder</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -546,8 +706,24 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
-             <string>Blaster</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/blaster</normaloff>:/images/menu/blaster</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -559,8 +735,24 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
-             <string>Speeder</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/speeder</normaloff>:/images/menu/speeder</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -572,18 +764,24 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text">
-             <string>Blaster</string>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
             </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="label_4">
             <property name="text">
-             <string/>
+             <string notr="true"/>
             </property>
-            <property name="pixmap">
-             <pixmap resource="../../ressources.qrc">:/images/game/ship1</pixmap>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/blaster</normaloff>:/images/menu/blaster</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -595,8 +793,24 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
-             <string>Speeder</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/speeder</normaloff>:/images/menu/speeder</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -608,18 +822,66 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
-             <string>Bermuder</string>
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/bermuder</normaloff>:/images/menu/bermuder</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>128</width>
+              <height>128</height>
+             </size>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string/>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="pixmap">
-             <pixmap resource="../../ressources.qrc">:/images/game/ship2</pixmap>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="0">
+           <widget class="BlurPushButton" name="btnBackSpaceships">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>135</height>
+             </size>
+            </property>
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/back</normaloff>:/images/menu/back</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>87</width>
+              <height>129</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -639,10 +901,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -650,23 +912,13 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/freeze</normaloff>:/images/bonus/freeze</iconset>
+              <normaloff>:/images/menu/freeze</normaloff>:/images/menu/freeze</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Freeze</string>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -678,10 +930,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -689,12 +941,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/tracking</normaloff>:/images/bonus/tracking</iconset>
+              <normaloff>:/images/menu/tracking</normaloff>:/images/menu/tracking</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -707,10 +959,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -718,12 +970,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/antiGravity</normaloff>:/images/bonus/antiGravity</iconset>
+              <normaloff>:/images/menu/antigravity</normaloff>:/images/menu/antigravity</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -736,10 +988,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -747,12 +999,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/freeze</normaloff>:/images/bonus/freeze</iconset>
+              <normaloff>:/images/menu/freeze</normaloff>:/images/menu/freeze</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -765,10 +1017,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -776,12 +1028,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/guided</normaloff>:/images/bonus/guided</iconset>
+              <normaloff>:/images/menu/guided</normaloff>:/images/menu/guided</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -794,10 +1046,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -805,12 +1057,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/projRoot</normaloff>:/images/bonus/projRoot</iconset>
+              <normaloff>:/images/menu/root</normaloff>:/images/menu/root</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -823,10 +1075,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -834,12 +1086,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/antiGravity</normaloff>:/images/bonus/antiGravity</iconset>
+              <normaloff>:/images/menu/antigravity</normaloff>:/images/menu/antigravity</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -852,10 +1104,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -863,12 +1115,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/guided</normaloff>:/images/bonus/guided</iconset>
+              <normaloff>:/images/menu/guided</normaloff>:/images/menu/guided</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -881,10 +1133,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -892,12 +1144,12 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/tracking</normaloff>:/images/bonus/tracking</iconset>
+              <normaloff>:/images/menu/tracking</normaloff>:/images/menu/tracking</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
@@ -910,10 +1162,10 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize">
+            <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>0</height>
              </size>
             </property>
             <property name="text">
@@ -921,53 +1173,55 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/bonus/projRoot</normaloff>:/images/bonus/projRoot</iconset>
+              <normaloff>:/images/menu/root</normaloff>:/images/menu/root</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>120</width>
-              <height>120</height>
+              <width>128</width>
+              <height>128</height>
              </size>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Anti gravity</string>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="scaledContents">
-             <bool>true</bool>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
             </property>
-           </widget>
+           </spacer>
           </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="label_8">
+          <item row="5" column="0">
+           <widget class="BlurPushButton" name="btnBackBonus">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>135</height>
+             </size>
+            </property>
             <property name="text">
-             <string>Guided missile</string>
+             <string notr="true"/>
             </property>
-            <property name="scaledContents">
-             <bool>true</bool>
+            <property name="icon">
+             <iconset resource="../../ressources.qrc">
+              <normaloff>:/images/menu/back</normaloff>:/images/menu/back</iconset>
             </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Tracking missile</string>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>Root shot</string>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
+            <property name="iconSize">
+             <size>
+              <width>87</width>
+              <height>129</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -1002,9 +1256,6 @@
   <tabstop>btnValidateOptions</tabstop>
   <tabstop>btnDeathmatch</tabstop>
   <tabstop>btnTimer</tabstop>
-  <tabstop>btnValidateTime</tabstop>
-  <tabstop>btnPlus</tabstop>
-  <tabstop>btnMinus</tabstop>
   <tabstop>btnShip1P1</tabstop>
   <tabstop>btnShip3P2</tabstop>
   <tabstop>btnShip2P2</tabstop>
