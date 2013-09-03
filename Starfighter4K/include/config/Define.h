@@ -106,7 +106,7 @@
 #define SPEED_MULTI_DEF                     25
 
 //ProjectileGuided
-#define POWER_GUIDED                        10000
+#define POWER_GUIDED                        1000000
 #define SPEED_GUIDED_DEF                    15
 
 //AntiGravity
@@ -196,7 +196,7 @@
 #define DELTA_X_B                           100 //Cf Specification file
 #define ANTIGRAVITY_ACTIVATIONS             1
 #define FREEZE_DURATION                     2000
-#define GUIDED_ACTIVATIONS                  2
+#define GUIDED_ACTIVATIONS                  1
 #define ROOTSHOT_ACTIVATIONS                6
 #define TRACKING_ACTIVATIONS                1
 
