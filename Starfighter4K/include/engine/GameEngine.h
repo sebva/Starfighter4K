@@ -56,7 +56,7 @@ public:
     virtual void timerEvent(QTimerEvent *);
 
     virtual void addBlackship(Blackship* _blackship);
-    virtual void addProjectile(Projectile *_inProjectile);
+    virtual void addProjectile(Projectile *_inProjectile, bool isSpaceship = false);
     virtual void addSupernova(Supernova *_inSupernova);
     virtual void addShip(Spaceship *_inSpaceship);
     virtual void removeShip(Spaceship *_inSpaceship);

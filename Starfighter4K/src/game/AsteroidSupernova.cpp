@@ -5,7 +5,7 @@ AsteroidSupernova::AsteroidSupernova(qreal _dX, qreal _dY,Shooter _from, qreal _
     :Asteroid(_dX,_dY,_from,_dResistance,_dHealthPoint,_gameEngine,1)
 {
     dPower = POWER_SUPERNOVA;
-    dSpeed = SPEED_SUPERNOVA;
+    dSpeed = SPEED_SUPERNOVA*(GameEngine::randDouble()+0.5);
     dAngle = _dAngle;
 
     numberFrameMin = NB_PICTURE_SUPERNOVA_ASTEROID_MIN;

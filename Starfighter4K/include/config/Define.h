@@ -17,7 +17,7 @@
 #define PROB_ALIEN_DEMO                     10
 #define PROB_SAT                            15
 #define PROB_SUPERNOVA                      1
-#define PROB_BLACKSQUADRON                  5
+#define PROB_BLACKSQUADRON                  25
 
 #define SPAWN_INTERVAL                      500 // (ms)
 #define RESISTANCE_ASTEROID                 50
@@ -153,7 +153,7 @@
 #define ANGLE_SECOND_BLACKSHIP_FIRE         10*M_PI/180.0
 #define ANGLE_THIRD_BLACKSHIP_FIRE          0*M_PI/180.0
 #define SPEED_BLACKSHIP                     4
-#define RESISTANCE_BLACKSHIP                300
+#define RESISTANCE_BLACKSHIP                25
 #define PICTURE_PROJ_BLACKSHIP              ":/images/game/projblack"
 //Do not touch
 
@@ -168,6 +168,9 @@
 #define SHOOT_SOUND                         "laser.mp3"
 #define SAT_SOUND                           "beep.mp3"
 #define SUPERNOVA_SOUND                     "supernova.mp3"
+#define TRACKING_SOUND						"tracking.mp3"
+#define FREEZE_SOUND						"freeze.mp3"
+#define ANTIGRAVITY_SOUND					"antigravity.mp3"
 
 //HUD
 #define IMAGE_BONUS_ANTIGRAVITY     ":/images/bonus/antiGravity"

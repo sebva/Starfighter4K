@@ -18,9 +18,13 @@ private:
     QMediaPlayer *shootMediaPlayer;
     QMediaPlayer *snovaMediaPlayer;
     QMediaPlayer *musicMediaPlayer;
-    
+    QMediaPlayer *antigravityMediaPlayer;
+	QMediaPlayer *freezeMediaPlayer;
+	QMediaPlayer *trackingMediaPlayer;
+
 public slots:
     void playSound(Sounds);
+	void stopSound(Sounds);
     
 };
 

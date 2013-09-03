@@ -74,7 +74,7 @@ enum BonusState {
 
 enum Sounds
 {
-    SatelliteSound = 1, ShootSound = 2, SupernovaSound = 3
+    SatelliteSound = 1, ShootSound = 2, SupernovaSound = 3, AntiGravitySound = 4, FreezeSound = 5, TrackingSound = 6
 };
 
 #endif // ENUMERATION_H

@@ -18,6 +18,18 @@ SoundEngine::SoundEngine(int soundEffectsVolume, int musicVolume, QObject *paren
     snovaMediaPlayer->setVolume(soundEffectsVolume);
     snovaMediaPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(sndDir + SUPERNOVA_SOUND)));
 
+	antigravityMediaPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
+	antigravityMediaPlayer->setVolume(soundEffectsVolume);
+	antigravityMediaPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(sndDir + ANTIGRAVITY_SOUND)));
+	
+	freezeMediaPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
+	freezeMediaPlayer->setVolume(soundEffectsVolume);
+	freezeMediaPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(sndDir + FREEZE_SOUND)));
+
+	trackingMediaPlayer = new QMediaPlayer(this, QMediaPlayer::LowLatency);
+	trackingMediaPlayer->setVolume(soundEffectsVolume);
+	trackingMediaPlayer->setMedia(QMediaContent(QUrl::fromLocalFile(sndDir + TRACKING_SOUND)));
+
     musicMediaPlayer = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
     musicMediaPlayer->setVolume(musicVolume);
     QMediaPlaylist* pl = new QMediaPlaylist(this);
@@ -44,4 +56,35 @@ void SoundEngine::playSound(Sounds toPlay)
         snovaMediaPlayer->setPosition(0);
         snovaMediaPlayer->play();
     }
+	else if(toPlay == TrackingSound)
+	{
+		trackingMediaPlayer->setPosition(0);
+		trackingMediaPlayer->play();
+	}
+	else if(toPlay == AntiGravitySound)
+	{
+		antigravityMediaPlayer->setPosition(0);
+		antigravityMediaPlayer->play();
+	}
+	else if(toPlay == FreezeSound)
+	{
+		freezeMediaPlayer->setPosition(0);
+		freezeMediaPlayer->play();
+	}
+}
+
+void SoundEngine::stopSound(Sounds toPlay)
+{
+	if(toPlay == SatelliteSound)
+		satMediaPlayer->stop();
+	else if(toPlay == ShootSound)
+		shootMediaPlayer->stop();
+	else if(toPlay == SupernovaSound)
+		snovaMediaPlayer->stop();
+	else if(toPlay == TrackingSound)
+		trackingMediaPlayer->stop();
+	else if(toPlay == AntiGravitySound)
+		antigravityMediaPlayer->stop();
+	else if(toPlay == FreezeSound)
+		freezeMediaPlayer->stop();
 }

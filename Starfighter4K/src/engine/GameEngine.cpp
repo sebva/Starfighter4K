@@ -304,7 +304,6 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter
 
         if(Asteroid* a = dynamic_cast<Asteroid*>(_destroyItem))
         {
-
             if(a->isSmall())
                 removeSmallAsteroid(a);
             else
@@ -318,6 +317,8 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter
             else if(forShip==Player2)
                 ship2()->addBonus(se->generateBonus());
         }
+		else if(Blackship* s = dynamic_cast<Blackship*>(_destroyItem))
+			removeBlackship(s);
     }
 }
 
@@ -395,10 +396,13 @@ void GameEngine::timerControle(int tps)
     isRunning = !isRunning;
 }
 
-void GameEngine::addProjectile(Projectile * _inProjectile)
+void GameEngine::addProjectile(Projectile * _inProjectile, bool isSpaceship)
 {
     de->addItemScene(_inProjectile);
-    listProjectile.append(_inProjectile);
+	if(isSpaceship)
+		listProjectile.push_front(_inProjectile);
+    else
+		listProjectile.append(_inProjectile);
 }
 
 void GameEngine::addShip(Spaceship *_inSpaceship)
@@ -547,9 +551,12 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
         return false;
 
     QMutexLocker l(mutex);
-    if(list2[0]->getTypeObject() == tAlien && (list1[i_list1]->getTypeObject() == tProj))
+    if(list2[0]->getTypeObject() == tAlien && list1[i_list1]->getTypeObject() == tProj)
         if(dynamic_cast<Projectile*>(list1[i_list1])->getFrom()==Alien)
             return false;
+
+	if((list2[0]->getTypeObject() == tAlien || list2[0]->getTypeObject() == tBlackShip) && (list1[i_list1]->getTypeObject() == tAsteroid || list1[i_list1]->getTypeObject() == tSmallAsteroid))
+		return false;
 
     for(int j = 0;j<list2.size();j++)
     {
@@ -600,8 +607,6 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                     return true;
                 }
             }
-            else if(list2[j]->getTypeObject() == tAlien)
-                return true;
             else if(list1[i_list1]->getTypeObject() == tSmallAsteroid && list2[j]->getTypeObject() == tSmallAsteroid)
             {
                 if(dynamic_cast<Asteroid*>(list1[i_list1])->getIdParent() == dynamic_cast<Asteroid*>(list2[j])->getIdParent() && dynamic_cast<Asteroid*>(list2[j])->getIdParent() != 0)
@@ -622,7 +627,7 @@ bool GameEngine::checkCollisionItemAndList(const int i_list1,QList<Displayable*>
                 dynamic_cast<Asteroid*>(list1[i_list1])->collision(list2[j]->getAngle());
                 dynamic_cast<Asteroid*>(list2[j])->collision(list1[i_list1]->getAngle());
             }
-            else if(list1[i_list1]->getTypeObject() == tAsteroid)
+            else if(list1[i_list1]->getTypeObject() == tAsteroid && list2[j]->getTypeObject() == tSpaceship)
                 dynamic_cast<Asteroid*>(list1[i_list1])->collision(list2[j]->getAngle());
 
             delete list1[i_list1];
@@ -679,12 +684,14 @@ void GameEngine::runTestCollision(QList<Displayable*> &list)
         for(int i = 0;i<list.size();i++)
             if(checkCollisionItemAndList(i,list,listAsteroide)
             || checkCollisionItemAndList(i,list,listSmallAsteroide)
-            || checkCollisionItemAndList(i,list,listBonus)
-            || checkCollisionItemAndList(i,list,listAlienSpaceship))
+            || checkCollisionItemAndList(i,list,listBlackship)
+            || checkCollisionItemAndList(i,list,listAlienSpaceship)
+			|| checkCollisionItemAndList(i,list,listBonus))
                 continue;
 
         clearList(listAsteroide);
         clearList(listSmallAsteroide);
         clearList(listBonus);
         clearList(listAlienSpaceship);
+		clearList(listBlackship);
 }

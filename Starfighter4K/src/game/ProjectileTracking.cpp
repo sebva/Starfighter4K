@@ -1,9 +1,11 @@
 #include "include/game/ProjectileTracking.h"
+#include "include/engine/GameEngine.h"
+#include "include/engine/SoundEngine.h"
 #include "include/game/Spaceship.h"
 #include "include/config/Define.h"
 
-ProjectileTracking::ProjectileTracking(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, Spaceship* _playerFront)
-    :Projectile(_dXOrigin, _dYOrigin, _from),spaceship(_playerFront)
+ProjectileTracking::ProjectileTracking(qreal _dXOrigin, qreal _dYOrigin,Shooter _from, Spaceship* _playerFront, GameEngine* _ge)
+    :Projectile(_dXOrigin, _dYOrigin, _from),spaceship(_playerFront),ge(_ge)
 {
     dOriginAngle = dAngle;
     dSpeed = SPEED_TRACKING_DEF;
@@ -21,4 +23,9 @@ void ProjectileTracking::advance(int _step)
     loadPixmap();
 
     Projectile::advance(_step);
+}
+
+ProjectileTracking::~ProjectileTracking()
+{
+	ge->soundEngine()->stopSound(TrackingSound);
 }
