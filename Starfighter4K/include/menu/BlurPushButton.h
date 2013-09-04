@@ -16,7 +16,7 @@ protected:
 	void paintEvent(QPaintEvent* event);
 
 private:
-	QImage original;
+	static QImage original;
 	QPixmap blur;
 	QImage background;
 	bool handOnTop;

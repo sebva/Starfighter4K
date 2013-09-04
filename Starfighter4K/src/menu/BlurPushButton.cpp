@@ -1,7 +1,9 @@
 #include "include/menu/BlurPushButton.h"
 
+QImage BlurPushButton::original(":/images/menu/background");
+
 BlurPushButton::BlurPushButton(QWidget *parent)
-	: QPushButton(parent), original(":/images/menu/background"), handOnTop(false)
+	: QPushButton(parent),  handOnTop(false)
 {
 	setStyleSheet("*{background-color:rgba(0,0,0,0);}");
 	timer.setInterval(50);
