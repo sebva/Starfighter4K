@@ -12,6 +12,8 @@
 #define BACKGROUND_DX                       0.25
 #define BACKGROUND_DY                       0.25
 #define ICON_TASKBAR                        ":/images/taskbar-icon"
+#define FONT_PATH							":/font/HelveticaNeueLight.ttf"
+#define NB_COUNTDOWN						3
 
 //SpawnEngine
 #define PROB_ASTEROID                       75

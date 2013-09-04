@@ -160,4 +160,7 @@
         <file alias="minus">res/images/menu/minus.png</file>
         <file alias="plus">res/images/menu/plus.png</file>
     </qresource>
+    <qresource prefix="/font">
+        <file>res/font/HelveticaNeueLight.ttf</file>
+    </qresource>
 </RCC>

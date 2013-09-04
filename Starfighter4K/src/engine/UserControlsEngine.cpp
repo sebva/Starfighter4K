@@ -14,7 +14,7 @@
 #define PLAYER_1 0
 #define PLAYER_2 1
 
-UserControlsEngine::UserControlsEngine(GameEngine *ge, WiimoteEngine *we): gameEngine(ge), wiimoteEngine(we), hasEnd(false), hasBegin(true), isPaused(false), pauseTime(NOVATIMER)
+UserControlsEngine::UserControlsEngine(GameEngine *ge, WiimoteEngine *we): gameEngine(ge), wiimoteEngine(we), hasEnd(false), hasBegin(false), isPaused(false), pauseTime(NOVATIMER)
 {
     display = gameEngine->displayEngine();
 
@@ -29,8 +29,6 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge, WiimoteEngine *we): gameE
     novaeCall = new QTimer(this);
     novaeCall->setSingleShot(true);
     novaeCall->start(NOVATIMER);
-    countTimer.start();
-    idTimer = startTimer(REFRESH);
 
     connect(novaeCall,SIGNAL(timeout()),this,SLOT(callSupernovae()));
     connect(gameEngine,SIGNAL(signalPause(bool)),this,SLOT(pauseGame(bool)));
@@ -44,6 +42,13 @@ UserControlsEngine::~UserControlsEngine()
     delete novaeCall;
     //MainDialog deletes WiimoteEngine
     //GameEngine deletes DisplayEngine and UserControlsEngine
+}
+
+void UserControlsEngine::start()
+{
+	hasBegin = true;
+	countTimer.start();
+	idTimer = startTimer(REFRESH);
 }
 
 void UserControlsEngine::wiimotePressProcess(int button, int wiimote)
@@ -61,14 +66,17 @@ void UserControlsEngine::wiimotePressProcess(int button, int wiimote)
             countTimer.restart();
         }
 
-        if(action == Shoot)
-            ss->attack();
-        else if(action == NormalBonus)
-            ss->triggerBonus();
-        else if(action == aSpecialBonus)
-            ss->triggerSpecialAttack();
-        else if(action == Pause)
-            gameEngine->escapeGame();
+		if(hasBegin)
+		{
+			if(action == Shoot)
+				ss->attack();
+			else if(action == NormalBonus)
+				ss->triggerBonus();
+			else if(action == aSpecialBonus)
+				ss->triggerSpecialAttack();
+			else if(action == Pause)
+				gameEngine->escapeGame();
+		}
     }
 }
 
@@ -84,107 +92,107 @@ void UserControlsEngine::wiimoteReleaseProcess(int button, int wiimote)
 
 void UserControlsEngine::keyPressEvent(QKeyEvent * event)
 {
-    Action action;
-    Shooter player;
+	if(hasBegin)
+	{
+		Action action;
+		Shooter player;
 
-    switch(event->key())
-    {
-        case Qt::Key_W:
-            actionList.append(QPair<Action,int>(Top,PLAYER_1));
-            break;
+		switch(event->key())
+		{
+			case Qt::Key_W:
+				actionList.append(QPair<Action,int>(Top,PLAYER_1));
+				break;
 
-        case Qt::Key_S:
-            actionList.append(QPair<Action,int>(Bottom,PLAYER_1));
-            break;
+			case Qt::Key_S:
+				actionList.append(QPair<Action,int>(Bottom,PLAYER_1));
+				break;
 
-        case Qt::Key_D:
-            player = Player1;
-            action = Shoot;
-            actionList.append(QPair<Action,int>(Shoot,PLAYER_1));
-            break;
+			case Qt::Key_D:
+				player = Player1;
+				action = Shoot;
+				actionList.append(QPair<Action,int>(Shoot,PLAYER_1));
+				break;
 
-        case Qt::Key_Q:
-            gameEngine->ship1()->triggerBonus();
-        break;
+			case Qt::Key_Q:
+				gameEngine->ship1()->triggerBonus();
+			break;
 
-        case Qt::Key_A:
-            gameEngine->ship1()->triggerSpecialAttack();
-        break;
+			case Qt::Key_A:
+				gameEngine->ship1()->triggerSpecialAttack();
+			break;
 
-        case Qt::Key_I:
-            actionList.append(QPair<Action,int>(Top,PLAYER_2));
-            break;
+			case Qt::Key_I:
+				actionList.append(QPair<Action,int>(Top,PLAYER_2));
+				break;
 
-        case Qt::Key_K:
-            actionList.append(QPair<Action,int>(Bottom,PLAYER_2));
-            break;
+			case Qt::Key_K:
+				actionList.append(QPair<Action,int>(Bottom,PLAYER_2));
+				break;
 
-        case Qt::Key_J:
-            player = Player2;
-            action = Shoot;
-            actionList.append(QPair<Action,int>(Shoot,PLAYER_2));
-            break;
+			case Qt::Key_J:
+				player = Player2;
+				action = Shoot;
+				actionList.append(QPair<Action,int>(Shoot,PLAYER_2));
+				break;
 
-        case Qt::Key_O:
-            gameEngine->ship2()->triggerBonus();
-        break;
+			case Qt::Key_O:
+				gameEngine->ship2()->triggerBonus();
+			break;
 
-        case Qt::Key_L:
-            gameEngine->ship2()->triggerSpecialAttack();
-        break;
-    }
+			case Qt::Key_L:
+				gameEngine->ship2()->triggerSpecialAttack();
+			break;
+		}
 
-    if((!event->isAutoRepeat() && (action == Shoot && player == Player1)))
-    {
-        gameEngine->ship1()->attack();
-        novaeCall->start(NOVATIMER);
-        countTimer.restart();
-    }
+		if((!event->isAutoRepeat() && (action == Shoot && player == Player1)))
+		{
+			gameEngine->ship1()->attack();
+			novaeCall->start(NOVATIMER);
+			countTimer.restart();
+		}
 
-    if((!event->isAutoRepeat() && (action == Shoot && player == Player2)))
-    {
-        gameEngine->ship2()->attack();
-        novaeCall->start(NOVATIMER);
-        countTimer.restart();
-    }
-
+		if((!event->isAutoRepeat() && (action == Shoot && player == Player2)))
+		{
+			gameEngine->ship2()->attack();
+			novaeCall->start(NOVATIMER);
+			countTimer.restart();
+		}
+	}
 }
 
 void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
 {
+	if(hasBegin)
+		switch(event->key())
+		{
+			case Qt::Key_W:
+				actionList.removeAll(QPair<Action,int>(Top,PLAYER_1));
+				break;
 
-    switch(event->key())
-    {
-        case Qt::Key_W:
-            actionList.removeAll(QPair<Action,int>(Top,PLAYER_1));
-            break;
+			case Qt::Key_S:
+				actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_1));
+				break;
 
-        case Qt::Key_S:
-            actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_1));
-            break;
+			case Qt::Key_D:
+				actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_1));
+				break;
 
-        case Qt::Key_D:
-            actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_1));
-            break;
+			case Qt::Key_I:
+				actionList.removeAll(QPair<Action,int>(Top,PLAYER_2));
+				break;
 
-        case Qt::Key_I:
-            actionList.removeAll(QPair<Action,int>(Top,PLAYER_2));
-            break;
+			case Qt::Key_K:
+				actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_2));
+				break;
 
-        case Qt::Key_K:
-            actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_2));
-            break;
-
-        case Qt::Key_J:
-            actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_2));
-            break;
-    }
+			case Qt::Key_J:
+				actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_2));
+				break;
+		}
 }
 
 void UserControlsEngine::timerEvent(QTimerEvent *)
 {
-    hasBegin = false;
-
     for(auto values = actionList.begin(); values != actionList.end(); values++)
     {
         Spaceship* ss = (values->second == PLAYER_1)?gameEngine->ship1():gameEngine->ship2();
@@ -206,7 +214,7 @@ void UserControlsEngine::timerEvent(QTimerEvent *)
 
 void UserControlsEngine::pauseGame(bool etat)
 {
-    if(!hasBegin)
+    if(hasBegin)
     {
         isPaused = etat;
         if(etat)

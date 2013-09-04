@@ -16,6 +16,7 @@ public:
     UserControlsEngine(GameEngine *ge, WiimoteEngine *we);
     ~UserControlsEngine();
 
+	void start();
     void timerEvent(QTimerEvent *event);
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);

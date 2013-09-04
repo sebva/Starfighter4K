@@ -9,19 +9,25 @@
 #include "include/stable.h"
 
 BonusWidget::BonusWidget(QWidget *parent)
-    : QLabel(parent), cooldown(-1), state(BonusStateNoBonus), bonusDuration(-1), initialActivations(1), remainingActivations(1)
+    : QLabel(parent), cooldown(-1), state(BonusStateNoBonus), bonusDuration(-1), initialActivations(1), remainingActivations(1), hasStarted(false)
 {
     setPixmap(QPixmap(IMAGE_BONUS));
 
     clock.setInterval(17);
     clock.setSingleShot(false);
     connect(&clock, SIGNAL(timeout()), this, SLOT(updateWidget()));
-    clock.start();
 }
 
 BonusWidget::~BonusWidget()
 {
     clock.stop();
+}
+
+void BonusWidget::startTimer()
+{
+	elapsed.start();
+	clock.start();
+	hasStarted = true;
 }
 
 void BonusWidget::pause(bool isPause)
@@ -168,7 +174,7 @@ void BonusWidget::paintEvent(QPaintEvent *event)
 {
     QLabel::paintEvent(event);
 
-    if(state != BonusStateNoBonus)
+    if(hasStarted && state != BonusStateNoBonus)
     {
         QPainter p(this);
         if(state == BonusStateCooldown)

@@ -23,11 +23,13 @@ public:
     void setBonus(SpecialBonus* bonus);
     void setBonus(BonusProjectile* bonus);
     BonusState getState() { return state; }
+	void startTimer();
 
 protected:
     void paintEvent(QPaintEvent *event);
 
 private:
+	bool hasStarted;
     QTime elapsed;
     QElapsedTimer pauseTime;
     QTimer clock;

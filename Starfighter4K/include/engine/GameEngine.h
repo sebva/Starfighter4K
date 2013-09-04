@@ -38,7 +38,7 @@ public:
 	int elapsedTime();    
     int timeGamevalue() const {return timeGame;}
     void timerControle(int tps = 15);
-
+	
     virtual qreal xminWarzone() const;
     virtual qreal xmaxWarZone() const;
     virtual QRect sceneSize() const;
@@ -50,6 +50,7 @@ public:
     DisplayEngine* displayEngine() const { return de;}
     UserControlsEngine* userControlsEngine() const {return uc;}
     WiimoteEngine* wiimoteEngine() const {return we;}
+	SpawnEngine* spawnEngine() const {return se;}
     GameMode getGameMode() const {return gameMode;}
 
     bool getHasSomeonWon() const {return hasSomeoneWon;}
@@ -82,6 +83,7 @@ signals:
 
 public slots:
     virtual void elemenDestroyed(Destroyable* destroyItem,int nbPoint,Shooter forShip);
+	void start();
 
 private slots:
     void rotationProcess(int wiimote, qreal angle);

@@ -29,7 +29,7 @@ public:
     void activateBonus(Shooter _player, Action _typeBonus);
     void deactivateBonus(Shooter _player, Action _typeBonus);
     BonusState getBonusState(Shooter _player, Action _typeBonus);
-    
+    void startTimer();
 private:
     Ui::HUDWidget *ui;
 };

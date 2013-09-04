@@ -197,3 +197,9 @@ void HUDWidget::setTimer(QTime _time)
 {
     ui->timer->setText(_time.toString("mm:ss"));
 }
+
+void HUDWidget::startTimer()
+{
+	ui->p1_specialBonus->startTimer();
+	ui->p2_specialBonus->startTimer();
+}

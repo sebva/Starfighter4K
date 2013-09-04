@@ -17,6 +17,7 @@ class Displayable;
 class QPixmap;
 class QSplashScreen;
 class HUDWidget;
+class QGraphicsTextItem;
 
 class DisplayEngine : public QMainWindow
 {
@@ -38,6 +39,8 @@ public:
     void explosionScreen();
     HUDWidget* getHud() { return hud; }
 
+	void startCountDown();
+
 protected:
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent * event);//TO REMOVE
@@ -49,6 +52,7 @@ public slots:
 
 private slots:
     void removeExplosionScreen();
+	void changeCountDown();
 
 private:
     void creatHUD();
@@ -72,7 +76,9 @@ private:
     qreal angleBg;
 
     QTime* affiche;
-
+	QGraphicsTextItem* text;
+	QTimer* tCountDown;
+	int countDown;
     HUDWidget* hud;
 
     bool isFullScreen;

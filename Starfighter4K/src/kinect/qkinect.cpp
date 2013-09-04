@@ -317,7 +317,7 @@ bool QKinect::processSkeleton()
 		m_skeletons << skeleton;
 	}
 
-	infos(QString("%1 bitche(s) in front of the kinect").arg(m_nbSkeletons));
+	infos(QString("%1 guy(s) in front of the kinect").arg(m_nbSkeletons));
 
 	return true;
 }

@@ -33,15 +33,14 @@ GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, QKinect* kinect, GameMode g
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this, we);
     se = new SpawnEngine(difficulty, this);
-
+	se->pause(true);
     mutex = new QMutex();
 
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
-    timerControle();
-    createSpaceship();
+    createSpaceship();  
 
-    elapsedTimer.start();
+	de->startCountDown();
 
 	connect(kinect, SIGNAL(newDatas()), this, SLOT(positionProcess()));
     connect(we,SIGNAL(orientation(int, qreal)), this, SLOT(rotationProcess(int, qreal)));
@@ -159,6 +158,13 @@ void GameEngine::createSpaceship()
     }
     addShip(new Spaceship(width,height/2,Player2,settings.playerTwoName(),healthPoint,resistance,cooldown,typeSP2,this));
     listSpaceship[1]->setPixmap(new QPixmap(path));
+}
+
+void GameEngine::start()
+{
+	uc->start();
+	timerControle();
+	elapsedTimer.start();
 }
 
 void GameEngine::timerEvent(QTimerEvent *)

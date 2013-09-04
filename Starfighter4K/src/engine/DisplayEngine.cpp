@@ -1,6 +1,7 @@
 #include "include/engine/DisplayEngine.h"
 #include "include/engine/UserControlsEngine.h"
 #include "include/engine/GameEngine.h"
+#include "include/engine/SpawnEngine.h"
 
 #include "include/game/Displayable.h"
 #include "include/game/Spaceship.h"
@@ -10,10 +11,11 @@
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
 #include "include/menu/HUDWidget.h"
-#include "include/stable.h"
+#include "include/config/define.h"
+
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     :QMainWindow(parent),
-      gameEngine(ge), isFullScreen(true),angleBg(M_PI/4.0),bg(BACKGROUND)
+      gameEngine(ge), isFullScreen(true),angleBg(M_PI/4.0),bg(BACKGROUND),countDown(NB_COUNTDOWN),tCountDown(new QTimer)
 {
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
@@ -41,7 +43,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     view->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     view->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     view->setViewport(new QGLWidget(QGLFormat(QGL::DoubleBuffer),this));
-    view->setRenderHints(QPainter::SmoothPixmapTransform|QPainter::Antialiasing);
+    view->setRenderHints(QPainter::SmoothPixmapTransform|QPainter::Antialiasing|QPainter::TextAntialiasing);
 
     //Better performance if we don't use random access in the scene.
     //It's the case because we use QList for Item process
@@ -78,6 +80,50 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     affiche = new QTime();
     affiche->setHMS(0,0,0,0);
     bgScene->setPos(-(offset+1),-(offset+1));
+
+	QFontDatabase().addApplicationFont(FONT_PATH);
+}
+
+void DisplayEngine::startCountDown()
+{
+	text = new QGraphicsTextItem(QString("%1").arg(countDown));
+	text->setFont(QFont("Helvetica Neue", 400, QFont::Light));
+	text->setDefaultTextColor(QColor(Qt::white));
+	text->setPos(scene->width()/2.0-text->document()->documentLayout()->documentSize().width()/2.0,
+		scene->height()/2.0-text->document()->documentLayout()->documentSize().height()/2.0);
+	tCountDown->start(17);
+	connect(tCountDown,SIGNAL(timeout()),this,SLOT(changeCountDown()));
+	scene->addItem(text);
+}
+
+void DisplayEngine::changeCountDown()
+{
+	if(text->opacity()<=0.05)
+	{
+		if(--countDown >= 0)
+		{
+			text->setOpacity(1.0);
+			if(countDown == 0)
+			{
+				text->setPlainText(QString("FIGHT !"));
+				text->setFont(QFont("Helvetica Neue", 250, QFont::Light));
+				text->setPos(scene->width()/2.0-text->document()->documentLayout()->documentSize().width()/2.0,
+					scene->height()/2.0-text->document()->documentLayout()->documentSize().height()/2.0);
+			}
+			else
+				text->setPlainText(QString("%1").arg(countDown));
+		}
+		else
+		{
+			gameEngine->start();
+			hud->startTimer();
+			gameEngine->spawnEngine()->pause(false);
+			delete text;
+			delete tCountDown;
+		}
+	}
+	else
+		text->setOpacity(0.92*text->opacity());
 }
 
 void DisplayEngine::moveBG()
