@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file alias="mainmenu-logo">res/images/mainmenu-logo.png</file>
-        <file alias="hearc">res/images/hearc.png</file>
         <file alias="taskbar-icon">res/images/taskbar-icon.png</file>
     </qresource>
     <qresource prefix="/strings">

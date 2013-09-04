@@ -103,7 +103,7 @@
       <AdditionalIncludeDirectories>lib\opencv\opencv;lib\opencv;lib\kinect;.;..\..\..\..\..\Qt\5.1.0\msvc2012\include;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE;..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore;debug;.;..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012;.\GeneratedFiles;.\include\menu\Overlay.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm200 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
-      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformation>true</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ForcedIncludeFiles>include\stable.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -141,11 +141,11 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_OPENGL_LIB;QT_MULTIMEDIA_LIB;QT_WIDGETS_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Debug\moc_AboutDialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Debug\moc_BlurPushButton.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -171,15 +171,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Debug\moc_KinectWindow.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_MainDialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_NewGameDialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_OptionsDialog.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Debug\moc_qkinect.cpp">
@@ -236,9 +227,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Release\moc_AboutDialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Release\moc_BlurPushButton.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -264,15 +252,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Release\moc_KinectWindow.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Release\moc_MainDialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Release\moc_NewGameDialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Release\moc_OptionsDialog.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Release\moc_qkinect.cpp">
@@ -325,7 +304,6 @@
     </ClCompile>
     <ClCompile Include="src\kinect\qkinect.cpp" />
     <ClCompile Include="src\kinect\RectangleDetection.cpp" />
-    <ClCompile Include="src\menu\AboutDialog.cpp" />
     <ClCompile Include="src\game\AlienSpaceship.cpp" />
     <ClCompile Include="src\game\Asteroid.cpp" />
     <ClCompile Include="src\game\AsteroidSupernova.cpp" />
@@ -345,9 +323,6 @@
     <ClCompile Include="src\engine\GameEngine.cpp" />
     <ClCompile Include="src\menu\HUDWidget.cpp" />
     <ClCompile Include="src\menu\KinectWindow.cpp" />
-    <ClCompile Include="src\menu\MainDialog.cpp" />
-    <ClCompile Include="src\menu\NewGameDialog.cpp" />
-    <ClCompile Include="src\menu\OptionsDialog.cpp" />
     <ClCompile Include="src\game\Projectile.cpp" />
     <ClCompile Include="src\game\ProjectileAlien.cpp" />
     <ClCompile Include="src\game\ProjectileBlack.cpp" />
@@ -357,7 +332,6 @@
     <ClCompile Include="src\game\ProjectileSimple.cpp" />
     <ClCompile Include="src\game\ProjectileTracking.cpp" />
     <ClCompile Include="src\game\ProjectileV.cpp" />
-    <ClCompile Include="src\menu\Overlay.cpp" />
     <ClCompile Include="src\menu\ScrollText.cpp" />
     <ClCompile Include="src\utils\Settings.cpp" />
     <ClCompile Include="src\engine\SoundEngine.cpp" />
@@ -377,16 +351,6 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="include\menu\AboutDialog.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/AboutDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing AboutDialog.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/AboutDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing AboutDialog.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-    </CustomBuild>
     <ClInclude Include="GeneratedFiles\ui_AboutDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_ConnectDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_HUDWidget.h" />
@@ -497,36 +461,6 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="include\menu\MainDialog.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/MainDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing MainDialog.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/MainDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing MainDialog.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-    </CustomBuild>
-    <CustomBuild Include="include\menu\NewGameDialog.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/NewGameDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing NewGameDialog.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/NewGameDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing NewGameDialog.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-    </CustomBuild>
-    <CustomBuild Include="include\menu\OptionsDialog.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/OptionsDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing OptionsDialog.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\debug" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/menu/OptionsDialog.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing OptionsDialog.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-    </CustomBuild>
     <ClInclude Include="include\game\Projectile.h" />
     <ClInclude Include="include\game\ProjectileAlien.h" />
     <ClInclude Include="include\game\ProjectileBlack.h" />
@@ -557,20 +491,6 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG -DQT_DLL  "-I.\lib\opencv\opencv" "-I.\lib\opencv" "-I.\lib\kinect" "-I." "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtOpenGL" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtMultimedia" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtWidgets" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtNetwork" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtGui" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtANGLE" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\include\QtCore" "-I.\release" "-I.\..\..\..\..\..\Qt\5.1.0\msvc2012\mkspecs\win32-msvc2012" "-I.\GeneratedFiles" "-I.\include\menu\Overlay.h" "-finclude/stable.h" "-f../include/kinect/qkinect.h"</Command>
     </CustomBuild>
     <ClInclude Include="include\kinect\RectangleDetection.h" />
-    <CustomBuild Include="include\menu\Overlay.h">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-    </CustomBuild>
     <CustomBuild Include="include\menu\BlurPushButton.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing BlurPushButton.h...</Message>
@@ -812,17 +732,6 @@ echo #include "stable.h"&gt;&gt;include\stable.h.cpp</Command>
     <None Include="starfighter4K_fr.ts" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="res\ui\AboutDialog.ui">
-      <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-    </CustomBuild>
     <CustomBuild Include="res\ui\ConnectDialog.ui">
       <FileType>Document</FileType>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
@@ -846,39 +755,6 @@ echo #include "stable.h"&gt;&gt;include\stable.h.cpp</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="res\ui\KinectWindow.ui">
-      <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-    </CustomBuild>
-    <CustomBuild Include="res\ui\MainDialog.ui">
-      <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-    </CustomBuild>
-    <CustomBuild Include="res\ui\NewGameDialog.ui">
-      <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-    </CustomBuild>
-    <CustomBuild Include="res\ui\OptionsDialog.ui">
       <FileType>Document</FileType>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>

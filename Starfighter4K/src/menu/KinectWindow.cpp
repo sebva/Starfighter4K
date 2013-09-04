@@ -6,7 +6,6 @@
 #include "include/kinect/qkinect.h"
 #include "include/utils/Settings.h"
 #include "include/config/Define.h"
-#include "include/menu/Overlay.h"
 
 KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) :
 	QMainWindow(parent),
