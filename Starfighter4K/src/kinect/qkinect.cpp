@@ -154,9 +154,9 @@ QPair<QPoint, QPoint> QKinect::getHandsPosition()
 		if(skeleton.count() >= 20)
 		{
 			if(skeleton[NUI_SKELETON_POSITION_HEAD].x() < m_screenSize->width() / 2)
-				hands.second = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() < skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT] : skeleton[NUI_SKELETON_POSITION_HAND_LEFT];
-			else
 				hands.first = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() > skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT] : skeleton[NUI_SKELETON_POSITION_HAND_LEFT];
+			else
+				hands.second = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() < skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT] : skeleton[NUI_SKELETON_POSITION_HAND_LEFT];
 		}
 	}
 
