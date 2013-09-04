@@ -9,14 +9,15 @@
 #include "include/menu/Overlay.h"
 
 KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::KinectWindow),
-    p1Ship(NoSpaceShip), p2Ship(NoSpaceShip),
-    p1Bonus(TypeSpecialBonusNothing), p2Bonus(TypeSpecialBonusNothing),
-    we(we), kinect(kinect), ge(0),
-	background(":/images/menu/background")
+	QMainWindow(parent),
+	ui(new Ui::KinectWindow),
+	p1Ship(NoSpaceShip), p2Ship(NoSpaceShip),
+	p1Bonus(TypeSpecialBonusNothing), p2Bonus(TypeSpecialBonusNothing),
+	we(we), kinect(kinect), ge(0),
+	background(":/images/menu/background"),
+	kinectActive(true)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 
 	ui->about->setSource(tr("qrc:/strings/about"));
 
@@ -27,8 +28,8 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
 	ui->scrollText->setText(tr("Starfighter 4K - Developed by ").append(names.join(", ")).append(tr(" - Copyright 2013 HE-Arc")));
 	ui->scrollText->setSeparator("  +++  ");
 
-    timer.setHMS(0, 2, 0);
-    updateTimerDisplay();
+	timer.setHMS(0, 2, 0);
+	updateTimerDisplay();
 
 	connect(kinect, SIGNAL(newDatas()), this, SLOT(handsMoved()));
 
@@ -39,51 +40,107 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
 	connect(ui->btnBackTimer, SIGNAL(clicked()), this, SLOT(back()));
 
 	QMediaPlaylist* pl = new QMediaPlaylist(this);
-    pl->addMedia(QMediaContent(QUrl::fromLocalFile("./sounds/menu.mp3")));
-    pl->setPlaybackMode(QMediaPlaylist::Loop);
-    menuMusic = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
-    menuMusic->setPlaylist(pl);
-    menuMusic->play();
+	pl->addMedia(QMediaContent(QUrl::fromLocalFile("./sounds/menu.mp3")));
+	pl->setPlaybackMode(QMediaPlaylist::Loop);
+	menuMusic = new QMediaPlayer(this, QMediaPlayer::StreamPlayback);
+	menuMusic->setPlaylist(pl);
+	menuMusic->play();
 
-	//overlay = new Overlay(centralWidget());
+	hoverButtons = new BlurPushButton*[2];
+	hoverButtons[0] = hoverButtons[1] = 0;
+
+	connect(ui->btnAntigravityP1, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnFreezeP1, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnGuidedP1, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnRootP1, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnTrackingP1, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+
+	connect(ui->btnAntigravityP2, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnFreezeP2, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnGuidedP2, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnRootP2, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+	connect(ui->btnTrackingP2, &BlurPushButton::clicked, this, &KinectWindow::validateBonus);
+
+	connect(ui->btnShip1P1, &BlurPushButton::clicked, this, &KinectWindow::validateShips);
+	connect(ui->btnShip2P1, &BlurPushButton::clicked, this, &KinectWindow::validateShips);
+	connect(ui->btnShip3P1, &BlurPushButton::clicked, this, &KinectWindow::validateShips);
+
+	connect(ui->btnShip1P2, &BlurPushButton::clicked, this, &KinectWindow::validateShips);
+	connect(ui->btnShip2P2, &BlurPushButton::clicked, this, &KinectWindow::validateShips);
+	connect(ui->btnShip3P2, &BlurPushButton::clicked, this, &KinectWindow::validateShips);
+
+	p1BonusGroup.addButton(ui->btnAntigravityP1, TypeSpecialBonusAntiGravity);
+	p1BonusGroup.addButton(ui->btnFreezeP1, TypeSpecialBonusFreeze);
+	p1BonusGroup.addButton(ui->btnGuidedP1, TypeSpecialBonusGuidedMissile);
+	p1BonusGroup.addButton(ui->btnRootP1, TypeSpecialBonusOmnidirectionalShot);
+	p1BonusGroup.addButton(ui->btnTrackingP1, TypeSpecialBonusTrackingMissile);
+
+	p2BonusGroup.addButton(ui->btnAntigravityP2, TypeSpecialBonusAntiGravity);
+	p2BonusGroup.addButton(ui->btnFreezeP2, TypeSpecialBonusFreeze);
+	p2BonusGroup.addButton(ui->btnGuidedP2, TypeSpecialBonusGuidedMissile);
+	p2BonusGroup.addButton(ui->btnRootP2, TypeSpecialBonusOmnidirectionalShot);
+	p2BonusGroup.addButton(ui->btnTrackingP2, TypeSpecialBonusTrackingMissile);
+
+	p1ShipsGroup.addButton(ui->btnShip1P1, SpaceshipType1);
+	p1ShipsGroup.addButton(ui->btnShip2P1, SpaceshipType2);
+	p1ShipsGroup.addButton(ui->btnShip3P1, SpaceshipType3);
+
+	p2ShipsGroup.addButton(ui->btnShip1P2, SpaceshipType1);
+	p2ShipsGroup.addButton(ui->btnShip2P2, SpaceshipType2);
+	p2ShipsGroup.addButton(ui->btnShip3P2, SpaceshipType3);
 }
 
 KinectWindow::~KinectWindow()
 {
 	delete ui->graphicsView;
-    delete ui;
+	delete ui;
 	we->stop();
 	delete we;
 }
 
 void KinectWindow::paintEvent(QPaintEvent *event)
 {
+	QMainWindow::paintEvent(event);
+
 	QPainter p(this);
 	p.drawPixmap(0, 0, background);
 }
 
-void KinectWindow::resizeEvent(QResizeEvent *event)
-{
-	//background = QPixmap::fromImage(BlurPushButton::blurred(QImage(":/images/menu/background"), rect(), 20, false));
-    //overlay->resize(event->size());
-
-	//update();
-    event->accept();
-}
-
 void KinectWindow::handsMoved()
 {
+	if(!kinectActive)
+		return;
+
 	QPair<QPoint, QPoint> hands = kinect->getHandsPosition();
 	hand1 = hands.first;
 	hand2 = hands.second;
 
-	//overlay->setHands(hands);
+	BlurPushButton* button1;
+	if(button1 = dynamic_cast<BlurPushButton*>(childAt(hand1)))
+	{
+		if(hoverButtons[0] != 0 && hoverButtons[0] != button1)
+			hoverButtons[0]->setHandOnTop(false);
+		button1->setHandOnTop(true);
+		hoverButtons[0] = button1;
+	}
+	else if(hoverButtons[0] != 0)
+		hoverButtons[0]->setHandOnTop(false);
+	BlurPushButton* button2;
+	if(button2 = dynamic_cast<BlurPushButton*>(childAt(hand2)))
+	{
+		if(hoverButtons[1] != 0 && hoverButtons[1] != button2)
+			hoverButtons[1]->setHandOnTop(false);
+		button2->setHandOnTop(true);
+		hoverButtons[1] = button2;
+	}
+	else if(hoverButtons[1] != 0)
+		hoverButtons[1]->setHandOnTop(false);
 }
 
 void KinectWindow::on_btnGame_clicked()
 {
 	ui->graphicsView->escapeGame();
-    ui->stack->setCurrentWidget(ui->mode);
+	ui->stack->setCurrentWidget(ui->mode);
 }
 
 void KinectWindow::on_btnOptions_clicked()
@@ -93,7 +150,7 @@ void KinectWindow::on_btnOptions_clicked()
 	ui->p2name->setText(s.playerTwoName());
 
 	int index = (s.HUDArea() == Qt::TopDockWidgetArea) ? 0 : 1;
-    ui->hudPlacement->setCurrentIndex(index);
+	ui->hudPlacement->setCurrentIndex(index);
 
 	ui->stack->setCurrentWidget(ui->options);
 }
@@ -101,202 +158,159 @@ void KinectWindow::on_btnOptions_clicked()
 void KinectWindow::on_btnValidateOptions_clicked()
 {
 	Settings& s = Settings::getGlobalSettings();
-	
-    s.setPlayerOneName(ui->p1name->text());
-    s.setPlayerTwoName(ui->p2name->text());
 
-    int index = ui->hudPlacement->currentIndex();
-    s.setHUDArea(index == 0 ? Qt::TopDockWidgetArea : Qt::BottomDockWidgetArea);
+	s.setPlayerOneName(ui->p1name->text());
+	s.setPlayerTwoName(ui->p2name->text());
+
+	int index = ui->hudPlacement->currentIndex();
+	s.setHUDArea(index == 0 ? Qt::TopDockWidgetArea : Qt::BottomDockWidgetArea);
 
 	ui->stack->setCurrentWidget(ui->home);
 }
 
 void KinectWindow::on_btnDeathmatch_clicked()
 {
-    ui->stack->setCurrentWidget(ui->spaceshipsSelection);
-    gameMode = DeathMatch;
+	ui->stack->setCurrentWidget(ui->spaceshipsSelection);
+	gameMode = DeathMatch;
 }
 
 void KinectWindow::on_btnTimer_clicked()
 {
-    ui->stack->setCurrentWidget(ui->timerSelect);
-    gameMode = Timer;
+	ui->stack->setCurrentWidget(ui->timerSelect);
+	gameMode = Timer;
 }
 
 void KinectWindow::on_btnValidateTime_clicked()
 {
 
-    ui->stack->setCurrentWidget(ui->spaceshipsSelection);
+	ui->stack->setCurrentWidget(ui->spaceshipsSelection);
 }
 
 void KinectWindow::on_btnPlus_clicked()
 {
-    timer = timer.addSecs(30);
-    updateTimerDisplay();
+	timer = timer.addSecs(30);
+	updateTimerDisplay();
 }
 
 void KinectWindow::on_btnMinus_clicked()
 {
-    timer = timer.addSecs(-30);
-    updateTimerDisplay();
+	timer = timer.addSecs(-30);
+	updateTimerDisplay();
 }
 
 void KinectWindow::updateTimerDisplay()
 {
-    ui->lblTime->setText(timer.toString());
-    ui->btnValidateTime->setEnabled(timer != QTime(0, 0));
+	ui->lblTime->setText(timer.toString());
+	ui->btnValidateTime->setEnabled(timer != QTime(0, 0));
 }
 
 void KinectWindow::back()
 {
 	QWidget* cur = ui->stack->currentWidget();
 
-    if(cur == ui->mode)
+	unselectBonuses();
+	unselectShips();
+
+	if(cur == ui->mode)
 	{
 		ui->graphicsView->escapeGame();
-        ui->stack->setCurrentWidget(ui->home);
+		ui->stack->setCurrentWidget(ui->home);
 	}
 	else if(cur == ui->home)
 		close();
 	else if(cur == ui->options)
 		ui->stack->setCurrentWidget(ui->home);
-    else if(cur == ui->timerSelect)
-        ui->stack->setCurrentWidget(ui->mode);
-    else if(cur == ui->spaceshipsSelection)
-        ui->stack->setCurrentWidget(ui->mode);
-    else if(cur == ui->bonusSelection)
-        ui->stack->setCurrentWidget(ui->spaceshipsSelection);
+	else if(cur == ui->timerSelect)
+		ui->stack->setCurrentWidget(ui->mode);
+	else if(cur == ui->spaceshipsSelection)
+		ui->stack->setCurrentWidget(ui->mode);
+	else if(cur == ui->bonusSelection)
+		ui->stack->setCurrentWidget(ui->spaceshipsSelection);
 }
 
 void KinectWindow::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_Escape)
+	if(event->key() == Qt::Key_Escape)
 		back();
 }
 
-void KinectWindow::validateShips()
+void KinectWindow::unselectShips()
 {
-    if(p1Ship != NoSpaceShip && p2Ship != NoSpaceShip)
-        ui->stack->setCurrentWidget(ui->bonusSelection);
+	p1ShipsGroup.setExclusive(false);
+	p2ShipsGroup.setExclusive(false);
+	ui->btnShip1P1->setChecked(false);
+	ui->btnShip2P1->setChecked(false);
+	ui->btnShip3P1->setChecked(false);
+	ui->btnShip1P2->setChecked(false);
+	ui->btnShip2P2->setChecked(false);
+	ui->btnShip3P2->setChecked(false);
+	p1ShipsGroup.setExclusive(true);
+	p2ShipsGroup.setExclusive(true);
 }
 
-void KinectWindow::on_btnShip1P1_clicked()
+void KinectWindow::unselectBonuses()
 {
-    p1Ship = SpaceshipType1;
-    validateShips();
+	p1BonusGroup.setExclusive(false);
+	p2BonusGroup.setExclusive(false);
+	ui->btnAntigravityP1->setChecked(false);
+	ui->btnFreezeP1->setChecked(false);
+	ui->btnGuidedP1->setChecked(false);
+	ui->btnRootP1->setChecked(false);
+	ui->btnTrackingP1->setChecked(false);
+	ui->btnAntigravityP2->setChecked(false);
+	ui->btnFreezeP2->setChecked(false);
+	ui->btnGuidedP2->setChecked(false);
+	ui->btnRootP2->setChecked(false);
+	ui->btnTrackingP2->setChecked(false);
+	p1BonusGroup.setExclusive(true);
+	p2BonusGroup.setExclusive(true);
 }
 
-void KinectWindow::on_btnShip2P1_clicked()
+void KinectWindow::validateShips(int)
 {
-    p1Ship = SpaceshipType2;
-    validateShips();
+	int p1ShipId = p1ShipsGroup.checkedId();
+	int p2ShipId = p2ShipsGroup.checkedId();
+	if(p1ShipId != -1 && p2ShipId != -1)
+	{
+		p1Ship = (SpaceshipType)p1ShipId;
+		p2Ship = (SpaceshipType)p2ShipId;
+		ui->stack->setCurrentWidget(ui->bonusSelection);
+	}
 }
 
-void KinectWindow::on_btnShip3P1_clicked()
+void KinectWindow::validateBonus(int)
 {
-    p1Ship = SpaceshipType3;
-    validateShips();
-}
+	int p1BonusId = p1BonusGroup.checkedId();
+	int p2BonusId = p2BonusGroup.checkedId();
+	if(p1BonusId != -1 && p2BonusId != -1)
+	{
+		p1Bonus = (TypeSpecialBonus)p1BonusId;
+		p2Bonus = (TypeSpecialBonus)p2BonusId;
 
-void KinectWindow::on_btnShip1P2_clicked()
-{
-    p2Ship = SpaceshipType1;
-    validateShips();
-}
+		kinectActive = false;
 
-void KinectWindow::on_btnShip2P2_clicked()
-{
-    p2Ship = SpaceshipType2;
-    validateShips();
-}
-
-void KinectWindow::on_btnShip3P2_clicked()
-{
-    p2Ship = SpaceshipType3;
-    validateShips();
-}
-
-void KinectWindow::on_btnFreezeP1_clicked()
-{
-    p1Bonus = TypeSpecialBonusFreeze;
-    validateBonus();
-}
-
-void KinectWindow::on_btnAntigravityP1_clicked()
-{
-    p1Bonus = TypeSpecialBonusAntiGravity;
-    validateBonus();
-}
-
-void KinectWindow::on_btnGuidedP1_clicked()
-{
-    p1Bonus = TypeSpecialBonusGuidedMissile;
-    validateBonus();
-}
-
-void KinectWindow::on_btnTrackingP1_clicked()
-{
-    p1Bonus = TypeSpecialBonusTrackingMissile;
-    validateBonus();
-}
-
-void KinectWindow::on_btnRootP1_clicked()
-{
-    p1Bonus = TypeSpecialBonusOmnidirectionalShot;
-    validateBonus();
-}
-
-void KinectWindow::on_btnFreezeP2_clicked()
-{
-    p2Bonus = TypeSpecialBonusFreeze;
-    validateBonus();
-}
-
-void KinectWindow::on_btnAntigravityP2_clicked()
-{
-    p2Bonus = TypeSpecialBonusAntiGravity;
-    validateBonus();
-}
-
-void KinectWindow::on_btnGuidedP2_clicked()
-{
-    p2Bonus = TypeSpecialBonusGuidedMissile;
-    validateBonus();
-}
-
-void KinectWindow::on_btnTrackingP2_clicked()
-{
-    p2Bonus = TypeSpecialBonusTrackingMissile;
-    validateBonus();
-}
-
-void KinectWindow::on_btnRootP2_clicked()
-{
-    p2Bonus = TypeSpecialBonusOmnidirectionalShot;
-    validateBonus();
-}
-
-void KinectWindow::validateBonus()
-{
-    if(p1Bonus != TypeSpecialBonusNothing && p2Bonus != TypeSpecialBonusNothing)
-    {
 		menuMusic->stop();
-        int duration = timer.hour() * 3600 + timer.minute() * 60 + timer.second();
-        int difficulty = AlienMothership | Asteroids | Satellites | Supernovae | BlackSquadron;
-        ge = new GameEngine(we, kinect, gameMode, duration, p1Ship, p2Ship, p1Bonus, p2Bonus, difficulty, this);
-        connect(ge, SIGNAL(endGame()), this, SLOT(endGame()));
-    }
+		int duration = timer.hour() * 3600 + timer.minute() * 60 + timer.second();
+		int difficulty = AlienMothership | Asteroids | Satellites | Supernovae | BlackSquadron;
+		ge = new GameEngine(we, kinect, gameMode, duration, p1Ship, p2Ship, p1Bonus, p2Bonus, difficulty, this);
+		connect(ge, SIGNAL(endGame()), this, SLOT(endGame()));
+	}
 }
 
 void KinectWindow::endGame()
 {
 	ui->graphicsView->escapeGame();
-	
-    ge->deleteLater();
-    ge = 0;
 
-    ui->stack->setCurrentWidget(ui->home);
-    p1Bonus = p2Bonus = TypeSpecialBonusNothing;
-    p1Ship = p2Ship = NoSpaceShip;
+	ge->deleteLater();
+	ge = 0;
+
+	unselectBonuses();
+	unselectShips();
+
+	ui->stack->setCurrentWidget(ui->home);
+	p1Bonus = p2Bonus = TypeSpecialBonusNothing;
+	p1Ship = p2Ship = NoSpaceShip;
 	menuMusic->play();
+
+	kinectActive = true;
 }

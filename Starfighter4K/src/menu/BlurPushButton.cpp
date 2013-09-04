@@ -1,14 +1,47 @@
 #include "include/menu/BlurPushButton.h"
 
 BlurPushButton::BlurPushButton(QWidget *parent)
-	: QPushButton(parent), original(":/images/menu/background")
+	: QPushButton(parent), original(":/images/menu/background"), handOnTop(false)
 {
 	setStyleSheet("*{background-color:rgba(0,0,0,0);}");
+	timer.setInterval(50);
+	connect(&timer, &QTimer::timeout, this, &BlurPushButton::clockTick);
 }
 
 BlurPushButton::~BlurPushButton()
 {
 
+}
+
+void BlurPushButton::clockTick()
+{
+	progress += 1;
+	if(progress >= 30)
+	{
+		timer.stop();
+		click();
+
+		progress = 0;
+	}
+	update();
+}
+
+void BlurPushButton::setHandOnTop(bool isOnTop)
+{
+	if(isOnTop && !handOnTop)
+	{
+		timer.start();
+		progress = 5;
+	}
+	else if(!isOnTop)
+	{
+		progress = 0;
+		timer.stop();
+	}
+	
+	handOnTop = isOnTop;
+
+	update();
 }
 
 void BlurPushButton::resizeEvent(QResizeEvent* event)
@@ -28,6 +61,20 @@ void BlurPushButton::paintEvent(QPaintEvent *event)
 	p.drawImage(0, 0, background);//, point.x(), point.y());
 	
 	p.drawPixmap(0, 0, blur);
+
+	if(isCheckable() && isChecked())
+	{
+		p.setPen(QPen(QBrush(Qt::white), 20));
+		p.setBrush(Qt::transparent);
+		p.drawRect(0, 0, width(), height());
+	}
+	else if(handOnTop)
+	{
+		p.setPen(Qt::transparent);
+		p.setBrush(Qt::white);
+		p.drawRect(0, 0, progress, height());
+	}
+		
 
 	QPushButton::paintEvent(event);
 }

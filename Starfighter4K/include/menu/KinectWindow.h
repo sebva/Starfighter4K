@@ -12,6 +12,7 @@ class WiimoteEngine;
 class GameEngine;
 class QKinect;
 class Overlay;
+class BlurPushButton;
 
 class KinectWindow : public QMainWindow
 {
@@ -35,26 +36,13 @@ private slots:
     void on_btnValidateTime_clicked();
     void on_btnPlus_clicked();
     void on_btnMinus_clicked();
-    void on_btnShip1P1_clicked();
-    void on_btnShip2P1_clicked();
-    void on_btnShip3P1_clicked();
-    void on_btnShip1P2_clicked();
-    void on_btnShip2P2_clicked();
-    void on_btnShip3P2_clicked();
-    void on_btnFreezeP1_clicked();
-    void on_btnAntigravityP1_clicked();
-    void on_btnGuidedP1_clicked();
-    void on_btnTrackingP1_clicked();
-    void on_btnRootP1_clicked();
-    void on_btnFreezeP2_clicked();
-    void on_btnAntigravityP2_clicked();
-    void on_btnGuidedP2_clicked();
-    void on_btnTrackingP2_clicked();
-    void on_btnRootP2_clicked();
+
+protected:
+	void paintEvent(QPaintEvent *event);
 
 private:
-	void paintEvent(QPaintEvent *event);
-	void resizeEvent(QResizeEvent *event);
+	void unselectShips();
+	void unselectBonuses();
     Ui::KinectWindow *ui;
     QTime timer;
     void keyPressEvent(QKeyEvent *);
@@ -64,16 +52,23 @@ private:
     TypeSpecialBonus p2Bonus;
     GameMode gameMode;
     void updateTimerDisplay();
-    void validateShips();
-    void validateBonus();
     WiimoteEngine* we;
 	QKinect* kinect;
     GameEngine* ge;
 	QMediaPlayer *menuMusic;
-	Overlay* overlay;
 	QPoint hand1;
 	QPoint hand2;
 	QPixmap background;
+	BlurPushButton** hoverButtons;
+	QButtonGroup p1ShipsGroup;
+	QButtonGroup p2ShipsGroup;
+	QButtonGroup p1BonusGroup;
+	QButtonGroup p2BonusGroup;
+	bool kinectActive;
+
+private slots:
+    void validateShips(int);
+    void validateBonus(int);
 };
 
 #endif // KINECTWINDOW_H
