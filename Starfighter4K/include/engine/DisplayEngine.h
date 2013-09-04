@@ -41,9 +41,11 @@ public:
 
 	void startCountDown();
 
+	void showMessage(const QString&);
+	void removeMessage();
+
 protected:
     void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent * event);//TO REMOVE
     void closeEvent(QCloseEvent *event);
 
 public slots:
@@ -77,6 +79,7 @@ private:
 
     QTime* affiche;
 	QGraphicsTextItem* text;
+	QGraphicsTextItem* message;
 	QTimer* tCountDown;
 	int countDown;
     HUDWidget* hud;

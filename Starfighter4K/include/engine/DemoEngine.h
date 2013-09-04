@@ -27,7 +27,7 @@ public:
     void addAsteroid(Asteroid *_inAsteroide);
     void removeItemScene(Displayable* item);
 
-	void escapeGame();
+	void escapeGame(bool isKey = false);
 
 public slots:
     void elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter forShip);

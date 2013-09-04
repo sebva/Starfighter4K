@@ -33,7 +33,6 @@ GameEngine::GameEngine(WiimoteEngine* wiimoteEngine, QKinect* kinect, GameMode g
     de = new DisplayEngine(this,0);
     uc = new UserControlsEngine(this, we);
     se = new SpawnEngine(difficulty, this);
-	se->pause(true);
     mutex = new QMutex();
 
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
@@ -163,6 +162,7 @@ void GameEngine::createSpaceship()
 void GameEngine::start()
 {
 	uc->start();
+	se->start();
 	timerControle();
 	elapsedTimer.start();
 }
@@ -231,66 +231,43 @@ void GameEngine::endGameTimer()
         else if(ship1()->getScore()<ship2()->getScore())
             playerName = QString(ship2()->getPlayerName());
 
-        if(ship1()->getScore()!=ship2()->getScore())
-            QMessageBox::information(de,
-                                     tr("End of the game"),
-                                     QString(tr("%1 has won !")).arg(playerName),
-                                     QMessageBox::Ok);
-        else
-            QMessageBox::information(de,
-                                     tr("End of the game"),
-                                     QString(tr("No one has won ... Egality !")),
-                                     QMessageBox::Ok);
+		QString message = ship1()->getScore()!=ship2()->getScore() ? QString(tr("%1 has won !")).arg(playerName) : QString(tr("No one has won ... Egality !"));
+		message.append(QString::fromUtf8("\nPress home to quit"));
+		de->showMessage(message);
+		uc->endGame();
     }
 }
 
 void GameEngine::endGameDeathMatch(Spaceship* _ship)
 {
-    // get point player
-    //gameEngine->spaceship;
-    if(_ship==0)
-    {
-        QMessageBox::information(de,
-                                 tr("End of the game"),
-                                 tr("End of the game"),
-                                 QMessageBox::Ok);
-    }
-    else
-    {
-        if(!hasSomeoneWon)
-        {
-            hasSomeoneWon = true;
-            de->updateGameData();
-            QString playerName;
-            if(_ship==ship1())
-                playerName = QString(ship2()->getPlayerName());
-            else if(_ship==ship2())
-                playerName = QString(ship1()->getPlayerName());
-            QMessageBox::information(de,
-                                     tr("End of the game"),
-                                     QString(tr("%1 has won !")).arg(playerName),
-                                     QMessageBox::Ok);
-        }
-    }
+	if(_ship!=0 && !hasSomeoneWon)
+	{
+		hasSomeoneWon = true;
+		de->updateGameData();
+		QString playerName;
+		if(_ship==ship1())
+			playerName = QString(ship2()->getPlayerName());
+		else if(_ship==ship2())
+			playerName = QString(ship1()->getPlayerName());
+
+		QString message = QString(tr("%1 has won !")).arg(playerName);
+		message.append(QString::fromUtf8("\nPress home to quit"));
+
+		de->showMessage(message);
+		uc->endGame();
+	}
 }
 
-void GameEngine::escapeGame()
+void GameEngine::escapeGame(bool isKey)
 {
     timerControle();
-
-    QMessageBox messageExit;
-
-    messageExit.setWindowTitle(tr("End of the game"));
-    messageExit.setText(tr("Do you want to stop the current game ?"));
-    messageExit.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    messageExit.setDefaultButton(QMessageBox::No);
-
-    messageExit.setButtonText(QMessageBox::Yes,tr("Yes"));
-    messageExit.setButtonText(QMessageBox::No,tr("No"));
-
-    if(messageExit.exec() == QMessageBox::Yes)
-        emit endGame();
-    timerControle();
+	if(isRunning && isKey)
+		de->removeMessage();
+	else
+	{
+		QString message = tr("Stop the game ?\nYes (-)\t\tNo (+)");
+		de->showMessage(message);
+	}
 }
 
 void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter forShip)
@@ -299,7 +276,6 @@ void GameEngine::elemenDestroyed(Destroyable* _destroyItem, int nbPoint, Shooter
     {
         timerControle();
         endGameDeathMatch(s);
-        emit endGame();
     }
     else
     {
@@ -388,15 +364,12 @@ void GameEngine::timerControle(int tps)
         timeAlreadyCounted += elapsedTimer.elapsed();
         elapsedTimer.invalidate();
 
-        emit signalPause(true);
+		emit signalPause(true);
     }
-
     else
     {
         idTimer = startTimer(tps);
-
         elapsedTimer.start();
-
         emit signalPause(false);
     }
     isRunning = !isRunning;
@@ -696,4 +669,9 @@ void GameEngine::runTestCollision(QList<Displayable*> &list)
         clearList(listBonus);
         clearList(listAlienSpaceship);
 		clearList(listBlackship);
+}
+
+void GameEngine::quitGame()
+{
+	emit endGame();
 }

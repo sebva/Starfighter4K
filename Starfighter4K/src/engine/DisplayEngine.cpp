@@ -15,7 +15,7 @@
 
 DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     :QMainWindow(parent),
-      gameEngine(ge), isFullScreen(true),angleBg(M_PI/4.0),bg(BACKGROUND),countDown(NB_COUNTDOWN),tCountDown(new QTimer)
+      gameEngine(ge), isFullScreen(true),angleBg(M_PI/4.0),bg(BACKGROUND),countDown(NB_COUNTDOWN),tCountDown(new QTimer),message(0)
 {
     // get screen dimension
     QDesktopWidget * desktop = QApplication::desktop();
@@ -87,7 +87,7 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
 void DisplayEngine::startCountDown()
 {
 	text = new QGraphicsTextItem(QString("%1").arg(countDown));
-	text->setFont(QFont("Helvetica Neue", 400, QFont::Light));
+	text->setFont(QFont("Helvetica Neue", 72, QFont::Light));
 	text->setDefaultTextColor(QColor(Qt::white));
 	text->setPos(scene->width()/2.0-text->document()->documentLayout()->documentSize().width()/2.0,
 		scene->height()/2.0-text->document()->documentLayout()->documentSize().height()/2.0);
@@ -106,7 +106,7 @@ void DisplayEngine::changeCountDown()
 			if(countDown == 0)
 			{
 				text->setPlainText(QString("FIGHT !"));
-				text->setFont(QFont("Helvetica Neue", 250, QFont::Light));
+				text->setFont(QFont("Helvetica Neue", 48, QFont::Light));
 				text->setPos(scene->width()/2.0-text->document()->documentLayout()->documentSize().width()/2.0,
 					scene->height()/2.0-text->document()->documentLayout()->documentSize().height()/2.0);
 			}
@@ -117,7 +117,6 @@ void DisplayEngine::changeCountDown()
 		{
 			gameEngine->start();
 			hud->startTimer();
-			gameEngine->spawnEngine()->pause(false);
 			delete text;
 			delete tCountDown;
 		}
@@ -239,22 +238,6 @@ void DisplayEngine::updateGameData()
     this->setProgressShield1(gameEngine->ship1()->getHealthForceField());
     this->setProgressShield2(gameEngine->ship2()->getHealthForceField());
 
-    /*BonusProjectile * getBonus = gameEngine->ship1()->getBonusProjectile();
-    if(getBonus != NULL)
-        this->setBonusProject1(getBonus->getType());
-    else
-        this->setBonusProject1();
-
-    getBonus = gameEngine->ship2()->getBonusProjectile();
-    if(getBonus != NULL)
-        this->setBonusProject2(getBonus->getType());
-    else
-        this->setBonusProject2();
-
-    this->setBonusSpeed1(gameEngine->ship1()->getPercentageSpeed());
-    this->setBonusSpeed2(gameEngine->ship2()->getPercentageSpeed());*/
-
-
     if(gameEngine->getHasSomeonWon())
     {
         gameEngine->userControlsEngine()->clearActionList();
@@ -282,19 +265,13 @@ void DisplayEngine::keyPressEvent(QKeyEvent *event)
         break;
 
         case Qt::Key_Escape:
-        gameEngine->escapeGame();
+        gameEngine->escapeGame(true);
         break;
 
         default:
-            gameEngine->userControlsEngine()->keyPressEvent(event);
         break;
     }
 
-}
-
-void DisplayEngine::keyReleaseEvent(QKeyEvent *event)
-{
-    gameEngine->userControlsEngine()->keyReleaseEvent(event);
 }
 
 void DisplayEngine::closeEvent(QCloseEvent *event)
@@ -313,4 +290,24 @@ void DisplayEngine::switchFullScreen()
         showMaximized();
 
     isFullScreen = !isFullScreen;
+}
+
+void DisplayEngine::showMessage(const QString& str)
+{
+	message = new QGraphicsTextItem(str);
+	message->setZValue(10000);
+	message->setFont(QFont("Helvetica Neue", 48, QFont::Light));
+	message->setDefaultTextColor(QColor(Qt::white));
+	message->setPos(scene->width()/2.0-message->document()->documentLayout()->documentSize().width()/2.0,
+		scene->height()/2.0-message->document()->documentLayout()->documentSize().height()/2.0);
+	scene->addItem(message);
+}
+
+void DisplayEngine::removeMessage()
+{
+	if(message != 0)
+	{
+		delete message;
+		message = 0;
+	}
 }

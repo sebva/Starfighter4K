@@ -72,11 +72,12 @@ public:
     virtual void removeItemScene(Displayable* item);
     void endGameDeathMatch(Spaceship* _ship=0);
     void endGameTimer();
-    virtual void escapeGame();
+    virtual void escapeGame(bool isKey = false);
 
     void enableAntiGravity(Shooter playerActivated);
     void freezePlayer(int duration, Shooter playerDest);
 
+	void quitGame();
 signals:
     void endGame();
     void signalPause(bool); // true = isPause

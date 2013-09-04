@@ -26,11 +26,10 @@ UserControlsEngine::UserControlsEngine(GameEngine *ge, WiimoteEngine *we): gameE
     actions.insert(WIIMOTE_BUTTON_PLUS, aSpecialBonus);
     actions.insert(WIIMOTE_BUTTON_HOME, Pause);
 
-    novaeCall = new QTimer(this);
-    novaeCall->setSingleShot(true);
-    novaeCall->start(NOVATIMER);
+	novaeCall = new QTimer(this);
+	novaeCall->setSingleShot(true);
+	novaeCall->setInterval(NOVATIMER);
 
-    connect(novaeCall,SIGNAL(timeout()),this,SLOT(callSupernovae()));
     connect(gameEngine,SIGNAL(signalPause(bool)),this,SLOT(pauseGame(bool)));
     connect(gameEngine,SIGNAL(endGame()),this,SLOT(endGame()));
     connect(wiimoteEngine, SIGNAL(button_pressed(int,int)), this, SLOT(wiimotePressProcess(int,int)));
@@ -46,38 +45,54 @@ UserControlsEngine::~UserControlsEngine()
 
 void UserControlsEngine::start()
 {
-	hasBegin = true;
+	novaeCall->start();
 	countTimer.start();
+	hasBegin = true;
 	idTimer = startTimer(REFRESH);
 }
 
 void UserControlsEngine::wiimotePressProcess(int button, int wiimote)
 {
-    if(!isPaused && actions.count(button) >= 1)
-    {
-        Action action = actions[button];
-        actionList.append(QPair<Action, int>(action, wiimote));
-
-        Spaceship* ss = (wiimote == PLAYER_1) ? gameEngine->ship1() : gameEngine->ship2();
-
-        if(action == Shoot || action == NormalBonus || action == aSpecialBonus)
-        {
-            novaeCall->start(NOVATIMER);
-            countTimer.restart();
-        }
-
-		if(hasBegin)
+	if(actions.count(button) >= 1)
+	{
+		Action action = actions[button];
+		if(hasEnd && action == Pause)
+			quitGame();
+		else if(isPaused && action == NormalBonus)
 		{
-			if(action == Shoot)
-				ss->attack();
-			else if(action == NormalBonus)
-				ss->triggerBonus();
-			else if(action == aSpecialBonus)
-				ss->triggerSpecialAttack();
-			else if(action == Pause)
-				gameEngine->escapeGame();
+			gameEngine->quitGame();
+			gameEngine->displayEngine()->removeMessage();
 		}
-    }
+		else if(isPaused && action == aSpecialBonus)
+		{
+			gameEngine->timerControle();
+		gameEngine->displayEngine()->removeMessage();
+		}
+		else if(!isPaused)
+		{
+			actionList.append(QPair<Action, int>(action, wiimote));
+			Spaceship* ss = (wiimote == PLAYER_1) ? gameEngine->ship1() : gameEngine->ship2();
+
+			if(action == Shoot || action == NormalBonus || action == aSpecialBonus)
+			{
+				novaeCall->start(NOVATIMER);
+				countTimer.restart();
+			}
+
+			if(hasBegin && !hasEnd)
+			{
+				qDebug() << "OK";
+				if(action == Shoot)
+					ss->attack();
+				else if(action == NormalBonus)
+					ss->triggerBonus();
+				else if(action == aSpecialBonus)
+					ss->triggerSpecialAttack();
+				else if(action == Pause)
+					gameEngine->escapeGame();
+			}
+		}
+	}
 }
 
 void UserControlsEngine::wiimoteReleaseProcess(int button, int wiimote)
@@ -88,107 +103,6 @@ void UserControlsEngine::wiimoteReleaseProcess(int button, int wiimote)
 
         actionList.removeAll(pair);
     }
-}
-
-void UserControlsEngine::keyPressEvent(QKeyEvent * event)
-{
-	if(hasBegin)
-	{
-		Action action;
-		Shooter player;
-
-		switch(event->key())
-		{
-			case Qt::Key_W:
-				actionList.append(QPair<Action,int>(Top,PLAYER_1));
-				break;
-
-			case Qt::Key_S:
-				actionList.append(QPair<Action,int>(Bottom,PLAYER_1));
-				break;
-
-			case Qt::Key_D:
-				player = Player1;
-				action = Shoot;
-				actionList.append(QPair<Action,int>(Shoot,PLAYER_1));
-				break;
-
-			case Qt::Key_Q:
-				gameEngine->ship1()->triggerBonus();
-			break;
-
-			case Qt::Key_A:
-				gameEngine->ship1()->triggerSpecialAttack();
-			break;
-
-			case Qt::Key_I:
-				actionList.append(QPair<Action,int>(Top,PLAYER_2));
-				break;
-
-			case Qt::Key_K:
-				actionList.append(QPair<Action,int>(Bottom,PLAYER_2));
-				break;
-
-			case Qt::Key_J:
-				player = Player2;
-				action = Shoot;
-				actionList.append(QPair<Action,int>(Shoot,PLAYER_2));
-				break;
-
-			case Qt::Key_O:
-				gameEngine->ship2()->triggerBonus();
-			break;
-
-			case Qt::Key_L:
-				gameEngine->ship2()->triggerSpecialAttack();
-			break;
-		}
-
-		if((!event->isAutoRepeat() && (action == Shoot && player == Player1)))
-		{
-			gameEngine->ship1()->attack();
-			novaeCall->start(NOVATIMER);
-			countTimer.restart();
-		}
-
-		if((!event->isAutoRepeat() && (action == Shoot && player == Player2)))
-		{
-			gameEngine->ship2()->attack();
-			novaeCall->start(NOVATIMER);
-			countTimer.restart();
-		}
-	}
-}
-
-void UserControlsEngine::keyReleaseEvent(QKeyEvent * event)
-{
-	if(hasBegin)
-		switch(event->key())
-		{
-			case Qt::Key_W:
-				actionList.removeAll(QPair<Action,int>(Top,PLAYER_1));
-				break;
-
-			case Qt::Key_S:
-				actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_1));
-				break;
-
-			case Qt::Key_D:
-				actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_1));
-				break;
-
-			case Qt::Key_I:
-				actionList.removeAll(QPair<Action,int>(Top,PLAYER_2));
-				break;
-
-			case Qt::Key_K:
-				actionList.removeAll(QPair<Action,int>(Bottom,PLAYER_2));
-				break;
-
-			case Qt::Key_J:
-				actionList.removeAll(QPair<Action,int>(Shoot,PLAYER_2));
-				break;
-		}
 }
 
 void UserControlsEngine::timerEvent(QTimerEvent *)
@@ -248,6 +162,11 @@ void UserControlsEngine::endGame()
 {
     isPaused = true;
     hasEnd = true;
-    clearActionList();
-    killTimer(idTimer);
+}
+
+void UserControlsEngine::quitGame()
+{
+	clearActionList();
+	killTimer(idTimer);
+	gameEngine->quitGame();
 }

@@ -18,10 +18,9 @@ public:
 
 	void start();
     void timerEvent(QTimerEvent *event);
-    void keyPressEvent(QKeyEvent * event);
-    void keyReleaseEvent(QKeyEvent * event);
-
+	
     void clearActionList();
+	void quitGame();
 
 public slots:
     void callSupernovae();
@@ -46,7 +45,5 @@ private:
     bool hasBegin;
     bool isPaused;
     int pauseTime;
-
-
 };
 #endif

@@ -17,6 +17,7 @@ public:
     ~SpawnEngine();
 
     Bonus* generateBonus();
+	void start();
 
 public slots:
     void pause(bool);

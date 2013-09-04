@@ -5,6 +5,7 @@
 #include "include/game/Bonus.h"
 #include "include/game/Asteroid.h"
 #include "include/game/BlackShip.h"
+#include "include/engine/SpawnEngine.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -32,6 +33,7 @@ DemoEngine::DemoEngine(QWidget* parent):GameEngine(parent),bg(BACKGROUND),angleB
 
     //show();
     idTimer = startTimer(REFRESH);
+	se->start();
 }
 
 DemoEngine::~DemoEngine()
@@ -47,16 +49,19 @@ void DemoEngine::resizeEvent(QResizeEvent *)
     fitInView(QRect(QPoint(0, 0), size()));
 }
 
-void DemoEngine::escapeGame()
+void DemoEngine::escapeGame(bool isKey)
 {
 	if(idTimer == -1)
+	{
 		idTimer = startTimer(REFRESH);
+		emit signalPause(false);
+	}
 	else
 	{
 		killTimer(idTimer);
 		idTimer = -1;
+		emit signalPause(true);
 	}
-	emit signalPause(true);
 }
 
 void DemoEngine::timerEvent(QTimerEvent *)

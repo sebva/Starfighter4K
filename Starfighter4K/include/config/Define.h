@@ -20,7 +20,7 @@
 #define PROB_ALIEN                          25
 #define PROB_ALIEN_DEMO                     10
 #define PROB_SAT                            15
-#define PROB_SUPERNOVA                      1
+#define PROB_SUPERNOVA                      3
 #define PROB_BLACKSQUADRON                  5
 
 #define SPAWN_INTERVAL                      400 // (ms)

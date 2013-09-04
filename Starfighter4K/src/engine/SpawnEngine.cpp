@@ -38,12 +38,11 @@ SpawnEngine::SpawnEngine(int difficulty, GameEngine *_ge, bool _isDemo):isDemo(_
     intervalBlackSquadron = spawnBlackSquadron ? intervalSupernova + kProbBlackSquadron : intervalSupernova;
 
     timer = new QTimer(this);
-    timer->setInterval(SPAWN_INTERVAL);
+
+	timer->setInterval(SPAWN_INTERVAL);
 
     connect(ge, SIGNAL(signalPause(bool)), this, SLOT(pause(bool)));
     connect(timer, SIGNAL(timeout()), this, SLOT(timerFired()));
-
-    timer->start();
 }
 
 SpawnEngine::~SpawnEngine()
@@ -51,6 +50,11 @@ SpawnEngine::~SpawnEngine()
     delete timer;
 
     //GameEngine delete DisplayEngine and SpawnEngine
+}
+
+void SpawnEngine::start()
+{
+	timer->start();
 }
 
 void SpawnEngine::timerFired()
