@@ -31,6 +31,7 @@ QKinect::~QKinect()
 	infos("destroy");
 	if (m_kinect)
         m_kinect->NuiShutdown(); //Shutdown the kinect
+	m_run = false;
 }
 
 bool QKinect::isKinectAvailable()
@@ -149,14 +150,16 @@ QPair<QPoint, QPoint> QKinect::getHandsPosition()
 {
 	QPair<QPoint, QPoint> hands;
 	
+	int width = m_screenSize->width();
+
 	for(QList<QPoint> skeleton : getRealSkeletons())
 	{
 		if(skeleton.count() >= 20)
 		{
-			if(skeleton[NUI_SKELETON_POSITION_HEAD].x() < m_screenSize->width() / 2)
-				hands.first = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() > skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT] : skeleton[NUI_SKELETON_POSITION_HAND_LEFT];
+			if(width - skeleton[NUI_SKELETON_POSITION_HEAD].x() < m_screenSize->width() / 2)
+				hands.first = (width - skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() > width - skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? QPoint(width - skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x(), skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].y()) : QPoint(width - skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x(), skeleton[NUI_SKELETON_POSITION_HAND_LEFT].y());
 			else
-				hands.second = (skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() < skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? skeleton[NUI_SKELETON_POSITION_HAND_RIGHT] : skeleton[NUI_SKELETON_POSITION_HAND_LEFT];
+				hands.second = (width - skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x() < width - skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x()) ? QPoint(width - skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].x(), skeleton[NUI_SKELETON_POSITION_HAND_RIGHT].y()) : QPoint(width - skeleton[NUI_SKELETON_POSITION_HAND_LEFT].x(), skeleton[NUI_SKELETON_POSITION_HAND_LEFT].y());
 		}
 	}
 
@@ -195,7 +198,6 @@ void QKinect::update()
 	update |= processSkeleton();
 	if(update)
 		emit newDatas();
-	qDebug() << *m_screenSize;
 }
 
 bool QKinect::init()
