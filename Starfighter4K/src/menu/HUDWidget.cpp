@@ -202,4 +202,6 @@ void HUDWidget::startTimer()
 {
 	ui->p1_specialBonus->startTimer();
 	ui->p2_specialBonus->startTimer();
+	ui->p1_normalBonus->startTimer();
+	ui->p2_normalBonus->startTimer();
 }
