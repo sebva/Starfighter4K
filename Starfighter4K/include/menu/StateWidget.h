@@ -8,9 +8,9 @@ class StateWidget;
 }
 
 enum SystemState {
-    SystemStateReady = 1,
-    SystemStateLoading = 2,
-    SystemStateFailed = 3
+	SystemStateUninitialized = 1,
+    SystemStateFailed = 2,
+	SystemStateReady = 3
 };
 
 class StateWidget : public QWidget
@@ -28,7 +28,6 @@ private:
     Ui::StateWidget *ui;
     void mousePressEvent(QMouseEvent *);
     SystemState status;
-    QMovie* mov;
 
 signals:
     void clicked();

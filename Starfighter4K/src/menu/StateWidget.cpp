@@ -7,14 +7,12 @@ StateWidget::StateWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    mov = new QMovie(":/images/menu/loading");
-    setStatus(SystemStateFailed);
+    setStatus(SystemStateUninitialized);
 }
 
 StateWidget::~StateWidget()
 {
     delete ui;
-    delete mov;
 }
 
 SystemState StateWidget::getStatus()
@@ -37,13 +35,10 @@ void StateWidget::setStatus(SystemState status)
         p.setColor(QPalette::Background, QColor("#c0392b"));
         ui->systemStatus->setPixmap(QPixmap(":/images/menu/x"));
         break;
-    case SystemStateLoading:
-    {
-        p.setColor(QPalette::Background, QColor("#c0392b"));
-        ui->systemStatus->setMovie(mov);
-        mov->start();
+	case SystemStateUninitialized:
+        p.setColor(QPalette::Background, QColor("#95a5a6"));
+		ui->systemStatus->setPixmap(QPixmap());
         break;
-    }
     }
 
     setAutoFillBackground(true);

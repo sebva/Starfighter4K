@@ -18,6 +18,8 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
 {
 	ui->setupUi(this);
 
+	setAttribute(Qt::WA_DeleteOnClose);
+
 	ui->about->setSource(tr("qrc:/strings/about"));
 
 	QSet<QString> namesSet;

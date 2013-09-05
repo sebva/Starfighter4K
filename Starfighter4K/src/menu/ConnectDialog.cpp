@@ -12,6 +12,8 @@ ConnectDialog::ConnectDialog(WiimoteEngine* wiimoteEngine, QKinect* kinect, QWid
 {
     ui->setupUi(this);
 
+	setAttribute(Qt::WA_DeleteOnClose);
+
     ui->wiimote->setSystemName(tr("Wiimote"));
     ui->kinect->setSystemName(tr("Kinect"));
     ui->calibration->setSystemName(tr("Calibration"));
@@ -28,7 +30,6 @@ ConnectDialog::~ConnectDialog()
 
 void ConnectDialog::connectWiimotes()
 {
-    ui->wiimote->setStatus(SystemStateLoading);
     int wiimotes = wiimoteEngine->findWiimotes();
     qDebug() << wiimotes;
     if(wiimotes >= 2)
@@ -36,7 +37,7 @@ void ConnectDialog::connectWiimotes()
         wiimoteEngine->connectWiimotes();
 		wiimoteEngine->startAccel();
 		wiimoteEngine->start();
-       ui->wiimote->setStatus(SystemStateReady);
+		ui->wiimote->setStatus(SystemStateReady);
     }
     else
         ui->wiimote->setStatus(SystemStateFailed);
@@ -46,8 +47,7 @@ void ConnectDialog::connectWiimotes()
 
 void ConnectDialog::connectKinect()
 {
-	if(kinect->startKinect())
-		ui->kinect->setStatus(SystemStateReady);
+	ui->kinect->setStatus(kinect->startKinect() ? SystemStateReady : SystemStateFailed);
 
     checkAndClose();
 }
