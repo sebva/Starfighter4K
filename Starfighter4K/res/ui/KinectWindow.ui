@@ -722,7 +722,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/menu/blaster</normaloff>:/images/menu/blaster</iconset>
+              <normaloff>:/images/menu/res/images/game/blaster_r.png</normaloff>:/images/menu/res/images/game/blaster_r.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -754,7 +754,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/menu/speeder</normaloff>:/images/menu/speeder</iconset>
+              <normaloff>:/images/menu/res/images/game/speeder_r.png</normaloff>:/images/menu/res/images/game/speeder_r.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -850,7 +850,7 @@
             </property>
             <property name="icon">
              <iconset resource="../../ressources.qrc">
-              <normaloff>:/images/menu/bermuder</normaloff>:/images/menu/bermuder</iconset>
+              <normaloff>:/images/menu/res/images/game/bermuder_r.png</normaloff>:/images/menu/res/images/game/bermuder_r.png</iconset>
             </property>
             <property name="iconSize">
              <size>
