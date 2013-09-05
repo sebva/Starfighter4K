@@ -26,6 +26,8 @@ int main(int argc, char *argv[])
         kw = new KinectWindow(&we, &kinect);
         kw->showFullScreen();
     }
+	else
+		exit(0);
 
     int res = app.exec();
     delete kw;
