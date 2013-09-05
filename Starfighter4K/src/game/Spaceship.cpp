@@ -300,6 +300,10 @@ void Spaceship::attack()
     int l_x = getXPositionFire();
     int l_y = getYPositionFire();
 
+	if(player == Player1)
+		l_y -= 9;
+	else
+		l_y += 9;
     gameEngine->soundEngine()->playSound(ShootSound);
 
     qreal angle = dAngleAttack*M_PI/180.0;
@@ -333,8 +337,8 @@ void Spaceship::top()
     else
         if(!isFrozen)
         {
-            if((pos().y()-dSpeed)<=gameEngine->displayEngine()->sceneSize().y())
-                setPos(pos().x(),gameEngine->displayEngine()->sceneSize().y());
+            if((pos().y()-dSpeed)<=gameEngine->displayEngine()->sceneSize().y()+GameEngine::offset)
+                setPos(pos().x(),gameEngine->displayEngine()->sceneSize().y()+GameEngine::offset);
             else
                 setPos(pos().x(),pos().y()-dSpeed);
         }

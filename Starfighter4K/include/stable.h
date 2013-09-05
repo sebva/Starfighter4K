@@ -10,7 +10,6 @@
 #include <QLocale>
 #include <QtOpenGL/QGLWidget>
 #include <QElapsedTimer>
-
 #include <QtMultimedia>
 
 #endif // STABLE_H

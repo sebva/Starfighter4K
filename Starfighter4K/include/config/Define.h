@@ -14,7 +14,7 @@
 #define ICON_TASKBAR                        ":/images/taskbar-icon"
 #define FONT_PATH							":/font/HelveticaNeueLight.ttf"
 #define NB_COUNTDOWN						3
-
+#define OFFSET_HUD							114
 //SpawnEngine
 #define PROB_ASTEROID                       75
 #define PROB_ALIEN                          25
@@ -23,7 +23,7 @@
 #define PROB_SUPERNOVA                      3
 #define PROB_BLACKSQUADRON                  5
 
-#define SPAWN_INTERVAL                      400 // (ms)
+#define SPAWN_INTERVAL                      350 // (ms)
 #define RESISTANCE_ASTEROID                 50
 #define RESISTANCE_ALIEN                    425
 #define ALIEN_SWIRL_MIN                     20
@@ -54,7 +54,8 @@
 
 #define POWER_ASTEROID                      1
 #define POWER_SMALL_ASTEROID                1500
-#define RESISTANCE_SMALL_ASTEROID           1 // Min : 1 Max : 100
+#define RESISTANCE_SMALL_ASTEROID           20 // Min : 1 Max : 100
+#define SUPERNOVA_RESISTANCE				20
 #define HEALTHPOINT_SMALL_ASTEROID          50
 
 #define NUMBER_FRAME_BEFORE_CHANGING_PIC    2

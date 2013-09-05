@@ -2,6 +2,7 @@
 #define GAME_ENGINE_H
 
 #include "include/enum/Enum.h"
+#include "include/config/Define.h"
 
 class DisplayEngine;
 class UserControlsEngine;
@@ -78,6 +79,8 @@ public:
     void freezePlayer(int duration, Shooter playerDest);
 
 	void quitGame();
+
+	const static int offset = OFFSET_HUD;
 signals:
     void endGame();
     void signalPause(bool); // true = isPause

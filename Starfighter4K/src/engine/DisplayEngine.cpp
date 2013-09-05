@@ -26,13 +26,12 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     //QVBoxLayout * mainScreen = new QVBoxLayout(this);
     //QGridLayout * mainScreen = new QGridLayout(this);
 
-    hud = new HUDWidget(gameEngine, this);
+    hud = new HUDWidget(gameEngine);
     hud->setPlayerName(Player1, Settings::getGlobalSettings().playerOneName());
     hud->setPlayerName(Player2, Settings::getGlobalSettings().playerTwoName());
-    this->addDockWidget(Settings::getGlobalSettings().HUDArea(), hud);
 
     int sceneWidth = screenSizeWidth;
-    int sceneHeigth = screenSizeHeight - hud->height();
+    int sceneHeigth = screenSizeHeight;
 
     // configuration of QGraphicsScene and QGraphicsview
     scene = new QGraphicsScene(0,0,sceneWidth,sceneHeigth,this);
@@ -82,6 +81,9 @@ DisplayEngine::DisplayEngine(GameEngine *ge, QWidget *parent)
     bgScene->setPos(-(offset+1),-(offset+1));
 
 	QFontDatabase().addApplicationFont(FONT_PATH);
+	QGraphicsProxyWidget* widget = scene->addWidget(hud);
+	widget->setZValue(1000);
+	widget->setGeometry(QRectF(0,0,sceneWidth,114));
 }
 
 void DisplayEngine::startCountDown()
@@ -118,6 +120,7 @@ void DisplayEngine::changeCountDown()
 			gameEngine->start();
 			hud->startTimer();
 			delete text;
+			text = 0;
 			delete tCountDown;
 		}
 	}
@@ -265,7 +268,8 @@ void DisplayEngine::keyPressEvent(QKeyEvent *event)
         break;
 
         case Qt::Key_Escape:
-        gameEngine->escapeGame(true);
+			if(text == 0)
+				gameEngine->escapeGame(true);
         break;
 
         default:

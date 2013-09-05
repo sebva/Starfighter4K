@@ -17,7 +17,8 @@ KinectWindow::KinectWindow(WiimoteEngine *we, QKinect* kinect, QWidget *parent) 
 	kinectActive(true)
 {
 	ui->setupUi(this);
-
+	setAttribute(Qt::WA_TranslucentBackground);
+	setPalette(Qt::transparent);
 	setAttribute(Qt::WA_DeleteOnClose);
 
 	ui->about->setSource(tr("qrc:/strings/about"));

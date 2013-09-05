@@ -54,7 +54,7 @@ void ConnectDialog::connectKinect()
 
 void ConnectDialog::performCalibration()
 {
-    if(ui->kinect->getStatus() != SystemStateReady)
+   if(ui->kinect->getStatus() != SystemStateReady)
         return;
 
 	if(kinect->isCalibrated())

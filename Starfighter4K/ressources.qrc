@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/image">
         <file alias="taskbar-icon">res/images/taskbar-icon.png</file>
     </qresource>
     <qresource prefix="/strings">
@@ -22,6 +22,9 @@
         <file alias="shadow">res/images/game/shadow.png</file>
         <file alias="blackship">res/images/game/blackship.png</file>
         <file alias="projblack">res/images/game/projblack.png</file>
+        <file alias="hud_blue">res/images/hud_blue.png</file>
+        <file alias="hud_green">res/images/hud_green.png</file>
+        <file alias="hud_orange">res/images/hud_orange.png</file>
     </qresource>
     <qresource prefix="/images/game/asteroids">
         <file alias="rock10000">res/images/game/asteroid1/rock10000.png</file>

@@ -36,5 +36,5 @@ Supernova::~Supernova()
     gameEngine->soundEngine()->playSound(SupernovaSound);
 
     for(int i = 0;i<nbSpirales;i++)
-        gameEngine->addAsteroid(new AsteroidSupernova(dX,dY,Other,100,100,gameEngine,static_cast<double>(2*M_PI)/nbSpirales*(i+1)));
+        gameEngine->addAsteroid(new AsteroidSupernova(dX,dY,Other,SUPERNOVA_RESISTANCE,MAX_SPACESHIP_PV/2.0,gameEngine,static_cast<double>(2*M_PI)/nbSpirales*(i+1)));
 }

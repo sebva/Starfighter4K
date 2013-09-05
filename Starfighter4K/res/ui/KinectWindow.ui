@@ -78,7 +78,7 @@
    <string>Starfighter 4K</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../ressources.qrc">
+   <iconset>
     <normaloff>:/images/taskbar-icon</normaloff>:/images/taskbar-icon</iconset>
   </property>
   <property name="styleSheet">
@@ -221,6 +221,9 @@
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
            <widget class="DemoEngine" name="graphicsView">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
@@ -406,6 +409,9 @@
             <width>480</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background:white;</string>
           </property>
          </widget>
         </item>

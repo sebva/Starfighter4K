@@ -218,12 +218,11 @@ int GameEngine::elapsedTime()
 
 void GameEngine::endGameTimer()
 {
-    timerControle();
     if(!hasSomeoneWon)
     {
+		timerControle();
         hasSomeoneWon = true;
 
-        emit endGame();
         QString playerName;
 
         if(ship1()->getScore()>ship2()->getScore())
@@ -233,6 +232,7 @@ void GameEngine::endGameTimer()
 
 		QString message = ship1()->getScore()!=ship2()->getScore() ? QString(tr("%1 has won !")).arg(playerName) : QString(tr("No one has won ... Egality !"));
 		message.append(QString::fromUtf8("\nPress home to quit"));
+
 		de->showMessage(message);
 		uc->endGame();
     }
@@ -505,7 +505,7 @@ void GameEngine::checkOutsideScene(QList<Displayable*> &list)
             }
 
             if(list[i]->pos().x()-l_w > sceneSize().width() || list[i]->pos().x()+l_w < 0
-            || list[i]->pos().y() > sceneSize().height() || list[i]->pos().y()+l_h < 0)
+            || list[i]->pos().y() > sceneSize().height() || list[i]->pos().y()+offset+l_h < 0)
                 {
                     delete list[i];
                     list[i] = 0;
