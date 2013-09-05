@@ -285,6 +285,9 @@
           </item>
           <item>
            <layout class="QFormLayout" name="formLayout">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+            </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label_12">
               <property name="text">
@@ -293,7 +296,14 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="p1name"/>
+             <widget class="QLineEdit" name="p1name">
+              <property name="styleSheet">
+               <string notr="true">color:black;</string>
+              </property>
+              <property name="maxLength">
+               <number>9</number>
+              </property>
+             </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_11">
@@ -303,27 +313,13 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="p2name"/>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>HUD placement</string>
+             <widget class="QLineEdit" name="p2name">
+              <property name="styleSheet">
+               <string notr="true">color:black;</string>
               </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QComboBox" name="hudPlacement">
-              <item>
-               <property name="text">
-                <string>Top</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Bottom</string>
-               </property>
-              </item>
+              <property name="maxLength">
+               <number>9</number>
+              </property>
              </widget>
             </item>
            </layout>

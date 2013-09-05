@@ -698,6 +698,9 @@ QProgressBar{text-align:center;color:white;font-weight:bold;}</string>
       <property name="text">
        <string notr="true">Player 2</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="p2_lblHP">
       <property name="geometry">

@@ -12,7 +12,7 @@ ConnectDialog::ConnectDialog(WiimoteEngine* wiimoteEngine, QKinect* kinect, QWid
 {
     ui->setupUi(this);
 
-	setAttribute(Qt::WA_DeleteOnClose);
+	//setAttribute(Qt::WA_DeleteOnClose);
 
     ui->wiimote->setSystemName(tr("Wiimote"));
     ui->kinect->setSystemName(tr("Kinect"));

@@ -152,7 +152,6 @@ void KinectWindow::on_btnOptions_clicked()
 	ui->p2name->setText(s.playerTwoName());
 
 	int index = (s.HUDArea() == Qt::TopDockWidgetArea) ? 0 : 1;
-	ui->hudPlacement->setCurrentIndex(index);
 
 	ui->stack->setCurrentWidget(ui->options);
 }
@@ -163,9 +162,6 @@ void KinectWindow::on_btnValidateOptions_clicked()
 
 	s.setPlayerOneName(ui->p1name->text());
 	s.setPlayerTwoName(ui->p2name->text());
-
-	int index = ui->hudPlacement->currentIndex();
-	s.setHUDArea(index == 0 ? Qt::TopDockWidgetArea : Qt::BottomDockWidgetArea);
 
 	ui->stack->setCurrentWidget(ui->home);
 }
