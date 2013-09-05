@@ -3,8 +3,10 @@
 #include "include/menu/KinectWindow.h"
 #include "include/kinect/qkinect.h"
 
-int main(int argc, char *argv[])
+int main(int, char**)
 {
+	char *argv[] = {"Starfighter4K","-platformpluginpath", ".", NULL};
+	int argc = sizeof(argv) / sizeof(char*) - 1;
     QApplication app(argc, argv);
 
     QTranslator translator;
