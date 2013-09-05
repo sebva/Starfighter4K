@@ -160,6 +160,9 @@
         <file alias="timer">res/images/menu/timer_mode.png</file>
         <file alias="minus">res/images/menu/minus.png</file>
         <file alias="plus">res/images/menu/plus.png</file>
+        <file>res/images/game/bermuder_r.png</file>
+        <file>res/images/game/blaster_r.png</file>
+        <file>res/images/game/speeder_r.png</file>
     </qresource>
     <qresource prefix="/font">
         <file>res/font/HelveticaNeueLight.ttf</file>
