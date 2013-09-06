@@ -1,3 +1,19 @@
+/*==============================================================*
+ | Implementation file qkinect.cpp
+ |        implements : QKinect class
+ |
+ |
+ | summary : This class implement all the functonality necessary
+ |			 for use a Kinect device.
+ |
+ | Creator : Alexandre Perez
+ | Creation date : 22/09/2013
+ | Copyright: EIAJ, all rights reserved
+ |
+ |
+ | Version of the file : 1.0.0
+ |
+ *==============================================================*/
 #include "include/kinect/qkinect.h"
 #include <QDebug>
 
@@ -31,15 +47,21 @@ QKinect::~QKinect()
 	infos("destroy");
 	if (m_kinect)
         m_kinect->NuiShutdown(); //Shutdown the kinect
-	m_run = false;
+	m_run = false; //Exit the loop in the run function for kill the thread
 }
 
+/**
+* Check if there is a kinect connected to the computer and available
+*/
 bool QKinect::isKinectAvailable()
 {
 	int numSensors;
-	return NuiGetSensorCount(&numSensors) == S_OK && numSensors > 0; //test if there is a kinect connected to the pc and available
+	return NuiGetSensorCount(&numSensors) == S_OK && numSensors > 0;
 }
 
+/**
+* Public methode for start the kinect device
+*/
 bool QKinect::startKinect()
 {
 	infos("Kinect starting...");
@@ -58,12 +80,18 @@ void QKinect::stopKinect()
 	m_run = false;
 }
 
+/**
+* Change the kinect device angle, by the value passed in parameter
+*/
 void QKinect::setElevationAngle(int angle)
 {
 	m_angle = angle;
 	m_kinect->NuiCameraElevationSetAngle(m_angle);
 }
 
+/**
+* Public methode for start calibration. Warning, you need to display a green screen for calibration.
+*/
 void QKinect::calibrate()
 {
 	m_hasToCalibrate = true;
@@ -79,10 +107,13 @@ void drawSquares( Mat& image, const std::array<cv::Point ,4>& points )
     cv::imshow("Detection", image);
 }
 
+/**
+* Return a QImage of the current data form the camera sensor stream
+*/
 QImage QKinect::getFrameColorCamera()
 {
 	QImage image = QImage(m_frameColorData, video_width, video_height, QImage::Format::Format_RGB32);
-	if(m_frameColorSize > (video_width - 1) * video_height * 4)
+	if(m_frameColorSize > (video_width - 1) * video_height * 4) //check if we have the data of the image
 		image.scaled(*m_screenSize, Qt::AspectRatioMode::KeepAspectRatio);
 	else
 		image.fill(Qt::white);
@@ -90,6 +121,9 @@ QImage QKinect::getFrameColorCamera()
 	return image;
 }
 
+/**
+* Return a list of skeleton in coordinate for use on the computer screen (coordinate are compute by the infos of the calibration)
+*/
 QList<QList<QPoint>> QKinect::getRealSkeletons()
 {
 	QMutexLocker locker(&mutex);
@@ -120,6 +154,9 @@ QList<QList<QPoint>> QKinect::getRealSkeletons()
 	return realSkeletons;
 }
 
+/**
+* Return a description of the status of the kinect
+*/
 QString QKinect::getStatutsDescription()
 {
 	if(m_kinect == nullptr) return "Kinect not initialized";
@@ -146,6 +183,9 @@ QString QKinect::getStatutsDescription()
 	return "error";
 }
 
+/**
+* Return the hands position in computer coordinate. The hands returned are the nearest hand of the screen of each player.
+*/
 QPair<QPoint, QPoint> QKinect::getHandsPosition()
 {
 	QPair<QPoint, QPoint> hands;
@@ -166,6 +206,9 @@ QPair<QPoint, QPoint> QKinect::getHandsPosition()
 	return hands;
 }
 
+/**
+* Return the corners point of the screen (in computer coordinates)
+*/
 QList<QPoint> QKinect::getCorners()
 {
 	QList<QPoint> corners;
@@ -181,6 +224,9 @@ QList<QPoint> QKinect::getCorners()
 	return corners;
 }
 
+/**
+* Methode that check each REFRESH_FREQUENCY milisecond new data from kinect.
+*/
 void QKinect::run()
 {
 	m_run = true;
@@ -191,6 +237,9 @@ void QKinect::run()
 	}
 }
 
+/**
+* Try to fetch new data and emit a signal if there is new data
+*/
 void QKinect::update()
 {
 	if(m_kinect == nullptr) return;
@@ -200,6 +249,9 @@ void QKinect::update()
 		emit newDatas();
 }
 
+/**
+* Initialize the kinect device and all the stream.
+*/
 bool QKinect::init()
 {
     if (!isKinectAvailable()) return false;
@@ -244,16 +296,17 @@ bool QKinect::init()
 
 	setElevationAngle(7);
 
-	//m_kinect->colorstream
-
 	return getStatutsDescription() == WORK;
 }
 
+/**
+* Add image the the rectangle detection class. when there is 10 images we compute the coordinate of the corners of the green screen
+*/
 void QKinect::addImage()
 {
 	static int i = 1;
 	infos(QString("Image %1").arg(i++));
-	Mat mat(video_height,video_width,CV_8UC4,m_frameColorData);
+	Mat mat(video_height,video_width,CV_8UC4,m_frameColorData); // Create a mat object that use un opencv
 	m_rectangleDetection.addImage(mat);
 
 	if(m_rectangleDetection.getSizeImages() == kNbImages)
@@ -270,7 +323,7 @@ void QKinect::addImage()
 
 		if (m_hNextColorFrameEvent != INVALID_HANDLE_VALUE)
 		{
-			CloseHandle(m_hNextColorFrameEvent);
+			CloseHandle(m_hNextColorFrameEvent); // close the color stream
 		}
 		qDebug() << QPoint(m_points[0].x, m_points[0].y) << QPoint(m_points[1].x, m_points[1].y) << QPoint(m_points[2].x, m_points[2].y) << QPoint(m_points[3].x, m_points[3].y);
 		qDebug() << m_realScreenPosition << m_realScreenSize;
@@ -278,6 +331,9 @@ void QKinect::addImage()
 	}
 }
 
+/**
+* Fetch the data of the skeletons in front of the kinect
+*/
 bool QKinect::processSkeleton()
 {
 	QMutexLocker locker(&mutex);
@@ -324,6 +380,9 @@ bool QKinect::processSkeleton()
 	return true;
 }
 
+/**
+* Fetch the data of the color camera stream
+*/
 bool QKinect::processColor()
 {
     HRESULT hr;
@@ -367,6 +426,9 @@ void QKinect::infos(QString message)
 	emit updateInfo(message);
 }
 
+////////////////////////////
+/// MICROSOFT KINECT SDK ///
+////////////////////////////
 /// <summary>
 /// Converts a skeleton point to screen space
 /// </summary>

@@ -1,3 +1,12 @@
+/*=====================================================================*
+ | Declaration file qkinect.h
+ |      declares :  QKinect class
+ |
+ | For more informations (creation date, creator, etc.), please see the
+ | corresponding .cpp file
+ |
+ *=====================================================================*/
+
 #ifndef QKINECT_H
 #define QKINECT_H
 
